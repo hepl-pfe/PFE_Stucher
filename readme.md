@@ -1,27 +1,10 @@
-## Laravel PHP Framework
+# Version beta de mon PFE (projet de fin d'étude)
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+## Qu'est-ce que c'est?
+Pour mon pfe, j’ai décidé de faire *une application web de gestion de journal de classe interactif entre élèves et professeurs*.
+Il s'agit donc d'une application qui permet de partager un journal de classe indépendament du système administratif habituel et qui est plus ou moins (à quelques éléments près) commun aux professeurs et aux étudiants.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+Ainsi, un professeur pourra créer et gérer ses cours en indiquant par exemple quand une interrogation est donnée et préciser la matière de celle-ci ou encore, indiquer qu'il sera absent pour une séances particulière et un étudiant pourra voir les cours qu'il a et les devoirs, interrogations ou autre inforamation en rapport avec ses cours.
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
-
-## Official Documentation
-
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+# Comment c'est fait?
+Pour réaliser ce projet, je vais utiliser le framework [Laravel](http://laravel.com), ainsi que la librairie [Jquery](http://jqueryui.com) et les langages ± habituel comme html et css (avec sass).
