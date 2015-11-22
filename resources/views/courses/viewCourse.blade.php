@@ -14,8 +14,28 @@
 				<li><a href="{!! action( 'CoursesController@addNews' ) !!}">Une notification</a></li>
 			</ul>
 		</div>
-		<a class="btn btn-warning" href="">Modifier ce cours</a>
-		<a class="btn btn-danger" href="">Supprimer ce cours</a>
+		<a class="btn btn-warning" href="{!! action( 'CoursesController@edit', [ 'id' => $course->id] ) !!}">Modifier ce cours</a>
+		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">Supprimer ce cours</button>
+		<!-- Modal -->
+		<div id="myModal1" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Voulez-vous vraiment supprimer ce cours?</h4>
+					</div>
+					<div class="modal-body">
+						<p>Attention, c'est irréversible!</p>
+					</div>
+					<div class="modal-footer">
+						<a href="{!! action( 'CoursesController@delete', [ 'id' => $course->id] ) !!}" class="btn btn-danger">Oui</a>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	@elseif( Auth::user()->status == 2 )
 		@if ( $act == 1 )
 			<a class="btn btn-danger" href="">Quitter ce cours</a>

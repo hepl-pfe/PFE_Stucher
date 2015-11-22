@@ -14,9 +14,13 @@ class CoursesController extends Controller
     public function index() {
         $title = 'Accueil';
         if ( \Auth::check() ) {
-            $courses = Courses::all();
             $title = 'Tous mes cours';
-            return view('courses/indexCourses', compact('courses', 'title'));
+            if ( \Auth::user()->status === 1 ) {
+                //$courses = Courses::all();
+                $courses = Courses::where( 'teacher_id', '=', \Auth::user()->id )->get();
+                return view('courses/indexTeacherCourses', compact('courses', 'title'));
+            }
+            return view('courses/indexStudentCourses', compact('courses', 'title'));
         } 
         return view('welcome', ['title' => $title]);
     }
@@ -26,7 +30,7 @@ class CoursesController extends Controller
         $act = $action;
         $title = 'Cours de '.$course->title;
         if ( \Auth::user()->status == 1 ) {
-            $title = 'Cours de '.$course->title.' Groupe 3TQ';
+            $title = 'Cours de '.$course->title.' groupe '. $course->group;
             return view('courses/viewCourse', compact('course', 'title', 'act'));
         }
         return view('courses/viewCourse', compact('course', 'title', 'act'));
@@ -38,9 +42,14 @@ class CoursesController extends Controller
     }
 
     public function store() {
-        $course = Courses::create(['title' => Input::get('title')]);
-        $title = 'Tous les cours';
-         return redirect()->route('indexCourses');
+        $course = Courses::create([
+            'title' => Input::get('title'),
+            'teacher_id' => \Auth::user()->id,
+            'group' => Input::get('group'),
+            'school' => Input::get('school'),
+            'place' => Input::get('place'),
+            ]);
+        return redirect()->route('indexCourses');
     }
 
     public function add() {
@@ -80,11 +89,31 @@ class CoursesController extends Controller
 
     }
 
-    public function edit() {
-
+    public function edit( $id ) {
+        $course = Courses::findOrFail($id);
+        $pageTitle = 'Modifier le cours';
+        $id = $course->id;
+        $title = $course->title;
+        $group = $course->group;
+        $school = $course->school;
+        $place = $course->place;
+        return view('courses/updateCourse', compact('pageTitle', 'id', 'title', 'group', 'school', 'place'));
     }
 
-    public function delete() {
+    public function update( $id ) {
         $course = Courses::findOrFail($id);
+        $course->title = Input::get('title');
+        $course->group = Input::get('group');
+        $course->school = Input::get('school');
+        $course->place = Input::get('place');
+        $course->updated_at = date( 'Y-m-d H:i:s' );
+        $course->save();
+        return redirect()->route('indexCourses');
+    }
+
+    public function delete( $id ) {
+        $course = Courses::findOrFail($id);
+        $course->delete();
+        return redirect()->route('indexCourses');
     }
 }
