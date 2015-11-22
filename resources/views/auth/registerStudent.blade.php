@@ -2,6 +2,7 @@
     @section('title', $title)
     @section( 'content' )
     <h1>{{$title}}</h1>
+    <a href="{{ action( 'CoursesController@index' ) }}" class="btn btn-warning">Retour</a>
 
     <form method="POST" action="/auth/register">
         {!! csrf_field() !!}
@@ -32,3 +33,5 @@
             <button class="btn btn-default" type="submit">Register</button>
         </div>
     </form>
+
+    @stop
