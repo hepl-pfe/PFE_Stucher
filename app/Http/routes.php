@@ -22,6 +22,12 @@ Route::get( 'planning', [ 'as' => 'planning', 'uses' => 'PageController@planning
 
 Route::get( 'createCourse', [ 'as' => 'createCourse', 'uses' => 'CoursesController@create' ] );
 Route::post( 'createCourse', [ 'as' => 'createCourse', 'uses' => 'CoursesController@store' ] );
+
+Route::get( 'deleteCourse/{id}', [ 'as' => 'deleteCourse', 'uses' => 'CoursesController@delete' ] );
+
+Route::get( 'updateCourse/{id}', [ 'as' => 'updateCourse', 'uses' => 'CoursesController@edit' ] );
+Route::post( 'updateCourse/{id}', [ 'as' => 'updateCourse', 'uses' => 'CoursesController@update' ] );
+
 Route::get( 'indexCourses', [ 'as' => 'indexCourses', 'uses' => 'CoursesController@index' ] );
 Route::get( 'addCourses', [ 'as' => 'addCourses', 'uses' => 'CoursesController@add' ] );
 Route::get( 'addWork', [ 'as' => 'addWork', 'uses' => 'CoursesController@addWork' ] );
