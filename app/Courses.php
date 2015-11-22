@@ -9,5 +9,5 @@ use Illuminate\Support\Facades\DB;
 class Courses extends Model
 {
 
-	protected $fillable = ['title'];
+	protected $fillable = ['teacher_id', 'title', 'group', 'school', 'place'];
 }
