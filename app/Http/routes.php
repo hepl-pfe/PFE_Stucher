@@ -14,6 +14,13 @@
 Route::get( '/', [ 'as' => 'home', 'uses' => 'CoursesController@index' ] );
 
 Route::get( 'a-propos', [ 'as' => 'about', 'uses' => 'PageController@about' ] );
+
+Route::get( 'updateProfil', [ 'as' => 'updateProfil', 'uses' => 'PageController@editProfil' ] );
+Route::post( 'updateProfil/{id}', [ 'as' => 'updateProfil', 'uses' => 'PageController@updateProfil' ] );
+
+
+Route::get( 'deleteProfil', [ 'as' => 'deleteProfil', 'uses' => 'PageController@deleteProfil' ] );
+
 Route::get( 'notification', [ 'as' => 'notification', 'uses' => 'PageController@notification' ] );
 Route::get( 'message', [ 'as' => 'message', 'uses' => 'PageController@message' ] );
 Route::get( 'newMessage', [ 'as' => 'newMessage', 'uses' => 'PageController@newMessage' ] );

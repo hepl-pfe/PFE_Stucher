@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Courses;
+use App\User;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -12,9 +15,30 @@ class PageController extends Controller
     public function about(){
         if ( \Auth::check() ) {
     		$title = "à propos";
-    		return view('pages/about', ['title' => $title]);
+            $nbCourses = Courses::where('teacher_id', '=', \Auth::user()->id)->count();
+    		return view('pages/about', compact('title', 'nbCourses'));
     	}
     	return view('welcome', ['title' => 'accueil']);
+    }
+
+    public function editProfil() {
+        $title = 'Modifier votre profil';
+        $id = \Auth::user()->id;
+        $user = User::findOrFail($id);
+        $name = $user->name;
+        $email = $user->email;
+        return view('pages/updateProfil', compact('id', 'name', 'email', 'title'));
+    }
+
+    public function updateProfil() {
+
+    }
+
+    public function deleteProfil() {
+        $id = \Auth::user()->id;
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->route('indexCourses');
     }
 
     public function notification(){
