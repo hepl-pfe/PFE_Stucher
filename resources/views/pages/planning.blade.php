@@ -7,10 +7,10 @@
 			<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Ajouter
 			<span class="caret"></span></button>
 			<ul class="dropdown-menu dropdown-menu-right">
-				<li><a href="{!! action( 'CoursesController@create' ) !!}">Un cours</a></li>
-				<li><a href="{!! action( 'CoursesController@addWork' ) !!}">Un devoir</a></li>
-				<li><a href="{!! action( 'CoursesController@addTest' ) !!}">Une interrogation</a></li>
-				<li><a href="{!! action( 'CoursesController@addNews' ) !!}">Une notification</a></li>
+				<li><a href="{!! action( 'CourseController@create' ) !!}">Un cours</a></li>
+				<li><a href="{!! action( 'CourseController@addWork' ) !!}">Un devoir</a></li>
+				<li><a href="{!! action( 'CourseController@addTest' ) !!}">Une interrogation</a></li>
+				<li><a href="{!! action( 'CourseController@addNews' ) !!}">Une notification</a></li>
 			</ul>
 		</div>
 	@endif

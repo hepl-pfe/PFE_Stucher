@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
-class Courses extends Model
+class Course extends Model
 {
 
-	protected $fillable = ['teacher_id', 'title', 'group', 'school', 'place'];
+	protected $fillable = ['teacher_id', 'access_token', 'title', 'group', 'school', 'place'];
 }

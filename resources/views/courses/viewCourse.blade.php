@@ -1,26 +1,16 @@
+<?php use Carbon\Carbon; ?>
+
+
 @extends( 'layout' )
     @section( 'content' )
     @section( 'title', $title )
-
 	<h1>{{$title}}</h1>
 	@if( Auth::user()->status == 1 )
-		<div class="dropdown text-right">
-			<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Ajouter
-			<span class="caret"></span></button>
-			<ul class="dropdown-menu dropdown-menu-right">
-				<li><a href="{!! action( 'CoursesController@create' ) !!}">Un cours</a></li>
-				<li><a href="{!! action( 'CoursesController@addWork' ) !!}">Un devoir</a></li>
-				<li><a href="{!! action( 'CoursesController@addTest' ) !!}">Une interrogation</a></li>
-				<li><a href="{!! action( 'CoursesController@addNews' ) !!}">Une notification</a></li>
-			</ul>
-		</div>
-		<a class="btn btn-warning" href="{!! action( 'CoursesController@edit', [ 'id' => $course->id] ) !!}">Modifier ce cours</a>
+		<a class="btn btn-warning" href="{!! action( 'CourseController@edit', [ 'id' => $course->id] ) !!}">Modifier ce cours</a>
 		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">Supprimer ce cours</button>
 		<!-- Modal -->
 		<div id="myModal1" class="modal fade" role="dialog">
 			<div class="modal-dialog">
-
-				<!-- Modal content-->
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -30,11 +20,24 @@
 						<p>Attention, c'est irréversible!</p>
 					</div>
 					<div class="modal-footer">
-						<a href="{!! action( 'CoursesController@delete', [ 'id' => $course->id] ) !!}" class="btn btn-danger">Oui</a>
+						<a href="{!! action( 'CourseController@delete', [ 'id' => $course->id] ) !!}" class="btn btn-danger">Oui</a>
 						<button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
 					</div>
 				</div>
 			</div>
+		</div>
+		<a class="btn btn-success" href="">Code d'accès au cours: {{ $course->access_token }}</a>
+		<!-- Dropdown menu -->
+		<div class="dropdown" style="display: inline-block;">
+			<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Ajouter
+			<span class="caret"></span></button>
+			<ul class="dropdown-menu dropdown-menu-right">
+				<li><a href="{!! action( 'CourseController@create' ) !!}">Un cours</a></li>
+				<li><a href="{!! action( 'CourseController@addWork' ) !!}">Un devoir</a></li>
+				<li><a href="{!! action( 'CourseController@addTest' ) !!}">Une interrogation</a></li>
+				<li><a href="{!! action( 'CourseController@addNews' ) !!}">Une notification</a></li>
+				<li><a href="{!! action( 'SeanceController@create', ['id' => $id] ) !!}">Des séances de cours</a></li>
+			</ul>
 		</div>
 	@elseif( Auth::user()->status == 2 )
 		@if ( $act == 1 )
@@ -53,8 +56,16 @@
 			<br>
 			<div class="row">
 				<div class="panel-primary">
-		      		<div class="panel-heading">Horraire du cours</div>
-		      		<div class="panel-body">Le lundi de 10h à 12h <br>Le mardi de 8h à 11h <br>Le jeudi de 13h à 15h</div>
+		      		<div class="panel-heading">Les séances de cours</div>
+		      		<ul class="panel-body">
+		      		@if ( count($seances) == 0 )
+		      			<p>Il n’y a aucune séance pour le moment</p>
+		      		@else
+			      		@foreach( $seances as $seance )
+			      			<a href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}" class="btn btn-success">{{ $seance->start_hours->formatLocalized('%A %d %B %Y') }} de {{ $seance->start_hours->formatLocalized('%Hh%M') }} à {{ $seance->end_hours->formatLocalized('%Hh%M') }}</a><br><br>
+			      		@endforeach
+		      		@endif
+		      		</ul>
 		    	</div>
 		    	<div class="panel-warning">
 		      		<div class="panel-heading">Journal du cours</div>

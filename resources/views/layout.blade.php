@@ -7,12 +7,17 @@
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<script src="datepicker-fr.js"></script>
+	<script src="{{ url() }}/js/jquery.js"></script>
 
+	<!-- jQuery-ui library -->
+	<script src="{{ url() }}/js/jquery-ui.js"></script>
+	<link rel="stylesheet" href="{{ url() }}/css/jquery-ui.css">
+	<link rel="stylesheet" href="{{ url() }}/css/jquery-ui.structure.css">
+	<link rel="stylesheet" href="{{ url() }}/css/jquery-ui.theme.css">
+
+	<!-- My custom script -->
+	<script src="{{ url() }}/js/main.js"></script>
+	
 	
 	<!-- Latest compiled JavaScript -->
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -24,14 +29,14 @@
 			<ul class="nav nav-pills nav-stacked panel panel-default">
 					@if( Auth::user()->status == 1 )
 						<li class="active"><a href="#">ZONE PROF</a></li>
-						<li><a href="{!! action( 'CoursesController@index' ) !!}">Mes cours</a></li>
+						<li><a href="{!! action( 'CourseController@index' ) !!}">Mes cours</a></li>
 						<li><a href="{!! action( 'PageController@about' ) !!}">Mes informations</a></li>
 						<li><a href="{!! action( 'PageController@notification' ) !!}">Notifications</a></li>
 						<li><a href="{!! action( 'PageController@message' ) !!}">Messages</a></li>
 						<li><a href="{!! action( 'PageController@planning' ) !!}">Mon planning</a></li>
 					@elseif( Auth::user()->status == 2 )
 						<li class="active"><a href="#">ZONE ELEVE</a></li>
-						<li><a href="{!! action( 'CoursesController@index' ) !!}">Mes cours</a></li>
+						<li><a href="{!! action( 'CourseController@index' ) !!}">Mes cours</a></li>
 						<li><a href="{!! action( 'PageController@about' ) !!}">Mes informations</a></li>
 						<li><a href="{!! action( 'PageController@notification' ) !!}">Notifications</a></li>
 						<li><a href="{!! action( 'PageController@message' ) !!}">Messages</a></li>

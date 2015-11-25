@@ -11,7 +11,7 @@
 |
 */
 
-Route::get( '/', [ 'as' => 'home', 'uses' => 'CoursesController@index' ] );
+Route::get( '/', [ 'as' => 'home', 'uses' => 'CourseController@index' ] );
 
 Route::get( 'a-propos', [ 'as' => 'about', 'uses' => 'PageController@about' ] );
 
@@ -27,21 +27,30 @@ Route::get( 'newMessage', [ 'as' => 'newMessage', 'uses' => 'PageController@newM
 Route::get( 'repMessage', [ 'as' => 'repMessage', 'uses' => 'PageController@repMessage' ] );
 Route::get( 'planning', [ 'as' => 'planning', 'uses' => 'PageController@planning' ] );
 
-Route::get( 'createCourse', [ 'as' => 'createCourse', 'uses' => 'CoursesController@create' ] );
-Route::post( 'createCourse', [ 'as' => 'createCourse', 'uses' => 'CoursesController@store' ] );
 
-Route::get( 'deleteCourse/{id}', [ 'as' => 'deleteCourse', 'uses' => 'CoursesController@delete' ] );
+// Gestion des séances de cours:
+Route::get( 'createSeance/{id}', [ 'as' => 'createSeance', 'uses' => 'SeanceController@create' ] );
+Route::post( 'createSeance/{id}', [ 'as' => 'createSeance', 'uses' => 'SeanceController@store' ] );
 
-Route::get( 'updateCourse/{id}', [ 'as' => 'updateCourse', 'uses' => 'CoursesController@edit' ] );
-Route::post( 'updateCourse/{id}', [ 'as' => 'updateCourse', 'uses' => 'CoursesController@update' ] );
+Route::get( 'viewSeance/{id}', [ 'as' => 'viewSeance', 'uses' => 'SeanceController@view' ] );
 
-Route::get( 'indexCourses', [ 'as' => 'indexCourses', 'uses' => 'CoursesController@index' ] );
-Route::get( 'addCourses', [ 'as' => 'addCourses', 'uses' => 'CoursesController@add' ] );
-Route::get( 'addWork', [ 'as' => 'addWork', 'uses' => 'CoursesController@addWork' ] );
-Route::get( 'addTest', [ 'as' => 'addTest', 'uses' => 'CoursesController@addTest' ] );
-Route::get( 'addNews', [ 'as' => 'addNews', 'uses' => 'CoursesController@addNews' ] );
 
-Route::get( 'viewCourses/{id}/{action}', [ 'as' => 'viewCourses', 'uses' => 'CoursesController@view' ] );
+// Gestion des cours:
+Route::get( 'createCourse', [ 'as' => 'createCourse', 'uses' => 'CourseController@create' ] );
+Route::post( 'createCourse', [ 'as' => 'createCourse', 'uses' => 'CourseController@store' ] );
+
+Route::get( 'deleteCourse/{id}', [ 'as' => 'deleteCourse', 'uses' => 'CourseController@delete' ] );
+
+Route::get( 'updateCourse/{id}', [ 'as' => 'updateCourse', 'uses' => 'CourseController@edit' ] );
+Route::post( 'updateCourse/{id}', [ 'as' => 'updateCourse', 'uses' => 'CourseController@update' ] );
+
+Route::get( 'indexCourse', [ 'as' => 'indexCourse', 'uses' => 'CourseController@index' ] );
+Route::get( 'addCourse', [ 'as' => 'addCourse', 'uses' => 'CourseController@add' ] );
+Route::get( 'addWork', [ 'as' => 'addWork', 'uses' => 'CourseController@addWork' ] );
+Route::get( 'addTest', [ 'as' => 'addTest', 'uses' => 'CourseController@addTest' ] );
+Route::get( 'addNews', [ 'as' => 'addNews', 'uses' => 'CourseController@addNews' ] );
+
+Route::get( 'viewCourse/{id}/{action}', [ 'as' => 'viewCourse', 'uses' => 'CourseController@view' ] );
 
 
 // Redirect to registerS or registerT page...

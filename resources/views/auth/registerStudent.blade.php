@@ -2,7 +2,7 @@
     @section('title', $title)
     @section( 'content' )
     <h1>{{$title}}</h1>
-    <a href="{{ action( 'CoursesController@index' ) }}" class="btn btn-warning">Retour</a>
+    <a href="{{ action( 'CourseController@index' ) }}" class="btn btn-warning">Retour</a>
 
     <form method="POST" action="/auth/register">
         {!! csrf_field() !!}
