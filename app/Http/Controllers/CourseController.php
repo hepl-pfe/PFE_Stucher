@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Course;
+use App\User;
 use App\Seance;
 use \Input;
 use Carbon\Carbon;
@@ -30,14 +31,16 @@ class CourseController extends Controller
     public function view( $id, $action ) {
         setlocale( LC_ALL, 'fr_FR');
         $course = Course::findOrFail($id);
+        $teacher = User::where( 'id', '=', $course->teacher_id )->get();
         $seances = Seance::where( 'course_id', '=', $id )->get();
+        $students = Course::find($id)->users;
         $act = $action;
         $title = 'Cours de '.$course->title;
         if ( \Auth::user()->status == 1 ) {
             $title = 'Cours de '.$course->title.' groupe '. $course->group;
-            return view('courses/viewCourse', compact('id', 'course', 'title', 'act', 'seances'));
+            return view('courses/viewCourse', compact('id', 'course', 'title', 'act', 'seances', 'students'));
         }
-        return view('courses/viewCourse', compact('course', 'title', 'act'));
+        return view('courses/viewCourse', compact('course', 'teacher', 'title', 'act', 'seances'));
     }
 
     public function create() {
@@ -50,7 +53,7 @@ class CourseController extends Controller
         $course = Course::create([
             'title' => Input::get('title'),
             'teacher_id' => \Auth::user()->id,
-            'access_token' => substr( md5(Carbon::now() ), 0, 8),
+            'access_token' => substr( md5(Carbon::now() ), 0, 6),
             'group' => Input::get('group'),
             'school' => Input::get('school'),
             'place' => Input::get('place'),
@@ -58,11 +61,25 @@ class CourseController extends Controller
         return redirect()->route('indexCourse');
     }
 
-    public function add() {
+    public function searchCourse() {
         if ( \Auth::check() && \Auth::user()->status==2 ) {
             $courses = Course::all();
             $title = 'Tous les cours existants';
-            return view('courses/addCourses', compact('courses', 'title'));
+            return view('courses/indexAllCourses', compact('courses', 'title'));
+        } 
+        return back();
+    }
+
+    public function addCourse( $id ) {
+        if ( \Auth::check() && \Auth::user()->status==2 ) {
+            $student = User::findOrFail(\Auth::user()->id);
+            // Ajouter le cours et l'utilisateur à la table course_user
+            $student->courses()->attach( $id );
+            \DB::table('course_user')
+                ->where('user_id', \Auth::user()->id)->where('course_id', $id)
+                ->update(array('access' => 1, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()));
+            
+            return redirect()->route('indexCourse');
         } 
         return back();
     }
@@ -91,8 +108,11 @@ class CourseController extends Controller
         return back();
     }
 
-    public function remove() {
+    public function removeCourse( $id_course ) {
+        \DB::table('course_user')
+        ->where('user_id', \Auth::user()->id)->where('course_id', $id_course)->delete();
 
+        return redirect()->route('indexCourse');
     }
 
     public function edit( $id ) {

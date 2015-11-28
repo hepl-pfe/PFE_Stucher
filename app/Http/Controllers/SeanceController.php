@@ -28,7 +28,7 @@ class SeanceController extends Controller
             'start_hours' => $start_hours,
             'end_hours' => $end_hours
             ]);
-        return redirect()->route('indexCourse');
+        return redirect()->back();
     }
 
     public function view( $id ) {

@@ -16,7 +16,7 @@
 		<h2>Tous mes cours</h2>
 		<ul class="list-group">
 			@foreach ($courses as $course)
-				<li class="list-group-item well well-lg"><a href="{{ action( 'CourseController@view', [ 'id' => $course->id, 'action' => 1 ] ) }}">{{ $course->title }}</a></li>
+				<li class="list-group-item well well-lg"><a href="{!! action( 'CourseController@view', [ 'id' => $course->id, 'action' => 1 ] ) !!}">{{ $course->title }}</a></li>
 			@endforeach
 	    	<li class="list-group-item well-lg"><a href="{!! action( 'CourseController@create' ) !!}">Créer un nouveau cours</a></li>
     	</ul>

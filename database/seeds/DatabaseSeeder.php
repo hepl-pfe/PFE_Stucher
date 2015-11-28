@@ -13,13 +13,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        DB::table('users')->insert([
-            'name' => 'prof',
-            'email' => 'prof@prof.com',
-            'password' => 'password',
-            'status' => 1,
-        ]);
-
         Model::unguard();
 
         // $this->call(UserTableSeeder::class);
