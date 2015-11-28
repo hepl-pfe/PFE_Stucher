@@ -39,18 +39,23 @@ Route::get( 'viewSeance/{id}', [ 'as' => 'viewSeance', 'uses' => 'SeanceControll
 Route::get( 'createCourse', [ 'as' => 'createCourse', 'uses' => 'CourseController@create' ] );
 Route::post( 'createCourse', [ 'as' => 'createCourse', 'uses' => 'CourseController@store' ] );
 
+Route::get( 'viewCourse/{id}/{action}', [ 'as' => 'viewCourse', 'uses' => 'CourseController@view' ] );
+
 Route::get( 'deleteCourse/{id}', [ 'as' => 'deleteCourse', 'uses' => 'CourseController@delete' ] );
 
 Route::get( 'updateCourse/{id}', [ 'as' => 'updateCourse', 'uses' => 'CourseController@edit' ] );
 Route::post( 'updateCourse/{id}', [ 'as' => 'updateCourse', 'uses' => 'CourseController@update' ] );
 
+// Ajouter cours (étudiant)
+Route::get( 'addCourse/{id}', [ 'as' => 'addCourse', 'uses' => 'CourseController@addCourse' ] );
+Route::get( 'removeCourse/{id}', [ 'as' => 'removeCourse', 'uses' => 'CourseController@removeCourse' ] );
+Route::get( 'updateCourse/{id}', [ 'as' => 'updateCourse', 'uses' => 'CourseController@edit' ] );
+
 Route::get( 'indexCourse', [ 'as' => 'indexCourse', 'uses' => 'CourseController@index' ] );
-Route::get( 'addCourse', [ 'as' => 'addCourse', 'uses' => 'CourseController@add' ] );
+Route::get( 'searchCourse', [ 'as' => 'searchCourse', 'uses' => 'CourseController@searchCourse' ] );
 Route::get( 'addWork', [ 'as' => 'addWork', 'uses' => 'CourseController@addWork' ] );
 Route::get( 'addTest', [ 'as' => 'addTest', 'uses' => 'CourseController@addTest' ] );
 Route::get( 'addNews', [ 'as' => 'addNews', 'uses' => 'CourseController@addNews' ] );
-
-Route::get( 'viewCourse/{id}/{action}', [ 'as' => 'viewCourse', 'uses' => 'CourseController@view' ] );
 
 
 // Redirect to registerS or registerT page...
