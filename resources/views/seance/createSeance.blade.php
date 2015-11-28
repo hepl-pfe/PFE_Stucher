@@ -30,6 +30,7 @@
 
 		<div class="form-group text-center">
 			<input type="submit" class="btn btn-primary" value="Ajouter la séance au cours">
+			<a class="btn btn-warning" href="{!! action( 'CourseController@view', ['id' => $id, 'action' => 1] ) !!}">Retour au cours</a>
 		</div>
 	</form>
 
