@@ -3,7 +3,7 @@
 @section('content')
 	<h2>Mes notifications&nbsp;:</h2>
 	@if( Auth::user()->status == 1 )
-		<a class="btn btn-primary" style="margin: 1em;" href="">Ajouter une notification</a>	
+		<a class="btn btn-primary" style="margin: 1em;" href="{!! action( 'CourseController@addNews' ) !!}">Ajouter une notification</a>	
 		<ul class="list-group">
 			<li class="list-group-item">Nouveau message de Grégory Lemmens (du cours de Français)<a href="{{ action( 'PageController@message' ) }}" class="btn badge">Voir le message</a></li>
 			<li class="list-group-item">
