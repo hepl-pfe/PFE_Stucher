@@ -58,7 +58,7 @@
             </select>
 		</div>
 		<div class="form-group text-center">
-			<input type="submit" class="btn btn-primary" value="Créer le cours">
+			<input type="submit" class="btn btn-primary" value="Valider la notification">
 		</div>
 	</form>
 @stop
