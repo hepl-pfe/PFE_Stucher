@@ -49,8 +49,8 @@
 			<br>
 			<br>
 			@if( Auth::check() )
+				<ul class=" list-group notification">
 				@if( Auth::user()->status == 1 )
-					<ul class=" list-group notification">
 						<li class="list-group-item active">NOTIFICATIONS</li>
 						<li class="list-group-item">
 							<a href="">Loïc Parent</a>
@@ -69,9 +69,7 @@
 							<a href="">David Degrégoris</a>
 							<a href="{{ action( 'PageController@message' ) }}" class="btn btn-primary">Voir le message</a>
 						</li>
-					</ul>
 				@elseif( Auth::user()->status == 2 )
-					<ul class=" list-group notification">
 						<li class="list-group-item active">NOTIFICATIONS</li>
 						<li class="list-group-item">
 							Nouveau devoir pour le 
@@ -88,8 +86,9 @@
 							<a href="">Cours de sciences</a>
 							<a href="" class="btn btn-success">Voir la notification</a>
 						</li>
-					</ul>
 				@endif
+				<li class="list-group-item"><a href="{!! action( 'PageController@notification' ) !!}">Afficher toutes les news</a></li>
+				</ul>
 			@endif
 		</nav>
 
