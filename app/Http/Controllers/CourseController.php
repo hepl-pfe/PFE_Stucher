@@ -65,6 +65,8 @@ class CourseController extends Controller
         if ( \Auth::check() && \Auth::user()->status==2 ) {
             $courses = Course::all();
             $title = 'Tous les cours existants';
+            $mycourses = User::find(\Auth::user()->id)->courses;
+
             return view('courses/indexAllCourses', compact('courses', 'title'));
         } 
         return back();
@@ -77,7 +79,7 @@ class CourseController extends Controller
             $student->courses()->attach( $id );
             \DB::table('course_user')
                 ->where('user_id', \Auth::user()->id)->where('course_id', $id)
-                ->update(array('access' => 1, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()));
+                ->update(array('access' => 1));
             
             return redirect()->route('indexCourse');
         } 
