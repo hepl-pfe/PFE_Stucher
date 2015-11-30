@@ -16,7 +16,7 @@ Route::get( '/', [ 'as' => 'home', 'uses' => 'CourseController@index' ] );
 Route::get( 'a-propos', [ 'as' => 'about', 'uses' => 'PageController@about' ] );
 
 Route::get( 'updateProfil', [ 'as' => 'updateProfil', 'uses' => 'PageController@editProfil' ] );
-Route::post( 'updateProfil/{id}', [ 'as' => 'updateProfil', 'uses' => 'PageController@updateProfil' ] );
+Route::post( 'updateProfil', [ 'as' => 'updateProfil', 'uses' => 'PageController@updateProfil' ] );
 
 
 Route::get( 'deleteProfil', [ 'as' => 'deleteProfil', 'uses' => 'PageController@deleteProfil' ] );
