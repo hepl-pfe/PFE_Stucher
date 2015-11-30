@@ -94,20 +94,18 @@
 		      			<li>Devoir: Faire …</li>
 		      		</ul>
 		    	</div>
-				<div class="panel-danger">
-		      		<div class="panel-heading">Actions rapide</div>
-		      		<div class="panel-body">
-		      			
-		      		</div>
-		    	</div>
 		    	@if( Auth::user()->status == 1 )
 				<div class="panel-primary">
 		      		<div class="panel-heading">Élèves qui suivent le cours</div>
-		      		<ul class="panel-body">
-		      			@foreach( $students as $student )
-		      			<li><a href="">{{ $student->name }}</a></li>
-		      			@endforeach
-		      		</ul>
+		      		@if ( count($students) !== 0 )
+			      		<ul class="panel-body">
+			      			@foreach( $students as $student )
+			      				<li><a href="">{{ $student->name }}</a> <a class="btn badge btn-danger pull-right" href="">Retirer de mes élève</a></li>
+			      			@endforeach
+			      		</ul>
+		      		@else
+		      			<p>Il n’y a aucune étudiant pour le moment</p>
+		      		@endif
 		    	</div>
 		    	<div class="panel-danger">
 		      		<div class="panel-heading">Élèves qui demande à suivre le cours</div>
