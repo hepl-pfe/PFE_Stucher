@@ -61,6 +61,7 @@ class CourseController extends Controller
             'school' => Input::get('school'),
             'place' => Input::get('place'),
             ]);
+        
         return redirect()->route('indexCourse');
     }
 
