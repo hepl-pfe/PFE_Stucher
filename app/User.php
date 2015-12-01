@@ -39,6 +39,6 @@ class User extends Model implements AuthenticatableContract,
 
     public function courses()
     {
-        return $this->belongsToMany('App\Course');
+        return $this->belongsToMany('App\Course')->withPivot('access');
     }
 }
