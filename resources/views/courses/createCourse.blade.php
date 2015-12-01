@@ -26,6 +26,7 @@
 		</div>
 
 		<div class="form-group text-center">
+			<a class="btn btn-warning" href="{!! action( 'CourseController@index' ) !!}">Annuler</a>
 			<input type="submit" class="btn btn-primary" value="Créer le cours">
 		</div>
 	</form>
