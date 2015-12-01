@@ -82,6 +82,26 @@
 				      		@foreach( $seances as $seance )
 				      			<a href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}" class="btn btn-success">{{ $seance->start_hours->formatLocalized('%A %d %B %Y') }} de {{ $seance->start_hours->formatLocalized('%Hh%M') }} à {{ $seance->end_hours->formatLocalized('%Hh%M') }}</a><br><br>
 				      		@endforeach
+				      		
+				      		<!-- Modal -->
+							<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal3">Supprimer Toutes les séances</button><br><br>
+							<div id="myModal3" class="modal fade" role="dialog">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal">&times;</button>
+											<h4 class="modal-title">Voulez-vous vraiment supprimer toutes les séances?</h4>
+										</div>
+										<div class="modal-body">
+											<p>Attention, c'est irréversible!</p>
+										</div>
+										<div class="modal-footer">
+											<a href="{!! action( 'SeanceController@deleteAll', [ 'course' => $course->id] ) !!}" class="btn btn-danger">Oui</a>
+											<button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+										</div>
+									</div>
+								</div>
+							</div>
 			      		@endif
 		      		@else
 		      			<p>Il n’y a aucune séance pour le moment</p>
