@@ -62,6 +62,11 @@ Route::get( 'addNews', [ 'as' => 'addNews', 'uses' => 'CourseController@addNews'
 Route::get( 'registerStudent', [ 'as' => 'registerStudent', 'uses' => 'PageController@registerStudent' ] );
 Route::get( 'registerTeacher', [ 'as' => 'registerTeacher', 'uses' => 'PageController@registerTeacher' ] );
 
+// Test route
+Route::get( 'createTest', [ 'as' => 'createTest', 'uses' => 'PageController@createTest' ] );
+
+// work route
+Route::get( 'createWork', [ 'as' => 'createWork', 'uses' => 'PageController@createWork' ] );
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
