@@ -33,6 +33,11 @@ Route::get( 'createSeance/{id}', [ 'as' => 'createSeance', 'uses' => 'SeanceCont
 Route::post( 'createSeance/{id}', [ 'as' => 'createSeance', 'uses' => 'SeanceController@store' ] );
 
 Route::get( 'viewSeance/{id}', [ 'as' => 'viewSeance', 'uses' => 'SeanceController@view' ] );
+Route::get( 'delete/{id}/{course}', [ 'as' => 'delete', 'uses' => 'SeanceController@delete' ] );
+Route::get( 'deleteAll/{course}', [ 'as' => 'deleteAll', 'uses' => 'SeanceController@deleteAll' ] );
+
+Route::get( 'updateSeance/{id}', [ 'as' => 'updateSeance', 'uses' => 'SeanceController@edit' ] );
+Route::post( 'updateSeance/{id}', [ 'as' => 'updateSeance', 'uses' => 'SeanceController@update' ] );
 
 
 // Gestion des cours:

@@ -16,13 +16,9 @@
 		<div class="form-group">
 			<label for="daypicker">Pour quel jour</label>
 			<select name="daypicker" id="daypicker">
-				<option value="monday">Lundi</option>
-				<option value="tuesday">Mardi</option>
-				<option value="wednesday">Mercredi</option>
-				<option value="thursday">Jeudi</option>
-				<option value="friday">Vendredi</option>
-				<option value="saturday">Samedi</option>
-				<option value="sunday">Dimanche</option>
+				@foreach ($days as $day => $jour)
+					<option value="{{ $day }}">{{ $jour }}</option>
+				@endforeach
 			</select>
 		</div>
 
@@ -48,8 +44,8 @@
 		</div>
 
 		<div class="form-group text-center">
+			<a class="btn btn-warning" href="{!! action( 'CourseController@view', ['id' => $id, 'action' => 1] ) !!}">Annuler</a>
 			<input type="submit" class="btn btn-primary" value="Ajouter la séance au cours">
-			<a class="btn btn-warning" href="{!! action( 'CourseController@view', ['id' => $id, 'action' => 1] ) !!}">Retour au cours</a>
 		</div>
 	</form>
 

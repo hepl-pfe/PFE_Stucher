@@ -14,10 +14,20 @@ use Carbon\Carbon;
 
 class SeanceController extends Controller
 {
+
     public function create( $id ) {
         $title = 'Créer une séance';
         $courses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
-        return view('seance/createSeance', ['title' => $title, 'id' => $id, 'courses'=> $courses]);
+        $days = [
+            "monday" => "lundi",
+            "tuesday" => "mardi",
+            "wednesday" => "mercredi",
+            "thursday" => "jeudi",
+            "friday" => "vendredi",
+            "saturday" => "samedi",
+            "sunday" => "dimanche"
+        ];
+        return view('seance/createSeance', compact('title', 'id', 'courses', 'days'));
     }
 
     public function store() {
@@ -47,7 +57,42 @@ class SeanceController extends Controller
             }
         }
 
-        return redirect()->back();
+        return redirect()->route('viewCourse', ['id' => Input::get('course'), 'action' => 1]);
+    }
+
+
+    public function edit( $id ) {
+        $seance = Seance::findOrFail($id);
+        $days = [
+            "monday" => "lundi",
+            "tuesday" => "mardi",
+            "wednesday" => "mercredi",
+            "thursday" => "jeudi",
+            "friday" => "vendredi",
+            "saturday" => "samedi",
+            "sunday" => "dimanche"
+        ];
+        $title = 'Modifier la séance';
+        $courses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
+        $course_id = $seance->course_id;
+        $start_day = substr($seance->start_hours, 0, 10);
+        $end_day = substr($seance->end_hours, 0, 10);
+        $start_hours = substr($seance->start_hours, 11, 5);
+        $end_hours = substr($seance->end_hours, 11, 5);
+        return view('seance/updateSeance', compact('title', 'seance', 'days', 'id', 'courses', 'course_id', 'start_day', 'end_day', 'start_hours', 'end_hours'));
+    }
+
+    public function update( $id ) {
+        $seance = Seance::findOrFail($id);
+        $day = Input::get('date');
+        $start_hours = Input::get('start_hours');
+        $end_hours = Input::get('end_hours');
+        $seance->course_id = Input::get('course');
+        $seance->start_hours = $day.$start_hours.':00';
+        $seance->end_hours = $day.$end_hours.':00';
+
+        $seance->save();
+        return redirect()->route('viewCourse', ['id' => Input::get('course'), 'action' => 1]);
     }
 
     public function view( $id ) {
@@ -55,5 +100,19 @@ class SeanceController extends Controller
         $seance = Seance::findOrFail($id);
         $title = 'Séance du '.$seance->start_hours->formatLocalized('%A %d %B %Y') . ' de ' . $seance->start_hours->formatLocalized('%Hh%M') . ' à ' . $seance->end_hours->formatLocalized('%Hh%M');
         return view('seance/viewSeance', ['title' => $title, 'id' => $id, 'seance' => $seance]);
+    }
+
+    public function delete( $id, $course ) {
+        $seance = Seance::findOrFail($id);
+        $seance->delete();
+        return redirect()->route('viewCourse', ['id' => $course, 'action' => 1]);
+    }
+
+    public function deleteAll( $course ) {
+        $seances = Seance::where( 'course_id', '=', $course )->get();
+        foreach ($seances as $seance) {
+            $seance->delete();   
+        }
+        return redirect()->route('viewCourse', ['id' => $course, 'action' => 1]);
     }
 }
