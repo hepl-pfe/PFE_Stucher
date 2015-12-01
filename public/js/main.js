@@ -1,6 +1,13 @@
 jQuery( function($) {
-	
-	$( '#datepicker' ).datepicker(
+	// GÉRER LA PÉRIODE
+	$( '#datepicker_start' ).datepicker(
+		{
+			dateFormat: 'yy-mm-dd',
+			minDate: 0,
+		}
+	);
+
+	$( '#datepicker_end' ).datepicker(
 		{
 			dateFormat: 'yy-mm-dd',
 			minDate: 0,

@@ -14,9 +14,28 @@
             </select>
 		
 		<div class="form-group">
-			<label for="datepicker">Pour quel jour</label>
-			<input type="date" class="form-control" name="date" id="datepicker">
+			<label for="daypicker">Pour quel jour</label>
+			<select name="daypicker" id="daypicker">
+				<option value="monday">Lundi</option>
+				<option value="tuesday">Mardi</option>
+				<option value="wednesday">Mercredi</option>
+				<option value="thursday">Jeudi</option>
+				<option value="friday">Vendredi</option>
+				<option value="saturday">Samedi</option>
+				<option value="sunday">Dimanche</option>
+			</select>
 		</div>
+
+		<fieldset>
+			<div class="form-group">
+				<label for="datepicker">Début de période</label>
+				<input type="start_date" class="form-control" name="start_date" id="datepicker_start">
+			</div>
+			<div class="form-group">
+				<label for="datepicker">Fin de période</label>
+				<input type="end_date" class="form-control" name="end_date" id="datepicker_end">
+			</div>
+		</fieldset>
 
 		<div class="form-group">
 			<label for="start_hours">heure de début</label>
