@@ -26,8 +26,8 @@
 		</div>
 
 		<div class="form-group text-center">
-			<input type="submit" class="btn btn-primary" value="Valider les modifications">
 			<a href="{{ action( 'CourseController@view', [ 'id' => $id, 'action' => 1 ] ) }}" class="btn btn-warning">Annuler</a>
+			<input type="submit" class="btn btn-primary" value="Valider les modifications">
 		</div>
 	</form>
 
