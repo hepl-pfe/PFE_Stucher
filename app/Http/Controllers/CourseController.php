@@ -41,7 +41,7 @@ class CourseController extends Controller
         $title = 'Cours de '.$course->title;
         if ( \Auth::user()->status == 1 ) {
             $title = 'Cours de '.$course->title.' groupe '. $course->group;
-            
+
             return view('courses/viewCourse', compact('id', 'course', 'title', 'act', 'seances', 'students'));
         }
 
@@ -50,6 +50,7 @@ class CourseController extends Controller
 
     public function create() {
         $title = 'Créer un cours';
+        
         return view('courses/createCourse', ['title' => $title]);
     }
 
