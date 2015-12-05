@@ -90,22 +90,6 @@ class CourseController extends Controller
         return back();
     }
 
-    public function addWork() {
-        if ( \Auth::check() && \Auth::user()->status==1 ) {
-            $title = 'Ajouter un devoir';
-            return view('courses/addWork', compact('title'));
-        } 
-        return back();
-    }
-
-    public function addTest() {
-        if ( \Auth::check() && \Auth::user()->status==1 ) {
-            $title = 'Ajouter une interrogation';
-            return view('courses/addTest', compact('title'));
-        } 
-        return back();
-    }
-
     public function addNews() {
         if ( \Auth::check() && \Auth::user()->status==1 ) {
             $title = 'Ajouter une notification';
@@ -119,6 +103,14 @@ class CourseController extends Controller
         ->where('user_id', \Auth::user()->id)->where('course_id', $id_course)->delete();
 
         return redirect()->route('indexCourse');
+    }
+
+    
+    public function removeStudentFromCourse( $id_course, $id_user ) {
+        \DB::table('course_user')
+        ->where('user_id', $id_user)->where('course_id', $id_course)->delete();
+
+        return redirect()->route('viewCourse', ['id' => $id_course, 'action' => 1]);
     }
 
     public function edit( $id ) {
