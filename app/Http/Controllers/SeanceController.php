@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use \Input;
 use App\Course;
 use App\Seance;
+use App\Work;
+use App\Test;
 use Carbon\Carbon;
 
 class SeanceController extends Controller
@@ -98,8 +100,14 @@ class SeanceController extends Controller
     public function view( $id ) {
         setlocale( LC_ALL, 'fr_FR');
         $seance = Seance::findOrFail($id);
+        $works = Work::where('seance_id', '=', $id)->get();
+        $tests = Test::where('seance_id', '=', $id)->get();
         $title = 'Séance du '.$seance->start_hours->formatLocalized('%A %d %B %Y') . ' de ' . $seance->start_hours->formatLocalized('%Hh%M') . ' à ' . $seance->end_hours->formatLocalized('%Hh%M');
-        return view('seance/viewSeance', ['title' => $title, 'id' => $id, 'seance' => $seance]);
+        return view('seance/viewSeance', compact( 'title', 'id', 'seance', 'works', 'tests' ));
+    }
+
+    public function getByCourse( $id_course ) {
+        return Course::find($id_course)->seances;
     }
 
     public function delete( $id, $course ) {
