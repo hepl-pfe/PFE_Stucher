@@ -15,4 +15,9 @@ class Course extends Model
 	{
 	    return $this->belongsToMany('App\User')->withPivot('access');
 	}
+
+	public function seances()
+	{
+		return $this->hasMany('App\Seance');
+	}
 }

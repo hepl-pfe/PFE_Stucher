@@ -10,4 +10,9 @@ class Seance extends Model
 {
     protected $fillable = ['course_id', 'classroom_id', 'start_hours', 'end_hours'];
     protected $dates = ['published_at','created_at','start_hours','end_hours'];
+
+    public function course() 
+    {
+    	return $this->belongsTo('App\Course');
+    }
 }
