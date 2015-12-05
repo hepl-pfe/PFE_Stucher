@@ -27,4 +27,21 @@ jQuery( function($) {
 	 	hourMax: 17,
 	 }
 	);
+
+	// AJAX
+
+	$("#course").change( function(){
+		var select = document.getElementById("course");
+		var selected = document.getElementById("course").selectedIndex;
+		var valeur = select[selected].value;
+		$.get( "/courses/"+valeur+"/seances", function( data ) {
+			$('#seance').children().remove();
+			for( var i = 0; i < data.length; i++ ) {
+                $('#seance')
+                    .append('<option value="'+data[i].id+'">'+data[i].id+'</option>');
+                $('#seance').fadeIn();
+			}
+		});
+	} );
+
 } );
