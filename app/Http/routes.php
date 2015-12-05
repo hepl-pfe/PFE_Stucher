@@ -32,6 +32,8 @@ Route::get( 'planning', [ 'as' => 'planning', 'uses' => 'PageController@planning
 Route::get( 'createSeance/{id}', [ 'as' => 'createSeance', 'uses' => 'SeanceController@create' ] );
 Route::post( 'createSeance/{id}', [ 'as' => 'createSeance', 'uses' => 'SeanceController@store' ] );
 
+Route::get( 'courses/{id}/seances', [ 'as' => 'getSeancesByCourse', 'uses' => 'SeanceController@getByCourse' ] );
+
 Route::get( 'viewSeance/{id}', [ 'as' => 'viewSeance', 'uses' => 'SeanceController@view' ] );
 Route::get( 'delete/{id}/{course}', [ 'as' => 'delete', 'uses' => 'SeanceController@delete' ] );
 Route::get( 'deleteAll/{course}', [ 'as' => 'deleteAll', 'uses' => 'SeanceController@deleteAll' ] );
@@ -54,12 +56,16 @@ Route::post( 'updateCourse/{id}', [ 'as' => 'updateCourse', 'uses' => 'CourseCon
 // Ajouter cours (étudiant)
 Route::get( 'addCourse/{id}', [ 'as' => 'addCourse', 'uses' => 'CourseController@addCourse' ] );
 Route::get( 'removeCourse/{id}', [ 'as' => 'removeCourse', 'uses' => 'CourseController@removeCourse' ] );
+Route::get( 'removeStudentFromCourse/{id_course}/{id_user}', [ 'as' => 'removeStudentFromCourse', 'uses' => 'CourseController@removeStudentFromCourse' ] );
 Route::get( 'updateCourse/{id}', [ 'as' => 'updateCourse', 'uses' => 'CourseController@edit' ] );
 
 Route::get( 'indexCourse', [ 'as' => 'indexCourse', 'uses' => 'CourseController@index' ] );
 Route::get( 'searchCourse', [ 'as' => 'searchCourse', 'uses' => 'CourseController@searchCourse' ] );
-Route::get( 'addWork', [ 'as' => 'addWork', 'uses' => 'CourseController@addWork' ] );
-Route::get( 'addTest', [ 'as' => 'addTest', 'uses' => 'CourseController@addTest' ] );
+
+Route::get( 'createWork/{id?}/{info?}', [ 'as' => 'createWork', 'uses' => 'WorkController@create' ] );
+Route::post( 'createWork/{id?}/{info?}', [ 'as' => 'createWork', 'uses' => 'WorkController@store' ] );
+Route::get( 'createTest/{id?}/{info?}', [ 'as' => 'createTest', 'uses' => 'TestController@create' ] );
+Route::post( 'createTest/{id?}/{info?}', [ 'as' => 'createTest', 'uses' => 'TestController@store' ] );
 Route::get( 'addNews', [ 'as' => 'addNews', 'uses' => 'CourseController@addNews' ] );
 
 
