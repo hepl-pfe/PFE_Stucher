@@ -27,15 +27,15 @@
 				</div>
 			</div>
 		</div>
-		<a class="btn btn-success" href="">Code d'accès au cours: {{ $course->access_token }}</a>
+		<span class="btn btn-success" >Code d'accès au cours: {{ $course->access_token }}</span>
 		<!-- Dropdown menu -->
 		<div class="dropdown" style="display: inline-block;">
 			<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">+
 			<span class="caret"></span></button>
 			<ul class="dropdown-menu dropdown-menu-right">
 				<li><a href="{!! action( 'CourseController@create' ) !!}">Un cours</a></li>
-				<li><a href="{!! action( 'CourseController@addWork' ) !!}">Un devoir</a></li>
-				<li><a href="{!! action( 'CourseController@addTest' ) !!}">Une interrogation</a></li>
+				<li><a href="{!! action( 'WorkController@create', ['id' => $course->id, 'info' => 'course'] ) !!}">Un devoir</a></li>
+				<li><a href="{!! action( 'TestController@create', ['id' => $course->id, 'info' => 'course'] ) !!}">Une interrogation</a></li>
 				<li><a href="{!! action( 'CourseController@addNews' ) !!}">Une notification</a></li>
 				<li><a href="{!! action( 'SeanceController@create', ['id' => $id] ) !!}">Des séances de cours</a></li>
 			</ul>
@@ -120,18 +120,34 @@
 		      		@if ( count($students) !== 0 )
 			      		<ul class="panel-body">
 			      			@foreach( $students as $student )
-			      				<li><a href="">{{ $student->name }}</a> <a class="btn badge btn-danger pull-right" href="">Retirer de mes élève</a></li>
+			      				<li><a href="">{{ $student->name }}</a>
+								<!-- Modal -->
+								<button type="button" class="btn badge btn-danger pull-right" data-toggle="modal" data-target="#myModal4">Retirer de ce cours</button>
+								<div id="myModal4" class="modal fade" role="dialog">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+												<h4 class="modal-title">Voulez-vous vraiment retirer {{ $student->name }} de ce cours?</h4>
+											</div>
+											<div class="modal-footer">
+												<a href="{!! action( 'CourseController@removeStudentFromCourse', ['id_course' => $course->id, 'id_user' => $student->id] ) !!}" class="btn btn-danger">Oui</a>
+												<button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+											</div>
+										</div>
+									</div>
+								</div>
 			      			@endforeach
 			      		</ul>
 		      		@else
-		      			<p>Il n’y a aucune étudiant pour le moment</p>
+		      			<p>Il n’y a aucun étudiant pour le moment</p>
 		      		@endif
 		    	</div>
 		    	<div class="panel-danger">
 		      		<div class="panel-heading">Élèves qui demande à suivre le cours</div>
 		      		<div class="panel-body">
-		      			<li><a href="">Émillie Gérard</a> <a class="btn btn-primary" href="">Ajouter</a> <a class="btn btn-danger" href="">Refuser l’accès</a></li>
-		      			<li><a href="">Kévin delois</a> <a class="btn btn-primary" href="">Ajouter</a> <a class="btn btn-danger" href="">Refuser l’accès</a></li>
+		      			<li><a href="">Émillie Gérard</a> <a class="btn btn-primary pull-right" href="">Ajouter</a> <a class="btn btn-danger pull-right" href="">Refuser l’accès</a></li><br>
+		      			<li><a href="">Kévin delois</a> <a class="btn btn-primary pull-right" href="">Ajouter</a> <a class="btn btn-danger pull-right" href="">Refuser l’accès</a></li>
 		      		</div>
 		    	</div>
 		    	@endif()
