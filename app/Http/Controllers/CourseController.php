@@ -141,6 +141,11 @@ class CourseController extends Controller
         $course = Course::findOrFail($id);
         $seances = Seance::where( 'course_id', '=', $course->id )->get();;
         foreach ($seances as $seance) {
+
+            $works = Work::where( 'seance_id', '=', $seance->id )->get();
+            foreach ($works as $work) {
+                $work->delete();   
+            }
             $seance->delete();   
         }
         $course->delete();
