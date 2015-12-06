@@ -15,4 +15,14 @@ class Seance extends Model
     {
     	return $this->belongsTo('App\Course');
     }
+
+    public function works()
+	{
+		return $this->hasMany('App\Work');
+	}
+
+	public function tests()
+	{
+		return $this->hasMany('App\test');
+	}
 }
