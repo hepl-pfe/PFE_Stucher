@@ -10,6 +10,7 @@ use App\Course;
 use App\Seance;
 use \Input;
 use App\Work;
+use Carbon\Carbon;
 
 class WorkController extends Controller
 {
