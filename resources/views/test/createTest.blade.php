@@ -10,12 +10,19 @@
         <div class="form-group">
             <label for="course">Pour quel cours?</label>
             <select class="form-control" name="course" id="course">
+            
             @foreach ($allCourses as $singleCourse)
                 <option value="{{ $singleCourse->id }}" 
-                @if( isset($course) )
-                    @if( $singleCourse->id == $course[0]->id )
-                    selected="selected" 
-                    @endif 
+                @if( isset( $course ) )
+                    @if( isset( $seance ) )
+                        <?php $courseId = $course[0]->id; ?>
+                    @else
+                        <?php $courseId = $course->id; ?>
+                    @endif
+                    <?php $singleCourseId = $singleCourse->id; ?>
+                        @if( $singleCourseId == $courseId )
+                            selected="selected"
+                        @endif                    
                 @endif 
                 >{{ $singleCourse->title }} groupe {{ $singleCourse->group }}</option>
             @endforeach
@@ -25,12 +32,15 @@
         <div class="form-group">
             <label for="seance">Pour quel séance de cours?</label>
             <select class="form-control" name="seance" id="seance">
-            @foreach ($allSeances as $singleSeance)
-                <option value="{{ $singleSeance->id }}" 
-                @if( $singleSeance->id == $seance->id )
-                selected="selected" 
-                @endif >Séance du {{ $seance->start_hours->formatLocalized('%A %d %B %Y') }} de {{ $seance->start_hours->formatLocalized('%Hh%M') }} à {{ $seance->end_hours->formatLocalized('%Hh%M') }}</option>
-            @endforeach
+                @foreach ($allSeances as $singleSeance)
+                    <option value="{{ $singleSeance->id }}" 
+                    @if ( isset( $seance ) )
+                        <?php $singleSeanceId = $singleSeance->id;
+                          $seanceId = $seance->id; ?>
+                        @if( $singleSeanceId == $seanceId )
+                    selected="selected" 
+                    @endif @endif >Séance du {{ $singleSeance->start_hours->formatLocalized('%A %d %B %Y') }} de {{ $singleSeance->start_hours->formatLocalized('%Hh%M') }} à {{ $singleSeance->end_hours->formatLocalized('%Hh%M') }}</option>
+                @endforeach
             </select>
         </div>
 
@@ -49,7 +59,13 @@
 			<input type="file" id="file" name="file">
 		</div>
 		<div class="form-group text-center">
-            <a class="btn btn-warning" href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}">Annuler</a>
+            @if (isset( $seance ))
+                <a class="btn btn-warning" href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}">Annuler</a>
+            @elseif ( isset( $course ) )
+                <a class="btn btn-warning" href="{!! action( 'CourseController@view', ['id' => $course->id, 'status' => 1] ) !!}">Annuler</a>
+            @else
+                <a class="btn btn-warning" href="{!! URL::previous() !!}">Annuler</a>
+            @endif
 			<input type="submit" class="btn btn-primary" value="Valider l'interrogation">
 		</div>
 	</form>
