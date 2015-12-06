@@ -41,6 +41,16 @@ class WorkController extends Controller
              }
         }
     }
+
+    public function edit( $id ) {
+        setlocale( LC_ALL, 'fr_FR');
+        $work = Work::findOrFail( $id );
+        $pageTitle = 'Modifier le devoir';
+        $allCourses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
+        $course = Seance::find($work->seance_id)->course;
+        $allSeances = Seance::where( 'course_id', '=', $course->id )->get();
+        return view('work/updateWork', compact('pageTitle', 'work', 'allSeances', 'allCourses'));
+    }
     }
 
     public function store() {

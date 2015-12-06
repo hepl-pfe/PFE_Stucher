@@ -42,6 +42,14 @@ class TestController extends Controller
     	}
     }
 
+    public function edit( $id ) {
+        $test = Test::findOrFail( $id );
+        $pageTitle = 'Modifier l’interrogation';
+        $allCourses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
+        $course = Seance::find($test->seance_id)->course;
+        $allSeances = Seance::where( 'course_id', '=', $course->id )->get();
+        return view('test/updateTest', compact('pageTitle', 'test', 'allSeances', 'allCourses'));
+    }
     public function store() {
         $works = Test::create([
             'seance_id' => Input::get('seance'),
