@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Course;
 use App\User;
 use App\Seance;
+use App\Work;
+use App\Test;
 use \Input;
 use Carbon\Carbon;
 
@@ -32,7 +34,7 @@ class CourseController extends Controller
         setlocale( LC_ALL, 'fr_FR');
         $course = Course::findOrFail($id);
         $teacher = User::where( 'id', '=', $course->teacher_id )->get();
-        $seances = Seance::where( 'course_id', '=', $id )->orderBy('start_hours')->get();
+        $seances = $course->seances;
         $students = Course::find($id)->users;
         $act = $action;
         $title = 'Cours de '.$course->title;
