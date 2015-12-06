@@ -114,7 +114,14 @@
 		    	<div class="panel-warning">
 		      		<div class="panel-heading">Journal du cours</div>
 		      		<ul class="panel-body">
-		      			<li>Devoir: Faire …</li>
+		      		@foreach ($seances as $seance)
+		      			@foreach ($seance->works as $work)
+		      				<li>Devoir : <a href="{{ action( 'SeanceController@view', ['id' => $seance->id] ) }}">{{ $work->title }}</a></li>
+		      			@endforeach
+		      			@foreach ($seance->tests as $test)
+		      				<li>Interrogation : <a href="{{ action( 'SeanceController@view', ['id' => $seance->id] ) }}">{{ $test->title }}</a></li>
+		      			@endforeach
+			        @endforeach
 		      		</ul>
 		    	</div>
 		    	@if( Auth::user()->status == 1 )
