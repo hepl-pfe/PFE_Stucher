@@ -129,6 +129,16 @@ class SeanceController extends Controller
     public function deleteAll( $course ) {
         $seances = Seance::where( 'course_id', '=', $course )->get();
         foreach ($seances as $seance) {
+            $works = Work::where( 'seance_id', '=', $seance->id )->get();
+            foreach ($works as $work) {
+                $work->delete();   
+            }
+
+            $tests = Test::where( 'seance_id', '=', $seance->id )->get();
+            foreach ($tests as $test) {
+                $test->delete();   
+            }
+
             $seance->delete();   
         }
         return redirect()->route('viewCourse', ['id' => $course, 'action' => 1]);
