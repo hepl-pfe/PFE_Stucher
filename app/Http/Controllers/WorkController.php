@@ -51,6 +51,21 @@ class WorkController extends Controller
         $allSeances = Seance::where( 'course_id', '=', $course->id )->get();
         return view('work/updateWork', compact('pageTitle', 'work', 'allSeances', 'allCourses'));
     }
+
+    public function update( $id ) {
+        $work = Work::findOrFail($id);
+        $work->title = Input::get('title');
+        $work->description = Input::get('descr');
+        //$work->file = Input::get('file');
+        $work->updated_at = Carbon::now();
+        $work->save();
+        return redirect()->route('viewSeance', ['id' => $work->seance->id]);
+    }
+
+    public function delete( $id ) {
+        $work = Work::findOrFail( $id );
+        $work->delete();
+        return redirect()->back();
     }
 
     public function store() {

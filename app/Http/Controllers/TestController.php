@@ -50,6 +50,23 @@ class TestController extends Controller
         $allSeances = Seance::where( 'course_id', '=', $course->id )->get();
         return view('test/updateTest', compact('pageTitle', 'test', 'allSeances', 'allCourses'));
     }
+
+    public function update( $id ) {
+        $test = Test::findOrFail($id);
+        $test->title = Input::get('title');
+        $test->description = Input::get('descr');
+        //$test->file = Input::get('file');
+        $test->updated_at = Carbon::now();
+        $test->save();
+        return redirect()->route('viewSeance', ['id' => $test->seance->id]);
+    }
+
+    public function delete( $id ) {
+        $test = Test::findOrFail( $id );
+        $test->delete();
+        return redirect()->back();
+    }
+
     public function store() {
         $test = Test::create([
             'seance_id' => Input::get('seance'),
