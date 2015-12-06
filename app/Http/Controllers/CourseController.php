@@ -146,6 +146,12 @@ class CourseController extends Controller
             foreach ($works as $work) {
                 $work->delete();   
             }
+
+            $tests = Test::where( 'seance_id', '=', $seance->id )->get();
+            foreach ($tests as $test) {
+                $test->delete();   
+            }
+
             $seance->delete();   
         }
         $course->delete();
