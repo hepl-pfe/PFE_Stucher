@@ -51,7 +51,7 @@ class TestController extends Controller
         return view('test/updateTest', compact('pageTitle', 'test', 'allSeances', 'allCourses'));
     }
     public function store() {
-        $works = Test::create([
+        $test = Test::create([
             'seance_id' => Input::get('seance'),
             'title' => Input::get('title'),
             //'file' => Input::get('file'),
