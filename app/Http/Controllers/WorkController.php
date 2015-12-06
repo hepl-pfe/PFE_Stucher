@@ -15,14 +15,20 @@ use Carbon\Carbon;
 class WorkController extends Controller
 {
     public function create( $id = null, $info = null ) {
+        setlocale( LC_ALL, 'fr_FR');
         $title = 'Créer un devoir';
         $allCourses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
-    	if($id == null) {
-            return view('test/createTest', ['title' => $title, 'allCourses' => $allCourses]);
-    		die('ok sans information concernant le cours ou la séance');
-    	}
-    	if($id != null) {
-    		 if( $info == 'course' ) {
+        if( $allCourses->first() == null ) {
+            return redirect()->back();
+        }
+        if($id == null) {
+            $firstCourse = $allCourses->first();
+            $allSeances = Seance::where( 'course_id', '=', $firstCourse->id )->get();
+            return view('work/createWork', ['title' => $title, 'allCourses' => $allCourses, 'allSeances' => $allSeances]);
+        }
+        if($id != null) {
+
+             if( $info == 'course' ) {
                 $course = Course::findOrFail( $id );
                 return view('test/createTest', ['title' => $title, 'allCourses' => $allCourses, 'course' => $course]);
     			die('ok sans information concernant la séance');

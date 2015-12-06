@@ -15,11 +15,16 @@ use Carbon\Carbon;
 class TestController extends Controller
 {
     public function create( $id = null, $info = null ) {
+        setlocale( LC_ALL, 'fr_FR');
     	$title = 'Créer une interrogation';
     	$allCourses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
+        if( $allCourses->first() == null ) {
+            return redirect()->back();
+        }
     	if($id == null) {
-    		return view('test/createTest', ['title' => $title, 'allCourses' => $allCourses]);
-    		die('ok sans information concernant le cours ou la séance');
+            $firstCourse = $allCourses->first();
+            $allSeances = Seance::where( 'course_id', '=', $firstCourse->id )->get();
+    		return view('test/createTest', ['title' => $title, 'allCourses' => $allCourses, 'allSeances' => $allSeances]);
     	}
     	if($id != null) {
     		 if( $info == 'course' ) {
