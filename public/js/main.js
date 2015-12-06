@@ -88,7 +88,7 @@ jQuery( function($) {
 					the_jdDate = new Date( the_js_months[the_month] + " " + the_day + ", " + the_year + " " + the_hours + ":" + the_minutes + ":00" ),
 					the_number_day = the_jdDate.getDay();
                 $('#seance')
-                    .append('<option value="'+data[i].id+'">'+"Séance du " + the_fr_days[the_number_day] + " " + the_day + " " + the_fr_months[the_month] + " " + the_year + " de " + the_hours + ":" + the_minutes + " à " + the_end_hours + ":" + the_end_minutes+'</option>');
+                    .append('<option value="'+data[i].id+'">'+"Séance du " + the_fr_days[the_number_day] + " " + the_day + " " + the_fr_months[the_month] + " " + the_year + " de " + the_hours + "h" + the_minutes + " à " + the_end_hours + "h" + the_end_minutes+'</option>');
                 $('#seance').fadeIn();
 			}
 		});
