@@ -62,8 +62,13 @@ Route::get( 'updateCourse/{id}', [ 'as' => 'updateCourse', 'uses' => 'CourseCont
 Route::get( 'indexCourse', [ 'as' => 'indexCourse', 'uses' => 'CourseController@index' ] );
 Route::get( 'searchCourse', [ 'as' => 'searchCourse', 'uses' => 'CourseController@searchCourse' ] );
 
+// TESTS
 Route::get( 'createWork/{id?}/{info?}', [ 'as' => 'createWork', 'uses' => 'WorkController@create' ] );
 Route::post( 'createWork/{id?}/{info?}', [ 'as' => 'createWork', 'uses' => 'WorkController@store' ] );
+Route::get( 'deleteTest/{id}', [ 'as' => 'deleteTest', 'uses' => 'TestController@delete' ] );
+Route::get( 'updateTest/{id}', [ 'as' => 'updateTest', 'uses' => 'TestController@edit' ] );
+Route::post( 'updateTest/{id}', [ 'as' => 'updateTest', 'uses' => 'TestController@update' ] );
+
 Route::get( 'createTest/{id?}/{info?}', [ 'as' => 'createTest', 'uses' => 'TestController@create' ] );
 Route::post( 'createTest/{id?}/{info?}', [ 'as' => 'createTest', 'uses' => 'TestController@store' ] );
 Route::get( 'addNews', [ 'as' => 'addNews', 'uses' => 'CourseController@addNews' ] );
