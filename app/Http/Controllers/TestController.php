@@ -27,13 +27,13 @@ class TestController extends Controller
     		return view('test/createTest', ['title' => $title, 'allCourses' => $allCourses, 'allSeances' => $allSeances]);
     	}
     	if($id != null) {
+
     		 if( $info == 'course' ) {
     		 	$course = Course::findOrFail( $id );
-    		 	return view('test/createTest', ['title' => $title, 'allCourses' => $allCourses, 'course' => $course]);
-    			die('ok sans information concernant la séance');
+                $allSeances = Seance::where( 'course_id', '=', $id )->get();
+    		 	return view('test/createTest', ['title' => $title, 'allCourses' => $allCourses, 'allSeances' => $allSeances, 'course' => $course]);
     		 }
     		 if( $info == 'seance' ) {
-    		 	setlocale( LC_ALL, 'fr_FR');
     		 	$seance = Seance::findOrFail( $id );
 		    	$allSeances = Seance::where( 'course_id', '=', $seance->course_id )->get();
 		        $course = Course::where( 'id', '=', $seance->course_id )->get();
