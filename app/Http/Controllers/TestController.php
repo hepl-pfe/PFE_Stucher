@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Validator;
 use App\Course;
 use App\Seance;
 use \Input;
@@ -14,6 +15,15 @@ use Carbon\Carbon;
 
 class TestController extends Controller
 {
+
+    protected $rules = [
+        'course' => 'required',
+        'seance' => 'required',
+        'title' => 'required|max:255',
+        'description' => 'required'
+        //'file' => 'required|date_format:H:i|after:start_hours'
+        ];
+
     public function create( $id = null, $info = null ) {
         setlocale( LC_ALL, 'fr_FR');
     	$title = 'Créer une interrogation';
@@ -68,6 +78,11 @@ class TestController extends Controller
     }
 
     public function store() {
+        $validator = Validator::make(Input::all(), $this->rules);
+        if ($validator->fails()) {
+            // echo $validator->messages(); die();
+            return redirect()->back();
+        }
         $test = Test::create([
             'seance_id' => Input::get('seance'),
             'title' => Input::get('title'),
