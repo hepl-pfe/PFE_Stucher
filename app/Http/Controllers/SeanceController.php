@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use \Input;
+use Validator;
 use App\Course;
 use App\Seance;
 use App\Work;
@@ -16,6 +17,13 @@ use Carbon\Carbon;
 
 class SeanceController extends Controller
 {
+
+    protected $rules = [
+        'start_date' => 'required|date|after:yesterday',
+        'end_date' => 'required|date|after:start_date',
+        'start_hours' => 'required|date_format:H:i',
+        'end_hours' => 'required|date_format:H:i|after:start_hours'
+        ];
 
     public function create( $id ) {
         $title = 'Créer une séance';
@@ -35,6 +43,11 @@ class SeanceController extends Controller
     }
 
     public function store() {
+        $validator = Validator::make(Input::all(), $this->rules);
+        if ($validator->fails()) {
+            //echo $validator->messages();;
+            return redirect()->back();
+        }
         $day = Input::get('date').' '.Input::get('daypicker');
         $start_hours = Input::get('date').' '.Input::get('start_hours');
         $end_hours = Input::get('date').' '.Input::get('end_hours');
@@ -77,6 +90,11 @@ class SeanceController extends Controller
     }
 
     public function update( $id ) {
+        $validator = Validator::make(Input::all(), $this->rules);
+        if ($validator->fails()) {
+            //echo $validator->messages();;
+            return redirect()->back();
+        }
         $seance = Seance::findOrFail($id);
         $day = Input::get('date');
         $start_hours = Input::get('start_hours');

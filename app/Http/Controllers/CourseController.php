@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
 use App\Course;
 use App\User;
 use App\Seance;
@@ -16,6 +17,13 @@ use App\Http\Controllers\Controller;
 
 class CourseController extends Controller
 {
+
+    protected $rules = [
+        'title' => 'required|max:255',
+        'group' => 'required|max:255',
+        'school' => 'required|max:255',
+        'place' => 'required|max:255'
+        ];
 
     public function index() {
         $title = 'Accueil';
@@ -54,6 +62,11 @@ class CourseController extends Controller
     }
 
     public function store() {
+        $validator = Validator::make(Input::all(), $this->rules);
+        if ($validator->fails()) {
+            //echo $validator->messages('title');
+            return redirect()->back();
+        }
         $courses = Course::all();
         $course = Course::create([
             'title' => Input::get('title'),
@@ -127,6 +140,11 @@ class CourseController extends Controller
     }
 
     public function update( $id ) {
+        $validator = Validator::make(Input::all(), $this->rules);
+        if ($validator->fails()) {
+            //echo $validator->messages('title');
+            return redirect()->back();
+        }
         $course = Course::findOrFail($id);
         $course->title = Input::get('title');
         $course->group = Input::get('group');
