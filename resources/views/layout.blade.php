@@ -32,14 +32,14 @@
 						<li><a href="{!! action( 'CourseController@index' ) !!}">Mes cours</a></li>
 						<li><a href="{!! action( 'PageController@about' ) !!}">Mes informations</a></li>
 						<li><a href="{!! action( 'PageController@notification' ) !!}">Notifications</a></li>
-						<li><a href="{!! action( 'PageController@message' ) !!}">Messages</a></li>
+						{{-- <li><a href="{!! action( 'PageController@message' ) !!}">Messages</a></li> --}}
 						<li><a href="{!! action( 'PageController@planning' ) !!}">Mon planning</a></li>
 					@elseif( Auth::user()->status == 2 )
 						<li class="active"><a href="#">ZONE ELEVE</a></li>
 						<li><a href="{!! action( 'CourseController@index' ) !!}">Mes cours</a></li>
 						<li><a href="{!! action( 'PageController@about' ) !!}">Mes informations</a></li>
 						<li><a href="{!! action( 'PageController@notification' ) !!}">Notifications</a></li>
-						<li><a href="{!! action( 'PageController@message' ) !!}">Messages</a></li>
+						{{-- <li><a href="{!! action( 'PageController@message' ) !!}">Messages</a></li> --}}
 						<li><a href="{!! action( 'PageController@planning' ) !!}">Mon planning</a></li>
 					@endif
 				<li><a class="" href="{!! action( 'Auth\AuthController@getLogout' ) !!}">Se déconnecter</a></li>
