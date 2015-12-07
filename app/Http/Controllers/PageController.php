@@ -16,7 +16,19 @@ class PageController extends Controller
         if ( \Auth::check() ) {
     		$title = "à propos";
             $nbCourses = Course::where('teacher_id', '=', \Auth::user()->id)->count();
-    		return view('pages/about', compact('title', 'nbCourses'));
+            $courses = Course::where('teacher_id', '=', \Auth::user()->id)->get();
+            $myUsers = [];
+            foreach ($courses as $course) {
+            
+             $users =  $course->users;
+             foreach ($users as $user) {
+                if (!in_array($user->id, $myUsers)) {
+                    array_push($myUsers, $user->id);
+                }
+             }
+            }
+            $nbUsers = count($myUsers);
+    		return view('pages/about', compact('title', 'nbCourses', 'nbUsers'));
     	}
     	return view('welcome', ['title' => 'accueil']);
     }

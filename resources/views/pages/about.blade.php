@@ -7,7 +7,7 @@
 	<div class="text-center">
 		@if( Auth::user()->status == 1 )
 			<a href="{{ action( 'CourseController@index' ) }}" class="btn btn-primary">Nombre de cours: <br><span>{{ $nbCourses }}</span></a>
-			<a href="" class="btn btn-primary">Nombre d'élève: <br><span>15</span></a>
+			<a href="" class="btn btn-primary">Nombre d'élève: <br><span>{{ $nbUsers }}</span></a>
 		@elseif( Auth::user()->status == 2 )
 			<a href="{{ action( 'CourseController@index' ) }}" class="btn btn-primary">Nombre de cours: <br><span>1</span></a>
 		@endif
