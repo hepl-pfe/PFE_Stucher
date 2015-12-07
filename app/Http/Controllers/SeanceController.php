@@ -29,7 +29,9 @@ class SeanceController extends Controller
             "saturday" => "samedi",
             "sunday" => "dimanche"
         ];
-        return view('seance/createSeance', compact('title', 'id', 'courses', 'days'));
+        $today = Carbon::now()->format('Y-m-d');
+        $tomorrow = Carbon::tomorrow()->format('Y-m-d');
+        return view('seance/createSeance', compact('title', 'id', 'courses', 'days', 'today', 'tomorrow'));
     }
 
     public function store() {
