@@ -94,4 +94,59 @@ jQuery( function($) {
 		});
 	} );
 
+
+	$(document).ready(function() {
+		var currentLangCode = 'fr';
+
+		// build the language selector's options
+		$.each($.fullCalendar.langs, function(langCode) {
+			$('#lang-selector').append(
+				$('<option/>')
+					.attr('value', langCode)
+					.prop('selected', langCode == currentLangCode)
+					.text(langCode)
+			);
+		});
+
+		// rerender the calendar when the selected option changes
+		$('#lang-selector').on('change', function() {
+			if (this.value) {
+				currentLangCode = this.value;
+				$('#calendar').fullCalendar('destroy');
+				renderCalendar();
+			}
+		});
+
+		function renderCalendar() {
+			$('#calendar').fullCalendar({
+				defaultView: 'agendaWeek',
+				allDaySlot: false,
+				minTime: "07:00:00",
+				maxTime: "18:00:00",
+				height: "auto",
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: ''
+				},
+				defaultDate: '2015-12-12',
+				lang: currentLangCode,
+				buttonIcons: false, // show the prev/next text
+				weekNumbers: true,
+				editable: true, // IF STUDENT = FALSE & IF TEACHER = TRUE
+				eventLimit: true, // allow "more" link when too many events
+				events: [
+					{
+						id: 999,
+						title: 'Repeating Event',
+						start: '2015-12-09T16:12:00',
+						end: '2015-12-09T17:00:00'
+					}
+				]
+			});
+		}
+
+		renderCalendar();
+	});
+
 } );
