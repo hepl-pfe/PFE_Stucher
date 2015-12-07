@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Validator;
+use \Input;
+
 use App\Course;
 use App\User;
 
@@ -12,6 +15,15 @@ use App\Http\Controllers\Controller;
 
 class PageController extends Controller
 {
+
+    protected $rules = [
+        'name' => 'required|max:255',
+        // 'surname' => 'required|max:255',
+        'email' => 'required|email|max:255',
+        'password' => 'required|min:6',
+        // 'image' => 'required'
+        ];
+
     public function about(){
         if ( \Auth::check() ) {
     		$title = "à propos";
@@ -43,7 +55,18 @@ class PageController extends Controller
     }
 
     public function updateProfil() {
-
+        $validator = Validator::make(Input::all(), $this->rules);
+        if ($validator->fails()) {
+            // echo $validator->messages('title'); die();
+            return redirect()->back();
+        }
+        $user = User::where( 'id', '=', \Auth::user()->id );
+        $user->name = Input::get('name');
+        //$user->name = Input::get('surname');
+        $user->name = Input::get('email');
+        $user->name = bcrypt(Input::get('password'));
+        //$user->name = Input::get('image');
+        return redirect()->route('about');
     }
 
     public function deleteProfil() {
