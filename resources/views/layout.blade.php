@@ -15,6 +15,13 @@
 	<link rel="stylesheet" href="{{ url() }}/css/jquery-ui.structure.css">
 	<link rel="stylesheet" href="{{ url() }}/css/jquery-ui.theme.css">
 
+	<!-- Calendar script and style -->
+	<link href="{{ url() }}/css/fullcalendar.min.css" rel="stylesheet" />
+	<link href="{{ url() }}/css/fullcalendar.print.css" rel="stylesheet" media="print" />
+	<script src="{{ url() }}/js//moment.min.js"></script>
+	<script src="{{ url() }}/js/fullcalendar.min.js"></script>
+	<script src="{{ url() }}/js/fr.js"></script>
+
 	<!-- My custom script -->
 	<script src="{{ url() }}/js/main.js"></script>
 	
