@@ -53,38 +53,13 @@
 				@if( Auth::user()->status == 1 )
 						<li class="list-group-item active">NOTIFICATIONS</li>
 						<li class="list-group-item">
-							<a href="">Loïc Parent</a>
-							Demande l'accès au cours de Sciences (groupe SC2)
-							<a href="" class="btn btn-success">Accepter</a>
-							<a href="" class="btn btn-danger">Refuser</a>
+							Aucune notification pour le moment
 						</li>
-						<li class="list-group-item">
-							<a href="">David Degrégoris</a>
-							Demande l'accès au cours de Sciences (groupe SC2)
-							<a href="" class="btn btn-success">Accepter</a>
-							<a href="" class="btn btn-danger">Refuser</a>
-						</li>
-						<li class="list-group-item">
-							Nouveau message de
-							<a href="">David Degrégoris</a>
-							<a href="{{ action( 'PageController@message' ) }}" class="btn btn-primary">Voir le message</a>
-						</li>
+						
 				@elseif( Auth::user()->status == 2 )
 						<li class="list-group-item active">NOTIFICATIONS</li>
 						<li class="list-group-item">
-							Nouveau devoir pour le 
-							<a href="">cours de Math</a>
-							<a href="" class="btn btn-success">plus d'info</a>
-						</li>
-						<li class="list-group-item">
-							<a href="">M. Granjean</a>
-							sera absent du pour les deux prochain cours
-							<a href="" class="btn btn-success">Voir sur le planning</a>
-						</li>
-						<li class="list-group-item">
-							Un changement de local est prévus pour le 
-							<a href="">Cours de sciences</a>
-							<a href="" class="btn btn-success">Voir la notification</a>
+							Aucune notification pour le moment
 						</li>
 				@endif
 				<li class="list-group-item"><a href="{!! action( 'PageController@notification' ) !!}">Afficher toutes les news</a></li>
