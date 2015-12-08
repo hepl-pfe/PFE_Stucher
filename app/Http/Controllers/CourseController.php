@@ -94,6 +94,7 @@ class CourseController extends Controller
     public function addCourse( $id ) {
         if ( \Auth::check() && \Auth::user()->status==2 ) {
             $student = User::findOrFail(\Auth::user()->id);
+            
             // Ajouter le cours et l'utilisateur à la table course_user
             $student->courses()->attach( $id );
             \DB::table('course_user')
