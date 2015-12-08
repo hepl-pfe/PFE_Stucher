@@ -9,6 +9,7 @@ use \Input;
 
 use App\Course;
 use App\User;
+use DB;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -28,6 +29,8 @@ class PageController extends Controller
         if ( \Auth::check() ) {
     		$title = "à propos";
             $nbCourses = Course::where('teacher_id', '=', \Auth::user()->id)->count();
+            $coursesStudent = DB::select('select * from course_user where user_id = '.\Auth::user()->id);
+            $nbCoursesStudent = count($coursesStudent);
             $courses = Course::where('teacher_id', '=', \Auth::user()->id)->get();
             $myUsers = [];
             foreach ($courses as $course) {
@@ -40,7 +43,7 @@ class PageController extends Controller
              }
             }
             $nbUsers = count($myUsers);
-    		return view('pages/about', compact('title', 'nbCourses', 'nbUsers'));
+    		return view('pages/about', compact('title', 'nbCourses', 'nbUsers', 'nbCoursesStudent'));
     	}
     	return view('welcome', ['title' => 'accueil']);
     }
