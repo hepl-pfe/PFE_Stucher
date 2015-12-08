@@ -153,23 +153,27 @@
 		      		@if ( count($students) !== 0 )
 			      		<ul class="panel-body">
 			      			@foreach( $students as $student )
-			      				<li><a href="">{{ $student->name }}</a>
-								<!-- Modal -->
-								<button type="button" class="btn badge btn-danger pull-right" data-toggle="modal" data-target="#myModal4">Retirer de ce cours</button>
-								<div id="myModal4" class="modal fade" role="dialog">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal">&times;</button>
-												<h4 class="modal-title">Voulez-vous vraiment retirer {{ $student->name }} de ce cours?</h4>
-											</div>
-											<div class="modal-footer">
-												<a href="{!! action( 'CourseController@removeStudentFromCourse', ['id_course' => $course->id, 'id_user' => $student->id] ) !!}" class="btn btn-danger">Oui</a>
-												<button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+			      				@if ( $student->pivot->access === 2 )
+			      					<li><a href="">{{ $student->name }}</a>
+									<!-- Modal -->
+									<button type="button" class="btn badge btn-danger pull-right" data-toggle="modal" data-target="#myModal4">Retirer de ce cours</button>
+									<div id="myModal4" class="modal fade" role="dialog">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal">&times;</button>
+													<h4 class="modal-title">Voulez-vous vraiment retirer {{ $student->name }} de ce cours?</h4>
+												</div>
+												<div class="modal-footer">
+													<a href="{!! action( 'CourseController@removeStudentFromCourse', ['id_course' => $course->id, 'id_user' => $student->id] ) !!}" class="btn btn-danger">Oui</a>
+													<button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
+			      				@else 
+			      					<p>Il n’y a aucun étudiant pour le moment</p>
+			      				@endif
 			      			@endforeach
 			      		</ul>
 		      		@else
@@ -179,8 +183,11 @@
 		    	<div class="panel-danger">
 		      		<div class="panel-heading">Élèves qui demande à suivre le cours</div>
 		      		<div class="panel-body">
-		      			<li><a href="">Émillie Gérard</a> <a class="btn btn-primary pull-right" href="">Ajouter</a> <a class="btn btn-danger pull-right" href="">Refuser l’accès</a></li><br>
-		      			<li><a href="">Kévin delois</a> <a class="btn btn-primary pull-right" href="">Ajouter</a> <a class="btn btn-danger pull-right" href="">Refuser l’accès</a></li>
+		      		@foreach ($students as $student)
+		      			@if ( $student->pivot->access === 1 )
+		      				<li><a href="">{{$student->name}}</a><a class="btn btn-primary pull-right" href="">Ajouter</a> <a class="btn btn-danger pull-right" href="">Refuser l’accès</a></li><br>
+		      			@endif
+		      		@endforeach
 		      		</div>
 		    	</div>
 		    	@endif()
