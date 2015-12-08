@@ -18,15 +18,21 @@ use Carbon\Carbon;
 class SeanceController extends Controller
 {
 
-    protected $rules = [
+    protected $storeRules = [
         'start_date' => 'required|date|after:yesterday',
         'end_date' => 'required|date|after:start_date',
         'start_hours' => 'required|date_format:H:i',
         'end_hours' => 'required|date_format:H:i|after:start_hours'
         ];
 
+    protected $updateRules = [
+        'date' => 'required|date',
+        'start_hours' => 'required|date_format:H:i',
+        'end_hours' => 'required|date_format:H:i|after:start_hours'
+        ];
+
     public function create( $id ) {
-        $title = 'Créer une séance';
+        $title = 'Générer des séances';
         $courses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
         $days = [
             "monday" => "lundi",
@@ -43,7 +49,7 @@ class SeanceController extends Controller
     }
 
     public function store() {
-        $validator = Validator::make(Input::all(), $this->rules);
+        $validator = Validator::make(Input::all(), $this->storeRules);
         if ($validator->fails()) {
             //echo $validator->messages();;
             return redirect()->back();
@@ -90,9 +96,9 @@ class SeanceController extends Controller
     }
 
     public function update( $id ) {
-        $validator = Validator::make(Input::all(), $this->rules);
+        $validator = Validator::make(Input::all(), $this->updateRules);
         if ($validator->fails()) {
-            //echo $validator->messages();;
+            echo $validator->messages();die();
             return redirect()->back();
         }
         $seance = Seance::findOrFail($id);
