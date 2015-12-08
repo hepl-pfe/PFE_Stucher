@@ -20,7 +20,7 @@ class TestController extends Controller
         'course' => 'required',
         'seance' => 'required',
         'title' => 'required|max:255',
-        'description' => 'required'
+        'descr' => 'required'
         //'file' => 'required|date_format:H:i|after:start_hours'
         ];
 
