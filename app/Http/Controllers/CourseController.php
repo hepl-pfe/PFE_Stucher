@@ -82,9 +82,10 @@ class CourseController extends Controller
 
     public function searchCourse() {
         if ( \Auth::check() && \Auth::user()->status==2 ) {
-            $courses = Course::all();
+            $coursesIds = \Auth::user()->courses->lists('id');
             $title = 'Tous les cours existants';
-            $mycourses = User::find(\Auth::user()->id)->courses;
+            $courses = Course::whereNotIn('id',$coursesIds);
+            dd($courses->first());
 
             return view('courses/indexAllCourses', compact('courses', 'title'));
         } 
