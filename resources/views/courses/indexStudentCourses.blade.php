@@ -10,6 +10,10 @@
 			<li class="list-group-item well well-lg">Aucun cours pour le moment</li>
 		@endif
 		@foreach( $courses as $course )
-			<li class="list-group-item well well-lg"><a href="{!! action( 'CourseController@view', [ 'id' => $course->id, 'action' => 1 ] ) !!}">{{ $course->title }}</a></li>
+			@if ( $course->pivot->access === 1 )
+				<li class="list-group-item well-lg"><a href="">{{ $course->title }} <span class="btn btn-danger pull-right">en attente de validation</span></a></li>
+			@elseif ( $course->pivot->access === 2 )
+				<li class="list-group-item well well-lg"><a href="{!! action( 'CourseController@view', [ 'id' => $course->id, 'action' => 1 ] ) !!}">{{ $course->title }}</a></li>
+			@endif
 		@endforeach
 @stop
