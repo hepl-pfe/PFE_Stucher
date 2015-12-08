@@ -11,7 +11,7 @@
 		@endif
 		@foreach( $courses as $course )
 			@if ( $course->pivot->access === 1 )
-				<li class="list-group-item well-lg"><a href="">{{ $course->title }} <span class="btn btn-danger pull-right">en attente de validation</span></a></li>
+				<li class="list-group-item well-lg"><a href="">{{ $course->title }} <span class="pull-right">en attente de validation</span> <a class="btn btn-danger pull-right" href="{!! action( 'CourseController@removeCourse', [ 'id' => $course->id ] ) !!}">Annuler la demande</a></a></li>
 			@elseif ( $course->pivot->access === 2 )
 				<li class="list-group-item well well-lg"><a href="{!! action( 'CourseController@view', [ 'id' => $course->id, 'action' => 1 ] ) !!}">{{ $course->title }}</a></li>
 			@endif
