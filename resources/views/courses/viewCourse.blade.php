@@ -79,6 +79,7 @@
 		      		@if ( isset($seances) )
 		      			@if ( count($seances) == 0 )
 			      			<p>Il n’y a aucune séance pour le moment</p>
+			      			<a class="btn btn-primary" href="{!! action( 'SeanceController@create', ['id' => $id] ) !!}">Créer des séances de cours</a>
 			      		@else
 				      		@foreach( $seances as $seance )
 				      			<a href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}" class="btn btn-success">{{ $seance->start_hours->formatLocalized('%A %d %B %Y') }} de {{ $seance->start_hours->formatLocalized('%Hh%M') }} à {{ $seance->end_hours->formatLocalized('%Hh%M') }}</a><br><br>
