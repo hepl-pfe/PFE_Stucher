@@ -94,7 +94,7 @@ class CourseController extends Controller
     public function addCourse( $id ) {
         if ( \Auth::check() && \Auth::user()->status==2 ) {
             $student = User::findOrFail(\Auth::user()->id);
-            
+
             // Ajouter le cours et l'utilisateur à la table course_user
             $student->courses()->attach( $id );
             \DB::table('course_user')
@@ -114,6 +114,20 @@ class CourseController extends Controller
         return back();
     }
 
+    public function getByToken() {
+        $token = Input::get('searchToken');
+        $course_id = Course::where( 'access_token', '=', $token )->get()->first()->id;
+        $student = User::findOrFail(\Auth::user()->id);
+
+        // Ajouter le cours et l'utilisateur à la table course_user
+        $student->courses()->attach( $course_id );
+        \DB::table('course_user')
+            ->where('user_id', \Auth::user()->id)->where('course_id', $course_id)
+            ->update(array('access' => 1));
+
+        return redirect()->route('indexCourse');
+    }
+
     public function removeCourse( $id_course ) {
         \DB::table('course_user')
         ->where('user_id', \Auth::user()->id)->where('course_id', $id_course)->delete();
@@ -121,6 +135,14 @@ class CourseController extends Controller
         return redirect()->route('indexCourse');
     }
 
+    public function acceptStudent( $id_course, $id_user ) {
+        \DB::table('course_user')
+        ->where('user_id', $id_user)
+        ->where('course_id', $id_course)
+        ->update(array('access' => 2));
+
+        return redirect()->route('viewCourse', ['id' => $id_course, 'action' => 1]);
+    }
     
     public function removeStudentFromCourse( $id_course, $id_user ) {
         \DB::table('course_user')
