@@ -130,6 +130,7 @@ jQuery( function($) {
 					center: 'title',
 					right: ''
 				},
+				slotLabelFormat: 'H:mm',
 				defaultDate: '2015-12-12',
 				lang: currentLangCode,
 				buttonIcons: false, // show the prev/next text
