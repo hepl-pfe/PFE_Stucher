@@ -95,6 +95,7 @@ jQuery( function($) {
 	} );
 
 
+	// CALENDAR :
 	$(document).ready(function() {
 		var currentLangCode = 'fr';
 
