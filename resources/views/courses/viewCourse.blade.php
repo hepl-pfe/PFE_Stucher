@@ -83,7 +83,8 @@
 			      		@else
 				      		@foreach( $seances as $seance )
 				      			<a href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}" class="btn btn-success">{{ $seance->start_hours->formatLocalized('%A %d %B %Y') }} de {{ $seance->start_hours->formatLocalized('%Hh%M') }} à {{ $seance->end_hours->formatLocalized('%Hh%M') }}</a>
-				      			<a class="btn btn-warning" href="{!! action( 'SeanceController@edit', [ "id" => $seance->id ] ) !!}">Modifier</a>
+				      			@if ( Auth::user()->status == 1 )
+				      				<a class="btn btn-warning" href="{!! action( 'SeanceController@edit', [ "id" => $seance->id ] ) !!}">Modifier</a>
 								<!-- Modal -->
 								<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#{{ $seance->id }}">X</button>
 								<div id="{{ $seance->id }}" class="modal fade" role="dialog">
@@ -104,6 +105,7 @@
 										</div>
 									</div>
 								</div>
+				      			@endif
 				      			<br><br>
 				      		@endforeach
 				      		
@@ -183,11 +185,17 @@
 		    	<div class="panel-danger">
 		      		<div class="panel-heading">Élèves qui demande à suivre le cours</div>
 		      		<div class="panel-body">
-		      		@foreach ($students as $student)
-		      			@if ( $student->pivot->access === 1 )
-		      				<li><a href="">{{$student->name}}</a><a class="btn btn-primary pull-right" href="">Ajouter</a> <a class="btn btn-danger pull-right" href="">Refuser l’accès</a></li><br>
-		      			@endif
-		      		@endforeach
+		      		@if ( count($students) !== 0 )
+			      		@foreach ($students as $student)
+			      			@if ( $student->pivot->access === 1 )
+			      				<li><a href="">{{$student->name}}</a><a class="btn btn-success pull-right" href="{!! action( 'CourseController@acceptStudent', ['id_course' => $course->id, 'id_user' => $student->id] ) !!}">Ajouter</a> <a class="btn btn-danger pull-right" href="{!! action( 'CourseController@removeStudentFromCourse', ['id_course' => $course->id, 'id_user' => $student->id] ) !!}">Refuser l’accès</a></li><br>
+			      			@else
+			      				<p>Il n’y a aucun étudiant pour le moment</p>
+			      			@endif
+			      		@endforeach
+		      		@else
+	      				<p>Il n’y a aucun étudiant pour le moment</p>
+	      			@endif
 		      		</div>
 		    	</div>
 		    	@endif()
