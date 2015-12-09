@@ -59,6 +59,9 @@
 				<ul class=" list-group notification">
 				@if( Auth::user()->status == 1 )
 						<li class="list-group-item active">NOTIFICATIONS</li>
+							@foreach ($notifications as $notification)
+								{{ $notification }}
+							@endforeach
 						<li class="list-group-item">
 							Aucune notification pour le moment
 						</li>
