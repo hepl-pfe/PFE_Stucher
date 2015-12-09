@@ -10,6 +10,7 @@ use App\Seance;
 use App\Work;
 use App\Test;
 use \Input;
+use App\Notification;
 use Carbon\Carbon;
 
 use App\Http\Requests;
@@ -100,6 +101,15 @@ class CourseController extends Controller
             \DB::table('course_user')
                 ->where('user_id', \Auth::user()->id)->where('course_id', $id)
                 ->update(array('access' => 1));
+
+            Notification::create([
+                'title' => 'demande accès au cours de',
+                'course_id' => $id,
+                'user_id' => \Auth::user()->id,
+                'context' => 5,
+                'saw' => 0,
+                'for' => 1
+            ]);
             
             return redirect()->route('indexCourse');
         } 
