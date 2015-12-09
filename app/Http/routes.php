@@ -79,7 +79,9 @@ Route::get( 'updateWork/{id}', [ 'as' => 'updateWork', 'uses' => 'WorkController
 Route::post( 'updateWork/{id}', [ 'as' => 'updateWork', 'uses' => 'WorkController@update', 'middleware' => 'isTeacher' ] );
 
 
+// NOTIFICATIONS
 Route::get( 'addNews', [ 'as' => 'addNews', 'uses' => 'CourseController@addNews' ] );
+Route::get( 'getTeacher/{id}', [ 'as' => 'getTeacher', 'uses' => 'NotificationController@getTeacher', 'middleware' => 'isTeacher' ] );
 
 
 // Redirect to registerS or registerT page...
