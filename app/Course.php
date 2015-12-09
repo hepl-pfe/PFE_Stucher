@@ -20,4 +20,9 @@ class Course extends Model
 	{
 		return $this->hasMany('App\Seance');
 	}
+
+	public function notifications()
+	{
+		return $this->hasMany('App\Notification');
+	}
 }
