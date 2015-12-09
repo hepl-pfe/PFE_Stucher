@@ -141,7 +141,7 @@ jQuery( function($) {
 					{
 						id: 999,
 						title: 'Repeating Event',
-						start: '2015-12-09T16:12:00',
+						start: '2015-12-09T16:32:00',
 						end: '2015-12-09T17:00:00'
 					}
 				]
@@ -150,5 +150,8 @@ jQuery( function($) {
 
 		renderCalendar();
 	});
+
+
+	
 
 } );
