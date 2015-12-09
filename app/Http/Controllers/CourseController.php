@@ -84,8 +84,7 @@ class CourseController extends Controller
         if ( \Auth::check() && \Auth::user()->status==2 ) {
             $coursesIds = \Auth::user()->courses->lists('id');
             $title = 'Tous les cours existants';
-            $courses = Course::whereNotIn('id',$coursesIds);
-            dd($courses->first());
+            $courses = Course::whereNotIn('id',$coursesIds)->get();
 
             return view('courses/indexAllCourses', compact('courses', 'title'));
         } 
