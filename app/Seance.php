@@ -21,6 +21,11 @@ class Seance extends Model
 		return $this->hasMany('App\Work');
 	}
 
+	public function notifications()
+	{
+		return $this->hasMany ('App\Notification');
+	}
+	
 	public function tests()
 	{
 		return $this->hasMany('App\test');
