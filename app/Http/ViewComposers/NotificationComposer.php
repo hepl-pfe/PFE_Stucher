@@ -9,12 +9,9 @@ class NotificationComposer
 {
     public function compose(View $view)
     {	
-    	$notifications = Notification::where( 'for', '=', \Auth::user()->id )->get();
-    	$from = $notifications
-    	$returnNotif = []
     	
     	if( \Auth::check() ){
- 	       $view->with('notifications', Notification::where( 'for', '=', \Auth::user()->id )->get());
+ 	    	$view->with('notifications', Notification::where( 'for', '=', \Auth::user()->id )->get());
  	    }
 
     }
