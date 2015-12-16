@@ -1,0 +1,24 @@
+.list__round {
+	width: 33.333%;
+	float: left;
+	margin-bottom: 2em;
+}
+.list__round a {
+	width: 90%;
+	margin: auto;
+	height: 10em;
+	display: block;
+	line-height: 10em;
+	text-align: center; 
+	background-color: #FFF;
+	border: 1px solid $mainColor;
+	border-radius: 10px;
+	& a {
+		text-decoration: none;
+	}
+}
+
+.list__round--empty a {
+	border: 1px solid gray;
+	color: gray;
+}
