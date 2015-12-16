@@ -139,7 +139,6 @@ jQuery( function($) {
 				eventLimit: true, // allow "more" link when too many events
 				events: [
 					{
-						id: 999,
 						title: 'Repeating Event',
 						start: '2015-12-09T16:32:00',
 						end: '2015-12-09T17:00:00'
