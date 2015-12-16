@@ -79,14 +79,6 @@ class PageController extends Controller
         return redirect()->route('indexCourse');
     }
 
-    public function notification(){
-        if ( \Auth::check() ) {
-            $title = "Notifications";
-            return view('pages/notification', ['title' => $title]);
-        }
-        return view('welcome', ['title' => $title]);
-    }
-
     public function message(){
         if ( \Auth::check() ) {
             $title = "Message";
@@ -105,14 +97,6 @@ class PageController extends Controller
     public function repMessage(){
         if ( \Auth::check() ) {
             return view('pages/repMessage');
-        }
-        return view('welcome', ['title' => $title]);
-    }
-
-    public function planning(){
-        if ( \Auth::check() ) {
-            $title = "Planning";
-            return view('pages/planning', ['title' => $title]);
         }
         return view('welcome', ['title' => $title]);
     }
