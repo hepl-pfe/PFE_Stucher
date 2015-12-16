@@ -24,12 +24,26 @@
 
 	<!-- My custom script -->
 	<script src="{{ url() }}/js/main.js"></script>
+	<!-- My custom style -->
+	<link rel="stylesheet" href="{{ url() }}/css/main.css">
 	
 	
 	<!-- Latest compiled JavaScript -->
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<div class="header">
+		<div class="dropdown text-right">
+			<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">+
+			<span class="caret"></span></button>
+			<ul class="dropdown-menu dropdown-menu-right">
+				<li><a href="{!! action( 'CourseController@create' ) !!}">Un cours</a></li>
+				<li><a href="{!! action( 'WorkController@create' ) !!}">Un devoir</a></li>
+				<li><a href="{!! action( 'TestController@create' ) !!}">Une interrogation</a></li>
+				<li><a href="{!! action( 'CourseController@addNews' ) !!}">Une notification</a></li>
+			</ul>
+		</div>
+	</div>
 	@if( Auth::check() )
 	<div class="row col-sm-12" style="margin-top: 1em;">
 		<nav class="col-sm-2">
@@ -38,16 +52,16 @@
 						<li class="active"><a href="#">ZONE PROF</a></li>
 						<li><a href="{!! action( 'CourseController@index' ) !!}">Mes cours</a></li>
 						<li><a href="{!! action( 'PageController@about' ) !!}">Mes informations</a></li>
-						<li><a href="{!! action( 'PageController@notification' ) !!}">Notifications</a></li>
+						<li><a href="{!! action( 'NotificationController@index' ) !!}">Notifications</a></li>
 						{{-- <li><a href="{!! action( 'PageController@message' ) !!}">Messages</a></li> --}}
-						<li><a href="{!! action( 'PageController@planning' ) !!}">Mon planning</a></li>
+						<li><a href="{!! action( 'CalendarController@view' ) !!}">Mon planning</a></li>
 					@elseif( Auth::user()->status == 2 )
 						<li class="active"><a href="#">ZONE ELEVE</a></li>
 						<li><a href="{!! action( 'CourseController@index' ) !!}">Mes cours</a></li>
 						<li><a href="{!! action( 'PageController@about' ) !!}">Mes informations</a></li>
-						<li><a href="{!! action( 'PageController@notification' ) !!}">Notifications</a></li>
+						<li><a href="{!! action( 'NotificationController@index' ) !!}">Notifications</a></li>
 						{{-- <li><a href="{!! action( 'PageController@message' ) !!}">Messages</a></li> --}}
-						<li><a href="{!! action( 'PageController@planning' ) !!}">Mon planning</a></li>
+						<li><a href="{!! action( 'CalendarController@view' ) !!}">Mon planning</a></li>
 					@endif
 				<li><a class="" href="{!! action( 'Auth\AuthController@getLogout' ) !!}">Se déconnecter</a></li>
 				@endif()
@@ -59,14 +73,21 @@
 				<ul class=" list-group notification">
 				@if( Auth::user()->status == 1 )
 						<li class="list-group-item active">NOTIFICATIONS</li>
-							@if ( isset($notifications) )
-								@foreach ($notifications as $notification)
-									{{ $notification }}
+							@if ( count($notifications) != 'null' )
+								@foreach ($notifications as $not)
+									<li class="list-group-item">
+									{{$not->user_name}} {{$not->not_title}} <a href="{{ action('CourseController@view', [ 'id' => $not->course_id, 'action' => 1 ]) }}">{{$not->course_title}}</a>
+									<a class="btn btn-success pull-right" href="{!! action( 'CourseController@acceptStudent', ['id_course' => $not->course_id, 'id_user' => $not->user_id] ) !!}">Ajouter</a> <a class="btn btn-danger pull-right" href="{!! action( 'CourseController@removeStudentFromCourse', ['id_course' => $not->course_id, 'id_user' => $not->user_id] ) !!}">Refuser</a>
+									<br>
+									<br>
+									<br>
+									</li>
 								@endforeach
+							@else
+								<li class="list-group-item">
+									Aucune notification pour le moment
+								</li>
 							@endif
-						<li class="list-group-item">
-							Aucune notification pour le moment
-						</li>
 						
 				@elseif( Auth::user()->status == 2 )
 						<li class="list-group-item active">NOTIFICATIONS</li>
@@ -74,7 +95,7 @@
 							Aucune notification pour le moment
 						</li>
 				@endif
-				<li class="list-group-item"><a href="{!! action( 'PageController@notification' ) !!}">Afficher toutes les news</a></li>
+				<li class="list-group-item"><a href="{!! action( 'NotificationController@index' ) !!}">Afficher toutes les news</a></li>
 				</ul>
 			@endif
 		</nav>
