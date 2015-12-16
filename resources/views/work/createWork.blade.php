@@ -1,12 +1,12 @@
 @extends( 'layout' )
-    @section('title', $title)
+	@section('title', $title)
     @section( 'content' )
     <h2><?php echo $title; ?></h2>
     <br>
     <a class="btn btn-success" href="">Récupérer un modèle existant</a>
     <br>
     <br>
-    <form action="" method="post">
+	<form action="" method="post">
         <div class="form-group">
             <label for="course">Pour quel cours?</label>
             <select class="form-control" name="course" id="course">
@@ -50,15 +50,15 @@
             <input type="text" class="form-control" name="title" id="title" placeholder="ex: test de propabilité">
         </div>
 
-        <div class="form-group">
-            <label for="descr">Description du devoir</label>
-            <textarea class="form-control" name="descr" id="descr" cols="30" rows="10" placeholder="ex: La matière de ce devoir portera sur…"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="file">Fichier joins (facultatif - PDF, image ou Word)</label>
-            <input type="file" id="file" name="file">
-        </div>
-        <div class="form-group text-center">
+		<div class="form-group">
+			<label for="descr">Description du devoir</label>
+			<textarea class="form-control" name="descr" id="descr" cols="30" rows="10" placeholder="ex: La matière de cette interrogation portera sur…"></textarea>
+		</div>
+		<div class="form-group">
+			<label for="file">Fichier joins (facultatif - PDF, image ou Word)</label>
+			<input type="file" id="file" name="file">
+		</div>
+		<div class="form-group text-center">
             @if (isset( $seance ))
                 <a class="btn btn-warning" href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}">Annuler</a>
             @elseif ( isset( $course ) )
@@ -66,7 +66,7 @@
             @else
                 <a class="btn btn-warning" href="{!! URL::previous() !!}">Annuler</a>
             @endif
-            <input type="submit" class="btn btn-primary" value="Valider le devoir">
-        </div>
-    </form>
+			<input type="submit" class="btn btn-primary" value="Valider le devoir">
+		</div>
+	</form>
 @stop
