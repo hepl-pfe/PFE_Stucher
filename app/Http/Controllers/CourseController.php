@@ -123,8 +123,8 @@ class CourseController extends Controller
                 'course_id' => $id,
                 'user_id' => \Auth::user()->id,
                 'context' => 5,
-                'saw' => 0,
                 'for' => 1
+                'seen' => 0,
             ]);
             
             return redirect()->route('indexCourse');
