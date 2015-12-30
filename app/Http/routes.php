@@ -19,7 +19,7 @@ Route::get( 'updateProfil', [ 'as' => 'updateProfil', 'uses' => 'PageController@
 Route::post( 'updateProfil', [ 'as' => 'updateProfil', 'uses' => 'PageController@updateProfil', 'middleware' => 'auth' ] );
 
 
-Route::get( 'deleteProfil', [ 'as' => 'deleteProfil', 'uses' => 'PageController@deleteProfil', 'middleware' => 'auth' ] );
+Route::get( 'profil/delete', [ 'as' => 'deleteProfil', 'uses' => 'PageController@deleteProfil', 'middleware' => 'auth' ] );
 
 Route::get( 'notification', [ 'as' => 'notification', 'uses' => 'NotificationController@index', 'middleware' => 'auth' ] );
 Route::get( 'message', [ 'as' => 'message', 'uses' => 'PageController@message', 'middleware' => 'auth' ] );
@@ -35,8 +35,8 @@ Route::post( 'createSeance/{id}', [ 'as' => 'createSeance', 'uses' => 'SeanceCon
 Route::get( 'courses/{id}/seances', [ 'as' => 'getSeancesByCourse', 'uses' => 'SeanceController@getByCourse', 'middleware' => 'auth' ] );
 
 Route::get( 'viewSeance/{id}', [ 'as' => 'viewSeance', 'uses' => 'SeanceController@view', 'middleware' => 'auth' ] );
-Route::get( 'delete/{id}/{course}', [ 'as' => 'delete', 'uses' => 'SeanceController@delete', 'middleware' => ['auth', 'isTeacher'] ] );
-Route::get( 'deleteAll/{course}', [ 'as' => 'deleteAll', 'uses' => 'SeanceController@deleteAll', 'middleware' => ['auth', 'isTeacher'] ] );
+Route::get( 'delete/{seance_id}/{id}', [ 'as' => 'delete', 'uses' => 'SeanceController@delete', 'middleware' => ['auth', 'isTeacher'] ] );
+Route::get( 'deleteAll/{id}', [ 'as' => 'deleteAll', 'uses' => 'SeanceController@deleteAll', 'middleware' => ['auth', 'isTeacher'] ] );
 
 Route::get( 'updateSeance/{id}', [ 'as' => 'updateSeance', 'uses' => 'SeanceController@edit', 'middleware' => ['auth', 'isTeacher'] ] );
 Route::post( 'updateSeance/{id}', [ 'as' => 'updateSeance', 'uses' => 'SeanceController@update', 'middleware' => ['auth', 'isTeacher'] ] );
@@ -46,11 +46,11 @@ Route::post( 'updateSeance/{id}', [ 'as' => 'updateSeance', 'uses' => 'SeanceCon
 Route::get( 'createCourse', [ 'as' => 'createCourse', 'uses' => 'CourseController@create', 'middleware' => ['auth', 'isTeacher'] ] );
 Route::post( 'createCourse', [ 'as' => 'createCourse', 'uses' => 'CourseController@store', 'middleware' => ['auth', 'isTeacher'] ] );
 
-Route::get( 'viewCourse/{id}/{action}', [ 'as' => 'viewCourse', 'uses' => 'CourseController@view', 'middleware' => 'auth' ] );
+Route::get( 'viewCourse/{id}', [ 'as' => 'viewCourse', 'uses' => 'CourseController@view', 'middleware' => 'auth' ] );
 
 Route::get( 'deleteCourse/{id}', [ 'as' => 'deleteCourse', 'uses' => 'CourseController@delete', 'middleware' => ['auth', 'isTeacher'] ] );
 
-Route::get( 'updateCourse/{id}', [ 'as' => 'updateCourse', 'uses' => 'CourseController@edit', 'middleware' => ['auth', 'isTeacher'] ] );
+Route::get( 'updateCourse/{id}', [ 'as' => 'updateCourse', 'uses' => 'CourseController@edit', 'middleware' => ['auth', 'isTeacher', 'isTheTeacher'] ] );
 Route::post( 'updateCourse/{id}', [ 'as' => 'updateCourse', 'uses' => 'CourseController@update', 'middleware' => ['auth', 'isTeacher'] ] );
 
 // Ajouter cours (étudiant)
@@ -58,8 +58,8 @@ Route::get( 'addCourse/{id}', [ 'as' => 'addCourse', 'uses' => 'CourseController
 Route::get( 'addCourse/{id}', [ 'as' => 'addCourse', 'uses' => 'CourseController@addCourse', 'middleware' => 'auth' ] );
 Route::get( 'removeCourse/{id}', [ 'as' => 'removeCourse', 'uses' => 'CourseController@removeCourse', 'middleware' => 'auth' ] );
 Route::post( 'getByToken', [ 'as' => 'getByToken', 'uses' => 'CourseController@getByToken', 'middleware' => 'auth' ] );
-Route::get( 'acceptStudent/{id_course}/{id_user}', [ 'as' => 'acceptStudent', 'uses' => 'CourseController@acceptStudent', 'middleware' => ['auth', 'isTeacher'] ] );
-Route::get( 'removeStudentFromCourse/{id_course}/{id_user}', [ 'as' => 'removeStudentFromCourse', 'uses' => 'CourseController@removeStudentFromCourse', 'middleware' => ['auth', 'isTeacher'] ] );
+Route::get( 'acceptStudent/{id}/{id_user}', [ 'as' => 'acceptStudent', 'uses' => 'CourseController@acceptStudent', 'middleware' => ['auth', 'isTeacher', 'isTheTeacher'] ] );
+Route::get( 'removeStudentFromCourse/{id}/{id_user}', [ 'as' => 'removeStudentFromCourse', 'uses' => 'CourseController@removeStudentFromCourse', 'middleware' => ['auth', 'isTeacher', 'isTheTeacher'] ] );
 
 Route::get( 'indexCourse', [ 'as' => 'indexCourse', 'uses' => 'CourseController@index', 'middleware' => 'auth' ] );
 Route::get( 'searchCourse', [ 'as' => 'searchCourse', 'uses' => 'CourseController@searchCourse', 'middleware' => 'auth' ] );
