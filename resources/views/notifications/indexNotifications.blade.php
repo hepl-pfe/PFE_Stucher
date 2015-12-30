@@ -2,7 +2,7 @@
 @section('title', $title)
 @section('content')
 	<h2>Mes notifications&nbsp;:</h2>
-	@if( Auth::user()->status == 1 )
+	@if( Auth::check() )
 		{{-- <a class="btn btn-primary" style="margin: 1em;" href="{!! action( 'CourseController@addNews' ) !!}">Ajouter une notification</a>	 --}}
 
 		@if ( count($notifications) != 'null' )
