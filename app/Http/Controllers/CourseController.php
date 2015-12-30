@@ -39,14 +39,13 @@ class CourseController extends Controller
         return view('welcome', ['title' => $title]);
     }
 
-    public function view( $id, $action ) {
+    public function view( $id ) {
         setlocale( LC_ALL, 'fr_FR');
         $course = Course::findOrFail($id);
         $teacher = User::where( 'id', '=', $course->teacher_id )->get();
         $now = Carbon::now()->format('Y-m-d H:i:s');
         $seances = $course->seances->sortBy('start_hours');
         $students = Course::find($id)->users;
-        $act = $action;
         $title = 'Cours de '.$course->title;
         if ( \Auth::user()->status == 1 ) {
             $title = 'Cours de '.$course->title.' groupe '. $course->group;
