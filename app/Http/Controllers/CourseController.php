@@ -176,6 +176,23 @@ class CourseController extends Controller
         ->where('course_id', $id_course)
         ->update(array('access' => 2));
 
+        Notification::create([
+            'title' => 'Vous avez à présent accès au cours de',
+            'course_id' => $id_course,
+            'user_id' => \Auth::user()->id,
+            'context' => 6,
+            'seen' => 0,
+            'for' => $id_user
+        ]);
+
+        \DB::table('notifications')
+        ->where('user_id', $id_user)
+        ->where('course_id', $id_course)
+        ->where('context', 5)
+        ->update(array('seen' => 3));
+
+        return redirect()->route('viewCourse', ['id' => $id_course, 'action' => 1]);
+    }
         return redirect()->route('viewCourse', ['id' => $id_course, 'action' => 1]);
     }
     
