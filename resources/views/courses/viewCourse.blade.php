@@ -1,9 +1,19 @@
-<?php use Carbon\Carbon; ?>
+<?php 	use Carbon\Carbon;
+		$the_user = 'not';
+
+		if (in_array(\Auth::user()->id, $inCourseStudentsId)) {
+			$the_user = 'valided';
+		}
+		elseif (in_array(\Auth::user()->id, $demandedStudentsId)) {
+			$the_user = 'demanded';
+		}
+?>
 
 
 @extends( 'layout' )
     @section( 'content' )
     @section( 'title', $title )
+
 	<h1>{{$title}}</h1>
 	<a class="btn btn-warning" href="{!! action( 'CourseController@index' ) !!}"><—</a>
 	@if( Auth::user()->status == 1 )
@@ -42,7 +52,7 @@
 			</ul>
 		</div>
 	@elseif( Auth::user()->status == 2 )
-		@if ( $act == 1 )
+		@if ( $the_user == "valided" )
 			<!-- Modal -->
 			<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal2">Quitter ce cours</button>
 			<div id="myModal2" class="modal fade" role="dialog">
@@ -68,7 +78,8 @@
 		@endif
 	@endif
 
-	@if ( $act == 1 )
+
+	@if ( $the_user == "valided" || \Auth::user()->status == '1' )
 
 		<div class="panel-group">
 			<br>
