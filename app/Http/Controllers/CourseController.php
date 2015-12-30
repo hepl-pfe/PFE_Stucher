@@ -46,6 +46,22 @@ class CourseController extends Controller
         $now = Carbon::now()->format('Y-m-d H:i:s');
         $seances = $course->seances->sortBy('start_hours');
         $students = Course::find($id)->users;
+
+        $inCourseStudents = [];
+        $demandedStudents = [];
+        $inCourseStudentsId = [];
+        $demandedStudentsId = [];
+        foreach ($students as $student) {
+            if( $student->pivot->access === 1 ){
+                $demandedStudents[] = $student;
+                $demandedStudentsId[] = $student->id;
+            }
+            if( $student->pivot->access === 2 ){
+                $inCourseStudents[] = $student;
+                $inCourseStudentsId[] = $student->id;
+            }
+        }
+
         $title = 'Cours de '.$course->title;
         if ( \Auth::user()->status == 1 ) {
             $title = 'Cours de '.$course->title.' groupe '. $course->group;
