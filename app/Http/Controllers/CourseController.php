@@ -220,6 +220,21 @@ class CourseController extends Controller
         \DB::table('course_user')
         ->where('user_id', $id_user)->where('course_id', $id_course)->delete();
 
+        \DB::table('notifications')
+        ->where('user_id', $id_user)
+        ->where('course_id', $id_course)
+        ->where('context', 5)
+        ->update(array('seen' => 3));
+
+        Notification::create([
+            'title' => 'Vous n’avez plus accès au cours de',
+            'course_id' => $id_course,
+            'user_id' => \Auth::user()->id,
+            'context' => 7,
+            'seen' => 0,
+            'for' => $id_user
+        ]);
+
         return redirect()->route('viewCourse', ['id' => $id_course, 'action' => 1]);
     }
 
