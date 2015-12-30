@@ -66,10 +66,10 @@ class CourseController extends Controller
         if ( \Auth::user()->status == 1 ) {
             $title = 'Cours de '.$course->title.' groupe '. $course->group;
 
-            return view('courses/viewCourse', compact('id', 'course', 'title', 'act', 'seances', 'students'));
+            return view('courses/viewCourse', compact('id', 'course', 'title', 'seances', 'demandedStudents', 'inCourseStudents', 'demandedStudentsId', 'inCourseStudentsId'));
         }
 
-        return view('courses/viewCourse', compact('course', 'teacher', 'title', 'act', 'seances'));
+        return view('courses/viewCourse', compact('course', 'teacher', 'title', 'seances', 'demandedStudentsId', 'inCourseStudentsId'));
     }
 
     public function create() {
