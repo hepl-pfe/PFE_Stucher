@@ -30,4 +30,8 @@ class NotificationController extends Controller
             ->paginate(20);
         return view('notifications/indexNotifications', compact('notifications', 'title'));
     }
+
+    public function delete( $id ) {
+        
+    }
 }
