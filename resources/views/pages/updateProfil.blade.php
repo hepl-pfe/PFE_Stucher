@@ -22,12 +22,12 @@
 
 		<div class="form-group">
 			<label for="password">votre nouveau mot de passe</label>
-			<input type="password" class="form-control" name="password" id="password" value="{{ $password }}">
+			<input type="password" class="form-control" name="password" id="password" >
 		</div>
 		
 		<div class="form-group">
 			<label for="checkPassword">valider le nouveau mot de passe</label>
-			<input type="password" class="form-control" name="checkPassword" id="checkPassword" value="{{ $password }}">
+			<input type="password" class="form-control" name="checkPassword" id="checkPassword">
 		</div>
 
 		<div class="form-group text-center">
