@@ -124,8 +124,9 @@ class SeanceController extends Controller
         return Course::find($id_course)->seances;
     }
 
-    public function delete( $id, $course ) {
+    public function delete( $id ) {
         $seance = Seance::findOrFail($id);
+        $course = Course::findOrFail($seance->course_id);
 
         $works = Work::where( 'seance_id', '=', $id )->get();
         foreach ($works as $work) {
