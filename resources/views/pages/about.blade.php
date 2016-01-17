@@ -2,6 +2,9 @@
 @section('title', $title)
 @section('content')
 	<h2 class="text-center">Mes informations&nbsp;:</h2>
+	<a href="">Modifier le photo de profil</a>
+	<img src="{{ url() }}/{{ Auth::user()->image }}" alt="Image de profil">
+	<h3 class="text-center">Prénom: {{ Auth::user()->firstname }}</h3>
 	<h3 class="text-center">Nom: {{ Auth::user()->name }}</h3>
 	<p class="text-center">Email: {{ Auth::user()->email }}</p>
 	<div class="text-center">
