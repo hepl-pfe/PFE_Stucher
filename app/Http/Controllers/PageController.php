@@ -10,6 +10,8 @@ use \Input;
 use App\Course;
 use App\User;
 use DB;
+use \Image;
+use \File;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
