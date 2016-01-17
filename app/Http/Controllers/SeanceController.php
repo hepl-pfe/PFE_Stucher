@@ -138,7 +138,7 @@ class SeanceController extends Controller
             $test->delete();   
         }
         $seance->delete();
-        return redirect()->route('viewCourse', ['id' => $course, 'action' => 1]);
+        return redirect()->route('viewCourse', ['id' => $course->id, 'action' => 1]);
     }
 
     public function deleteAll( $course ) {
