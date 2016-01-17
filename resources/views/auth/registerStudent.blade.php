@@ -8,7 +8,12 @@
         {!! csrf_field() !!}
 
         <div class="form-group col-sm-8">
-            <label for="name">Name</label>
+            <label for="firstname">Prénom</label>
+            <input class="form-control" type="text" name="firstname" id="firstname" value="{{ old('firstname') }}">
+        </div>
+
+        <div class="form-group col-sm-8">
+            <label for="name">Nom</label>
             <input class="form-control" type="text" name="name" id="name" value="{{ old('name') }}">
                 <!-- old()  => est une variable temporaire qui récupère (le temps d'une requete) les information SANS le mot de passe histoire d’éviter de devoir TOUT retapper. -->
         </div>
