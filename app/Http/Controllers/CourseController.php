@@ -93,7 +93,7 @@ class CourseController extends Controller
             'place' => Input::get('place'),
             ]);
         
-        return redirect()->route('indexCourse');
+        return redirect()->route('home');
     }
 
     public function searchCourse() {
@@ -126,7 +126,7 @@ class CourseController extends Controller
                 'for' => Course::where('id', $id)->get()->first()->teacher_id
             ]);
             
-            return redirect()->route('indexCourse');
+            return redirect()->route('home');
         } 
         return back();
     }
@@ -150,7 +150,7 @@ class CourseController extends Controller
             ->where('user_id', \Auth::user()->id)->where('course_id', $course_id)
             ->update(array('access' => 1));
 
-        return redirect()->route('indexCourse');
+        return redirect()->route('home');
     }
 
     public function removeCourse( $id_course ) {
@@ -166,7 +166,7 @@ class CourseController extends Controller
             'for' => Course::where('id', $id_course)->get()->first()->teacher_id
         ]);
 
-        return redirect()->route('indexCourse');
+        return redirect()->route('home');
     }
 
     public function acceptStudent( $id_course, $id_user ) {
@@ -260,7 +260,7 @@ class CourseController extends Controller
         $course->place = Input::get('place');
         $course->updated_at = Carbon::now();
         $course->save();
-        return redirect()->route('indexCourse');
+        return redirect()->route('home');
     }
 
     public function delete( $id ) {
@@ -281,6 +281,6 @@ class CourseController extends Controller
             $seance->delete();   
         }
         $course->delete();
-        return redirect()->route('indexCourse');
+        return redirect()->route('home');
     }
 }
