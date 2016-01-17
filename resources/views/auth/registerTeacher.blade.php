@@ -37,6 +37,7 @@
         	<input class="form-control" type="hidden" name="status" id="teacher" value="1">
             <button class="btn btn-default" type="submit">S'enregistrer</button>
         </div>
+        @include( 'errors.profilError' )
     </form>
 
 @stop
