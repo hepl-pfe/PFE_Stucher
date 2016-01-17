@@ -119,5 +119,35 @@ class PageController extends Controller
     public function registerStudent(){
             $title = "Créer un compte étudiant";
             return view( 'auth/registerStudent', ['title' => $title] );
+    public function updatePicture()
+    {
+        if( !Input::file('image') ) 
+            {
+                return Redirect()->back()->withErrors('Veuillez entrez un fichier');
+            } else 
+                {
+                    $image = Input::file('image');
+                    $typeMime = explode( '/' , $image->getMimeType() );
+                    if ( $typeMime[0] === 'image' ) 
+                    {
+                        Input::file('image')->getMimeType();
+                        if ( \Auth::user()->image !== "default.jpg" ) 
+                        {
+                            File::delete( public_path( 'img/profilPicture/' . \Auth::user()->image ) );
+                        }
+                        $imageName = $image->getClientOriginalName();
+                        $nameParts = explode('.', $imageName);
+                        $ext = strtolower(end($nameParts));
+                        $newname = md5( $imageName . time() ) . '.' . $ext;
+                        $path = public_path('img/profilPicture/' . $newname);
+                        Image::make($image->getRealPath())->save($path);
+                        \Auth::user()->image = $newname;
+                        \Auth::user()->save();   
+                    } else 
+                        {
+                            return Redirect()->back()->withErrors('Veuillez choisir un bon format d’image');
+                        }
+                }
+        return redirect()->route('about');
     }
 }
