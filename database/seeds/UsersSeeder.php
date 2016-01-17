@@ -14,10 +14,12 @@ class UsersSeeder extends Seeder
         $faker = \Faker\Factory::create('fr_FR'); // create a French faker
 		for ($i=0; $i < 10; $i++) {
 	  		User::create([ 
-	  			'name' => $faker->name,
+                'firstname' => $faker->firstname,
+	  			'name' => $faker->lastname,
+                //'image' => $faker->imageUrl($width = 360, $height = 360, 'cats'),
 	  			'email' => $faker->unique()->email,
-	  			'password' => bcrypt('password'),
-	  			'remember_token' => remember()
+	  			'password' => bcrypt('azertyuiop'),
+                'status' => $faker->numberBetween(1,2)
 	  		 ]);
 		}
     }
