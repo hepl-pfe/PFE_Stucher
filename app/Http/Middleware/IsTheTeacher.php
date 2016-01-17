@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Course;
+use App\Seance;
 
 class IsTheTeacher
 {
