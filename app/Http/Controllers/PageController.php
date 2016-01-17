@@ -20,11 +20,11 @@ class PageController extends Controller
 {
 
     protected $rules = [
+        'firstname' => 'required|max:255',
         'name' => 'required|max:255',
-        // 'surname' => 'required|max:255',
         'email' => 'required|email|max:255',
         'password' => 'required|min:6',
-        // 'image' => 'required'
+        'checkPassword' => 'required|same:password'
         ];
 
     public function about(){
