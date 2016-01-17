@@ -24,18 +24,18 @@
         </div>
 
         <div class="form-group col-sm-8">
-            <label for="password">Password</label>
+            <label for="password">Mot de passe</label>
             <input class="form-control" type="password" name="password" id="password">
         </div>
 
         <div class="form-group col-sm-8">
-            <label for="password_confirmation">Confirm Password</label>
+            <label for="password_confirmation">Confirmation du mot de passe</label>
             <input class="form-control" type="password" name="password_confirmation" id="password_confirmation">
         </div>
 
         <div class="form-group col-sm-8">
         	<input class="form-control" type="hidden" name="status" id="teacher" value="2">
-            <button class="btn btn-default" type="submit">Register</button>
+            <button class="btn btn-default" type="submit">S'enregister</button>
         </div>
     </form>
 
