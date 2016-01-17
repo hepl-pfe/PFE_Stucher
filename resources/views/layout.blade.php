@@ -26,6 +26,8 @@
 	<script src="{{ url() }}/js/main.js"></script>
 	<!-- My custom style -->
 	<link rel="stylesheet" href="{{ url() }}/css/main.css">
+	<!-- My custom font -->
+	<link href='https://fonts.googleapis.com/css?family=Asap:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
 	
 	
 	<!-- Latest compiled JavaScript -->
