@@ -16,7 +16,6 @@ class UsersSeeder extends Seeder
 	  		User::create([ 
                 'firstname' => $faker->firstname,
 	  			'name' => $faker->lastname,
-                //'image' => $faker->imageUrl($width = 360, $height = 360, 'cats'),
 	  			'email' => $faker->unique()->email,
 	  			'password' => bcrypt('azertyuiop'),
                 'status' => $faker->numberBetween(1,2)
