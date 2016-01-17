@@ -74,7 +74,7 @@ jQuery( function($) {
 			"Vendredi",
 			"Samedi"
 		];
-		$.get( "/courses/"+valeur+"/seances", function( data ) {
+		$.get( "/course/"+valeur+"/seance", function( data ) {
 			$('#seance').children().remove();
 			for( var i = 0; i < data.length; i++ ) {
 				var the_date = data[i].start_hours,
