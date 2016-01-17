@@ -57,7 +57,7 @@
             <div class="form-group">
                 <button class="home__btn home__send" type="submit">Connexion</button>
             </div>
-            
+            @include( 'errors.profilError' )
         </form>
     	<br>
         <h1 class="home__title">Ou inscrivez-vous…</h1>

@@ -47,6 +47,7 @@
 			<a class="btn btn-warning" href="{!! action( 'CourseController@view', ['id' => $id, 'action' => 1] ) !!}">Annuler</a>
 			<input type="submit" class="btn btn-primary" value="Générer les séances">
 		</div>
+		@include( 'errors.profilError' )
 	</form>
 
 @endsection

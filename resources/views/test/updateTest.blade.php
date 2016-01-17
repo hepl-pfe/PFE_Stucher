@@ -68,5 +68,6 @@
             @endif
 			<input type="submit" class="btn btn-primary" value="Valider l'interrogation">
 		</div>
+        @include( 'errors.profilError' )
 	</form>
 @stop

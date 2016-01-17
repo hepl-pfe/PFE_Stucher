@@ -69,5 +69,6 @@
             @endif
             <input type="submit" class="btn btn-primary" value="Valider le devoir">
         </div>
+        @include( 'errors.profilError' )
     </form>
 @stop

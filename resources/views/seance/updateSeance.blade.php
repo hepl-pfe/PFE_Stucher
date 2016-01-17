@@ -33,6 +33,7 @@
 			<a class="btn btn-warning" href="{!! action( 'SeanceController@view', ['id' => $id] ) !!}">Annuler</a>
 			<input type="submit" class="btn btn-primary" value="Valider les modifications">
 		</div>
+		@include( 'errors.profilError' )
 	</form>
 
 @endsection
