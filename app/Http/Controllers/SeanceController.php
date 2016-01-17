@@ -49,10 +49,9 @@ class SeanceController extends Controller
     }
 
     public function store() {
-        $validator = Validator::make(Input::all(), $this->storeRules);
-        if ($validator->fails()) {
-            //echo $validator->messages();;
-            return redirect()->back();
+        $error = Validator::make(Input::all(), $this->storeRules);
+        if ($error->fails()) {
+            return redirect()->back()->withErrors($error);
         }
         $day = Input::get('date').' '.Input::get('daypicker');
         $start_hours = Input::get('date').' '.Input::get('start_hours');
@@ -96,10 +95,9 @@ class SeanceController extends Controller
     }
 
     public function update( $id ) {
-        $validator = Validator::make(Input::all(), $this->updateRules);
-        if ($validator->fails()) {
-            echo $validator->messages();die();
-            return redirect()->back();
+        $error = Validator::make(Input::all(), $this->updateRules);
+        if ($error->fails()) {
+            return redirect()->back()->withErrors($error);
         }
         $seance = Seance::findOrFail($id);
         $day = Input::get('date');

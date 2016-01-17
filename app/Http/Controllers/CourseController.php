@@ -79,10 +79,9 @@ class CourseController extends Controller
     }
 
     public function store() {
-        $validator = Validator::make(Input::all(), $this->rules);
-        if ($validator->fails()) {
-            //echo $validator->messages('title');
-            return redirect()->back();
+        $errors = Validator::make(Input::all(), $this->rules);
+        if ($errors->fails()) {
+            return Redirect()->back()->withErrors($errors);
         }
         $courses = Course::all();
         $course = Course::create([
@@ -250,10 +249,9 @@ class CourseController extends Controller
     }
 
     public function update( $id ) {
-        $validator = Validator::make(Input::all(), $this->rules);
-        if ($validator->fails()) {
-            //echo $validator->messages('title');
-            return redirect()->back();
+        $errors = Validator::make(Input::all(), $this->rules);
+        if ($errors->fails()) {
+            return Redirect()->back()->withErrors($errors);
         }
         $course = Course::findOrFail($id);
         $course->title = Input::get('title');

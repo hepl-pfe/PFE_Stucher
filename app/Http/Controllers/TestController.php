@@ -62,6 +62,10 @@ class TestController extends Controller
     }
 
     public function update( $id ) {
+        $errors = Validator::make(Input::all(), $this->rules);
+        if ($errors->fails()) {
+            return Redirect()->back()->withErrors($errors);
+        }
         $test = Test::findOrFail($id);
         $test->title = Input::get('title');
         $test->description = Input::get('descr');
@@ -78,10 +82,9 @@ class TestController extends Controller
     }
 
     public function store() {
-        $validator = Validator::make(Input::all(), $this->rules);
-        if ($validator->fails()) {
-            // echo $validator->messages(); die();
-            return redirect()->back();
+        $errors = Validator::make(Input::all(), $this->rules);
+        if ($errors->fails()) {
+            return Redirect()->back()->withErrors($errors);
         }
         $test = Test::create([
             'seance_id' => Input::get('seance'),

@@ -58,10 +58,10 @@ class PageController extends Controller
     }
 
     public function updateProfil() {
-        $validator = Validator::make(Input::all(), $this->rules);
-        if ($validator->fails()) {
-            // echo $validator->messages('title'); die();
-            return redirect()->back();
+        $errors = Validator::make(Input::all(), $this->rules);
+        if ($errors->fails()) {
+            //echo $errors->messages('title'); die();
+            return redirect()->back()->with( 'errors', $errors );
         }
         $user = User::where( 'id', '=', \Auth::user()->id );
         $user->name = Input::get('name');
