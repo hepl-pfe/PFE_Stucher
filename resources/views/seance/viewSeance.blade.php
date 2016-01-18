@@ -37,7 +37,6 @@
 			<ul class="dropdown-menu dropdown-menu-right">
 				<li><a href="{!! action( 'WorkController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Un devoir</a></li>
 				<li><a href="{!! action( 'TestController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Une interrogation</a></li>
-				<li><a href="{!! action( 'CourseController@addNews' ) !!}">Une notification</a></li>
 			</ul>
 		</div>
 	@endif
