@@ -21,15 +21,6 @@ setlocale( LC_ALL, 'fr_FR');
 		</div>
 	@endif
 
-	<?php 	
-		 	$monday = Carbon::now()->startOfWeek();
-			$tuesday = Carbon::now()->startOfWeek()->addDays(1);
-			$wednesday = Carbon::now()->startOfWeek()->addDays(2);
-			$thurstday = Carbon::now()->startOfWeek()->addDays(3);
-			$friday = Carbon::now()->startOfWeek()->addDays(4);
-			$saturday = Carbon::now()->startOfWeek()->addDays(5);
-			$sunday = Carbon::now()->startOfWeek()->addDays(6);
-		 ?>
 
 	<div class="planning">
 		<h3>{{ $monday->formatLocalized('%A %d %B %Y') }}</h3>
