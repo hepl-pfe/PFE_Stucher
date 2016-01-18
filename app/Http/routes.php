@@ -56,7 +56,6 @@ Route::post( 'course/{id}/update', [ 'as' => 'updateCourse', 'uses' => 'CourseCo
 
 // Ajouter cours (étudiant)
 Route::get( 'course/{id}/add', [ 'as' => 'addCourse', 'uses' => 'CourseController@addCourse', 'middleware' => 'auth' ] );
-Route::get( 'course/{id}/add', [ 'as' => 'addCourse', 'uses' => 'CourseController@addCourse', 'middleware' => 'auth' ] );
 Route::get( 'course/{id}/remove', [ 'as' => 'removeCourse', 'uses' => 'CourseController@removeCourse', 'middleware' => 'auth' ] );
 Route::post( 'getByToken', [ 'as' => 'getByToken', 'uses' => 'CourseController@getByToken', 'middleware' => 'auth' ] );
 Route::get( 'searchCourse', [ 'as' => 'searchCourse', 'uses' => 'CourseController@searchCourse', 'middleware' => 'auth' ] );
