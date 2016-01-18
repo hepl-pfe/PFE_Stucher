@@ -71,11 +71,12 @@ class PageController extends Controller
             //echo $errors->messages('title'); die();
             return redirect()->back()->with( 'errors', $errors );
         }
-        $user = User::where( 'id', '=', \Auth::user()->id );
+        $user = User::findOrFail( \Auth::user()->id );
+        $user->firstname = Input::get('firstname');
         $user->name = Input::get('name');
-        //$user->name = Input::get('surname');
-        $user->name = Input::get('email');
-        $user->name = bcrypt(Input::get('password'));
+        $user->email = Input::get('email');
+        $user->password = bcrypt(Input::get('password'));
+        $user->save();
         //$user->name = Input::get('image');
         return redirect()->route('about');
     }
