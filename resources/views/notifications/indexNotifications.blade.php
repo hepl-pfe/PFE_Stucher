@@ -1,3 +1,7 @@
+<?php 
+use Carbon\Carbon; 
+Carbon::setLocale('fr');
+?>
 @extends('layout')
 @section('title', $title)
 @section('content')
