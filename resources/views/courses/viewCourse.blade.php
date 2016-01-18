@@ -47,7 +47,6 @@
 				<li><a href="{!! action( 'CourseController@create' ) !!}">Un cours</a></li>
 				<li><a href="{!! action( 'WorkController@create', ['id' => $course->id, 'info' => 'course'] ) !!}">Un devoir</a></li>
 				<li><a href="{!! action( 'TestController@create', ['id' => $course->id, 'info' => 'course'] ) !!}">Une interrogation</a></li>
-				<li><a href="{!! action( 'CourseController@addNews' ) !!}">Une notification</a></li>
 				<li><a href="{!! action( 'SeanceController@create', ['id' => $id] ) !!}">Des séances de cours</a></li>
 			</ul>
 		</div>
