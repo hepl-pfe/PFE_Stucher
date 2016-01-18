@@ -158,4 +158,21 @@ class SeanceController extends Controller
         }
         return redirect()->route('viewCourse', ['id' => $course, 'action' => 1]);
     }
+
+    public function seanceHistory( $id ) 
+    {
+        $seances = Seance::where( 'course_id', '=', $id )->get();
+        $pastSeances = [];
+        $title = "Les séances terminées";
+        setlocale( LC_ALL, 'fr_FR');
+        foreach ($seances as $seance) {
+            $now = Carbon::now();
+            $endOfSession = Carbon::createFromFormat('Y-m-d H:i:s', $seance->end_hours);
+            if ( $endOfSession > $now ) {
+                $pastSeances[] = $seance;
+            }
+        }
+
+        return view('seance/seancesHistory', compact( 'title', 'pastSeances'));
+    }
 }
