@@ -197,7 +197,7 @@
 		      		<div class="panel-body">
 		      		@if ( count($demandedStudents) !== 0 )
 			      		@foreach ($demandedStudents as $student)
-			      			<li><a href="">{{$student->name}}</a><a class="btn btn-success pull-right" href="{!! action( 'CourseController@acceptStudent', ['id_course' => $course->id, 'id_user' => $student->id] ) !!}">Ajouter</a> <a class="btn btn-danger pull-right" href="{!! action( 'CourseController@removeStudentFromCourse', ['id_course' => $course->id, 'id_user' => $student->id] ) !!}">Refuser l’accès</a></li><br>
+			      			<li><a href="{{ action( 'PageController@viewUser', [ 'id' => $student->id ] ) }}">{{ $student->firstname }} {{$student->name}}</a><a class="btn btn-success pull-right" href="{!! action( 'CourseController@acceptStudent', ['id_course' => $course->id, 'id_user' => $student->id] ) !!}">Ajouter</a> <a class="btn btn-danger pull-right" href="{!! action( 'CourseController@removeStudentFromCourse', ['id_course' => $course->id, 'id_user' => $student->id] ) !!}">Refuser l’accès</a></li><br>
 			      		@endforeach
 		      		@else
 	      				<p>Il n’y a aucun étudiant pour le moment</p>
