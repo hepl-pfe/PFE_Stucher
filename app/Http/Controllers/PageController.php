@@ -59,8 +59,10 @@ class PageController extends Controller
         $id = \Auth::user()->id;
         $user = User::findOrFail($id);
         $name = $user->name;
+        $firstname = $user->firstname;
         $email = $user->email;
-        return view('pages/updateProfil', compact('id', 'name', 'email', 'title'));
+        $email = $user->email;
+        return view('pages/updateProfil', compact('id', 'firstname', 'name', 'email', 'title'));
     }
 
     public function updateProfil() {
