@@ -10,6 +10,7 @@ use App\Course;
 use App\Seance;
 use App\Work;
 use App\Test;
+use App\User;
 use Carbon\Carbon;
 
 class CalendarController extends Controller
@@ -17,6 +18,7 @@ class CalendarController extends Controller
     public function view() 
     {
         $title = "Planning";
+        Carbon::setLocale('fr');
         if (\Auth::user()->status === 1) {
             $courses = Course::where('teacher_id', '=', \Auth::user()->id)->get();
             $seances = [];
