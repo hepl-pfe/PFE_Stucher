@@ -122,13 +122,15 @@ class PageController extends Controller
     }
 
     public function registerTeacher(){
-            $title = "Créer un compte professeur";
-            return view( 'auth/registerTeacher', ['title' => $title] );
+        $title = "Créer un compte professeur";
+        return view( 'auth/registerTeacher', ['title' => $title] );
     }
 
     public function registerStudent(){
-            $title = "Créer un compte étudiant";
-            return view( 'auth/registerStudent', ['title' => $title] );
+        $title = "Créer un compte étudiant";
+        return view( 'auth/registerStudent', ['title' => $title] );
+    }
+
     public function updatePicture()
     {
         if( !Input::file('image') ) 
