@@ -36,7 +36,24 @@ class CalendarController extends Controller
                     $tests[] = $theSeance->tests;
                 }
             }
+        } else {
+            $courses = $courses = User::find(\Auth::user()->id)->courses;
+            $seances = [];
+            $works = [];
+            $tests = [];
+            foreach ($courses as $course) {
+                $seances[] = $course->seances;
+            }
+
+            foreach ($seances as $seance) {
+                foreach ($seance as $theSeance) {
+                    $works[] = $theSeance->works;
+                }
+                foreach ($seance as $theSeance) {
+                    $tests[] = $theSeance->tests;
+                }
+            }
         }
-        return view('pages/planning', compact( 'title', 'seances', 'works', 'test' ));
+        return view('pages/planning', compact( 'title', 'seances', 'courses', 'works', 'test' ));
     }
 }
