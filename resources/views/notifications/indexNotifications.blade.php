@@ -37,24 +37,33 @@ Carbon::setLocale('fr');
 								<br>
 								<br>
 							@endif
+
+							<span class="badge"><?= Carbon::createFromFormat('Y-m-d H:i:s', $not->not_created_at)->diffForHumans(); ?></span>
+							
 						</li>
 					@endif
 
 					@if ($not->not_context == 6)
 						<li class="list-group-item">
 							{{$not->not_title}} <a href="{{ action('CourseController@view', [ 'id' => $not->course_id, 'action' => 1 ]) }}">{{$not->course_title}}</a>
+
+							<span class="badge"><?= Carbon::createFromFormat('Y-m-d H:i:s', $not->not_created_at)->diffForHumans(); ?></span>
 						</li>
 					@endif
 
 					@if ($not->not_context == 7)
 						<li class="list-group-item">
 							{{$not->not_title}} {{$not->course_title}} à été refusé
+
+							<span class="badge"><?= Carbon::createFromFormat('Y-m-d H:i:s', $not->not_created_at)->diffForHumans(); ?></span>
 						</li>
 					@endif
 
 					@if ($not->not_context == 8)
 						<li class="list-group-item">
 							{{$not->user_name}} {{$not->not_title}} <a href="{{ action('CourseController@view', [ 'id' => $not->course_id, 'action' => 1 ]) }}">{{$not->course_title}}</a>
+
+							<span class="badge"><?= Carbon::createFromFormat('Y-m-d H:i:s', $not->not_created_at)->diffForHumans(); ?></span>
 						</li>
 					@endif
 				@endforeach
