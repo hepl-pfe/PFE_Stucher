@@ -37,39 +37,11 @@ setlocale( LC_ALL, 'fr_FR');
         //$ts = time();
 
 
-		<h3>{{ $wednesday->formatLocalized('%A %d %B %Y') }}</h3>
 
-		<h3>{{ $thurstday->formatLocalized('%A %d %B %Y') }}</h3>
 
-		<h3>{{ $friday->formatLocalized('%A %d %B %Y') }}</h3>
 
-		<h3>{{ $saturday->formatLocalized('%A %d %B %Y') }}</h3>
 
-		<h3>{{ $sunday->formatLocalized('%A %d %B %Y') }}</h3>
 
-	<ul class="list-group">
-		@foreach ($seances as $seance)
-			@foreach ($seance as $the_seance)
-				<li class="list-group-item">
-					<dt>Séance du {{ $the_seance->start_hours->formatLocalized('%A %d %B %Y') }} à {{ $the_seance->start_hours->formatLocalized('%Hh%M') }}</dt>
-					<br>
-					@if ( count($the_seance->works) != 0 )
-						<dt>Devoir:</dt>
-						@foreach ($the_seance->works as $work)
-							<dd>{{ $work->title }}</dd>
-						@endforeach
-					@endif
-					@if ( count($the_seance->tests) != 0 )
-						<dt>Interrogation:</dt>
-						@foreach ($the_seance->tests as $test)
-							<dd>{{ $test->title }}</dd>
-						@endforeach
-					@endif
-				</li>
-			@endforeach
-		@endforeach
-	</ul>
 
-	</div>
 	{{-- <div id="calendar"></div> --}}
 @endsection
