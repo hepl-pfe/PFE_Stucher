@@ -169,7 +169,7 @@
 		      		@if ( count($inCourseStudents) !== 0 )
 			      		<ul class="panel-body">
 			      			@foreach( $inCourseStudents as $student )
-		      					<li><a href="">{{ $student->name }}</a>
+		      					<li><a href="{{ action( 'PageController@viewUser', [ 'id' => $student->id ] ) }}">{{ $student->firstname }} {{ $student->name }}</a>
 								<!-- Modal -->
 								<button type="button" class="btn badge btn-danger pull-right" data-toggle="modal" data-target="#myModal4">Retirer de ce cours</button>
 								<div id="myModal4" class="modal fade" role="dialog">
