@@ -34,6 +34,7 @@ class CourseController extends Controller
                 $courses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
                 return view('courses/indexTeacherCourses', compact('courses', 'title'));
             }
+            $courses = User::find(\Auth::user()->id)->courses;
             return view('courses/indexStudentCourses', compact('courses', 'title'));
         } 
         return view('welcome', ['title' => $title]);
