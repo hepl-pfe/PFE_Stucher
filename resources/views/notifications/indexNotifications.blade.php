@@ -37,7 +37,6 @@ Carbon::setLocale('fr');
 								<br>
 								<br>
 							@endif
-
 							<span class="badge"><?= Carbon::createFromFormat('Y-m-d H:i:s', $not->not_created_at)->diffForHumans(); ?></span>
 							
 						</li>
