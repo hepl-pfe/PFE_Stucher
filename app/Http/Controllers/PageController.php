@@ -88,7 +88,7 @@ class PageController extends Controller
                 File::delete( public_path( 'img/profilPicture/' . \Auth::user()->image ) );
             }
         $user->delete();
-        return redirect()->route('indexCourse');
+        return redirect()->route('home');
     }
 
     public function message(){
