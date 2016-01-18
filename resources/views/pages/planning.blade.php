@@ -134,6 +134,22 @@ setlocale( LC_ALL, 'fr_FR');
                         </div>
                     @endif
 
+                    </dt>
+                    <br>
+                    @if ( count($the_seance->works) != 0 )
+                        <dt>Devoir:</dt>
+                        @foreach ($the_seance->works as $work)
+                            <dd>{{ $work->title }}</dd>
+                        @endforeach
+                    @endif
+                    @if ( count($the_seance->tests) != 0 )
+                        <dt>Interrogation:</dt>
+                        @foreach ($the_seance->tests as $test)
+                            <dd>{{ $test->title }}</dd>
+                        @endforeach
+                    @endif
+                </li>
+                @endif
 
             @endforeach
             
