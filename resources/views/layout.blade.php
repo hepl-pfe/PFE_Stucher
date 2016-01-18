@@ -113,7 +113,7 @@
 
 								@if ($not->not_context == 7)
 									<li class="list-group-item">
-										{{$not->not_title}} {{$not->course_title}} à été refusé
+										{{$not->not_title}} {{$not->course_title}}
 									</li>
 								@endif
 
