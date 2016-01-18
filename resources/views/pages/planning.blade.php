@@ -90,10 +90,58 @@ setlocale( LC_ALL, 'fr_FR');
 
     
 
+    <ul class="list-group">
+        @foreach ($seances as $seance)
+            @foreach ($seance as $the_seance)
+                <?php   $start= date_timestamp_get( $the_seance->start_hours );
+                        $end= date_timestamp_get( $the_seance->end_hours ); 
+                ?>
+                <?php $the_week = $the_seance->start_hours->weekOfYear; ?>
+                <?php 
+                    if( strlen($the_week) === 1 ) {
+                        $the_week = '0'.$the_week;
+                    }
+                ?>
+                
+                @if ( strval($week) === strval($the_week) )
+                    <li class="list-group-item">
+                    <?php   $course = Course::findOrFail($the_seance->course_id); 
+                            $noSeance[] = '1'; ?>
+                    <dt>
+                    Séance du {{ $the_seance->start_hours->formatLocalized('%A %d %B %Y') }} à {{ $the_seance->start_hours->formatLocalized('%Hh%M') }} pour le cours de {{ $course->title }}
+
+                    @if ( \Auth::user()->status === 1 )
+                        <a class="btn btn-warning" href="{!! action( 'SeanceController@edit', [ "id" => $the_seance->id ] ) !!}">Modifier</a>
+
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#{{ $the_seance->id }}">X</button>
+                        <div id="{{ $the_seance->id }}" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Voulez-vous vraiment supprimer cette séance?</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Attention, c'est irréversible!</p>
+                                        <p>En supprimant cette séance, vous supprimerez tous les devoirs et interrogations s'y rapportant.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="{!! action( 'SeanceController@delete', [ "id" => $the_seance->id, "course_id" => $the_seance->course_id ] ) !!}" class="btn btn-danger">Oui</a>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
 
 
-
-
+            @endforeach
+            
+        @endforeach 
+        @if ( count($noSeance) === 0 )
+            <li>Aucune séance pour cette semaine</li>
+        @endif
+    </ul>
 
 
 
