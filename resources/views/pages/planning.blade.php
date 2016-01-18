@@ -21,11 +21,21 @@ setlocale( LC_ALL, 'fr_FR');
 		</div>
 	@endif
 
+	
+<?php
+    // Basé sur le code de : http://codes-sources.commentcamarche.net/source/42344-calendrier-par-semaine-avec-actions
+    
+    if(isset($_GET["lundi"])) // Une semaine précise est demandée
+    {
+        $ts = $_GET["lundi"];
+    }
+    else //On prendra la semaine d'aujourd'hui
+    {
+        $day = (date('w') - 1); //Jour dans la semaine... Lundi = 0
+        $diff = $day * 86400; //Différence en secondes par rapport au lundi
+        $ts = (time() - $diff); //On récupère le TimeStamp du lundi
+        //$ts = time();
 
-	<div class="planning">
-		<h3>{{ $monday->formatLocalized('%A %d %B %Y') }}</h3>
-		
-		<h3>{{ $tuesday->formatLocalized('%A %d %B %Y') }}</h3>
 
 		<h3>{{ $wednesday->formatLocalized('%A %d %B %Y') }}</h3>
 
