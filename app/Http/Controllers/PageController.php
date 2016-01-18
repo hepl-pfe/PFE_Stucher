@@ -47,6 +47,11 @@ class PageController extends Controller
 		return view('pages/about', compact('title', 'nbCourses', 'nbUsers', 'nbCoursesStudent'));
     }
 
+    public function viewUser( $id )
+    {
+        $user = User::findOrFail( $id );
+        $title = "Le profil de ".$user->name;
+        return view('pages/viewUser', compact('title', 'user'));
     }
 
     public function editProfil() {
