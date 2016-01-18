@@ -28,6 +28,9 @@ Route::get( 'message/new', [ 'as' => 'newMessage', 'uses' => 'PageController@new
 Route::get( 'message/re', [ 'as' => 'repMessage', 'uses' => 'PageController@repMessage', 'middleware' => 'auth' ] );
 Route::get( 'planning/view', [ 'as' => 'planning', 'uses' => 'CalendarController@view', 'middleware' => 'auth' ] );
 
+Route::get( 'course/{id}/users', [ 'as' => 'courseUser', 'uses' => 'CourseController@indexCourseUsers', 'middleware' => ['auth', 'isTheTeacher'] ] );
+Route::get( 'indexUsers', [ 'as' => 'indexUsers', 'uses' => 'CourseController@indexUserUsers', 'middleware' => 'auth' ] );
+
 
 // Gestion des séances de cours:
 Route::get( 'course/{id}/seance', [ 'as' => 'createSeance', 'uses' => 'SeanceController@create', 'middleware' => ['auth', 'isTeacher', 'isTheTeacher'] ] );
