@@ -82,8 +82,11 @@ class PageController extends Controller
     }
 
     public function deleteProfil() {
-        $id = \Auth::user()->id;
-        $user = User::findOrFail($id);
+        $user = User::findOrFail(\Auth::user()->id);
+        if ( $user->image !== "default.jpg" ) 
+            {
+                File::delete( public_path( 'img/profilPicture/' . \Auth::user()->image ) );
+            }
         $user->delete();
         return redirect()->route('indexCourse');
     }
