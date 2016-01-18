@@ -42,6 +42,8 @@ Route::get( 'course/{id}/seance/delete', [ 'as' => 'deleteAll', 'uses' => 'Seanc
 Route::get( 'seance/{id}/update', [ 'as' => 'updateSeance', 'uses' => 'SeanceController@edit', 'middleware' => ['auth', 'isTeacher', 'isTheTeacher'] ] );
 Route::post( 'seance/{id}/update', [ 'as' => 'updateSeance', 'uses' => 'SeanceController@update', 'middleware' => ['auth', 'isTeacher', 'isTheTeacher'] ] );
 
+Route::get( 'course/{id}/seances/history', [ 'as' => 'seanceHistory', 'uses' => 'SeanceController@seanceHistory', 'middleware' => 'auth' ] );
+
 
 // Gestion des cours:
 Route::get( 'createCourse', [ 'as' => 'createCourse', 'uses' => 'CourseController@create', 'middleware' => ['auth', 'isTeacher'] ] );
