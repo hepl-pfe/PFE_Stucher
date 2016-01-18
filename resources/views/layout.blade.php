@@ -42,7 +42,7 @@
 				<li><a href="{!! action( 'CourseController@create' ) !!}">Un cours</a></li>
 				<li><a href="{!! action( 'WorkController@create' ) !!}">Un devoir</a></li>
 				<li><a href="{!! action( 'TestController@create' ) !!}">Une interrogation</a></li>
-				<li><a href="{!! action( 'CourseController@addNews' ) !!}">Une notification</a></li>
+				{{-- <li><a href="{!! action( 'CourseController@addNews' ) !!}">Une notification</a></li> --}}
 			</ul>
 		</div>
 	</div>
