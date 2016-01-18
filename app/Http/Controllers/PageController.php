@@ -131,6 +131,12 @@ class PageController extends Controller
         return view( 'auth/registerStudent', ['title' => $title] );
     }
 
+    public function changePicture()
+    {
+        $title = "Change la photo de profil";
+        return view( 'pages/changePicture', ['title' => $title] );
+    }
+
     public function updatePicture()
     {
         if( !Input::file('image') ) 
