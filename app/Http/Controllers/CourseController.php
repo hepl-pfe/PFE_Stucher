@@ -283,4 +283,25 @@ class CourseController extends Controller
         $course->delete();
         return redirect()->route('home');
     }
+
+    public function indexUserUsers() 
+    {
+        $title = "Liste de mes élèves";
+        $studentsID = [];
+        $students = [];
+        $courses = Course::where( 'teacher_id', \Auth::user()->id )->get();
+        foreach ($courses as $course) {
+            foreach ($course->users as $user) 
+            {
+                if ( !in_array($user->id, $studentsID) ) 
+                {
+                    $students[][] = $user;
+                    $studentsID[] = $user->id;
+                }
+            }
+        }
+
+        return view('pages/allMyStudents', compact('students', 'studentsID', 'title'));
+    }
+
 }
