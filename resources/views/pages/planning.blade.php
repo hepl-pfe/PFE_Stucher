@@ -1,5 +1,6 @@
 <?php 
 use Carbon\Carbon;
+use App\Course;
 setlocale( LC_ALL, 'fr_FR'); 
 ?>
 
