@@ -35,6 +35,60 @@ setlocale( LC_ALL, 'fr_FR');
         $diff = $day * 86400; //Différence en secondes par rapport au lundi
         $ts = (time() - $diff); //On récupère le TimeStamp du lundi
         //$ts = time();
+    }
+
+    //Initialisation des variables
+    $week = date('W', $ts); //Semaine en cours
+    $avant = $ts - 604800; //TimeStamp Lundi précédant
+    $apres = $ts + 604800; //TimeStamp Lundi suivant
+    $today = Carbon::now();
+    $thisMonday = $today->startOfWeek();
+    $noSeance = [];
+    //$nextMonday = $thisMonday->addWeek(1);
+?>
+    <table align="center" border="1" width="420px">
+        <tr>
+            <td align="center" width="14%"><b>Lun</b></td>
+            <td align="center" width="14%"><b>Mar</b></td>
+            <td align="center" width="14%"><b>Mer</b></td>
+            <td align="center" width="14%"><b>Jeu</b></td>
+            <td align="center" width="14%"><b>Ven</b></td>
+            <td align="center" width="14%"><b>Sam</b></td>
+            <td align="center"><b>Dim</b></td>
+        </tr>
+        <tr>
+            <?php
+            for($i=1;$i<8;$i++) //Pour chaque jour de la semaine... Lundi = 1
+            {
+                $the_date = strval( date('Y-m-d', $ts) );
+                if( ($i == date('w')) && ($week == date('W')) ) //Il s'agit d'aujourd'hui!
+                {
+                    ?>
+                    <td align="center" style="background-color:#FFFF00;" onMouseUp="actionDate('<?= date('d M Y', $ts);?>', event)">
+                        {{ Carbon::createFromFormat('Y-m-d', $the_date)->formatLocalized('%d %B %Y') }}
+                    </td>
+                    <?php
+                }
+                else
+                {
+                    ?>
+                    <td align="center" style="background-color:#FFFFFF;" onMouseUp="actionDate('<?= date('d M Y', $ts);?>', event)">
+                        {{ Carbon::createFromFormat('Y-m-d', $the_date)->formatLocalized('%d %B %Y') }}
+                    </td>
+                    <?
+                }
+                $ts += 86400; //On passe au jour suivant
+            }
+            ?>
+        </tr>
+    </table>
+    <div align="center">
+        <a href="?lundi=<?= $avant;?>"><<</a>&nbsp;Semaine&nbsp;<?= $week;?>&nbsp;<a href="?lundi=<?= $apres;?>">>></a>
+        <br>
+        <a href="?lundi=<?= strtotime($thisMonday);?>">Cette semaine</a>
+    </div>
+
+    
 
 
 
