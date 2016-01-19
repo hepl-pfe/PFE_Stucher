@@ -29,7 +29,7 @@ class WorkController extends Controller
         $title = 'Créer un devoir';
         $allCourses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
         if( $allCourses->first() == null ) {
-            return redirect()->back();
+            return redirect()->back()->withErrors('Vous devez en premier lieux créer un cours');
         }
         if($id == null) {
             $firstCourse = $allCourses->first();

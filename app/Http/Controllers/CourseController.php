@@ -75,7 +75,6 @@ class CourseController extends Controller
 
     public function create() {
         $title = 'Créer un cours';
-
         return view('courses/createCourse', ['title' => $title]);
     }
 
@@ -191,7 +190,7 @@ class CourseController extends Controller
         ->where('context', 5)
         ->update(array('seen' => 3));
 
-        return redirect()->route('viewCourse', ['id' => $id_course, 'action' => 1]);
+        return redirect()->back();
     }
 
     public function notAcceptStudent( $id_course, $id_user ) {

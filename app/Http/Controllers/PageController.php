@@ -50,7 +50,7 @@ class PageController extends Controller
     public function viewUser( $id )
     {
         $user = User::findOrFail( $id );
-        $title = "Le profil de ".$user->name;
+        $title = "Le profil de ".$user->firstname;
         return view('pages/viewUser', compact('title', 'user'));
     }
 
