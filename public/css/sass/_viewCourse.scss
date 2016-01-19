@@ -1,0 +1,168 @@
+.btn-add {
+	position: absolute;
+	right: 2em;
+	top: 2em;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	cursor: pointer;
+	-webkit-transition: all .3s ease;
+	   -moz-transition: all .3s ease;
+	    -ms-transition: all .3s ease;
+	     -o-transition: all .3s ease;
+	        transition: all .3s ease;
+	& .caret {
+		display: block;
+		text-indent: 1111%;
+		overflow: hidden;
+		white-space: nowrap;
+		width: 3em;
+		height: 3em;
+		background: url('../img/addButton.svg') no-repeat center center;
+		background-size: 100%;
+	}
+	&:hover {
+		-webkit-transform: scale(1.2);
+		   -moz-transform: scale(1.2);
+		    -ms-transform: scale(1.2);
+		     -o-transform: scale(1.2);
+		        transform: scale(1.2);
+	}
+}
+
+.mainDropdown-menu {
+	position: absolute;
+	right: 1em;
+	top: 4.5em;
+	border: 1px solid $secondColor;
+	background-color: #fff;
+	border-radius: 10px;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	&:before {
+		position: absolute;
+		-webkit-transform: rotate(45deg);
+		   -moz-transform: rotate(45deg);
+		    -ms-transform: rotate(45deg);
+		     -o-transform: rotate(45deg);
+		        transform: rotate(45deg);
+		top: -0.55em;
+		right: 1em;
+		content: "";
+		display: block;
+		width: 1em;
+		height: 1em;
+		border: 1px solid $secondColor;
+		border-bottom: none;
+		border-right: none;
+		background-color: #fff;
+	}
+	& li a {
+		color: $secondColor;
+		text-decoration: none;
+		display: block;
+		padding: 0.5em;
+		&:focus, &:hover {
+			background-color: $secondColor;
+			color: white;
+		}
+	}
+}
+
+.accessToken {
+	display: block;
+	text-align: center;
+	margin-bottom: 2em;
+	& em {
+		color: $mainColor;
+	}
+}
+
+.course__editAction {
+	width: 33%;
+	margin: auto;
+}
+
+.btn_addSeance {
+	margin: auto;
+	display: block;
+	width: 15em;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	border: 1px solid $secondColor;
+	background-color: #fff;
+	color: $secondColor;
+	text-align: center;
+	&:hover {
+		background-color: $secondColor;
+		color: #fff;
+	}
+}
+
+.seance__item {
+	display: block;
+	padding: 1em;
+	border-top: 1px solid $secondColor;
+	&:first-child {
+		border-top: none;
+	}
+	& .the_seance {
+		color: $secondColor;
+		text-decoration: none;
+	}
+}
+
+.update {
+	background-color: orange;
+	color: white;
+	&:hover, &:focus {
+		text-decoration: none;
+	}
+}
+.delete {
+	background-color: red;
+	color: white;
+	&:hover, &:focus {
+		text-decoration: none;
+	}
+}
+
+.seance__item--button {
+	float: right;
+	margin-left: 0.5em;
+	padding: 0.2em;
+	border-radius: 5px;
+	text-decoration: none;
+	color: white;
+}
+
+.course__diary--list li {
+	padding: 1em;
+	border-top: 1px solid $secondColor;
+	&:first-child {
+		border-top: none;
+	}
+	& a {
+		color: $mainColor;
+		text-decoration: none;
+		&:hover, &:focus {
+			text-decoration: underline;
+		}
+	}
+}
+
+.groupList__type1 {
+	list-style-type: none;
+	padding: 1em;
+	border-top: 1px solid $secondColor;
+	&:first-child {
+		border-top: none;
+	}
+	& a {
+		color: $mainColor;
+		text-decoration: none;
+		&:hover, &:focus {
+			text-decoration: underline;
+		}
+	}
+}

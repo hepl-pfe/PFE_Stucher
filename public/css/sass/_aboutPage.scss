@@ -1,0 +1,117 @@
+.image__container {
+	border-radius: 50%;
+	overflow: hidden;
+	position: relative;
+	& img {
+		width: 100%;
+	}
+	& a {
+		position: absolute;
+		display: block;
+		bottom: 0; top: 0;
+		left: 0; right: 0;
+		border-radius: 50%;
+		text-align: center;
+		color: white;
+		text-decoration: none;
+		opacity: 0;
+		background-color: $grayLight;
+		border: 2px solid transparent;
+		background-color: rgba( 0, 0, 0, 0.5 );
+		-webkit-transition: all .3s ease;
+		   -moz-transition: all .3s ease;
+		    -ms-transition: all .3s ease;
+		     -o-transition: all .3s ease;
+		        transition: all .3s ease;
+		&:hover, &:focus {
+			opacity: 0.8;
+		}
+	}
+}
+
+.image__container--aboutPage {
+	width: 300px;
+	height: 300px;
+	float: left;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	margin-right: 10%;
+	margin-left: 15%;
+	border: 2px solid $mainColor;
+	line-height: 300px;
+}
+
+.aboutPage__label {
+	font-size: 1.5em;
+	margin-bottom: 1em;
+	& span {
+		color: $mainColor;
+	}
+}
+
+.aboutPage__label--rightSide {
+	float: right;
+	margin-top: 6em;
+	margin-right: 20%;
+}
+
+.aboutPage__label--bottomContent {
+
+}
+
+.aboutPage__info {
+	display: block;
+	float: left;
+	width: 30%;
+	background-color: $mainColor;
+	border-radius: 10px;
+	border-bottom: 3px solid $secondColor;
+	margin-bottom: 2em;
+	margin-top: 2em;
+	color: white;
+	text-decoration: none;
+	padding: 0.5em;
+	&+.aboutPage__info {
+		float: right;
+	}
+	& span {
+		font-weight: bold;
+		display: block;
+		text-align: center;
+	}
+	& span+span {
+		font-weight: normal;
+		margin-top: 1em;
+	}
+}
+
+.aboutPage__info--alone {
+	display: block;
+	width: 20%;
+	background-color: $mainColor;
+	border-radius: 10px;
+	border-bottom: 3px solid $secondColor;
+	margin: auto;
+	padding: 0.5em;
+	color: white;
+	text-decoration: none;
+	& span {
+		font-weight: bold;
+		display: block;
+		text-align: center;
+	}
+	& span+span {
+		font-weight: normal;
+		margin-top: 1em;
+	}
+}
+
+.aboutPage__info--container {
+	width: 60%;
+	margin: auto;
+}
+
+.aboutPage__info--container--2 {
+	width: 40%;
+	margin: auto;
+}

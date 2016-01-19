@@ -1,0 +1,17 @@
+.errorMessage {
+	border: 1px solid $mainColor;
+	color: $mainColor;
+	border-radius: 10px;
+	font-size: 1.2em;
+	padding: 0.5em;
+	display: block;
+	margin-bottom: 0.5em;
+	position: relative;
+	animation: fadeInUp 1s ease;
+	& a {
+		position: absolute;
+		right: 1em;
+		color: $mainColor;
+		text-decoration: none;
+	}
+}
