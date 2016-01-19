@@ -1,42 +1,38 @@
 @extends('layout')
 @section('title', $title)
 @section('content')
-	<h2 class="text-center">Mes informations&nbsp;:</h2>
-	<a href="{{ action( 'PageController@changePicture' ) }}">Modifier le photo de profil</a>
-	<img src="{{ url() }}/img/profilPicture/{{ Auth::user()->image }}" alt="Image de profil">
-	<h3 class="text-center">Prénom: {{ Auth::user()->firstname }}</h3>
-	<h3 class="text-center">Nom: {{ Auth::user()->name }}</h3>
-	<p class="text-center">Email: {{ Auth::user()->email }}</p>
-	<div class="text-center">
-		@if( Auth::user()->status == 1 )
-			<a href="{{ action( 'CourseController@index' ) }}" class="btn btn-primary">Nombre de cours: <br><span>{{ $nbCourses }}</span></a>
-			<a href="" class="btn btn-primary">Nombre d'élève: <br><span>{{ $nbUsers }}</span></a>
-		@elseif( Auth::user()->status == 2 )
-			<a href="{{ action( 'CourseController@index' ) }}" class="btn btn-primary">Nombre de cours: <br><span>{{ $nbCoursesStudent }}</span></a>
-		@endif
-		<br>
-		<br>
-		<br>
-		<a href="{!! action( 'PageController@editProfil' ) !!}" class="btn btn-warning">Modifier mon profil</a>
-		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal1">Supprimer mon profil</button>
-		<!-- Modal -->
-		<div id="myModal1" class="modal fade" role="dialog">
-			<div class="modal-dialog">
-
-				<!-- Modal content-->
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">Voulez-vous vraiment supprimer votre compte?</h4>
-					</div>
-					<div class="modal-body">
-						<p>Attention, c'est irréversible!</p>
-					</div>
-					<div class="modal-footer">
-						<a href="{!! action( 'PageController@deleteProfil' ) !!}" class="btn btn-danger">Oui</a>
-						<button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
-					</div>
-				</div>
+	<h2 class="pageTitle">Mes informations&nbsp;:</h2>
+	<div class="spaceContainer">
+		<div class="image__container image__container--aboutPage">
+			<img src="{{ url() }}/img/profilPicture/{{ Auth::user()->image }}" alt="Image de profil">
+			<a class="image__bottombutton" href="{{ action( 'PageController@changePicture' ) }}">Modifier le photo de profil</a>
+		</div>
+		<div class="aboutPage__label--rightSide">
+			<h3 class="aboutPage__label">Prénom: <span>{{ Auth::user()->firstname }}</span></h3>
+			<h3 class="aboutPage__label">Nom: <span>{{ Auth::user()->name }}</span></h3>
+			<p class="aboutPage__label">Email: <span>{{ Auth::user()->email }}</span></p>
+		</div>
+		<div class="clear"></div>
+		<div class="aboutPage__label--bottomContent">
+			<div class="aboutPage__info--container">
+				@if( Auth::user()->status == 1 )
+					<a class="aboutPage__info" href="{{ action( 'CourseController@index' ) }}">
+					<span>Nombre de cours:</span>
+					<span>{{ $nbCourses }}</span>
+					</a>
+					<a class="aboutPage__info" href="">
+					<span>Nombre d'élève:</span>
+					<span>{{ $nbUsers }}</span></a>
+				@elseif( Auth::user()->status == 2 )
+					<a class="aboutPage__info--alone" href="{{ action( 'CourseController@index' ) }}">
+					<span>Nombre de cours:</span>
+					<span>{{ $nbCoursesStudent }}</span></a>
+				@endif
+				<div class="clear"></div>
+			</div>
+			<div class="aboutPage__info--container--2">
+				<a href="{!! action( 'PageController@editProfil' ) !!}" class="btn btn-warning">Modifier mon profil</a>
+				<a href="{!! action( 'PageController@deleteProfil' ) !!}" class="btn btn-warning">Supprimer mon profil</a>
 			</div>
 		</div>
 	</div>

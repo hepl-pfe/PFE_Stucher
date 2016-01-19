@@ -5,12 +5,13 @@
 
 		<ul>
 			@if ( $courses->count() == null )
-				<li class="">Aucun cours pour le moment</li>
+				<li class="list__empty">Aucun cours pour le moment</li>
 			@endif
 			@foreach ($courses as $course)
 				<li class="list__round">
 					<a href="{!! action( 'CourseController@view', [ 'id' => $course->id, 'action' => 1 ] ) !!}">
-						<span class="list__name">{{ $course->title }}</span> <span class="list__group">groupe {{ $course->group }}</span>
+						<span class="list__name">Cours de {{ $course->title }}</span>
+						<span class="list__group">groupe {{ $course->group }}</span>
 					</a>
 				</li>
 			@endforeach
@@ -18,4 +19,5 @@
 	    			<a href="{!! action( 'CourseController@create' ) !!}">Créer un nouveau cours</a>
 	    		</li>
     	</ul>
+    	@include( 'errors.profilError' )
 @stop

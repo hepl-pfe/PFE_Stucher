@@ -7,21 +7,9 @@ setlocale( LC_ALL, 'fr_FR');
 @extends('layout')
 @section('title', $title)
 @section('content')
-	<h2>Mon planning&nbsp;:</h2>
-	@if( Auth::user()->status == 1 )
-		<div class="dropdown text-right">
-			<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Ajouter
-			<span class="caret"></span></button>
-			<ul class="dropdown-menu dropdown-menu-right">
-				<li><a href="{!! action( 'CourseController@create' ) !!}">Un cours</a></li>
-				<li><a href="{!! action( 'WorkController@create' ) !!}">Un devoir</a></li>
-				<li><a href="{!! action( 'TestController@create' ) !!}">Une interrogation</a></li>
-				<li><a href="{!! action( 'CourseController@addNews' ) !!}">Une notification</a></li>
-			</ul>
-		</div>
-	@endif
+	<h2 class="pageTitle">Mon planning&nbsp;:</h2>
+    <div class="spaceContainer planningPage">
 
-	
 <?php
     // Basé sur le code de : http://codes-sources.commentcamarche.net/source/42344-calendrier-par-semaine-avec-actions
     
@@ -46,6 +34,12 @@ setlocale( LC_ALL, 'fr_FR');
     $noSeance = [];
     //$nextMonday = $thisMonday->addWeek(1);
 ?>
+
+    <div class="planning__controller" align="center">
+        <a class="planning__controller--control" href="?lundi=<?= $avant;?>"><<</a>&nbsp;Semaine&nbsp;<?= $week;?>&nbsp;<a class="planning__controller--control planning__controller--control--2" href="?lundi=<?= $apres;?>">>></a>
+        <a class="planning__controller--thisWeek" href="?lundi=<?= strtotime($thisMonday);?>">Cette semaine</a>
+    </div>
+
     <table align="center" border="1" width="420px">
         <tr>
             <td align="center" width="14%"><b>Lun</b></td>
@@ -82,11 +76,6 @@ setlocale( LC_ALL, 'fr_FR');
             ?>
         </tr>
     </table>
-    <div align="center">
-        <a href="?lundi=<?= $avant;?>"><<</a>&nbsp;Semaine&nbsp;<?= $week;?>&nbsp;<a href="?lundi=<?= $apres;?>">>></a>
-        <br>
-        <a href="?lundi=<?= strtotime($thisMonday);?>">Cette semaine</a>
-    </div>
 
     
 
@@ -104,7 +93,7 @@ setlocale( LC_ALL, 'fr_FR');
                 ?>
                 
                 @if ( strval($week) === strval($the_week) )
-                    <li class="list-group-item">
+                    <li class="plannine__list-group-item">
                     <?php   $course = Course::findOrFail($the_seance->course_id); 
                             $noSeance[] = '1'; ?>
                     <dt>
@@ -112,26 +101,7 @@ setlocale( LC_ALL, 'fr_FR');
 
                     @if ( \Auth::user()->status === 1 )
                         <a class="btn btn-warning" href="{!! action( 'SeanceController@edit', [ "id" => $the_seance->id ] ) !!}">Modifier</a>
-
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#{{ $the_seance->id }}">X</button>
-                        <div id="{{ $the_seance->id }}" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Voulez-vous vraiment supprimer cette séance?</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Attention, c'est irréversible!</p>
-                                        <p>En supprimant cette séance, vous supprimerez tous les devoirs et interrogations s'y rapportant.</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a href="{!! action( 'SeanceController@delete', [ "id" => $the_seance->id, "course_id" => $the_seance->course_id ] ) !!}" class="btn btn-danger">Oui</a>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <a class="btn btn-warning" href="{!! action( 'SeanceController@delete', [ "id" => $the_seance->id, "course_id" => $the_seance->course_id ] ) !!}">Supprimer</a>
                     @endif
 
                     </dt>
@@ -140,12 +110,13 @@ setlocale( LC_ALL, 'fr_FR');
                         <dt>Devoir:</dt>
                         @foreach ($the_seance->works as $work)
                             <dd>{{ $work->title }}</dd>
+                            <dd>{{ $work->description }}</dd>
                         @endforeach
                     @endif
                     @if ( count($the_seance->tests) != 0 )
                         <dt>Interrogation:</dt>
                         @foreach ($the_seance->tests as $test)
-                            <dd>{{ $test->title }}</dd>
+                            <dd>{{ $test->description }}</dd>
                         @endforeach
                     @endif
                 </li>
@@ -155,11 +126,12 @@ setlocale( LC_ALL, 'fr_FR');
             
         @endforeach 
         @if ( count($noSeance) === 0 )
-            <li>Aucune séance pour cette semaine</li>
+            <li class="center">Aucune séance pour cette semaine</li>
         @endif
     </ul>
 
+{{-- <div id="calendar"></div> --}}    
 
+</div>
 
-	{{-- <div id="calendar"></div> --}}
 @endsection
