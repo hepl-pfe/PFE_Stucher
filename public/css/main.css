@@ -3200,7 +3200,7 @@ form, input, textarea, button, label {
 }
 
 .notification__group--side--list {
-  overflow: scroll;
+  overflow: auto;
   height: 85%;
 }
 
