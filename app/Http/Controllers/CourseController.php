@@ -30,7 +30,7 @@ class CourseController extends Controller
         $title = 'Accueil';
         if ( \Auth::check() ) {
             $title = 'Tous mes cours';
-            if ( \Auth::user()->status === 1 ) {
+            if ( \Auth::user()->status == 1 ) {
                 $courses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
                 return view('courses/indexTeacherCourses', compact('courses', 'title'));
             } else 
