@@ -27,6 +27,7 @@ class WorkController extends Controller
     public function create( $id = null, $info = null ) {
         setlocale( LC_ALL, 'fr_FR');
         $title = 'Créer un devoir';
+        $activePage = 'course';
         $allCourses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
         if( $allCourses->first() == null ) {
             return redirect()->back()->withErrors('Vous devez en premier lieux créer un cours');
@@ -34,20 +35,20 @@ class WorkController extends Controller
         if($id == null) {
             $firstCourse = $allCourses->first();
             $allSeances = Seance::where( 'course_id', '=', $firstCourse->id )->get();
-            return view('work/createWork', ['title' => $title, 'allCourses' => $allCourses, 'allSeances' => $allSeances]);
+            return view('work/createWork', ['title' => $title, 'allCourses' => $allCourses, 'allSeances' => $allSeances, 'activePage' => $activePage]);
         }
         if($id != null) {
 
              if( $info == 'course' ) {
                 $course = Course::findOrFail( $id );
                 $allSeances = Seance::where( 'course_id', '=', $id )->get();
-                return view('work/createWork', ['title' => $title, 'allCourses' => $allCourses, 'allSeances' => $allSeances, 'course' => $course]);
+                return view('work/createWork', ['title' => $title, 'allCourses' => $allCourses, 'allSeances' => $allSeances, 'course' => $course, 'activePage' => $activePage]);
              }
              if( $info == 'seance' ) {
                 $seance = Seance::findOrFail( $id );
                 $allSeances = Seance::where( 'course_id', '=', $seance->course_id )->get();
                 $course = Course::where( 'id', '=', $seance->course_id )->get();
-                return view('work/createWork', ['title' => $title, 'seance' => $seance, 'course'=> $course, 'allCourses' => $allCourses, 'allSeances' => $allSeances]);
+                return view('work/createWork', ['title' => $title, 'seance' => $seance, 'course'=> $course, 'allCourses' => $allCourses, 'allSeances' => $allSeances, 'activePage' => $activePage]);
              }
         }
     }
@@ -56,10 +57,11 @@ class WorkController extends Controller
         setlocale( LC_ALL, 'fr_FR');
         $work = Work::findOrFail( $id );
         $pageTitle = 'Modifier le devoir';
+        $activePage = 'course';
         $allCourses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
         $course = Seance::find($work->seance_id)->course;
         $allSeances = Seance::where( 'course_id', '=', $course->id )->get();
-        return view('work/updateWork', compact('pageTitle', 'work', 'allSeances', 'allCourses'));
+        return view('work/updateWork', compact('pageTitle', 'work', 'allSeances', 'allCourses', 'activePage'));
     }
 
     public function update( $id ) {
