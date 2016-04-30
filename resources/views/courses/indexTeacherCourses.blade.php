@@ -9,7 +9,7 @@
 			@endif
 			@foreach ($courses as $course)
 				<li class="list__round">
-					<a href="{!! action( 'CourseController@view', [ 'id' => $course->id, 'action' => 1 ] ) !!}">
+					<a href="{!! action( 'CourseController@view', [ 'id' => $course->id ] ) !!}">
 						<span class="list__name">Cours de {{ $course->title }}</span>
 						<span class="list__group">groupe {{ $course->group }}</span>
 					</a>

@@ -9,10 +9,11 @@
         	<input id="searchToken" name="searchToken" type="text" placeholder="ex: 2345D3">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="submit" value="Rechercher le cours">
+            @include('errors.profilError')
         </form>
     	<ul class="list-group">
     		@foreach ($courses as $course)
-    			<li class="list-group-item well well-lg"><a href="{!! action( 'CourseController@view', [ 'id' => $course->id, 'action' => 2 ] ) !!}">{{ $course->title }} ({{ $course->group }})</a></li>
+    			<li class="list-group-item well well-lg"><a href="{!! action( 'CourseController@view', [ 'id' => $course->id ] ) !!}">{{ $course->title }} ({{ $course->group }})</a></li>
     		@endforeach
     	</ul>
     </div>

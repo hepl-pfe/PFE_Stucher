@@ -13,7 +13,7 @@
 					@if ( $course->pivot->access === 1 )
 						<li class=""><a href="">{{ $course->title }} <span class="pull-right">en attente de validation</span> <a class="btn btn-danger pull-right" href="{!! action( 'CourseController@removeCourse', [ 'id' => $course->id ] ) !!}">Annuler la demande</a></a></li>
 					@elseif ( $course->pivot->access === 2 )
-						<li class="list__round"><a href="{!! action( 'CourseController@view', [ 'id' => $course->id, 'action' => 1 ] ) !!}">Cours de {{ $course->title }}</a></li>
+						<li class="list__round"><a href="{!! action( 'CourseController@view', [ 'id' => $course->id ] ) !!}">Cours de {{ $course->title }}</a></li>
 					@endif
 				@endforeach
 				<li class="list__round list__round--empty">
