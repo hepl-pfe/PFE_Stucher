@@ -12,48 +12,72 @@ use App\Work;
 use App\Test;
 use App\User;
 use Carbon\Carbon;
+use DB;
 
 class CalendarController extends Controller
 {
     public function view() 
     {
         $title = "Planning";
+        $activePage = 'planning';
         Carbon::setLocale('fr');
-        if (\Auth::user()->status === 1) {
+
+        if( isset($_GET['jour']) ) {
+            $day = $_GET['jour'];
+            $month = $_GET['mois'];
+            $year = $_GET['annee'];
+        } else {
+            $day = Carbon::today()->day;
+            $month = Carbon::today()->month;
+            $year = Carbon::today()->year;
+        }
+        // Add 0 before a single number
+        if( strlen($day) == 1){ $day = '0'.$day; };
+        if( strlen($month) == 1){ $month = '0'.$month; };
+        // Add 0 before a single number >
+        $the_active_day = $year.'-'.$month.'-'.$day;
+
+
+        if (\Auth::user()->status === 1) { // IF TEACHER
             $courses = Course::where('teacher_id', '=', \Auth::user()->id)->get();
             $seances = [];
-            $works = [];
-            $tests = [];
-            foreach ($courses as $course) {
-                $seances[] = $course->seances;
+            $allSeances = [];
+            $currentSeances = [];
+            foreach ( $courses as $course ) {
+                $seances[] = $course->seances->sortBy('start_hours');
             }
-
             foreach ($seances as $seance) {
-                foreach ($seance as $theSeance) {
-                    $works[] = $theSeance->works;
-                }
-                foreach ($seance as $theSeance) {
-                    $tests[] = $theSeance->tests;
+                foreach ($seance as $the_seance) {
+                    if( $the_seance->start_hours->formatLocalized('%Y-%m-%d') == $the_active_day) {
+                        $currentSeances[] = $the_seance;
+                    }
+                    $allSeances[] = $the_seance->start_hours->formatLocalized('%Y-%m-%d');
                 }
             }
-        } else {
-            $courses = $courses = User::find(\Auth::user()->id)->courses;
+        } else { // IF STUDENT
+            $allCourses = $courses = User::find(\Auth::user()->id)->courses;
+            $courses = [];
+            foreach ($allCourses as $singleCourse) {
+                if ( $singleCourse->pivot->access == 2 ) {
+                    $courses[] = $singleCourse;
+                }
+            }
             $seances = [];
-            $works = [];
-            $tests = [];
-            foreach ($courses as $course) {
-                $seances[] = $course->seances;
+            $allSeances = [];
+            $currentSeances = [];
+            foreach ( $courses as $course ) {
+                $seances[] = $course->seances->sortBy('start_hours');
             }
-
             foreach ($seances as $seance) {
-                foreach ($seance as $theSeance) {
-                    $works[] = $theSeance->works;
-                }
-                foreach ($seance as $theSeance) {
-                    $tests[] = $theSeance->tests;
+                foreach ($seance as $the_seance) {
+                    if( $the_seance->start_hours->formatLocalized('%Y-%m-%d') == $the_active_day) {
+                        $currentSeances[] = $the_seance;
+                    }
+                    $allSeances[] = $the_seance->start_hours->formatLocalized('%Y-%m-%d');
                 }
             }
         }
-        return view('pages/planning', compact( 'title', 'seances', 'courses', 'works', 'test' ));
+
+        return view('pages/planning', compact( 'title', 'activePage', 'day', 'month', 'year', 'allSeances', 'currentSeances', 'the_active_day' ));
     }
 }
