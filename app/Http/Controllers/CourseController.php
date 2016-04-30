@@ -33,11 +33,11 @@ class CourseController extends Controller
             $activePage = 'course';
             if ( \Auth::user()->status == 1 ) {
                 $courses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
-                return view('courses/indexTeacherCourses', compact('courses', 'title'));
+                return view('courses/indexTeacherCourses', compact('courses', 'title', 'activePage'));
             } else 
             {
                 $courses = User::find(\Auth::user()->id)->courses;
-                return view('courses/indexStudentCourses', compact('courses', 'title'));
+                return view('courses/indexStudentCourses', compact('courses', 'title', 'activePage'));
             }
         } 
         return view('welcome', ['title' => $title]);
@@ -65,20 +65,34 @@ class CourseController extends Controller
                 $inCourseStudentsId[] = $student->id;
             }
         }
-
         $title = 'Cours de '.$course->title;
+        $activePage = 'course';
+        $the_user = 'not';
+        if (in_array(\Auth::user()->id, $inCourseStudentsId)) {
+            $the_user = 'valided';
+        }
+        elseif (in_array(\Auth::user()->id, $demandedStudentsId)) {
+            $the_user = 'demanded';
+        }
+        if ( \Auth::user()->status != 1 ) {
+            if ( $the_user == 'demanded' ) {
+                return view('courses/waitCourse', compact('title', 'activePage'));
+            }
+        }
+
         if ( \Auth::user()->status == 1 ) {
             $title = 'Cours de '.$course->title.' groupe '. $course->group;
 
-            return view('courses/viewCourse', compact('id', 'course', 'title', 'seances', 'demandedStudents', 'inCourseStudents', 'demandedStudentsId', 'inCourseStudentsId'));
+            return view('courses/viewCourse', compact('id', 'course', 'title', 'seances', 'demandedStudents', 'inCourseStudents', 'demandedStudentsId', 'inCourseStudentsId', 'activePage'));
         }
 
-        return view('courses/viewCourse', compact('course', 'teacher', 'title', 'seances', 'demandedStudentsId', 'inCourseStudentsId'));
+        return view('courses/viewCourse', compact('course', 'teacher', 'title', 'seances', 'demandedStudentsId', 'inCourseStudentsId', 'activePage'));
     }
 
     public function create() {
         $title = 'Créer un cours';
-        return view('courses/createCourse', ['title' => $title]);
+        $activePage = 'course';
+        return view('courses/createCourse', ['title' => $title, 'activePage' => $activePage]);
     }
 
     public function store() {
@@ -103,9 +117,10 @@ class CourseController extends Controller
         if ( \Auth::check() && \Auth::user()->status==2 ) {
             $coursesIds = \Auth::user()->courses->lists('id');
             $title = 'Tous les cours existants';
+            $activePage = 'course';
             $courses = Course::whereNotIn('id',$coursesIds)->get();
 
-            return view('courses/indexAllCourses', compact('courses', 'title'));
+            return view('courses/indexAllCourses', compact('courses', 'title', 'activePage'));
         } 
         return back();
     }
@@ -135,6 +150,7 @@ class CourseController extends Controller
     }
 
     public function addNews() {
+        // à supprimer et remplacer par un bouton pour indiquer son absense.
         if ( \Auth::check() && \Auth::user()->status==1 ) {
             $title = 'Ajouter une notification';
             return view('courses/addNews', compact('title'));
@@ -144,16 +160,25 @@ class CourseController extends Controller
 
     public function getByToken() {
         $token = Input::get('searchToken');
-        $course_id = Course::where( 'access_token', '=', $token )->get()->first()->id;
-        $student = User::findOrFail(\Auth::user()->id);
+        $course_id = Course::where( 'access_token', '=', $token )->get();
+        if( empty($course_id->first()) ) {
+            $errors = 'Le code d’accès entré n’est pas valide';
+        } else {
+            $course_id = $course_id->first()->id;
+        }
+        if ( !isset( $errors ) ) {
+            $student = User::findOrFail(\Auth::user()->id);
 
-        // Ajouter le cours et l'utilisateur à la table course_user
-        $student->courses()->attach( $course_id );
-        \DB::table('course_user')
-            ->where('user_id', \Auth::user()->id)->where('course_id', $course_id)
-            ->update(array('access' => 1));
+            // Ajouter le cours et l'utilisateur à la table course_user
+            $student->courses()->attach( $course_id );
+            \DB::table('course_user')
+                ->where('user_id', \Auth::user()->id)->where('course_id', $course_id)
+                ->update(array('access' => 1));
 
-        return redirect()->route('home');
+            return redirect()->route('home');
+        } else {
+            return redirect()->back()->withErrors($errors);
+        }
     }
 
     public function removeCourse( $id_course ) {
@@ -243,12 +268,13 @@ class CourseController extends Controller
     public function edit( $id ) {
         $course = Course::findOrFail($id);
         $pageTitle = 'Modifier le cours';
+        $activePage = "course";
         $id = $course->id;
         $title = $course->title;
         $group = $course->group;
         $school = $course->school;
         $place = $course->place;
-        return view('courses/updateCourse', compact('pageTitle', 'id', 'title', 'group', 'school', 'place'));
+        return view('courses/updateCourse', compact('pageTitle', 'id', 'title', 'group', 'school', 'place', 'activePage'));
     }
 
     public function update( $id ) {
@@ -290,6 +316,7 @@ class CourseController extends Controller
     public function indexUserUsers() 
     {
         $title = "Liste de mes élèves";
+        $activePage = 'course';
         $studentsID = [];
         $students = [];
         $courses = Course::where( 'teacher_id', \Auth::user()->id )->get();
@@ -304,13 +331,14 @@ class CourseController extends Controller
             }
         }
 
-        return view('pages/allMyStudents', compact('students', 'studentsID', 'title'));
+        return view('pages/allMyStudents', compact('students', 'studentsID', 'title', 'activePage'));
     }
 
     public function indexCourseUsers( $id ) 
     {
         $course = Course::findOrFail($id);
         $title = "Les élèves du cours de ".$course->title;
+        $activePage = 'course';
         $students = Course::findOrFail($id)->users;
         $inCourseStudents = [];
         $inCourseStudentsId = [];
@@ -323,6 +351,6 @@ class CourseController extends Controller
             }
         }
 
-        return view('courses/indexUsers', compact('inCourseStudents', 'inCourseStudentsId', 'title', 'course'));
+        return view('courses/indexUsers', compact('inCourseStudents', 'inCourseStudentsId', 'title', 'course', 'activePage'));
     }
 }
