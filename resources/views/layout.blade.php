@@ -5,23 +5,27 @@
 	<title>@yield('title')</title>
 
 	{{-- Fav icon --}}
-    <link rel="apple-touch-icon" sizes="57x57" href="{{ url() }}/img/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="{{ url() }}/img/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{ url() }}/img/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ url() }}/img/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{ url() }}/img/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="{{ url() }}/img/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="{{ url() }}/img/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{ url() }}/img/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ url() }}/img/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="{{ url() }}/img/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ url() }}/img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ url() }}/img/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ url() }}/img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="{{ url() }}/img/favicon/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
+	<link rel="apple-touch-icon" sizes="57x57" href="{{ url() }}/img/favicons/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="{{ url() }}/img/favicons/apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="{{ url() }}/img/favicons/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="{{ url() }}/img/favicons/apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="{{ url() }}/img/favicons/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="{{ url() }}/img/favicons/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="{{ url() }}/img/favicons/apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="{{ url() }}/img/favicons/apple-touch-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="{{ url() }}/img/favicons/apple-touch-icon-180x180.png">
+	<link rel="icon" type="image/png" href="{{ url() }}/img/favicons/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="{{ url() }}/img/favicons/favicon-194x194.png" sizes="194x194">
+	<link rel="icon" type="image/png" href="{{ url() }}/img/favicons/favicon-96x96.png" sizes="96x96">
+	<link rel="icon" type="image/png" href="{{ url() }}/img/favicons/android-chrome-192x192.png" sizes="192x192">
+	<link rel="icon" type="image/png" href="{{ url() }}/img/favicons/favicon-16x16.png" sizes="16x16">
+	<link rel="manifest" href="{{ url() }}/img/favicons/manifest.json">
+	<link rel="mask-icon" href="{{ url() }}/img/favicons/safari-pinned-tab.svg" color="#ff4732">
+	<meta name="apple-mobile-web-app-title" content="Stucher">
+	<meta name="application-name" content="Stucher">
+	<meta name="msapplication-TileColor" content="#ff4732">
+	<meta name="msapplication-TileImage" content="{{ url() }}/img/favicons/mstile-144x144.png">
+	<meta name="theme-color" content="#ffffff">
 
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,7 +58,7 @@
 	<!-- Latest compiled JavaScript -->
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body class="{{ isset(Auth::user()->color) ? Auth::user()->color : '' }}">
 <div class="header--top">
 	<div class="dropdown text-right">
 		{{-- <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">+ --}}
@@ -67,49 +71,39 @@
 		</ul>
 	</div>
 </div>
-@if( Auth::check() )
+	@if( Auth::check() )
 	<div class="header--left">
 		<a href="{!! action( 'CourseController@index' ) !!}"><h1 class="mainLogo">logo Stucher</h1></a>
 		<nav class="mainNav">
 			<h2 class="hidden">Menu principale</h2>
 			<ul class="mainNav__ul">
-					@if( Auth::user()->status == 1 )
-						<li><a href="{!! action( 'CourseController@index' ) !!}">Mes cours</a></li>
-						<li><a href="{!! action( 'PageController@about' ) !!}">Mes informations</a></li>
-						<li><a href="{!! action( 'NotificationController@index' ) !!}">Notifications</a></li>
-						{{-- <li><a href="{!! action( 'PageController@message' ) !!}">Messages</a></li> --}}
-						<li><a href="{!! action( 'CalendarController@view' ) !!}">Mon planning</a></li>
-					@elseif( Auth::user()->status == 2 )
-						<li><a href="{!! action( 'CourseController@index' ) !!}">Mes cours</a></li>
-						<li><a href="{!! action( 'PageController@about' ) !!}">Mes informations</a></li>
-						<li><a href="{!! action( 'NotificationController@index' ) !!}">Notifications</a></li>
-						{{-- <li><a href="{!! action( 'PageController@message' ) !!}">Messages</a></li> --}}
-						<li><a href="{!! action( 'CalendarController@view' ) !!}">Mon planning</a></li>
-					@endif
-				<li><a class="" href="{!! action( 'Auth\AuthController@getLogout' ) !!}">Se déconnecter</a></li>
-				@endif()
+					<li><a class="<?php if ( isset($activePage) && $activePage == 'profil' ) { echo 'active';} ?>" href="{!! action( 'PageController@about' ) !!}">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</a></li>
+					<li><a class="<?php if ( isset($activePage) && $activePage == 'course' ) { echo 'active';} ?>" href="{!! action( 'CourseController@index' ) !!}">Mes cours</a></li>
+					<li><a class="<?php if ( isset($activePage) && $activePage == 'notification' ) { echo 'active';} ?>" href="{!! action( 'NotificationController@index' ) !!}">Notifications</a></li>
+					<!-- <li><a class="<?php //if ( isset($activePage) && $activePage == 'message' ) { echo 'active';} ?>"href="{!! action( 'PageController@message' ) !!}">Messages</a></li> -->
+					<li><a class="<?php if ( isset($activePage) && $activePage == 'planning' ) { echo 'active';} ?>" href="{!! action( 'CalendarController@view' ) !!}">Mon planning</a></li>
+					<li><a href="{!! action( 'Auth\AuthController@getLogout' ) !!}">Se déconnecter</a></li>
 			</ul>
 		</nav>
-		@if( Auth::check() )
 			<div class="notification__group--side">
 				<h2 class="notification__title">NOTIFICATIONS</h2>
 				<ul class="notification__group--side--list">
 					@if ( count($notifications) != 'null' )
 						@foreach ($notifications as $not)
-							@if ($not->not_context == 1)	
-				
+							@if ($not->not_context == 1)
+
 							@endif
 
 							@if ($not->not_context == 2)
-								
+
 							@endif
 
 							@if ($not->not_context == 3)
-								
+
 							@endif
 
 							@if ($not->not_context == 4)
-								
+
 							@endif
 
 							@if ($not->not_context == 5)
@@ -147,8 +141,8 @@
 					<li class="notification__group--item--button"><a href="{!! action( 'NotificationController@index' ) !!}">Afficher toutes les news</a></li>
 				</ul>
 			</div>
-		@endif
 	</div>
+	@endif
 
 	<div class="container">
 		@yield('content')
