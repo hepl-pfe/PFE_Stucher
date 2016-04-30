@@ -12,4 +12,9 @@ class Test extends Model
     {
     	return $this->belongsTo('App\Seance');
     }
+
+    public function files()
+    {
+        return $this->belongsToMany('App\File');
+    }
 }
