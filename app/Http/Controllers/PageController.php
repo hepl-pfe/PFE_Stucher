@@ -19,16 +19,19 @@ use App\Http\Controllers\Controller;
 class PageController extends Controller
 {
 
-    protected $rules = [
+    protected $rulesProfil = [
         'firstname' => 'required|max:255',
         'name' => 'required|max:255',
-        'email' => 'required|email|max:255',
-        'password' => 'required|min:6',
-        'checkPassword' => 'required|same:password'
+        'email' => 'required|email|max:255'
         ];
+    protected $rulesPassword = [
+        'password' => 'required|min:6',
+        'password_confirmation' => 'required|same:password'
+    ];
 
     public function about(){
 		$title = "à propos";
+        $activePage = 'profil';
         $nbCourses = Course::where('teacher_id', '=', \Auth::user()->id)->count();
         $coursesStudent = DB::select('select * from stucher_course_user where user_id = '.\Auth::user()->id);
         $nbCoursesStudent = count($coursesStudent);
@@ -44,7 +47,7 @@ class PageController extends Controller
          }
         }
         $nbUsers = count($myUsers);
-		return view('pages/about', compact('title', 'nbCourses', 'nbUsers', 'nbCoursesStudent'));
+		return view('pages/about', compact('title', 'nbCourses', 'nbUsers', 'nbCoursesStudent', 'activePage'));
     }
 
     public function viewUser( $id )
@@ -55,21 +58,20 @@ class PageController extends Controller
     }
 
     public function editProfil() {
-        $title = 'Modifier votre profil';
+        $title = 'Modifier mon profil';
+        $activePage = 'profil';
         $id = \Auth::user()->id;
         $user = User::findOrFail($id);
         $name = $user->name;
         $firstname = $user->firstname;
         $email = $user->email;
-        $email = $user->email;
-        return view('pages/updateProfil', compact('id', 'firstname', 'name', 'email', 'title'));
+        return view('pages/updateProfil', compact('id', 'firstname', 'name', 'email', 'title', 'activePage'));
     }
 
     public function updateProfil() {
-        $errors = Validator::make(Input::all(), $this->rules);
+        $errors = Validator::make(Input::all(), $this->rulesProfil);
         if ($errors->fails()) {
-            //echo $errors->messages('title'); die();
-            return redirect()->back()->with( 'errors', $errors );
+            return redirect()->back()->withErrors($errors);
         }
         $user = User::findOrFail( \Auth::user()->id );
         $user->firstname = Input::get('firstname');
@@ -77,7 +79,24 @@ class PageController extends Controller
         $user->email = Input::get('email');
         $user->password = bcrypt(Input::get('password'));
         $user->save();
-        //$user->name = Input::get('image');
+        return redirect()->route('about');
+    }
+
+    public function editPassword() {
+        $title = 'Modifier mon mot de passe';
+        $activePage = 'profil';
+        $id = \Auth::user()->id;
+        return view('pages/updatePassword', compact('id', 'title', 'activePage'));
+    }
+
+    public function updatePassword() {
+        $errors = Validator::make(Input::all(), $this->rulesPassword);
+        if ($errors->fails()) {
+            return redirect()->back()->withErrors($errors);
+        }
+        $user = User::findOrFail( \Auth::user()->id );
+        $user->password = bcrypt(Input::get('password'));
+        $user->save();
         return redirect()->route('about');
     }
 
@@ -91,10 +110,56 @@ class PageController extends Controller
         return redirect()->route('home');
     }
 
+    public function changePicture()
+    {
+        $title = "Change la photo de profil";
+        $activePage = 'profil';
+        return view( 'pages/changePicture', ['title' => $title, 'activePage' => $activePage] );
+    }
+
+    public function updatePicture()
+    {
+        if( !Input::file('image') )
+        {
+            return Redirect()->back()->withErrors('Veuillez entrez un fichier');
+        } else
+        {
+            $image = Input::file('image');
+            //dd(getimagesize ( $image));
+            $typeMime = explode( '/' , $image->getMimeType() );
+            if ( $typeMime[1] === 'jpeg' OR $typeMime[1] === 'gif' OR $typeMime[1] === 'png' )
+            {
+                Input::file('image')->getMimeType();
+                if ( \Auth::user()->image !== "default.jpg" )
+                {
+                    File::delete( public_path( 'img/profilPicture/' . \Auth::user()->image ) );
+                }
+                $imageName = $image->getClientOriginalName();
+                $nameParts = explode('.', $imageName);
+                $ext = strtolower(end($nameParts));
+                $newname = md5( $imageName . time() ) . '.' . $ext;
+                $path = public_path('img/profilPicture/' . $newname);
+                $newImage = Image::make($image->getRealPath());
+                $newImage->fit(360, 360, function ($constraint) {
+                    $constraint->upsize();
+                });
+                $newImage->save($path);
+                \Auth::user()->image = $newname;
+                \Auth::user()->save();
+            } else
+            {
+                return Redirect()->back()->withErrors('Veuillez choisir un bon format d’image (jpeg, png ou gif)');
+            }
+        }
+        return redirect()->route('about');
+    }
+
+// TODO Déplacer quand je fais les message
     public function message(){
         if ( \Auth::check() ) {
             $title = "Message";
-            return view('pages/message', ['title' => $title]);
+            $activePage = 'message';
+            return view('pages/message', ['title' => $title, 'activePage' => $activePage]);
         }
         return view('welcome', ['title' => $title]);
     }
@@ -112,14 +177,7 @@ class PageController extends Controller
         }
         return view('welcome', ['title' => $title]);
     }
-
-    public function home(){
-    	if ( \Auth::check() ) {
-    		$title = "Tous mes cours";
-    		return view( 'courses/indexCourses', ['title' => $title] );
-    	}
-    	return view('welcome', ['title' => $title]);
-    }
+// Déplacer quand je fais les message >
 
     public function registerTeacher(){
         $title = "Créer un compte professeur";
@@ -129,43 +187,5 @@ class PageController extends Controller
     public function registerStudent(){
         $title = "Créer un compte étudiant";
         return view( 'auth/registerStudent', ['title' => $title] );
-    }
-
-    public function changePicture()
-    {
-        $title = "Change la photo de profil";
-        return view( 'pages/changePicture', ['title' => $title] );
-    }
-
-    public function updatePicture()
-    {
-        if( !Input::file('image') ) 
-            {
-                return Redirect()->back()->withErrors('Veuillez entrez un fichier');
-            } else 
-                {
-                    $image = Input::file('image');
-                    $typeMime = explode( '/' , $image->getMimeType() );
-                    if ( $typeMime[0] === 'image' ) 
-                    {
-                        Input::file('image')->getMimeType();
-                        if ( \Auth::user()->image !== "default.jpg" ) 
-                        {
-                            File::delete( public_path( 'img/profilPicture/' . \Auth::user()->image ) );
-                        }
-                        $imageName = $image->getClientOriginalName();
-                        $nameParts = explode('.', $imageName);
-                        $ext = strtolower(end($nameParts));
-                        $newname = md5( $imageName . time() ) . '.' . $ext;
-                        $path = public_path('img/profilPicture/' . $newname);
-                        Image::make($image->getRealPath())->save($path);
-                        \Auth::user()->image = $newname;
-                        \Auth::user()->save();   
-                    } else 
-                        {
-                            return Redirect()->back()->withErrors('Veuillez choisir un bon format d’image');
-                        }
-                }
-        return redirect()->route('about');
     }
 }
