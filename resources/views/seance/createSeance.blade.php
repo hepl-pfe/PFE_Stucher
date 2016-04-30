@@ -26,22 +26,22 @@
 			<fieldset>
 				<div class="form-group">
 					<label for="datepicker">Début de période</label>
-					<input type="start_date" class="form-control" name="start_date" id="datepicker_start" value="{{ $today }}">
+					<input type="date" class="form-control" name="start_date" id="datepicker_start" value="{{ $today }}">
 				</div>
 				<div class="form-group">
 					<label for="datepicker">Fin de période</label>
-					<input type="end_date" class="form-control" name="end_date" id="datepicker_end" value="{{ $tomorrow }}">
+					<input type="date" class="form-control" name="end_date" id="datepicker_end" value="{{ $tomorrow }}">
 				</div>
 			</fieldset>
 
 			<div class="form-group">
 				<label for="start_hours">heure de début</label>
-				<input type="date" class="form-control" name="start_hours" id="start_hours" value="08:00">
+				<input type="time" class="form-control" name="start_hours" id="start_hours" value="08:00">
 			</div>
 
 			<div class="form-group">
 				<label for="end_hours">heure de fin</label>
-				<input type="date" class="form-control" name="end_hours" id="end_hours" value="10:00">
+				<input type="time" class="form-control" name="end_hours" id="end_hours" value="10:00">
 			</div>
 
 			<div class="form-group text-center">
