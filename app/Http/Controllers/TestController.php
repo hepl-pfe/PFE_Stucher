@@ -27,6 +27,7 @@ class TestController extends Controller
     public function create( $id = null, $info = null ) {
         setlocale( LC_ALL, 'fr_FR');
     	$title = 'Créer une interrogation';
+        $activePage = 'course';
     	$allCourses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
         if( $allCourses->first() == null ) {
             return redirect()->back();
@@ -34,20 +35,20 @@ class TestController extends Controller
     	if($id == null) {
             $firstCourse = $allCourses->first();
             $allSeances = Seance::where( 'course_id', '=', $firstCourse->id )->get();
-    		return view('test/createTest', ['title' => $title, 'allCourses' => $allCourses, 'allSeances' => $allSeances]);
+    		return view('test/createTest', ['title' => $title, 'allCourses' => $allCourses, 'allSeances' => $allSeances, 'activePage' => $activePage]);
     	}
     	if($id != null) {
 
     		 if( $info == 'course' ) {
     		 	$course = Course::findOrFail( $id );
                 $allSeances = Seance::where( 'course_id', '=', $id )->get();
-    		 	return view('test/createTest', ['title' => $title, 'allCourses' => $allCourses, 'allSeances' => $allSeances, 'course' => $course]);
+    		 	return view('test/createTest', ['title' => $title, 'allCourses' => $allCourses, 'allSeances' => $allSeances, 'course' => $course, 'activePage' => $activePage]);
     		 }
     		 if( $info == 'seance' ) {
     		 	$seance = Seance::findOrFail( $id );
 		    	$allSeances = Seance::where( 'course_id', '=', $seance->course_id )->get();
 		        $course = Course::where( 'id', '=', $seance->course_id )->get();
-		        return view('test/createTest', ['title' => $title, 'seance' => $seance, 'course'=> $course, 'allCourses' => $allCourses, 'allSeances' => $allSeances]);
+		        return view('test/createTest', ['title' => $title, 'seance' => $seance, 'course'=> $course, 'allCourses' => $allCourses, 'allSeances' => $allSeances, 'activePage' => $activePage]);
     		 }
     	}
     }
@@ -55,10 +56,11 @@ class TestController extends Controller
     public function edit( $id ) {
         $test = Test::findOrFail( $id );
         $pageTitle = 'Modifier l’interrogation';
+        $activePage = 'course';
         $allCourses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
         $course = Seance::find($test->seance_id)->course;
         $allSeances = Seance::where( 'course_id', '=', $course->id )->get();
-        return view('test/updateTest', compact('pageTitle', 'test', 'allSeances', 'allCourses'));
+        return view('test/updateTest', compact('pageTitle', 'test', 'allSeances', 'allCourses', 'activePage'));
     }
 
     public function update( $id ) {
