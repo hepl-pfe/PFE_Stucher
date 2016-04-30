@@ -18,6 +18,10 @@ Route::get( 'user/{id}', [ 'as' => 'viewUser', 'uses' => 'PageController@viewUse
 
 Route::get( 'updateProfil', [ 'as' => 'updateProfil', 'uses' => 'PageController@editProfil', 'middleware' => 'auth' ] );
 Route::post( 'updateProfil', [ 'as' => 'updateProfil', 'uses' => 'PageController@updateProfil', 'middleware' => 'auth' ] );
+// Update password
+Route::get( 'updatePassword', [ 'as' => 'updatePassword', 'uses' => 'PageController@editPassword', 'middleware' => 'auth' ] );
+Route::post( 'updatePassword', [ 'as' => 'updatePassword', 'uses' => 'PageController@updatePassword', 'middleware' => 'auth' ] );
+
 
 
 Route::get( 'profil/delete', [ 'as' => 'deleteProfil', 'uses' => 'PageController@deleteProfil', 'middleware' => 'auth' ] );
@@ -38,7 +42,7 @@ Route::post( 'course/{id}/seance', [ 'as' => 'createSeance', 'uses' => 'SeanceCo
 
 Route::get( 'courses/{id}/seances', [ 'as' => 'getSeancesByCourse', 'uses' => 'SeanceController@getByCourse', 'middleware' => 'auth' ] );
 
-Route::get( 'seance/{id}/view', [ 'as' => 'viewSeance', 'uses' => 'SeanceController@view', 'middleware' => ['auth', 'isTheTeacher'] ] );
+Route::get( 'seance/{id}/view', [ 'as' => 'viewSeance', 'uses' => 'SeanceController@view', 'middleware' => ['auth'] ] );
 Route::get( 'seance/{id}/delete', [ 'as' => 'deleteSeance', 'uses' => 'SeanceController@delete', 'middleware' => ['auth', 'isTeacher', 'isTheTeacher'] ] );
 Route::get( 'course/{id}/seance/delete', [ 'as' => 'deleteAll', 'uses' => 'SeanceController@deleteAll', 'middleware' => ['auth', 'isTeacher', 'isTheTeacher'] ] );
 
@@ -103,3 +107,16 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 // profilPicture routes…
 Route::get( 'user/picture/update', [ 'as' => 'changePicture', 'uses' => 'PageController@changePicture', 'middleware' => 'auth' ] );
 Route::post( 'user/picture/update', [ 'as' => 'changePicture', 'uses' => 'PageController@updatePicture', 'middleware' => 'auth' ] );
+
+
+// Password reset link request routes...
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
+
+// Password reset routes...
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');
+
+// Comments route
+Route::post('comments/create', [ 'as' => 'createComment', 'uses' => 'CommentController@create' ]);
+Route::get('comments/delete/{id}', [ 'as' => 'deleteComment', 'uses' => 'CommentController@delete', 'middleware' => ['auth', 'isTheTeacher'] ]);
