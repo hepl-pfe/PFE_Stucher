@@ -3,7 +3,6 @@
     @section( 'content' )
     <h2 class="pageTitle"><?= $title; ?></h2>
     <div class="spaceContainer">
-        <a class="btn btn-spaceAfter" href="">Récupérer un modèle existant</a>
     	<form action="" method="post">
             <div class="form-group">
                 <label for="course">Pour quel cours?</label>

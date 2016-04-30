@@ -3,8 +3,6 @@
     @section( 'content' )
     <h2><?php echo $pageTitle; ?></h2>
     <br>
-    <a class="btn btn-success" href="">Récupérer un modèle existant</a>
-    <br>
     <br>
     <form action="" method="post">
         <div class="form-group">
