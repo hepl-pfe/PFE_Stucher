@@ -56,3 +56,21 @@
 		}
 	}
 }
+
+.active_day {
+	background-color: green;
+}
+.has_a_seance {
+	background-color: #999;
+}
+.today {
+	font-weight: bold;
+}
+
+table a {
+	color: balck;
+	text-decoration: none;
+	&:focus, &:visited, &:link {
+		color: black;
+	}
+}

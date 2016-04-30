@@ -23,6 +23,11 @@
 	left: -999999px;
 }
 
+.mainNav__ul li a.active {
+	background-color: #fff;
+	color: $mainColor;
+}
+
 button {
 	cursor: pointer;
 }
