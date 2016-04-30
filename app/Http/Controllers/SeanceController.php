@@ -13,6 +13,7 @@ use App\Course;
 use App\Seance;
 use App\Work;
 use App\Test;
+use App\Comment;
 use Carbon\Carbon;
 
 class SeanceController extends Controller
@@ -33,6 +34,7 @@ class SeanceController extends Controller
 
     public function create( $id ) {
         $title = 'Générer des séances';
+        $activePage = 'course';
         $courses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
         $days = [
             "monday" => "lundi",
@@ -45,7 +47,7 @@ class SeanceController extends Controller
         ];
         $today = Carbon::now()->format('Y-m-d');
         $tomorrow = Carbon::tomorrow()->format('Y-m-d');
-        return view('seance/createSeance', compact('title', 'id', 'courses', 'days', 'today', 'tomorrow'));
+        return view('seance/createSeance', compact('title', 'id', 'courses', 'days', 'today', 'tomorrow', 'activePage'));
     }
 
     public function store() {
@@ -85,13 +87,14 @@ class SeanceController extends Controller
             "sunday" => "dimanche"
         ];
         $title = 'Modifier la séance';
+        $activePage = 'course';
         $courses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
         $course_id = $seance->course_id;
         $start_day = substr($seance->start_hours, 0, 10);
         $end_day = substr($seance->end_hours, 0, 10);
         $start_hours = substr($seance->start_hours, 11, 5);
         $end_hours = substr($seance->end_hours, 11, 5);
-        return view('seance/updateSeance', compact('title', 'seance', 'days', 'id', 'courses', 'course_id', 'start_day', 'end_day', 'start_hours', 'end_hours'));
+        return view('seance/updateSeance', compact('title', 'seance', 'days', 'id', 'courses', 'course_id', 'start_day', 'end_day', 'start_hours', 'end_hours', 'activePage'));
     }
 
     public function update( $id ) {
@@ -114,10 +117,39 @@ class SeanceController extends Controller
     public function view( $id ) {
         setlocale( LC_ALL, 'fr_FR');
         $seance = Seance::findOrFail($id);
+        $students = $seance->course->users;
+        $inCourseStudents = [];
+        $demandedStudents = [];
+        $inCourseStudentsId = [];
+        $demandedStudentsId = [];
+        foreach ($students as $student) {
+            if( $student->pivot->access === 1 ){
+                $demandedStudents[] = $student;
+                $demandedStudentsId[] = $student->id;
+            }
+            if( $student->pivot->access === 2 ){
+                $inCourseStudents[] = $student;
+                $inCourseStudentsId[] = $student->id;
+            }
+        }
+        $the_user = 'not';
+        if (in_array(\Auth::user()->id, $inCourseStudentsId)) {
+            $the_user = 'valided';
+        }
+        elseif (in_array(\Auth::user()->id, $demandedStudentsId)) {
+            $the_user = 'demanded';
+        }
+        if ( \Auth::user()->status != 1 ) {
+            if ( $the_user != 'valided' ) {
+                return redirect()->back();
+            }
+        }
         $works = Work::where('seance_id', '=', $id)->get();
         $tests = Test::where('seance_id', '=', $id)->get();
+        $comments = Comment::where('context', '=', 1)->where('for', $id)->get();
         $title = 'Séance du '.$seance->start_hours->formatLocalized('%A %d %B %Y') . ' de ' . $seance->start_hours->formatLocalized('%Hh%M') . ' à ' . $seance->end_hours->formatLocalized('%Hh%M');
-        return view('seance/viewSeance', compact( 'title', 'id', 'seance', 'works', 'tests' ));
+        $activePage = 'course';
+        return view('seance/viewSeance', compact( 'title', 'id', 'seance', 'works', 'tests', 'comments', 'activePage' ));
     }
 
     public function getByCourse( $id_course ) {
@@ -164,6 +196,7 @@ class SeanceController extends Controller
         $seances = Seance::where( 'course_id', '=', $id )->get();
         $pastSeances = [];
         $title = "Les séances terminées";
+        $activePage = 'course';
         setlocale( LC_ALL, 'fr_FR');
         foreach ($seances as $seance) {
             $now = Carbon::now();
@@ -173,6 +206,6 @@ class SeanceController extends Controller
             }
         }
 
-        return view('seance/seancesHistory', compact( 'title', 'pastSeances'));
+        return view('seance/seancesHistory', compact( 'title', 'pastSeances', 'activePage'));
     }
 }
