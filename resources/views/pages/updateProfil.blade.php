@@ -22,17 +22,11 @@
 			</div>
 
 			<div class="form-group">
-				<label for="password">votre nouveau mot de passe</label>
-				<input type="password" class="form-control" name="password" id="password" >
-			</div>
-			
-			<div class="form-group">
-				<label for="checkPassword">valider le nouveau mot de passe</label>
-				<input type="password" class="form-control" name="checkPassword" id="checkPassword">
+				<a href="{{ action( 'PageController@updatePassword' ) }}">Modifier mon mot de passe</a>
 			</div>
 
 			<div class="form-group">
-				<a href="{{ action( 'PageController@about', [ 'id' => $id ] ) }}" class="btn btn-back">Annuler</a>
+				<a href="{{ action( 'PageController@about' ) }}" class="btn btn-back">Annuler</a>
 				<input type="submit" class="btn btn-send" value="Valider les modifications">
 				<div class="clear"></div>
 			</div>
