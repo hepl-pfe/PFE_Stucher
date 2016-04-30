@@ -22,12 +22,12 @@
 
 			<div class="form-group">
 				<label for="start_hours">heure de début</label>
-				<input type="date" class="form-control" name="start_hours" id="start_hours" value="{{ $start_hours }}">
+				<input type="time" class="form-control" name="start_hours" id="start_hours" value="{{ $start_hours }}">
 			</div>
 
 			<div class="form-group">
 				<label for="end_hours">heure de fin</label>
-				<input type="date" class="form-control" name="end_hours" id="end_hours" value="{{ $end_hours }}">
+				<input type="time" class="form-control" name="end_hours" id="end_hours" value="{{ $end_hours }}">
 			</div>
 
 			<div class="form-group text-center">
