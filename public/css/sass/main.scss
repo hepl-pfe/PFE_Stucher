@@ -1,6 +1,8 @@
 @import 'reset';
+@import 'icons';
 @import 'variable';
 @import 'animate';
+@import 'elements';
 @import 'header';
 @import 'errors';
 @import 'layout';
@@ -12,6 +14,7 @@
 @import 'viewCourse';
 @import 'accueil';
 @import 'indexCourses';
+@import 'media';
 
 .clear {
 	display: block;
