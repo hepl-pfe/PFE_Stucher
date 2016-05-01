@@ -151,6 +151,14 @@ jQuery( function($) {
 	});
 
 
-	
+	///////////
+	// UnChecked the button checked on click on the PageContainer
+	///////////
+	console.log( $('#menuToggle')['0'].checked );
+	$('.pageContainer').click(function() {
+		if ( $('#menuToggle')['0'].checked == true ) {
+			$('#menuToggle')['0'].checked = false;
+		}
+	});
 
 } );
