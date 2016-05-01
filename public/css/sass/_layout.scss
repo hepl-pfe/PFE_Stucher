@@ -1,17 +1,15 @@
-.container {
-	width: calc(100% - 300px);
-    height: auto;
-    min-height: 100vh;
-    position: absolute;
-    right: 0;
-    // top: 3em;
+.pageContainer {
+	margin-left: $headerLeft;
+	padding-top: 1px; // little tips to avoid exceeded the parent
+	margin-top: -1px; // little tips to avoid exceeded the parent
+	min-height: 94vh;
 }
 
-.header--left {
-	width: 300px;
-    height: 100%;
+.header {
+	width: $headerLeft;
+	top: 0; bottom: 0; left: 0;
     position: fixed;
-    // top: 3em;
+	z-index: 1000;
     background-color: $mainColor;
 }
 
