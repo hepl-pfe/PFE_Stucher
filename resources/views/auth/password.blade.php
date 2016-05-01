@@ -1,3 +1,6 @@
+@extends('logoutLayout')
+@section('title', $title)
+@section('content')
 <!-- resources/views/auth/password.blade.php -->
 
 <form method="POST" action="/password/email">
@@ -22,3 +25,4 @@
         </button>
     </div>
 </form>
+@stop

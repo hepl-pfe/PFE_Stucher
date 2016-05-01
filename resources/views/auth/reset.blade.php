@@ -1,3 +1,6 @@
+@extends('logoutLayout')
+@section('title', $title)
+@section('content')
 <!-- resources/views/auth/reset.blade.php -->
 
 <form method="POST" action="/password/reset">
@@ -33,3 +36,4 @@
         </button>
     </div>
 </form>
+@stop

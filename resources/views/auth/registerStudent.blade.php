@@ -1,7 +1,7 @@
-@extends( 'layout' )
-    @section('title', $title)
-    @section( 'content' )
-    <div class="outPage spaceContainer">
+@extends('logoutLayout')
+@section('title', $title)
+@section('content')
+    <div class="spaceContainer">
         <div class="littleSpace">
             <h1 class="pageTitle">{{$title}}</h1>
             <form method="POST" action="/auth/register">

@@ -1,5 +1,6 @@
-@extends( 'layout' )
-    @section( 'content' )
+@extends('logoutLayout')
+@section('title', $title)
+@section('content')
 
     <form method="POST" action="/auth/register">
         {!! csrf_field() !!}
