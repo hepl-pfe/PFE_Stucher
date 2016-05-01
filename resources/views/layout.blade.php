@@ -1,79 +1,11 @@
-<!DOCTYPE html>
-<html lang="fr-BE">
-<head>
-	<meta charset="UTF-8">
-	<title>@yield('title')</title>
-
-	{{-- Fav icon --}}
-	<link rel="apple-touch-icon" sizes="57x57" href="{{ url() }}/img/favicons/apple-touch-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="{{ url() }}/img/favicons/apple-touch-icon-60x60.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="{{ url() }}/img/favicons/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="{{ url() }}/img/favicons/apple-touch-icon-76x76.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="{{ url() }}/img/favicons/apple-touch-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="{{ url() }}/img/favicons/apple-touch-icon-120x120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="{{ url() }}/img/favicons/apple-touch-icon-144x144.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="{{ url() }}/img/favicons/apple-touch-icon-152x152.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="{{ url() }}/img/favicons/apple-touch-icon-180x180.png">
-	<link rel="icon" type="image/png" href="{{ url() }}/img/favicons/favicon-32x32.png" sizes="32x32">
-	<link rel="icon" type="image/png" href="{{ url() }}/img/favicons/favicon-194x194.png" sizes="194x194">
-	<link rel="icon" type="image/png" href="{{ url() }}/img/favicons/favicon-96x96.png" sizes="96x96">
-	<link rel="icon" type="image/png" href="{{ url() }}/img/favicons/android-chrome-192x192.png" sizes="192x192">
-	<link rel="icon" type="image/png" href="{{ url() }}/img/favicons/favicon-16x16.png" sizes="16x16">
-	<link rel="manifest" href="{{ url() }}/img/favicons/manifest.json">
-	<link rel="mask-icon" href="{{ url() }}/img/favicons/safari-pinned-tab.svg" color="#ff4732">
-	<meta name="apple-mobile-web-app-title" content="Stucher">
-	<meta name="application-name" content="Stucher">
-	<meta name="msapplication-TileColor" content="#ff4732">
-	<meta name="msapplication-TileImage" content="{{ url() }}/img/favicons/mstile-144x144.png">
-	<meta name="theme-color" content="#ffffff">
-
-
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- Latest compiled and minified CSS -->
-	{{-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> --}}
-	<!-- jQuery library -->
-	<script src="{{ url() }}/js/jquery.js"></script>
-
-	<!-- jQuery-ui library -->
-	<script src="{{ url() }}/js/jquery-ui.js"></script>
-	<link rel="stylesheet" href="{{ url() }}/css/jquery-ui.css">
-	<link rel="stylesheet" href="{{ url() }}/css/jquery-ui.structure.css">
-	<link rel="stylesheet" href="{{ url() }}/css/jquery-ui.theme.css">
-
-	<!-- Calendar script and style -->
-	{{-- <link href="{{ url() }}/css/fullcalendar.min.css" rel="stylesheet" />
-	<link href="{{ url() }}/css/fullcalendar.print.css" rel="stylesheet" media="print" /> --}}
-	<script src="{{ url() }}/js//moment.min.js"></script>
-	<script src="{{ url() }}/js/fullcalendar.min.js"></script>
-	<script src="{{ url() }}/js/fr.js"></script>
-
-	<!-- My custom script -->
-	<script src="{{ url() }}/js/main.js"></script>
-	<!-- My custom style -->
-	<link rel="stylesheet" href="{{ url() }}/css/main.css">
-	<!-- My custom font -->
-	<link href='https://fonts.googleapis.com/css?family=Asap:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
-	
-	
-	<!-- Latest compiled JavaScript -->
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-</head>
+@include( 'header' )
 <body class="{{ isset(Auth::user()->color) ? Auth::user()->color : '' }}">
-<div class="header--top">
-	<div class="dropdown text-right">
-		{{-- <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">+ --}}
-		<span class="caret"></span></button>
-		<ul class="dropdown-menu">
-			<li><a href="{!! action( 'CourseController@create' ) !!}">Un cours</a></li>
-			<li><a href="{!! action( 'WorkController@create', ['id' => 'null', 'info' => 'null'] ) !!}">Un devoir</a></li>
-			<li><a href="{!! action( 'TestController@create', ['id' => 'null', 'info' => 'null'] ) !!}">Une interrogation</a></li>
-			{{-- <li><a href="{!! action( 'CourseController@addNews' ) !!}">Une notification</a></li> --}}
-		</ul>
-	</div>
-</div>
-	@if( Auth::check() )
-	<div class="header--left">
-		<a href="{!! action( 'CourseController@index' ) !!}"><h1 class="mainLogo">logo Stucher</h1></a>
+	<div class="header">
+		<input type="checkbox" id="menuToggle">
+		<label for="menuToggle" class="menuToggle"><span></span><span></span><span></span></label>
+
+		<a class="mainLogo--link" href="{!! action( 'CourseController@index' ) !!}"><h1 class="mainLogo--title">logo Stucher</h1></a>
+
 		<nav class="mainNav">
 			<h2 class="hidden">Menu principale</h2>
 			<ul class="mainNav__ul">
@@ -85,67 +17,67 @@
 					<li><a href="{!! action( 'Auth\AuthController@getLogout' ) !!}">Se déconnecter</a></li>
 			</ul>
 		</nav>
-			<div class="notification__group--side">
-				<h2 class="notification__title">NOTIFICATIONS</h2>
-				<ul class="notification__group--side--list">
-					@if ( count($notifications) != 'null' )
-						@foreach ($notifications as $not)
-							@if ($not->not_context == 1)
 
-							@endif
+		<div class="notification__group--side">
+			<h2 class="notification__title">NOTIFICATIONS</h2>
+			<ul class="notification__group--side--list">
+				@if ( count($notifications) != 'null' )
+					@foreach ($notifications as $not)
+						@if ($not->not_context == 1)
 
-							@if ($not->not_context == 2)
+						@endif
 
-							@endif
+						@if ($not->not_context == 2)
 
-							@if ($not->not_context == 3)
+						@endif
 
-							@endif
+						@if ($not->not_context == 3)
 
-							@if ($not->not_context == 4)
+						@endif
 
-							@endif
+						@if ($not->not_context == 4)
 
-							@if ($not->not_context == 5)
-								<li class="notification__group--item">
-									<a href="{{ action('PageController@viewUser', [ 'id' => $not->user_id]) }}">{{$not->user_name}}</a> {{$not->not_title}} <a href="{{ action('CourseController@view', [ 'id' => $not->course_id, 'action' => 1 ]) }}">{{$not->course_title}}</a>
-									@if ($not->not_seen != 3)
-										<a class="btn btn-success pull-right" href="{!! action( 'CourseController@acceptStudent', ['id_course' => $not->course_id, 'id_user' => $not->user_id] ) !!}">Ajouter</a> <a class="btn btn-danger pull-right" href="{!! action( 'CourseController@removeStudentFromCourse', ['id_course' => $not->course_id, 'id_user' => $not->user_id] ) !!}">Refuser</a>
-									@endif
-								</li>
-							@endif
+						@endif
 
-							@if ($not->not_context == 6)
-								<li class="notification__group--item">
-									{{$not->not_title}} <a href="{{ action('CourseController@view', [ 'id' => $not->course_id, 'action' => 1 ]) }}">{{$not->course_title}}</a>
-								</li>
-							@endif
+						@if ($not->not_context == 5)
+							<li class="notification__group--item">
+								<a href="{{ action('PageController@viewUser', [ 'id' => $not->user_id]) }}">{{$not->user_name}}</a> {{$not->not_title}} <a href="{{ action('CourseController@view', [ 'id' => $not->course_id, 'action' => 1 ]) }}">{{$not->course_title}}</a>
+								@if ($not->not_seen != 3)
+									<a class="btn btn-success pull-right" href="{!! action( 'CourseController@acceptStudent', ['id_course' => $not->course_id, 'id_user' => $not->user_id] ) !!}">Ajouter</a> <a class="btn btn-danger pull-right" href="{!! action( 'CourseController@removeStudentFromCourse', ['id_course' => $not->course_id, 'id_user' => $not->user_id] ) !!}">Refuser</a>
+								@endif
+							</li>
+						@endif
 
-							@if ($not->not_context == 7)
-								<li class="notification__group--item">
-									{{$not->not_title}} {{$not->course_title}}
-								</li>
-							@endif
+						@if ($not->not_context == 6)
+							<li class="notification__group--item">
+								{{$not->not_title}} <a href="{{ action('CourseController@view', [ 'id' => $not->course_id, 'action' => 1 ]) }}">{{$not->course_title}}</a>
+							</li>
+						@endif
 
-							@if ($not->not_context == 8)
-								<li class="notification__group--item">
-									<a href="{{ action('PageController@viewUser', [ 'id' => $not->user_id]) }}">{{$not->user_name}}</a> {{$not->not_title}} <a href="{{ action('CourseController@view', [ 'id' => $not->course_id, 'action' => 1 ]) }}">{{$not->course_title}}</a>
-								</li>
-							@endif
-						@endforeach
-					@else
-						<li class="notification__group--item--null">
-							Aucune notification pour le moment
-						</li>
-					@endif
-					<li class="notification__group--item--button"><a href="{!! action( 'NotificationController@index' ) !!}">Afficher toutes les news</a></li>
-				</ul>
-			</div>
+						@if ($not->not_context == 7)
+							<li class="notification__group--item">
+								{{$not->not_title}} {{$not->course_title}}
+							</li>
+						@endif
+
+						@if ($not->not_context == 8)
+							<li class="notification__group--item">
+								<a href="{{ action('PageController@viewUser', [ 'id' => $not->user_id]) }}">{{$not->user_name}}</a> {{$not->not_title}} <a href="{{ action('CourseController@view', [ 'id' => $not->course_id, 'action' => 1 ]) }}">{{$not->course_title}}</a>
+							</li>
+						@endif
+					@endforeach
+				@else
+					<li class="notification__group--item--null">
+						Aucune notification pour le moment
+					</li>
+				@endif
+				<li class="notification__group--item--button"><a href="{!! action( 'NotificationController@index' ) !!}">Afficher toutes les news</a></li>
+			</ul>
+		</div>
 	</div>
-	@endif
 
-	<div class="container">
+	<div class="pageContainer">
 		@yield('content')
+		<div class="clear"></div>
 	</div>
-</body>
-</html>
+@include( 'footer' )
