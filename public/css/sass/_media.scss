@@ -1,0 +1,165 @@
+@media screen and ( max-width: 1024px ) {   // Landscape tab
+
+}
+
+@media screen and ( max-width: 900px ) {    // portrait tab
+
+}
+
+@media screen and ( max-width: 768px ) {    // phones landscape
+  .header {
+    width: 100%;
+    height: $headerTop;
+    top: 0; left: 0; right: 0;
+  }
+  .pageContainer {
+    margin-left: auto;
+    padding-top: $headerTop;
+    padding-top: $headerTop;
+    margin-top: 0;
+  }
+  .notification__group--side {
+    display: none;
+  }
+  .mainLogo--link {
+    height: $headerTop;
+    display: inline-block;
+    margin-top: 0; // 8px
+    width: 12em;
+    position: absolute;
+    left: 50%;
+    margin-left: -6em;
+    .mainLogo--title {
+      margin-top: 0;
+      height: 100%;
+      width: 100%;
+    }
+  }
+  .menuToggle {
+    display: inline-block;
+    margin-top: 0.5em; // 8px
+    margin-left: 0.5em; // 8px
+    width: 1.5em; // 24px
+    height: 1.5em; // 24px
+    position: relative;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+    cursor: pointer;
+    span {
+      display: block;
+      position: absolute;
+      height: 3.5px;
+      width: 100%;
+      background: #fff;
+      border-radius: 9px;
+      opacity: 1;
+      left: 0;
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+      -webkit-transition: .25s ease-in-out;
+      -moz-transition: .25s ease-in-out;
+      -o-transition: .25s ease-in-out;
+      transition: .25s ease-in-out;
+      top: 0;
+      + span {
+        top: 0.621875em; // 9.95 px
+        + span {
+          top: 1.25em; // 20 px
+        }
+      }
+    }
+  }
+
+  .mainNav__ul {
+    display: block;
+    margin-top: 0;
+    position: fixed;
+    left: -$headerLeft - 10px;
+    top: $headerTop;
+    bottom: 0;
+    width: $headerLeft;
+    box-shadow: 5px 2px 5px rgba($black, 0.3%);
+    background-color: $mainColor;
+    -webkit-transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+  }
+  #menuToggle:checked {
+    & ~ label span {
+      top: 0.621875em; // 9.95 px
+      -webkit-transform: rotate(135deg);
+      -moz-transform: rotate(135deg);
+      -o-transform: rotate(135deg);
+      transform: rotate(135deg);
+      & + span {
+        opacity: 0;
+        left: -60px;
+        -webkit-transform: none;
+        -moz-transform: none;
+        -o-transform: none;
+        transform: none;
+        & + span {
+          opacity: 1;
+          left: auto;
+          top: 0.621875em; // 9.95 px
+          -webkit-transform: rotate(-135deg);
+          -moz-transform: rotate(-135deg);
+          -o-transform: rotate(-135deg);
+          transform: rotate(-135deg);
+        }
+      }
+    }
+    & ~ .mainNav .mainNav__ul {
+      display: block;
+      margin-top: 0;
+      margin-left: 0px;
+      position: fixed;
+      left: 0;
+      top: $headerTop;
+      bottom: 0;
+      width: $headerLeft;
+      background-color: $mainColor;
+    }
+  }
+
+}
+
+
+@media screen and ( max-width: 480px ) {    // phones portrait
+
+}
+
+@media screen and ( max-width: 320px ) {    // phones small
+
+}
+
+////// height
+@media screen and ( max-height: 710px ) {    // hide notifications on mobile screen
+  .notification__group--side {
+    display: none;
+  }
+}
+
+@media screen and ( max-height: 300px ) {    // reduce the size of menu item on mobile screen
+  .mainNav__ul li a {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+}
+
+@media screen and ( max-height: 355px )and ( min-width: 768px ) {    // reduce the size of menu item
+  .mainNav__ul li a {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+}
