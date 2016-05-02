@@ -37,7 +37,13 @@ class CourseController extends Controller
             } else 
             {
                 $courses = User::find(\Auth::user()->id)->courses;
-                return view('courses/indexStudentCourses', compact('courses', 'title', 'activePage'));
+                $waitCourses = [];
+                foreach( $courses as $course ) {
+                    if( $course->pivot->access == 1 ) {
+                        $waitCourses[] = $course;
+                    }
+                }
+                return view('courses/indexStudentCourses', compact('courses', 'waitCourses', 'title', 'activePage'));
             }
         } 
         return view('welcome', ['title' => $title]);
@@ -147,6 +153,19 @@ class CourseController extends Controller
             return redirect()->route('home');
         } 
         return back();
+    }
+
+    public function waitCourse() {
+        $title = 'Cours en attente de validation';
+        $activePage = 'course';
+        $courses = User::find(\Auth::user()->id)->courses;
+        $waitCourses = [];
+        foreach( $courses as $course ) {
+            if( $course->pivot->access == 1 ) {
+                $waitCourses[] = $course;
+            }
+        }
+        return view('courses/indexWaitingCourses', compact('courses', 'waitCourses', 'title', 'activePage'));
     }
 
     public function addNews() {
