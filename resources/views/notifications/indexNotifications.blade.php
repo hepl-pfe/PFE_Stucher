@@ -5,7 +5,7 @@ Carbon::setLocale('fr');
 @extends('layout')
 @section('title', $title)
 @section('content')
-	<h2 class="pageTitle">Mes notifications&nbsp;:</h2>
+	<h2 class="mainTitle">Mes notifications&nbsp;:</h2>
 	<div class="spaceContainer">
 		@if( Auth::check() )
 			{{-- <a class="btn btn-primary" style="margin: 1em;" href="{!! action( 'CourseController@addNews' ) !!}">Ajouter une notification</a>	 --}}

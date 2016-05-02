@@ -1,7 +1,7 @@
 @extends('layout')
 @section('title', $title)
 @section('content')
-	<h2 class="pageTitle">{{ $title }}</h2>
+	<h2 class="mainTitle">{{ $title }}</h2>
 	<div class="image__container image__container--aboutPage">
 		<img src="{{ url() }}/img/profilPicture/{{ $user->image }}" alt="Image de profil">
 	</div>

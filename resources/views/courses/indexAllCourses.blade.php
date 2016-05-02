@@ -1,7 +1,10 @@
 @extends( 'layout' )
 	@section('title', $title)
     @section( 'content' )
-    <h2 class="pageTitle">Tous les cours existants</h2>
+        <div class="blockTitle">
+            <h2 class="mainTitle">Tous les cours existants</h2>
+        </div>
+
     <div class="spaceContainer">
         <a class="btn btn-warning" href="{!! action( 'CourseController@index' ) !!}"><—</a><br><br>
         <form action="{!! action( 'CourseController@getByToken') !!}" method="post" class="form-group">

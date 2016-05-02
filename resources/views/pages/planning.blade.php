@@ -9,7 +9,7 @@ setlocale( LC_ALL, 'fr_FR');
 @extends('layout')
 @section('title', $title)
 @section('content')
-	<h2 class="pageTitle">Mon planning&nbsp;:</h2>
+	<h2 class="mainTitle">Mon planning&nbsp;:</h2>
     <div class="spaceContainer planningPage">
 
 <?php

@@ -3,7 +3,7 @@
 @section('content')
     <div class="spaceContainer">
         <div class="littleSpace">
-            <h1 class="pageTitle">{{$title}}</h1>
+            <h1 class="mainTitle">{{$title}}</h1>
             <form method="POST" action="/auth/register">
                 {!! csrf_field() !!}
 

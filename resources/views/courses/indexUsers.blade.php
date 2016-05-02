@@ -2,7 +2,7 @@
 @section( 'content' )
 @section( 'title', $title )
 
-<h1 class="pageTitle">{{$title}}</h1>
+<h1 class="mainTitle">{{$title}}</h1>
 
 <div class="spaceContainer">
 

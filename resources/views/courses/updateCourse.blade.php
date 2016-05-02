@@ -2,7 +2,7 @@
 @section('title', $title)
 @section('content')
 
-	<h2 class="pageTitle">Modifier le cours: {{ $title }}</h2>
+	<h2 class="mainTitle">Modifier le cours: {{ $title }}</h2>
 	<div class="spaceContainer">
 		<form action="" method="post">
 			<div class="form-group">
