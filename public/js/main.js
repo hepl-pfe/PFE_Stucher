@@ -95,69 +95,26 @@ jQuery( function($) {
 	} );
 
 
-	// CALENDAR :
-	$(document).ready(function() {
-		var currentLangCode = 'fr';
-
-		// build the language selector's options
-		$.each($.fullCalendar.langs, function(langCode) {
-			$('#lang-selector').append(
-				$('<option/>')
-					.attr('value', langCode)
-					.prop('selected', langCode == currentLangCode)
-					.text(langCode)
-			);
-		});
-
-		// rerender the calendar when the selected option changes
-		$('#lang-selector').on('change', function() {
-			if (this.value) {
-				currentLangCode = this.value;
-				$('#calendar').fullCalendar('destroy');
-				renderCalendar();
-			}
-		});
-
-		function renderCalendar() {
-			$('#calendar').fullCalendar({
-				defaultView: 'agendaWeek',
-				allDaySlot: false,
-				minTime: "07:00:00",
-				maxTime: "18:00:00",
-				height: "auto",
-				header: {
-					left: 'prev,next today',
-					center: 'title',
-					right: ''
-				},
-				slotLabelFormat: 'H:mm',
-				defaultDate: '2015-12-12',
-				lang: currentLangCode,
-				buttonIcons: false, // show the prev/next text
-				weekNumbers: true,
-				editable: true, // IF STUDENT = FALSE & IF TEACHER = TRUE
-				eventLimit: true, // allow "more" link when too many events
-				events: [
-					{
-						title: 'Repeating Event',
-						start: '2015-12-09T16:32:00',
-						end: '2015-12-09T17:00:00'
-					}
-				]
-			});
-		}
-
-		renderCalendar();
-	});
-
-
 	///////////
 	// UnChecked the button checked on click on the PageContainer
 	///////////
-	console.log( $('#menuToggle')['0'].checked );
-	$('.pageContainer').click(function() {
+	$('.pageContainer').click(function(e) {
 		if ( $('#menuToggle')['0'].checked == true ) {
 			$('#menuToggle')['0'].checked = false;
+		}
+		if ( $('#dd_moreButton')['0'].checked == true ) {
+			$('.menuToggle').click(function() {
+				$('#dd_moreButton')['0'].checked = false;
+			} );
+		}
+
+		// Try to hide the more button on click outside it
+		//console.log(e);
+		if ( $('#dd_moreButton')['0'].checked == false ) {
+			//console.log(e);
+			if (e.target.className == "dd_moreButton--button") {
+				//console.log('ok');
+			}
 		}
 	});
 
