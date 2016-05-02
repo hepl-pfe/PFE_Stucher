@@ -7,6 +7,7 @@ use Validator;
 use App\Course;
 use App\User;
 use App\Seance;
+use App\Comment;
 use App\Work;
 use App\Test;
 use \Input;
@@ -90,9 +91,11 @@ class CourseController extends Controller
             $title = 'Cours de '.$course->title.' groupe '. $course->group;
 
             return view('courses/viewCourse', compact('id', 'course', 'title', 'seances', 'demandedStudents', 'inCourseStudents', 'demandedStudentsId', 'inCourseStudentsId', 'activePage'));
+            return view('courses/viewCourse', compact('id', 'course', 'title', 'seances', 'allSeances', 'comments', 'demandedStudents', 'inCourseStudents', 'demandedStudentsId', 'inCourseStudentsId', 'activePage'));
         }
 
         return view('courses/viewCourse', compact('course', 'teacher', 'title', 'seances', 'demandedStudentsId', 'inCourseStudentsId', 'activePage'));
+        return view('courses/viewCourse', compact('course', 'teacher', 'title', 'seances', 'allSeances', 'comments', 'inCourseStudents', 'demandedStudentsId', 'inCourseStudentsId', 'activePage'));
     }
 
     public function create() {
