@@ -55,7 +55,13 @@ class CourseController extends Controller
         $course = Course::findOrFail($id);
         $teacher = User::where( 'id', '=', $course->teacher_id )->get();
         $now = Carbon::now()->format('Y-m-d H:i:s');
-        $seances = $course->seances->sortBy('start_hours');
+        $allSeances = $course->seances->sortBy('start_hours');
+        $seances = [];
+        foreach( $allSeances as $theSeance ) {
+            if( $theSeance->start_hours > $now ) {
+                $seances[] = $theSeance;
+            }
+        }
         $students = Course::find($id)->users;
 
         $inCourseStudents = [];
@@ -88,13 +94,11 @@ class CourseController extends Controller
         }
 
         if ( \Auth::user()->status == 1 ) {
-            $title = 'Cours de '.$course->title.' groupe '. $course->group;
+            $title = 'Cours de '.$course->title;
 
-            return view('courses/viewCourse', compact('id', 'course', 'title', 'seances', 'demandedStudents', 'inCourseStudents', 'demandedStudentsId', 'inCourseStudentsId', 'activePage'));
             return view('courses/viewCourse', compact('id', 'course', 'title', 'seances', 'allSeances', 'comments', 'demandedStudents', 'inCourseStudents', 'demandedStudentsId', 'inCourseStudentsId', 'activePage'));
         }
 
-        return view('courses/viewCourse', compact('course', 'teacher', 'title', 'seances', 'demandedStudentsId', 'inCourseStudentsId', 'activePage'));
         return view('courses/viewCourse', compact('course', 'teacher', 'title', 'seances', 'allSeances', 'comments', 'inCourseStudents', 'demandedStudentsId', 'inCourseStudentsId', 'activePage'));
     }
 
