@@ -132,6 +132,11 @@ class SeanceController extends Controller
                 $inCourseStudentsId[] = $student->id;
             }
         }
+
+        $datetime1 = new Carbon( $seance->start_hours );
+        $datetime2 = new Carbon($seance->end_hours);
+        $interval = $datetime1->diff($datetime2);
+
         $the_user = 'not';
         if (in_array(\Auth::user()->id, $inCourseStudentsId)) {
             $the_user = 'valided';
@@ -149,7 +154,7 @@ class SeanceController extends Controller
         $comments = Comment::where('context', '=', 1)->where('for', $id)->get();
         $title = 'Séance du '.$seance->start_hours->formatLocalized('%A %d %B %Y') . ' de ' . $seance->start_hours->formatLocalized('%Hh%M') . ' à ' . $seance->end_hours->formatLocalized('%Hh%M');
         $activePage = 'course';
-        return view('seance/viewSeance', compact( 'title', 'id', 'seance', 'works', 'tests', 'comments', 'activePage' ));
+        return view('seance/viewSeance', compact( 'title', 'id', 'seance', 'interval', 'works', 'tests', 'comments', 'activePage' ));
     }
 
     public function getByCourse( $id_course ) {
