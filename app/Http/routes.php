@@ -18,6 +18,11 @@ Route::get( 'user/{id}', [ 'as' => 'viewUser', 'uses' => 'PageController@viewUse
 
 Route::get( 'updateProfil', [ 'as' => 'updateProfil', 'uses' => 'PageController@editProfil', 'middleware' => 'auth' ] );
 Route::post( 'updateProfil', [ 'as' => 'updateProfil', 'uses' => 'PageController@updateProfil', 'middleware' => 'auth' ] );
+
+// Theme color
+Route::get( 'changeColor', [ 'as' => 'changeColor', 'uses' => 'PageController@changeColor', 'middleware' => 'auth' ] );
+Route::get( 'updateColor/{number}', [ 'as' => 'updateColor', 'uses' => 'PageController@updateColor', 'middleware' => 'auth' ] );
+
 // Update password
 Route::get( 'updatePassword', [ 'as' => 'updatePassword', 'uses' => 'PageController@editPassword', 'middleware' => 'auth' ] );
 Route::post( 'updatePassword', [ 'as' => 'updatePassword', 'uses' => 'PageController@updatePassword', 'middleware' => 'auth' ] );
