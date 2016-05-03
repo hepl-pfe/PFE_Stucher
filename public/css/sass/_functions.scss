@@ -19,4 +19,9 @@
   box-shadow: $x $y $blur $color;
 }
 
+@mixin noSpaceFont() {
+  font-family: $nospace;
+  * {
+    font-family: $mainFont;
+  }
 }
