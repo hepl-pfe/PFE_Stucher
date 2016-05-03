@@ -33,6 +33,13 @@
 			-ms-transition: all .3s ease;
 			-o-transition: all .3s ease;
 			transition: all .3s ease;
+			&.active {
+				background-color: #fff;
+				color: $mainColor;
+				&:hover, &:focus {
+					background-color: $white;
+				}
+			}
 			&:hover, &:focus {
 				background-color: $secondColor;
 			}
