@@ -4,3 +4,13 @@
   -ms-border-radius: $radius;
   border-radius: $radius;
 }
+
+@mixin transition($element) {
+  -webkit-transition: $element ease $transitionTime;
+  -moz-transition: $element ease $transitionTime;
+  -ms-transition: $element ease $transitionTime;
+  -o-transition: $element ease $transitionTime;
+  transition: $element ease $transitionTime;
+}
+
+}
