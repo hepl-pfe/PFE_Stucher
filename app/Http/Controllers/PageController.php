@@ -41,9 +41,11 @@ class PageController extends Controller
         
          $users =  $course->users;
          foreach ($users as $user) {
-            if (!in_array($user->id, $myUsers)) {
-                array_push($myUsers, $user->id);
-            }
+             if( $user->pivot->access != 1 ) {
+                 if (!in_array($user->id, $myUsers)) {
+                     array_push($myUsers, $user->id);
+                 }
+             }
          }
         }
         $nbUsers = count($myUsers);
