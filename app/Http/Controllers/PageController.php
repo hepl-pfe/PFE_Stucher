@@ -190,4 +190,16 @@ class PageController extends Controller
         $title = "Créer un compte étudiant";
         return view( 'auth/registerStudent', ['title' => $title] );
     }
+
+    public function changeColor(){
+        $title = "La couleur du thème";
+        return view( 'pages/listColor', ['title' => $title] );
+    }
+
+    public function updateColor( $number ){
+        $user = User::findOrFail( \Auth::user()->id );
+        $user->color = 'color_'.$number;
+        $user->save();
+        return redirect()->back();
+    }
 }
