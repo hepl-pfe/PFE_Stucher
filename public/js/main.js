@@ -121,4 +121,9 @@ jQuery( function($) {
 		}
 	});
 
+	///////////
+	// reduce the active shutter & show when an anchor isset
+	///////////
+	$('.shutterTitle').addClass( 'reduce' );
+
 } );
