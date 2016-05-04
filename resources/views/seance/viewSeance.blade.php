@@ -5,7 +5,6 @@ Carbon::setLocale('fr'); ?>
 @extends( 'layout' )
     @section( 'content' )
     @section( 'title', $title )
-	<h2 class="pageTitle">Séance de cours</h2>
 	<div class="spaceContainer">
 		<a class="btn btn-warning" href="{!! action( 'CourseController@view', [ "id" => $seance->course_id ] ) !!}"><—</a>
 
@@ -24,6 +23,13 @@ Carbon::setLocale('fr'); ?>
 				</ul>
 			</div>
 		@endif
+	<div class="blockTitle">
+		<h2 class="mainTitle"><span class="hidden">Séance du </span>{{ $seance->start_hours->formatLocalized('%A %d %B %Y') }} - {{ $seance->start_hours->formatLocalized('%Hh%M') }}</h2>
+		<h3 class="subTitle">Cours de {{ $seance->course->title }}</h3>
+		<h4 class="bannerUnderTitle seanceDuration" title="de {{ $seance->start_hours->formatLocalized('%Hh%M') }} à {{ $seance->end_hours->formatLocalized('%Hh%M') }}">
+			<span class="icon-clock"></span> {{ $interval->format('%Hh%M') }}
+		</h4>
+	</div>
 
 		<br><br>
 		<div class="panel-group">

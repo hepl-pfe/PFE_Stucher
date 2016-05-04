@@ -3,7 +3,10 @@
 	@section('title', $title)
     @section( 'content' )
 
-		<h2 class="pageTitle">Tous mes cours</h2>
+		<div class="blockTitle">
+			<h2 class="mainTitle">Tous mes cours</h2>
+		</div>
+
 		<div class="spaceContainer">
 			@if ( $courses->count() == null )
 				<p class="list__empty">Aucun cours pour le moment</p>

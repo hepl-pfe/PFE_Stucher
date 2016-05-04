@@ -1,11 +1,13 @@
 @extends('layout')
 @section('title', $title)
 @section('content')
-	<h2 class="mainTitle">Mes informations&nbsp;:</h2>
-	<div class="spaceContainer">
-		<div class="image__container image__container--aboutPage">
-			<img src="{{ url() }}/img/profilPicture/{{ Auth::user()->image }}" alt="Image de profil">
-			<a class="image__bottombutton" href="{{ action( 'PageController@changePicture' ) }}">Modifier le photo de profil</a>
+	<div class="blockTitle">
+		<h2 class="mainTitle">Mon profil</h2>
+		<a href="{!! action( 'PageController@editProfil' ) !!}" class="unlink mainColorfont blockTitle--edit">
+			<span class="icon-pencil icon icon--edit"></span> <span class="hidden">Modifier mon profil</span>
+		</a>
+	</div>
+
 		</div>
 		<div class="aboutPage__label--rightSide">
 			<h3 class="aboutPage__label">Prénom: <span>{{ Auth::user()->firstname }}</span></h3>

@@ -1,7 +1,9 @@
 @extends( 'layout' )
 	@section('title', $title)
     @section( 'content' )
-		<h2 class="pageTitle">Tous mes cours</h2>
+		<div class="blockTitle">
+			<h2 class="mainTitle">Tous mes cours</h2>
+		</div>
 
 		<ul>
 			@if ( $courses->count() == null )

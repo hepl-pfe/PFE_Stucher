@@ -9,8 +9,6 @@ setlocale( LC_ALL, 'fr_FR');
 @extends('layout')
 @section('title', $title)
 @section('content')
-	<h2 class="mainTitle">Mon planning&nbsp;:</h2>
-    <div class="spaceContainer planningPage">
 
 <?php
     // Récuperation des variables passées, on donne soit année; mois; année+mois
@@ -142,6 +140,18 @@ setlocale( LC_ALL, 'fr_FR');
                         <a href="{!! action( 'SeanceController@view', [ "id" => $seance->id ] ) !!}#works">
                             <span>Devoir&nbsp:</span>
                             {{ count($seance->works) }}
+    <div class="blockTitle">
+        <a class="calendar__controller calendar__controller--before calendar__controller--before--month unlink" href="?mois=<?php echo $num_mois-1; ?>&amp;annee=<?php echo $num_an; ?>"><span class="calendar__arrow"></span></a>
+        <h2 class="hidden">Mon planning de {{ $tab_mois[$num_mois] }} {{ $num_an }}</h2>
+        <p class="mainTitle">
+            <?php echo $tab_mois[$num_mois];  ?>
+        </p>
+        <p class="subTitle">
+            <?php echo $num_an;  ?>
+        </p>
+        <a class="calendar__controller calendar__controller--after calendar__controller--after--month unlink" href="?mois=<?php echo $num_mois+1; ?>&amp;annee=<?php echo $num_an; ?>"><span class="calendar__arrow"></span></a>
+    </div>
+
                         </a>
                     @endif
                     @if ( count($seance->tests) != 0 )

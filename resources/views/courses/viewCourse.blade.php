@@ -14,8 +14,10 @@
     @section( 'content' )
     @section( 'title', $title )
 
-	<h1 class="pageTitle">{{$title}}</h1>
-	<div class="spaceContainer">
+	<div class="blockTitle">
+		<h2 class="mainTitle">Cours de {{ $course->title }}</h2>
+		<h3 class="subTitle">Groupe&nbsp;: {{ $course->group }}</h3>
+	</div>
 
 		@if( Auth::user()->status == 1 )
 			<span class="accessToken">Code d'accès au cours: <em title="Ce code permet à vos étudiants de vous retrouver rapidement">{{ $course->access_token }}</em></span>
