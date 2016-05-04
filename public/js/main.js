@@ -154,4 +154,19 @@ jQuery( function($) {
 		$(e.target.parentNode).toggleClass( 'reduce' );
 	});
 
+	///////////
+	// automatic send comment on enter touch
+	///////////
+	$('.comment__box--textarea').keypress( function(e){
+		if (e.shiftKey) {
+			// Aucune action si shit est enfoncé
+		} else {
+			if(e.keyCode == 13 ) {
+				e.preventDefault();
+				$( this).parents( 'form').submit();
+			}
+		}
+	} );
+
+
 } );
