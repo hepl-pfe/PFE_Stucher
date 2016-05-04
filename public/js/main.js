@@ -126,4 +126,25 @@ jQuery( function($) {
 	///////////
 	$('.shutterTitle').addClass( 'reduce' );
 
+	// < show when an anchor isset
+	if( window.location.hash ) {
+		var hash = window.location.hash.substring(1);
+		if($.inArray( hash, shutters ) ) {
+			console.log(shutters);
+			console.log('#'+hash);
+			$('#'+hash).toggleClass( 'reduce' );
+		}
+		// hash found
+	} else {
+		// No hash found
+	}
+
+	var shutters = [];
+
+	$('.shutterTitle').each(function() {
+		shutters.push( $(this).attr('id') );
+	});
+
+	// show when an anchor isset >
+
 } );
