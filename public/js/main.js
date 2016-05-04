@@ -147,4 +147,11 @@ jQuery( function($) {
 
 	// show when an anchor isset >
 
+	$('.shutterTitle').click(function(e) {;
+		$(e.target).toggleClass( 'reduce' );
+	});
+	$('.shutterTitle span').click(function(e) {;
+		$(e.target.parentNode).toggleClass( 'reduce' );
+	});
+
 } );
