@@ -1,41 +1,17 @@
-.list__round {
 	width: 25%;
-	float: left;
-	margin-bottom: 2em;
-	display: table;
-	border-spacing: 10px 0px;
 }
-.list__round a {
-	width: 90%;
 	margin: auto;
-	height: 12em;
-	font-size: 1.2em;
-	display: table-cell;
-	border-spacing: 10px;
-    border-collapse: separate;
 	vertical-align: middle;
 	text-align: center; 
 	background-color: #FFF;
-	border: 1px solid $mainColor;
-	border-radius: 50%;
 	text-decoration: none;
-	color: $mainColor;
-	&:hover {
 		color: #fff;
-		background-color: $mainColor;
 	}
 	& span {
-		margin: 1em;
 		display: block;
 	}
 }
 
-.list__round--empty a {
-	border: 1px solid $grayLight;
-	color: $grayLight;
-	&:hover {
-		color: #fff;
-		background-color: $grayLight;
 	}
 }
 
