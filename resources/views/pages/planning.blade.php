@@ -45,101 +45,6 @@ setlocale( LC_ALL, 'fr_FR');
 ?>
 
 
-    <table>
-        <tr><td colspan="7" align="center"><a href="?mois=<?php echo $num_mois-1; ?>&amp;annee=<?php echo $num_an; ?>"><<</a>&nbsp;&nbsp;<?php echo $tab_mois[$num_mois];  ?>&nbsp;&nbsp;<a href="?mois=<?php echo $num_mois+1; ?>&amp;annee=<?php echo $num_an; ?>">>></a></td></tr>
-        <tr><td colspan="7" align="center"><a href="?mois=<?php echo $num_mois; ?>&amp;annee=<?php echo $num_an-1; ?>"><<</a>&nbsp;&nbsp;<?php echo $num_an;  ?>&nbsp;&nbsp;<a href="?mois=<?php echo $num_mois; ?>&amp;annee=<?php echo $num_an+1; ?>">>></a></td></tr>
-        <?php
-        echo'<tr>';
-        for($i = 1; $i <= 7; $i++){
-            echo('<td>'.$tab_jours[$i].'</td>');
-        }
-        echo'</tr>';
-
-        for($i=0;$i<6;$i++) {
-            echo "<tr>";
-            for($j=0;$j<7;$j++) {
-                //echo $tab_cal[$i][$j]. ' - ';
-                $mois_actif = $num_mois;
-
-                if ( (strpos($tab_cal[$i][$j],"*") !== false )) {
-                    $mois_actif = $num_mois-1;
-                }
-                if ( (strpos($tab_cal[$i][$j],"**") !== false )) {
-                    $mois_actif = $num_mois+1;
-                }
-
-                // Get the activ day
-                $actifDay = $tab_cal[$i][$j];
-                $actifDayCorrect = str_replace("*","",$tab_cal[$i][$j]);
-                $actifMonth = $num_mois;
-                $previousMonth = $num_mois-1;
-                $nextMonth = $num_mois+1;
-                $actifYear = $num_an;
-                if( strlen($actifDay) == 1){ $actifDay = '0'.$actifDay; };
-                if( strlen($actifDayCorrect) == 1){ $actifDayCorrect = '0'.$actifDayCorrect; };
-                if( strlen($actifMonth) == 1){ $actifMonth = '0'.$actifMonth; };
-                if( strlen($previousMonth) == 1){ $previousMonth = '0'.$previousMonth; };
-                if( strlen($nextMonth) == 1){ $nextMonth = '0'.$nextMonth; };
-
-                $defineActiveDay = '';
-                if (($actifYear.'-'.$actifMonth.'-'.$actifDay) == $the_active_day) {
-                    $defineActiveDay = 'active_day ';
-                }
-
-                $hasASeance = '';
-                // Show when there is a seance in the current month
-                if ( in_array( ($actifYear.'-'.$actifMonth.'-'.$actifDay), $allSeances ) ) {
-                    $hasASeance = 'has_a_seance ';
-                }
-                if ( ( substr( $actifDay, 0, 1 ) == "*" ) && ( substr( $actifDay, 1, 1 ) != "*" ) ) {
-                    // Show when there is a seance in the previous month
-                    if ( in_array( ($actifYear.'-'.$previousMonth.'-'.$actifDayCorrect), $allSeances ) ) {
-                        $hasASeance = 'has_a_seance ';
-                    }
-                }
-                if ( substr( $actifDay, 0, 2 ) == "**" ) {
-                    // Show when there is a seance in the next month
-                    if ( in_array( ($actifYear.'-'.$nextMonth.'-'.$actifDayCorrect), $allSeances ) ) {
-                        $hasASeance = 'has_a_seance ';
-                    }
-                }
-
-                $isToday = '';
-                if ( $num_mois == date("n") && $num_an == date("Y") && $tab_cal[$i][$j] == date("j") )
-                {
-                    $isToday = 'today ';
-                }
-
-
-                echo "<td class='$defineActiveDay'>".'<a class="'.$hasASeance.$isToday.'" href="?jour='.str_replace("*","",$tab_cal[$i][$j]).'&mois='.$mois_actif.'&annee='.$num_an.'">'.((strpos($tab_cal[$i][$j],"*")!==false)?'<font color="#aaaaaa">'.str_replace("*","",$tab_cal[$i][$j]).'</font>':$tab_cal[$i][$j])."</a></td>";
-            }
-            echo "</tr>";
-        }
-        ?>
-    </table>
-
-    @if( empty( $currentSeances ) )
-        <!-- SI AUCUNE SÉANCE -->
-        <p>Aucune séance prévue cette journée</p>
-    @else
-        <ul>
-        @foreach( $currentSeances as $seance )
-            <li>
-                <?php $theCourse = $seance->course; ?>
-                Cours de {{ $theCourse->title }}
-                <br>
-                <span>de {{ $seance->start_hours->formatLocalized('%Hh%M') }} à {{ $seance->end_hours->formatLocalized('%Hh%M') }}</span>
-                <br>
-                @if ( \Auth::user()->status === 1 )
-                    <a class="btn btn-warning" href="{!! action( 'SeanceController@edit', [ "id" => $seance->id ] ) !!}">Modifier</a>
-                    <a class="btn btn-warning" href="{!! action( 'SeanceController@delete', [ "id" => $seance->id ] ) !!}">Supprimer</a>
-                @endif
-                <br>
-                <div>
-                    @if ( count($seance->works) != 0 )
-                        <a href="{!! action( 'SeanceController@view', [ "id" => $seance->id ] ) !!}#works">
-                            <span>Devoir&nbsp:</span>
-                            {{ count($seance->works) }}
     <div class="blockTitle">
         <a class="calendar__controller calendar__controller--before calendar__controller--before--month unlink" href="?mois=<?php echo $num_mois-1; ?>&amp;annee=<?php echo $num_an; ?>"><span class="calendar__arrow"></span></a>
         <h2 class="hidden">Mon planning de {{ $tab_mois[$num_mois] }} {{ $num_an }}</h2>
@@ -152,30 +57,174 @@ setlocale( LC_ALL, 'fr_FR');
         <a class="calendar__controller calendar__controller--after calendar__controller--after--month unlink" href="?mois=<?php echo $num_mois+1; ?>&amp;annee=<?php echo $num_an; ?>"><span class="calendar__arrow"></span></a>
     </div>
 
-                        </a>
-                    @endif
-                    @if ( count($seance->tests) != 0 )
-                        <a href="{!! action( 'SeanceController@view', [ "id" => $seance->id ] ) !!}#tests">
-                            <span>Interrogation&nbsp:</span>
-                            {{ count($seance->tests) }}
-                        </a>
-                    @endif
-                    <?php $comments = Comment::where('context', '=', 1)->where('for', $seance->id)->get(); ?>
-                    @if ( isset($comments) )
-                        @if ( count($comments) != 0 )
-                            <a href="{!! action( 'SeanceController@view', [ "id" => $seance->id ] ) !!}#comments">
-                                <span>Commentaires&nbsp;:</span>
-                                {{ count($comments) }}
-                            </a>
-                        @endif
+    <!-- dd_moreButton -->
+    <div class="dd_moreButton">
+        <input type="checkbox" id="dd_moreButton">
+        <label for="dd_moreButton" class="dd_moreButton--button"><span></span><span></span></label>
 
-                    @endif
-                </div>
-            </li>
-                <br>
-        @endforeach
+        <ul class="dd_moreButton--content">
+            @if( Auth::user()->status == 1 )
+                <li><a href="{!! action( 'CourseController@create' ) !!}">Créer un cours</a></li>
+            @endif
         </ul>
-    @endif
+    </div>
+
+    <div class="whiteBanner whiteBanner--calendar">
+        <a class="calendar__controller calendar__controller--before calendar__controller--before--month unlink" href="?mois=<?php echo $num_mois-1; ?>&amp;annee=<?php echo $num_an; ?>"><span class="calendar__arrow"></span></a>
+        <table class="calendar__box">
+            <tr>
+            @for( $i = 1; $i <= 7; $i++ ) <!-- TABLE TITLE -->
+                <th class="caldendar_box--title">{{ $tab_jours[$i] }}</th>
+            @endfor
+            </tr>
+
+            @for( $i = 0; $i < 6; $i++ )
+                <tr>
+                    @for( $j = 0; $j < 7; $j++ )
+                    <?php
+                        $mois_actif = $num_mois;
+
+                        if ( (strpos($tab_cal[$i][$j],"*") !== false )) {
+                            $mois_actif = $num_mois-1;
+                        }
+                        if ( (strpos($tab_cal[$i][$j],"**") !== false )) {
+                            $mois_actif = $num_mois+1;
+                        }
+
+                        // Get the activ day
+                        $actifDay = $tab_cal[$i][$j];
+                        $actifDayCorrect = str_replace("*","",$tab_cal[$i][$j]);
+                        $actifMonth = $num_mois;
+                        $previousMonth = $num_mois-1;
+                        $nextMonth = $num_mois+1;
+                        $actifYear = $num_an;
+                        if( strlen($actifDay) == 1){ $actifDay = '0'.$actifDay; };
+                        if( strlen($actifDayCorrect) == 1){ $actifDayCorrect = '0'.$actifDayCorrect; };
+                        if( strlen($actifMonth) == 1){ $actifMonth = '0'.$actifMonth; };
+                        if( strlen($previousMonth) == 1){ $previousMonth = '0'.$previousMonth; };
+                        if( strlen($nextMonth) == 1){ $nextMonth = '0'.$nextMonth; };
+
+                        $defineActiveDay = '';
+                        if (($actifYear.'-'.$actifMonth.'-'.$actifDay) == $the_active_day) {
+                            $defineActiveDay = 'active_day ';
+                        }
+
+                        $hasASeance = '';
+                        // Show when there is a seance in the current month
+                        if ( in_array( ($actifYear.'-'.$actifMonth.'-'.$actifDay), $allSeances ) ) {
+                            $hasASeance = 'has_a_seance ';
+                        }
+                        if ( ( substr( $actifDay, 0, 1 ) == "*" ) && ( substr( $actifDay, 1, 1 ) != "*" ) ) {
+                            // Show when there is a seance in the previous month
+                            if ( in_array( ($actifYear.'-'.$previousMonth.'-'.$actifDayCorrect), $allSeances ) ) {
+                                $hasASeance = 'has_a_seance ';
+                            }
+                        }
+                        if ( substr( $actifDay, 0, 2 ) == "**" ) {
+                            // Show when there is a seance in the next month
+                            if ( in_array( ($actifYear.'-'.$nextMonth.'-'.$actifDayCorrect), $allSeances ) ) {
+                                $hasASeance = 'has_a_seance ';
+                            }
+                        }
+
+                        $isToday = '';
+                        if ( $num_mois == date("n") && $num_an == date("Y") && $tab_cal[$i][$j] == date("j") )
+                        {
+                            $isToday = 'today ';
+                        }
+                    ?>
+                    <td>
+                        <a href="?jour={{ str_replace("*","",$tab_cal[$i][$j]) }}&mois={{ $mois_actif }}&annee={{ $num_an }}" class="{{ $defineActiveDay }} {{ $isToday }} @if( strpos( $tab_cal[$i][$j],"*" ) !== false ) otherMonth @endif">
+
+                            <span>
+                                @if( strpos( $tab_cal[$i][$j],"*" ) !== false )
+                                    {{ str_replace("*","",$tab_cal[$i][$j]) }}
+                                @else
+                                    {{ $tab_cal[$i][$j] }}
+                                @endif
+                            </span>
+                            <span class="{{ $hasASeance }}"></span>
+                        </a>
+                    </td>
+                    @endfor
+                </tr>
+            @endfor
+        </table>
+        <a class="calendar__controller calendar__controller--after calendar__controller--after--month unlink" href="?mois=<?php echo $num_mois+1; ?>&amp;annee=<?php echo $num_an; ?>"><span class="calendar__arrow"></span></a>
+    </div>
+
+
+    <div class="box--group">
+        @if( empty( $currentSeances ) )
+            <p>Aucune séance prévue cette journée</p>
+            <a href="">AJOUTER UNE SÉANCE À CETTE JOURNÉE?</a>
+        @else
+            <?php $pos = 1; ?>
+        @foreach( $currentSeances as $seance )
+            <div class="box box--demis box--demis--continue box--shadow box--seance--calendar {{ $pos%2 ? 'odd' : 'even' }}">
+                <ul class="box__group--list seance__group--list">
+                    <li class="box__group--list--list box__seanceCourse">
+                        <div class="box__head box__blockTitle box__blockTitle--dark box__head--calendar">
+                            <h3>Cours de {{ $seance->course->title }}</h3>
+                            <h4>Le {{ $seance->start_hours->formatLocalized('%d-%m-%Y') }} de {{ $seance->start_hours->formatLocalized('%Hh%M') }} à {{ $seance->end_hours->formatLocalized('%Hh%M') }}</h4>
+                            @if( Auth::user()->status == 1 )
+                                <div class="boxTitle__teahcerIcon--group">
+                                    <a title="Modifier" class="icon icon-note unlink boxTitle__editIcon boxTitle__teacherIcon" href="{!! action( 'SeanceController@edit', [ "id" => $seance->id ] ) !!}">
+                                        <span class="hidden">modifier</span>
+                                    </a>
+                                    <a title="Supprimer" class="icon icon-trash unlink boxTitle__deleteIcon boxTitle__teacherIcon" href="{!! action( 'SeanceController@delete', [ "id" => $seance->id ] ) !!}">
+                                        <span class="hidden">Supprimer</span>
+                                    </a>
+                                </div>
+                            @endif
+                            <div class="clear"></div>
+                        </div>
+                        <div class="box__conent box__content-calendar">
+                        <a class="box__seanceDate" href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}">
+                            <span class="box__seanceDate--day">{{ $seance->start_hours->formatLocalized('%A') }}</span>
+                            <span class="box__seanceDate--dayNumber">{{ $seance->start_hours->formatLocalized('%d') }}</span>
+                            <span class="box__seanceDate--month">{{ $seance->start_hours->formatLocalized('%B') }}</span>
+                            <span class="box__highlight box__seanceDate--hour">{{ $seance->start_hours->formatLocalized('%Hh%M') }}</span>
+                        </a>
+                        <div class="box__seanceCourse--info">
+                            <!-- HOMEWORKS -->
+                            <a href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}#works" class="box__seanceCourse--homework box__seanceCourse--numbers">
+                                <span class="icon-briefcase"></span>
+                                @if( count($seance->works) !== 0 )
+                                    Devoirs&#8239;: {{ count($seance->works) }}
+                                @else
+                                    Devoirs&#8239;: 0
+                                @endif
+                            </a>
+
+                            <!-- TESTS -->
+                            <a href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}#tests" class="box__seanceCourse--test box__seanceCourse--numbers">
+                                <span class="icon-book-open"></span>
+                                @if( count($seance->tests) !== 0 )
+                                    Interrogations&#8239;: {{ count($seance->tests) }}
+                                @else
+                                    Interrogations&#8239;: 0
+                                @endif
+                            </a>
+
+                            <!-- COMMENTS -->
+                            <a href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}#comments" class="box__seanceCourse--comment box__seanceCourse--numbers">
+                                <span class="icon-bubbles"></span>
+                                @if( count($seance->comments) !== 0 )
+                                    Commentaires&#8239;: {{ count($seance->comments) }}
+                                @else
+                                    Commentaires&#8239;: 0
+                                @endif
+                            </a>
+                        </div>
+                        <div class="clear"></div>
+                    </li>
+                </ul>
+            </div>
+            <?php $pos++; ?>
+        @endforeach
+        @endif
+    </div>
 
 
 @endsection

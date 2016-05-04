@@ -5,20 +5,38 @@
 			<h2 class="mainTitle">Tous mes cours</h2>
 		</div>
 
-		<ul>
+		<!-- dd_moreButton -->
+		<div class="dd_moreButton">
+			<input type="checkbox" id="dd_moreButton">
+			<label for="dd_moreButton" class="dd_moreButton--button"><span></span><span></span></label>
+
+			<ul class="dd_moreButton--content">
+				<li><a href="{!! action( 'CourseController@create' ) !!}">Ajouter un cours</a></li>
+			</ul>
+		</div>
+
+		<ul class="list__course_box--group">
 			@if ( $courses->count() == null )
 				<li class="list__empty">Aucun cours pour le moment</li>
 			@endif
 			@foreach ($courses as $course)
-				<li class="list__round">
+				<li class="list__course_box--list course_box">
 					<a href="{!! action( 'CourseController@view', [ 'id' => $course->id ] ) !!}">
-						<span class="list__name">Cours de {{ $course->title }}</span>
-						<span class="list__group">groupe {{ $course->group }}</span>
+						<span class="hidden">Voir le cours</span>
+						<h3>
+							<span class="box_subTitle">Cours de </span>
+							<span class="box_mainTitle">{{ $course->title }} </span>
+							<span class="box_subTitle">Groupe {{ $course->group }}</span>
+						</h3>
 					</a>
 				</li>
 			@endforeach
-	    		<li class="list__round list__round--empty">
-	    			<a href="{!! action( 'CourseController@create' ) !!}">Créer un nouveau cours</a>
+	    		<li class="list__course_box--list--add list__course_box--list course_box">
+	    			<a href="{!! action( 'CourseController@create' ) !!}">
+						<span class="hidden">Créer un nouveau cours</span>
+						<span></span>
+						<span></span>
+					</a>
 	    		</li>
     	</ul>
     	@include( 'errors.profilError' )

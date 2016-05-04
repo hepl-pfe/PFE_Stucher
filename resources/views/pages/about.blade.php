@@ -8,34 +8,91 @@
 		</a>
 	</div>
 
+	<!-- dd_moreButton -->
+	<div class="dd_moreButton">
+		<input type="checkbox" id="dd_moreButton">
+		<label for="dd_moreButton" class="dd_moreButton--button"><span></span><span></span></label>
+
+		<ul class="dd_moreButton--content">
+			<li><a href="{!! action( 'CourseController@create' ) !!}">Créer un cours</a></li>
+			<li><a href="{!! action( 'PageController@editProfil' ) !!}">Modifier mon profil</a></li>
+			<li><a href="{{ action( 'PageController@changePicture' ) }}">Changer la photo de profil</a></li>
+			<li><a href="{!! action( 'PageController@deleteProfil' ) !!}">Supprimer mon compte</a></li>
+		</ul>
+	</div>
+
+	<div class="box--group">
+		<!-- Profil photo -->
+		<div class="box_profilPicture box__profilImage box__profilImage--profilPage">
+			<img class="box__profilImage" src="{{ url() }}/img/profilPicture/{{ Auth::user()->image }}" alt="Image de profil">
+			<a class="image__bottombutton" href="{{ action( 'PageController@changePicture' ) }}">Changer la photo</a>
 		</div>
-		<div class="aboutPage__label--rightSide">
-			<h3 class="aboutPage__label">Prénom: <span>{{ Auth::user()->firstname }}</span></h3>
-			<h3 class="aboutPage__label">Nom: <span>{{ Auth::user()->name }}</span></h3>
-			<p class="aboutPage__label">Email: <span>{{ Auth::user()->email }}</span></p>
+		<!-- id information -->
+		<div class="box box--demis box--demis--left box--shadow box_profil--picture">
+			<ul class="box__group--list profil__group--list">
+				<li class="box__group--list--list box__profilInformation">
+					<h3><span class="icon icon--text icon--text--aboutPage icon-user mainColorfont"></span> {{ Auth::user()->firstname }} {{ Auth::user()->name }}</h3>
+				</li>
+				<li class="box__group--list--list box__profilInformation">
+					<span class="icon icon--text icon--text--aboutPage icon-envelope mainColorfont"></span> {{ Auth::user()->email }}
+				</li>
+				<li class="box__group--list--list box__profilInformation">
+					<span class="icon icon--text icon--text--aboutPage icon-badge mainColorfont"></span>
+					@if( Auth::user()->status == 1 )
+					Professeur
+					@else
+					Élève
+					@endif
+				</li>
+			</ul>
 		</div>
-		<div class="clear"></div>
-		<div class="aboutPage__label--bottomContent">
-			<div class="aboutPage__info--container">
+
+		<!-- Course information -->
+		<div class="box box--demis box--demis--right box--shadow">
+			<ul class="box__group--list profil__group--list">
 				@if( Auth::user()->status == 1 )
-					<a class="aboutPage__info" href="{{ action( 'CourseController@index' ) }}">
-					<span>Nombre de cours:</span>
-					<span>{{ $nbCourses }}</span>
-					</a>
-					<a class="aboutPage__info" href="">
-					<span>Nombre d'élève:</span>
-					<span>{{ $nbUsers }}</span></a>
+					<li class="box__group--list--list box__profilInformation">
+						<a class="unlink" href="{{ action( 'CourseController@index' ) }}">
+							<span class="icon icon--text icon--text--aboutPage icon-briefcase mainColorfont"></span><span class="hidden">Nombre de cours&nbsp:</span>
+							<span> {{ $nbCourses }} cours</span>
+						</a>
+					</li>
+					<li class="box__group--list--list box__profilInformation">
+						<a class="unlink" href="">
+							<span class="icon icon--text icon--text--aboutPage icon-users mainColorfont"></span><span class="hidden">Nombre d'élèves&nbsp:</span>
+							@if( $nbUsers == 1 )
+								<span> {{ $nbUsers }} élève</span>
+							@else
+								<span> {{ $nbUsers }} élèves</span>
+							@endif
+						</a>
+					</li>
 				@elseif( Auth::user()->status == 2 )
-					<a class="aboutPage__info--alone" href="{{ action( 'CourseController@index' ) }}">
-					<span>Nombre de cours:</span>
-					<span>{{ $nbCoursesStudent }}</span></a>
+					<li class="box__group--list--list box__profilInformation">
+						<a class="unlink" href="{{ action( 'CourseController@index' ) }}">
+							<span class="icon icon--text icon--text--aboutPage icon-graduation mainColorfont"></span><span class="hidden">Cours suivis&nbsp:</span>
+							<span> {{ $nbCoursesStudent }} cours suivi</span>
+						</a>
+					</li>
 				@endif
-				<div class="clear"></div>
-			</div>
-			<div class="aboutPage__info--container--2">
-				<a href="{!! action( 'PageController@editProfil' ) !!}" class="btn btn-warning">Modifier mon profil</a>
-				<a href="{!! action( 'PageController@deleteProfil' ) !!}" class="btn btn-warning">Supprimer mon profil</a>
-			</div>
+			</ul>
+		</div>
+
+		<!-- color theme -->
+		<div class="box box--demis box--demis--right box--shadow clear-right">
+			<ul class="box__group--list profil__group--list">
+				<li class="box__group--list--list box__profilInformation">
+					<span class="icon icon--text icon--text--aboutPage icon-heart icon-user mainColorfont"></span>
+					Thème couleur
+					<a class="theme__color--profil" href="{{ action( 'PageController@changeColor' ) }}" title="Changer la couleur du thème"><span class="hidden">Changer la couleur du thème</span></a>
+				</li>
+			</ul>
 		</div>
 	</div>
+
+	<ul class="selectColor--popup">
+		<li class="color-1"><a class="unlink hideText" href="{{ action( 'PageController@updateColor', ['$number' => '1'] ) }}">Couleur 1</a></li>
+		<li class="color-2"><a class="unlink hideText" href="{{ action( 'PageController@updateColor', ['$number' => '2'] ) }}">Couleur 2</a></li>
+		<li class="color-3"><a class="unlink hideText" href="{{ action( 'PageController@updateColor', ['$number' => '3'] ) }}">Couleur 3</a></li>
+	</ul>
 @endsection
