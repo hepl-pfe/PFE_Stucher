@@ -106,6 +106,9 @@ jQuery( function($) {
 			$('.menuToggle').click(function() {
 				$('#dd_moreButton')['0'].checked = false;
 			} );
+			if( ( (e.target).parentNode ).className != 'dd_moreButton' ) {
+				$('#dd_moreButton')['0'].checked = false;
+			}
 		}
 
 		// Try to hide the more button on click outside it
