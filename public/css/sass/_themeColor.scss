@@ -1,0 +1,285 @@
+@mixin colour-scheme( $mainColor ) {
+  .header {
+    background-color: $mainColor;
+  }
+  .mainNav__ul li a {
+    &:hover, &:focus {
+      background-color: darken( $mainColor, 20% );
+    }
+    &.active {
+      span {
+        color: $mainColor;
+      }
+      &:hover, &:focus {
+        background-color: $white;
+      }
+    }
+  }
+  .mainNav__ul li a.active {
+    color: $mainColor;
+  }
+  .mainColorfont {
+    color: $mainColor;
+  }
+  .mainTitle {
+    color: $mainColor;
+  }
+  .dd_moreButton--button {
+    border: 1px solid $mainColor;
+    span {
+      background-color: $mainColor;
+    }
+  }
+  .dd_moreButton--content {
+    border: 1px solid $mainColor;
+    &:before {
+      border: 1px solid $mainColor;
+      border-bottom: none;
+      border-right: none;
+    }
+    & li a {
+      color: $mainColor;
+      &:focus, &:hover {
+        background-color: $mainColor;
+        color: white;
+      }
+    }
+  }
+
+  // About Page
+  .theme__color--profil {
+    background-color: $mainColor;
+  }
+  .box__profilImage--profilPage {
+    @include shadow( 0, 0, 0px, 2px $mainColor );
+  }
+
+  // IndexCourse
+  .list__course_box--list a {
+    border: 1px solid $mainColor;
+    &:hover, &:focus, &:active {
+      background-color: $mainColor;
+      & span {
+        &.box_mainTitle {
+          color: $white;
+        }
+      }
+    }
+    & span {
+      &.box_mainTitle {
+        color: $mainColor;
+      }
+    }
+  }
+  .list__course_box--list--add a {
+    border: 1px solid $grayMiddleLight;
+    color: $grayMiddleLight;
+    &:hover, &:focus, &:active {
+      color: #fff;
+      background-color: $grayLight;
+    }
+  }
+
+  // View course
+  .box__group--list--list {
+    .box__seanceDate {
+      &:hover, &:focus, &:active {
+        .box__highlight {
+          background-color: $mainColor;
+        }
+      }
+    }
+  }
+
+  .box__bottomLink {
+    &.box__bottomLink--dark {
+      &:hover, &:focus, &:active {
+        background-color: $mainColor;
+      }
+    }
+  }
+
+  .shutterTitle {
+    background-color: $mainColor;
+  }
+
+  .comment__box--button {
+    span {
+      &:hover, &:focus, &:active {
+        color: darken( $mainColor, 20% );
+      }
+    }
+  }
+
+  // Calendar
+  .calendar__box {
+    a {
+      &:active {
+        background-color: rgba( $mainColor, 0.3 );
+      }
+      &.active_day {
+        background-color: $mainColor;
+        .has_a_seance {
+          background-color: darken( $mainColor, 15% );
+        }
+      }
+      &.today {
+        color: $mainColor;
+        &.active_day {
+          color: $white;
+        }
+      }
+    }
+    .caldendar_box--title {
+      color: $mainColor;
+    }
+  }
+
+  .calendar__controller {
+    &:hover .calendar__arrow, &:focus .calendar__arrow, &:active .calendar__arrow {
+      border-color: $mainColor;
+    }
+  }
+
+
+  .box__group--list--list {
+    .box__seanceDate {
+      &:hover, &:focus, &:active {
+        .box__highlight {
+          background-color: $mainColor;
+        }
+      }
+    }
+  }
+
+  .box__bottomLink {
+    &.box__bottomLink--dark {
+      &:hover, &:focus, &:active {
+          background-color: $mainColor;
+      }
+    }
+  }
+
+  .box__group--list--list
+    .box__seanceDate {
+    &:hover, &:focus, &:active {
+      span.box__seanceDate--hour {
+        background-color: darken( $mainColor, 20% );
+      }
+    }
+    span.box__seanceDate--hour {
+      background-color: $mainColor;
+    }
+  }
+
+  .box__seanceCourse--numbers span {
+    color: $mainColor;
+  }
+
+  // NOTIFICATION
+  .notification__group__header {
+    border-right: 1px solid $mainColor;
+  }
+  .notification__title {
+    background-color: darken( $mainColor, 20% );
+  }
+  .notification__item {
+    border-top: 0.5px solid darken( $mainColor, 20% );
+  }
+  .notification__item--null {
+    color: $grayMiddleLight;
+  }
+  .notification__item--more a {
+    background-color: darken( $mainColor, 20% );
+    border-top: 1px solid darken( $mainColor, 20% );
+    border-right: 1px solid darken( $mainColor, 20% );
+    &:hover, &:focus {
+      color: darken( $mainColor, 20% );
+      background-color: $white;
+      border-top: 1px solid $mainColor;
+      border-right: 1px solid $mainColor;
+    }
+  }
+
+  .notification__group__page {
+    .pagination {
+      li {
+        &.active a, &.active span {
+          color: $white;
+          background-color: $mainColor;
+        }
+        &:first-child a, &:first-child span, &:last-child a, &:last-child span {
+          &:hover, &:focus, &:active {
+            color: $mainColor;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and ( max-width: 768px ) { // phones landscape
+    .mainNav__ul {
+      background-color: $mainColor;
+    }
+
+    .dd_moreButton--button {
+      span {
+        background-color: $white;
+      }
+    }
+
+    .dd_moreButton--content {
+      background-color: $mainColor;
+      border: none;
+      &:before {
+        content: none;
+      }
+      & li a {
+        color: $white;
+        &:focus, &:hover {
+          background-color: darken( $mainColor, 20% );
+          color: white;
+        }
+      }
+    }
+
+  }
+
+  @media screen and ( max-width: 490px ) { // phones portrait
+    .list__course_box--list a {
+      border: none;
+    }
+  }
+
+}
+
+.default {
+  @include colour-scheme( $color-1 );
+}
+.color_1 {
+  @include colour-scheme( $color-1 );
+}
+.color_2 {
+  @include colour-scheme( $color-2 );
+}
+.color_3 {
+  @include colour-scheme( $color-3 );
+}
+.color_4 {
+  @include colour-scheme( $color-4 );
+}
+.color_5 {
+  @include colour-scheme( $color-5 );
+}
+.color_6 {
+  @include colour-scheme( $color-6 );
+}
+.color_7 {
+  @include colour-scheme( $color-7 );
+}
+.color_8 {
+  @include colour-scheme( $color-8 );
+}
+.color_9 {
+  @include colour-scheme( $color-9 );
+}

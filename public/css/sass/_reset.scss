@@ -53,3 +53,8 @@ table {
 form, input, textarea, button, label  {
 	display: block;
 	box-sizing: border-box;
+}
+
+input, textarea, button, a {
+	outline: none;
+}

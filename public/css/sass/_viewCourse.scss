@@ -1,90 +1,46 @@
-	}
+.infoBlock {
+	@include noSpaceFont();
+	li {
+		display: inline-block;
+		width: 50%;
+		&:last-child a {
+			border-right: none;
+		}
+		a {
+			display: block;
+			color: $white;
+			text-decoration: none;
+			text-align: center;
+			padding-top: 0.5em;
+			padding-bottom: 0.5em;
+			border-right: 1px solid $white;
+			span {
+				display: block;
+				&:first-child {
+					font-size: 0.8em;
+					margin-bottom: 1em;
+				}
+				+ span {
+					font-size: 1.5em;
+				}
+			}
 		}
 	}
-	}
-}
-
-
-.btn_addSeance {
-	margin: auto;
-	display: block;
-	width: 15em;
-	margin-top: 1em;
-	margin-bottom: 1em;
-	border: 1px solid $secondColor;
-	background-color: #fff;
-	color: $secondColor;
-	text-align: center;
-	&:hover {
-		background-color: $secondColor;
-		color: #fff;
-	}
-}
-
-.seance__item {
-	display: block;
-	padding: 1em;
-	border-top: 1px solid $secondColor;
-	&:first-child {
-		border-top: none;
-	}
-	& .the_seance {
-		color: $secondColor;
-		text-decoration: none;
-	}
-}
-
-.update {
-	background-color: orange;
-	color: white;
-	&:hover, &:focus {
-		text-decoration: none;
-	}
-}
-.delete {
-	background-color: red;
-	color: white;
-	&:hover, &:focus {
-		text-decoration: none;
-	}
-}
-
-.seance__item--button {
-	float: right;
-	margin-left: 0.5em;
-	padding: 0.2em;
-	border-radius: 5px;
-	text-decoration: none;
-	color: white;
-}
-
-.course__diary--list li {
-	padding: 1em;
-	border-top: 1px solid $secondColor;
-	&:first-child {
-		border-top: none;
-	}
-	& a {
-		color: $mainColor;
-		text-decoration: none;
-		&:hover, &:focus {
-			text-decoration: underline;
+	&--teacher {
+		li {
+			width: 33.333%;
 		}
 	}
+	&--dark {
+		background-color: $grayDark;
+	}
 }
 
-.groupList__type1 {
-	list-style-type: none;
-	padding: 1em;
-	border-top: 1px solid $secondColor;
-	&:first-child {
-		border-top: none;
-	}
-	& a {
-		color: $mainColor;
-		text-decoration: none;
-		&:hover, &:focus {
-			text-decoration: underline;
-		}
-	}
+
+
+
+
+/////// OLD
+.indexNotification {
+
 }

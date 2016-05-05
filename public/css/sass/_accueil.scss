@@ -1,122 +1,324 @@
-.home {
-	//background-image: url("../img/accueilFond.jpg");
-	background-size: 100%;
+.home__header {
 	width: 100%;
-	height: 100%;
+	position: absolute;
+	z-index: 1000;
+	top: 0;
+	border-top: 3px solid $mainColor;
+}
+
+.home__mainLogo--title {
+	text-indent: 1111%;
+	overflow: hidden;
+	white-space: nowrap;
+	background: url("../img/logo_stucher.svg") no-repeat center center;
+	background-size: 80%;
+	height: 5em;
+	width: 25em;
+	margin: auto;
+	margin-top: 10em;
+}
+.home__imageContainer {
+	position: relative;
+}
+.home__arrowBottom {
+	position: absolute;
+	width: 1em;
+	height: 1em;
+	bottom: 1.5em;
+	left: 50%;
+	margin-left: -0.5em;
+	font-size: 2em;
+	color: $white;
+	cursor: pointer;
+	@include transition(all);
+	&:hover, &:focus, &:active {
+		-webkit-transform: scale(1.2);
+		-moz-transform: scale(1.2);
+		-ms-transform: scale(1.2);
+		-o-transform: scale(1.2);
+		transform: scale(1.2);
+	}
+}
+.home__imageContainer__content {
+	position: relative;
+	overflow: hidden;
+	height: 40em;
+	border-bottom: 3px solid $white;
+}
+.home__imageContainer__title {
+	position: absolute;
+	bottom: 2.5em;
+	left: 50%;
+	width: 60%;
+	margin-left: -30%;
+	color: $white;
+	font-size: 3em;
+	z-index: 20;
+	font-weight: bold;
+	text-align: center;
+}
+.home__imageColor {
+	background-color: $mainColor;
+	opacity: 0.3;
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+}
+.home__imageContainer__image {
+	width: 1500px;
+}
+.home__presentation {
+	width: 100%;
+	&--1 {
+		background-color: $mainColor;
+	}
+}
+.home__presentation--connect .home__box--right {
+	background-color: $white;
+	h3 {
+		color: $mainColor;
+	}
+}
+.home__box--content {
+	padding: 1em;
+}
+.connectTitle {
+	text-align: center;
+	font-size: 1.5em;
+	font-style: italic;
+	color: $mainColor;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+.home__box--left {
+	float: left;
+	width: 50%;
+	h3 {
+		width: 90%;
+		margin: auto;
+		color: $white;
+		font-size: 1.6em;
+		text-align: center;
+		margin-bottom: 1em;
+		margin-top: 2em;
+	}
+	p {
+		color: $white;
+		font-size: 1.1em;
+		line-height: 1.5;
+		width: 90%;
+		margin: auto;
+		margin-bottom: 1em;
+		&.leader {
+			font-style: italic;
+		}
+	}
+}
+.home__box--right {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	float: right;
+	width: 50%;
+	vertical-align: middle;
+	img {
+		width: 100%;
+		display: block;
+	}
+}
+
+.home__box--image {
+	overflow: hidden;
+	img {
+		width: 100%;
+		display: block;
+	}
+}
+
+.home__box--left.home__box--image {
+	overflow: hidden;
+	img {
+		vertical-align: top;
+	}
 }
 
 .home__form {
-	width: 50%;
-	margin: auto;
-	margin-top: 5%;
-	background-color: rgba(255, 255, 255, 0.8);
-	box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.8);
-	border: 2px solid $mainColor;
-	padding: 1em;
-	border-radius: 1em;
-	box-sizing: border-box;
-	padding: 1em;
-}
-
-.home__formu {
-	border-bottom: 1px dotted $secondColor;
-	margin-bottom: 1em;
-	padding-bottom: 0.5em;
-}
-
-.home__title {
-	font-size: 2em;
-	margin-bottom: 1em;
-	text-align: center;
-	color: $secondColor;
-}
-
-
-.home__btnPart {
-	float: left;
-	width: 45%;
-}
-
-.home__btnPart+div{
-	margin-left: 10%;
+	.form-group {
+		.home__box__label {
+			@include transition(all);
+			color: $black;
+			font-size: 1em;
+			background-color: $mainColor;
+			color: $white;
+			border-bottom: 1px solid $mainColor;
+			margin-bottom: -1px;
+			display: inline-block;
+			padding: 0.2em 0.5em;
+			@include border-radius( 5px 5px 0 0 );
+			&:hover, &:focus, &:active {
+				background-color: darken( $mainColor, 20%);
+				border-bottom: 1px solid darken( $mainColor, 20%);
+			}
+			+ input {
+				border: 1px solid $mainColor;
+				margin: 0;
+				@include border-radius( 0 5px 5px 5px );
+			}
+		}
+		.form__remember {
+			display: inline-block;
+			width: auto;
+		}
+		label {
+			display: inline-block;
+		}
+		width: 70%;
+		margin: auto;
+		margin-bottom: 1em;
+	}
 }
 
 .home__btn {
-	font-size: 1em;
-	box-sizing: border-box;
+	@include resetButtun();
 	background-color: $mainColor;
-	display: block;
-	width: 100%;
-	text-align: center;
+	color: $white;
 	padding: 1em;
-	color: white;
-	text-decoration: none;
-	border-radius: 5px;
-	border: none;
-	border-bottom: 3px solid $secondColor;
-	cursor: pointer;
-	
-	position:relative;
-	color:#FFF;
-	text-decoration:none;
-	margin:0 auto;
-	border:solid 1px $mainColor;
-	background: $mainColor;
-	
-	-webkit-transition: all 0.1s;
-	-moz-transition: all 0.1s;
-	transition: all 0.1s;
-	
-	-webkit-box-shadow: 0px 5px 0px $secondColor;
-    -moz-box-shadow: 0px 5px 0px $secondColor;
-    box-shadow: 0px 5px 0px $secondColor;
-	&:active {
-		border-bottom: 0px;
-		-webkit-box-shadow: 0px 2px 0px $secondColor;
-	    -moz-box-shadow: 0px 2px 0px $secondColor;
-	    box-shadow: 0px 2px 0px $secondColor;
-	    position:relative;
-	    top:7px;
-	}
-}
-
-.home__send {
-	margin-bottom: 2em;
-}
-
-.home__form .form-group label {
-	color: $mainColor;
-	font-size: 1.2em;
-	margin: 0.5em;
-}
-
-.home__form .form-group span {
-	position: relative;
-	top: -12px;
-}
-
-.home__form .form-group input[type="checkbox"] {
-	width: auto;
-	display: inline-block;
-}
-
-.home__form .form-group input {
-	border: 1px solid $mainColor;
-	background-color: transparent;
-	border-radius: 5px;
-	padding-left: 1em;
-	padding-right: 1em;
-	outline: none;
-	font-size: 1.2em;
-	height: 2em;
 	width: 100%;
 }
 
-@media screen and (max-width: 1150px) {
-	.home {
-		background-size: auto;
-	}	
-	.home__form {
-		width: 80%;
+.home__separator {
+	border-bottom: 1px solid $grayDark;
+	width: 70%;
+	height: 1em;
+	margin: auto;
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+	text-align: center;
+	span {
+		display: inline-block;
+		position: relative;
+		bottom: -0.2em;
+		padding: 0.3em 0.5em;
+		background-color: $white;
+		color: $grayDark;
 	}
+}
+
+.forgetPassword {
+	display: block;
+	float: right;
+	margin-top: 0.2em;
+	text-decoration: underline;
+	font-size: 0.8em;
+	font-style: italic;
+}
+
+.home__link--register{
+	width: 40%;
+	display: block;
+	background-color: $mainColor;
+	color: $white;
+	padding: 1em;
+	text-align: center;
+	&--student {
+		float: left;
+	}
+	&--teacher{
+		float: right;
+	}
+}
+
+.home__formButton {
+	@include transition(all);
+	&:hover, &:focus, &:active {
+		background-color: darken( $mainColor, 20% );
+	}
+}
+
+.home_footer {
+	background-color: $mainColor;
+	color: $white;
+	text-align: center;
+	padding: 0.3em;
+	a {
+		color: $white;
+		font-weight: bold;
+		&:hover, &:focus, &:active {
+			text-decoration: underline;
+		}
+	}
+}
+
+.home__connectZone {
+	position: absolute;
+	right: 1em;
+	top: 1.5em;
+	a {
+		border: 1px solid $white;
+		padding: 0.5em;
+		@include border-radius( 1.5em );
+		color: $white;
+		@include transition(all);
+		&:hover, &:focus, &:active {
+			background-color: $white;
+			background-color: rgba( $white, 0.2);
+			color: $white;
+		}
+	}
+}
+
+@media screen and (max-width: 1250px) {
+
+}
+
+@media screen and (max-width: 900px) {
+	.home__link--register {
+		width: 30%;
+	}
+	.home__box--left, .home__box--right {
+		display: block;
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 790px) {
+	.home__imageContainer__title {
+		font-size: 2em;
+		bottom: 5em;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.forgetPassword {
+		display: block;
+		margin-top: 1em;
+		float: none;
+}
+
+}
+
+@media screen and (max-width: 530px) {
+	.home__mainLogo--title {
+		width: 100%;
+	}
+	.home__imageContainer__title {
+		font-size: 2em;
+		bottom: 5em;
+		width: 90%;
+		left: 35%;
+	}
+	.home__box--left h3 {
+		width: 100%;
+	}
+	.home__separator {
+		width: 100%;
+	}
+	.home__form .form-group {
+		width: 100%;
+	}
+}
+
+@media screen and (max-height: 44em) {
+	.home__arrowBottom {
+		display: none;
+	}	
 }

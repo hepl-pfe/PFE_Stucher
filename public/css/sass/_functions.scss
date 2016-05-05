@@ -19,6 +19,16 @@
   box-shadow: $x $y $blur $color;
 }
 
+@mixin resetButtun() {
+  font-size: 1rem;
+  border: none;
+  background-color: transparent;
+  @include shadow(0, 0, 0, transparent);
+  @include border-radius(0);
+  ouline: none;
+  border-style: none;
+}
+
 @mixin noSpaceFont() {
   font-family: $nospace;
   * {

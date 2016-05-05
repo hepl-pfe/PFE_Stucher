@@ -73,7 +73,6 @@ button {
 }
 
 .mainTitle {
-  color: $mainColor;
   font-size: 1.8em;
   font-weight: 600;
   display: block;
@@ -94,11 +93,15 @@ button {
 .success {
   color: green;
 }
-.mainColorfont {
-  color: $mainColor;
-}
+
 .danger {
   color: red;
+}
+.whiteText {
+  color: $white;
+  &--icon {
+    margin-right: 0.5em;
+  }
 }
 
 body {
