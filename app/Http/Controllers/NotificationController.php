@@ -29,7 +29,8 @@ class NotificationController extends Controller
             ->leftJoin('courses', 'not.course_id', '=', 'courses.id')
             ->leftJoin('seances', 'not.seance_id', '=', 'seances.id')
             ->orderBy('not_id', 'desc')
-            ->paginate(20);
+            ->paginate(10);
+
         return view('notifications/indexNotifications', compact('notifications', 'title', 'activePage'));
     }
 
