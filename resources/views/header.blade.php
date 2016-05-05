@@ -29,7 +29,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- My custom css and fonts -->
-    <link rel="stylesheet" href="{{ url() }}/css/jquery-ui.css">
-    <link rel="stylesheet" href="{{ url() }}/css/jquery-ui.theme.css">
+    {{--<link rel="stylesheet" href="{{ url() }}/css/jquery-ui.css">
+    <link rel="stylesheet" href="{{ url() }}/css/jquery-ui.theme.css">--}}
     <link rel="stylesheet" href="{{ url() }}/css/main.css">
+    <!-- Calendar popup -->
+    <link rel="stylesheet" type="text/css" href="{{ url() }}/calendar-popup/jquery.timepicker.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url() }}/calendar-popup/lib/bootstrap-datepicker.css" />
 </head>
