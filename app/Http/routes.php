@@ -126,3 +126,12 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 // Comments route
 Route::post('comments/create', [ 'as' => 'createComment', 'uses' => 'CommentController@create' ]);
 Route::get('comments/delete/{id}', [ 'as' => 'deleteComment', 'uses' => 'CommentController@delete', 'middleware' => ['auth', 'isTheTeacher'] ]);
+
+// FILES
+Route::get('test/{id_test}/file/{id_file}/delete', [ 'as' => 'deleteTestFile', 'uses' => 'TestController@deleteFile' ]);
+Route::get('work/{id_test}/file/{id_file}/delete', [ 'as' => 'deleteWorkFile', 'uses' => 'WorkController@deleteFile' ]);
+
+Route::get( '/files', function()
+{
+    return 'Euh non… mais non quoi';
+});
