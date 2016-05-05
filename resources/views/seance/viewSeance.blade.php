@@ -29,49 +29,52 @@ Carbon::setLocale('fr'); ?>
 	</div>
 	@endif
 
-	{{--
-	<a class="btn btn-warning" href="{!! action( 'CourseController@view', [ "id" => $seance->course_id ] ) !!}"><—</a>
-	--}}
-
 	<ul class="shutters--group">
 		<!-- Works -->
 		<li class="shutter shutter__seance shutter__seance--works">
 			<h3 id="works" class="shutterTitle shutterTitle--works"><span title="ouvrir/réduire" class="icon-arrow-down"></span> DEVOIRS
-			@if(count($works) == 0)
+			@if( count( $seance->works ) == 0 )
 				(0)
 			@else
-				({{ count($works) }})
+				({{ count( $seance->works ) }})
 			@endif
 			</h3>
 			<div class="box--group">
-				@if ( isset($works) )
-					@if ( count($works) == 0 )
-						<p class="center center--empty">Aucun devoir</p>
-					@else
-						@foreach ($works as $work)
-							<div class="box box--shadow box--work">
-								<div class="box__head">
-									<h4 class="box__blockTitle box__blockTitle--dark @if ( \Auth::user()->status == 1 ) teacher @endif">
-										{{ $work->title }}
-									</h4>
-									@if ( \Auth::user()->status == 1 )
-										<div class="boxTitle__teahcerIcon--group">
-											<a title="Modifier" class="icon icon-note unlink boxTitle__editIcon boxTitle__teacherIcon" href="{{ action( 'WorkController@edit', ['id' => $work->id] ) }}">
-												<span class="hidden">modifier</span>
-											</a>
-											<a title="Supprimer" class="icon icon-trash unlink boxTitle__deleteIcon boxTitle__teacherIcon" href="{!! action( 'WorkController@delete', ['id' => $work->id] ) !!}">
-												<span class="hidden">Supprimer</span>
-											</a>
-											<div class="clear"></div>
-										</div>
-									@endif
-								</div>
-								<div class="box__group--content">
-									{{ $work->description }}
-								</div>
+				@if ( count($seance->works) == 0 )
+					<p class="center center--empty">Aucun devoir</p>
+				@else
+					@foreach ($seance->works as $work)
+						<div class="box box--shadow box--work">
+							<div class="box__head">
+								<h4 class="box__blockTitle box__blockTitle--dark @if ( \Auth::user()->status == 1 ) teacher @endif">
+									{{ $work->title }}
+								</h4>
+								@if ( \Auth::user()->status == 1 )
+									<div class="boxTitle__teahcerIcon--group">
+										<a title="Modifier" class="icon icon-note unlink boxTitle__editIcon boxTitle__teacherIcon" href="{{ action( 'WorkController@edit', ['id' => $work->id] ) }}">
+											<span class="hidden">modifier</span>
+										</a>
+										<a title="Supprimer" class="icon icon-trash unlink boxTitle__deleteIcon boxTitle__teacherIcon" href="{!! action( 'WorkController@delete', ['id' => $work->id] ) !!}">
+											<span class="hidden">Supprimer</span>
+										</a>
+										<div class="clear"></div>
+									</div>
+								@endif
 							</div>
-						@endforeach
-					@endif
+							<div class="box__group--content">
+								{{ $work->description }}
+							</div>
+							@if( count( $work->files ) != 0 )
+								<ul class="box__group--files">
+									@foreach( $work->files as $file )
+										<li class="box__list--files">
+											<a class="box__link--files unlink" download="proposed_file_name" href="{{ url() }}/files/{{ $file->filename }}">{{ $file->title }}</a>
+										</li>
+									@endforeach
+								</ul>
+							@endif
+						</div>
+					@endforeach
 				@endif
 			</div>
 		</li>
@@ -79,41 +82,48 @@ Carbon::setLocale('fr'); ?>
 		<!-- Tests -->
 		<li class="shutter shutter__seance shutter__seance--tests">
 			<h3 id="tests" class="shutterTitle shutterTitle--tests"><span title="ouvrir/réduire" class="icon-arrow-down"></span> INTERROGATIONS
-				@if(count($works) == 0)
+				@if( count($seance->tests) == 0 )
 					(0)
 				@else
-					({{ count($works) }})
+					({{ count( $seance->tests ) }})
 				@endif
 			</h3>
 			<div class="box--group">
-				@if ( isset($tests) )
-					@if ( count($tests) == 0 )
-						<p class="center center--empty">Aucune interrogation</p>
-					@else
-						@foreach ($tests as $test)
-							<div class="box box--shadow box--test">
-								<div class="box__head">
-									<h4 class="box__blockTitle box__blockTitle--dark @if ( \Auth::user()->status == 1 ) teacher @endif">
-										{{ $test->title }}
-									</h4>
-									@if ( \Auth::user()->status == 1 )
-										<div class="boxTitle__teahcerIcon--group">
-											<a title="Modifier" class="icon icon-note unlink boxTitle__editIcon boxTitle__teacherIcon" href="{{ action( 'TestController@edit', ['id' => $test->id] ) }}">
-												<span class="hidden">modifier</span>
-											</a>
-											<a title="Supprimer" class="icon icon-trash unlink boxTitle__deleteIcon boxTitle__teacherIcon" href="{!! action( 'TestController@delete', ['id' => $test->id] ) !!}">
-												<span class="hidden">Supprimer</span>
-											</a>
-											<div class="clear"></div>
-										</div>
-									@endif
-								</div>
-								<div class="box__group--content">
-									{{ $test->description }}
-								</div>
+				@if ( count($seance->tests) == 0 )
+					<p class="center center--empty">Aucune interrogation</p>
+				@else
+					@foreach ($seance->tests as $test)
+						<div class="box box--shadow box--test">
+							<div class="box__head">
+								<h4 class="box__blockTitle box__blockTitle--dark @if ( \Auth::user()->status == 1 ) teacher @endif">
+									{{ $test->title }}
+								</h4>
+								@if ( \Auth::user()->status == 1 )
+									<div class="boxTitle__teahcerIcon--group">
+										<a title="Modifier" class="icon icon-note unlink boxTitle__editIcon boxTitle__teacherIcon" href="{{ action( 'TestController@edit', ['id' => $test->id] ) }}">
+											<span class="hidden">modifier</span>
+										</a>
+										<a title="Supprimer" class="icon icon-trash unlink boxTitle__deleteIcon boxTitle__teacherIcon" href="{!! action( 'TestController@delete', ['id' => $test->id] ) !!}">
+											<span class="hidden">Supprimer</span>
+										</a>
+										<div class="clear"></div>
+									</div>
+								@endif
 							</div>
-						@endforeach
-					@endif
+							<div class="box__group--content">
+								{{ $test->description }}
+							</div>
+							@if( count( $test->files ) != 0 )
+								<ul class="box__group--files">
+									@foreach( $test->files as $file )
+										<li class="box__list--files">
+											<a class="box__link--files unlink" download="proposed_file_name" href="{{ url() }}/files/{{ $file->filename }}">{{ $file->title }}</a>
+										</li>
+									@endforeach
+								</ul>
+							@endif
+						</div>
+					@endforeach
 				@endif
 			</div>
 		</li>
@@ -137,7 +147,13 @@ Carbon::setLocale('fr'); ?>
 								<ul class="box__group--comment">
 								<?php $user=User::findOrFail($comment->from); ?>
 								<li class="box__group--comment--item">
-									<a class="comment_profilPicName profilPicName" href="{{ action( 'PageController@viewUser', [ 'id' => $user->id ] ) }}">
+									<a class="comment_profilPicName profilPicName" href="
+										@if( $user->id == \Auth::user()->id )
+											{{ action( 'PageController@about' ) }}
+										@else
+											{{ action( 'PageController@viewUser', [ 'id' => $user->id ] ) }}
+										@endif
+									">
 										<img class="box__profilImage box__profilImage--comment box__profilImage--small" src="{{ url() }}/img/profilPicture/{{ $user->image }}" alt="Image de profil">
 										<span>{{ $user->firstname }} {{$user->name}}</span>
 									</a>
