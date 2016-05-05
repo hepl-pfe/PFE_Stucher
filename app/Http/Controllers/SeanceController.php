@@ -117,40 +117,11 @@ class SeanceController extends Controller
     public function view( $id ) {
         setlocale( LC_ALL, 'fr_FR');
         $seance = Seance::findOrFail($id);
-        $students = $seance->course->users;
-        $inCourseStudents = [];
-        $demandedStudents = [];
-        $inCourseStudentsId = [];
-        $demandedStudentsId = [];
-        foreach ($students as $student) {
-            if( $student->pivot->access === 1 ){
-                $demandedStudents[] = $student;
-                $demandedStudentsId[] = $student->id;
-            }
-            if( $student->pivot->access === 2 ){
-                $inCourseStudents[] = $student;
-                $inCourseStudentsId[] = $student->id;
-            }
-        }
 
         $datetime1 = new Carbon( $seance->start_hours );
         $datetime2 = new Carbon($seance->end_hours);
         $interval = $datetime1->diff($datetime2);
 
-        $the_user = 'not';
-        if (in_array(\Auth::user()->id, $inCourseStudentsId)) {
-            $the_user = 'valided';
-        }
-        elseif (in_array(\Auth::user()->id, $demandedStudentsId)) {
-            $the_user = 'demanded';
-        }
-        if ( \Auth::user()->status != 1 ) {
-            if ( $the_user != 'valided' ) {
-                return redirect()->back();
-            }
-        }
-        $works = Work::where('seance_id', '=', $id)->get();
-        $tests = Test::where('seance_id', '=', $id)->get();
         $comments = Comment::where('context', '=', 1)->where('for', $id)->get();
         $title = 'Séance du '.$seance->start_hours->formatLocalized('%A %d %B %Y') . ' de ' . $seance->start_hours->formatLocalized('%Hh%M') . ' à ' . $seance->end_hours->formatLocalized('%Hh%M');
         $activePage = 'course';
