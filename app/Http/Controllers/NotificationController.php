@@ -28,6 +28,7 @@ class NotificationController extends Controller
             ->leftJoin('tests', 'not.test_id', '=', 'tests.id')
             ->leftJoin('courses', 'not.course_id', '=', 'courses.id')
             ->leftJoin('seances', 'not.seance_id', '=', 'seances.id')
+            ->where('not.seen', '!=', 3)	// Si la notification n'a pas élé archivée
             ->orderBy('not_id', 'desc')
             ->paginate(10);
 
