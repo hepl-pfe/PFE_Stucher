@@ -1,11 +1,13 @@
 @extends( 'layout' )
 	@section('title', $title)
     @section( 'content' )
-    <h2 class="mainTitle"><?= $title; ?></h2>
+        <div class="blockTitle">
+            <h2 class="mainTitle">{{ $title }}</h2>
+        </div>
 
     <div class="spaceContainer">
 
-    	<form action="" method="post">
+    	<form action="" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="course">Pour quel cours?</label>
                 <select class="form-control" name="course" id="course">
@@ -46,16 +48,16 @@
             <div class="form-group">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <label for="title">Ajouter le titre à l'interrogation</label>
-                <input type="text" class="form-control" name="title" id="title" placeholder="ex: test de propabilité">
+                <input type="text" class="form-control" name="title" id="title" placeholder="ex: test de propabilité" value="{{ old('title') }}">
             </div>
 
     		<div class="form-group">
     			<label for="descr">Description de l'interrogation</label>
-    			<textarea class="form-control" name="descr" id="descr" cols="30" rows="10" placeholder="ex: La matière de cette interrogation portera sur…"></textarea>
+    			<textarea class="form-control" name="descr" id="descr" cols="30" rows="10" placeholder="ex: La matière de cette interrogation portera sur…">{{ old('descr') }}</textarea>
     		</div>
     		<div class="form-group">
     			<label for="file">Fichier joins (facultatif - PDF, image ou Word)</label>
-    			<input type="file" id="file" name="file">
+    			<input type="file" id="file" name="file[]" multiple>
     		</div>
     		<div class="form-group text-center">
                 @if (isset( $seance ))
