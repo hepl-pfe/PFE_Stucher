@@ -11,6 +11,7 @@ use App\Course;
 use App\Seance;
 use \Input;
 use App\Test;
+use App\File;
 use Carbon\Carbon;
 
 class TestController extends Controller
@@ -21,7 +22,6 @@ class TestController extends Controller
         'seance' => 'required',
         'title' => 'required|max:255',
         'descr' => 'required'
-        //'file' => 'required|date_format:H:i|after:start_hours'
         ];
 
     public function create( $id = null, $info = null ) {
@@ -122,12 +122,12 @@ class TestController extends Controller
 
     public function edit( $id ) {
         $test = Test::findOrFail( $id );
-        $pageTitle = 'Modifier l’interrogation';
+        $title = 'Modifier l’interrogation';
         $activePage = 'course';
         $allCourses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
         $course = Seance::find($test->seance_id)->course;
         $allSeances = Seance::where( 'course_id', '=', $course->id )->get();
-        return view('test/updateTest', compact('pageTitle', 'test', 'allSeances', 'allCourses', 'activePage'));
+        return view('test/updateTest', compact('title', 'test', 'allSeances', 'allCourses', 'activePage'));
     }
 
     public function update( $id ) {
@@ -188,7 +188,6 @@ class TestController extends Controller
         }
         $test->title = Input::get('title');
         $test->description = Input::get('descr');
-        //$test->file = Input::get('file');
         $test->updated_at = Carbon::now();
         $test->save();
         return redirect()->route('viewSeance', ['id' => $test->seance->id]);
@@ -200,18 +199,8 @@ class TestController extends Controller
         return redirect()->back();
     }
 
-    public function store() {
-        $errors = Validator::make(Input::all(), $this->rules);
-        if ($errors->fails()) {
-            return Redirect()->back()->withErrors($errors);
-        }
-        $test = Test::create([
-            'seance_id' => Input::get('seance'),
-            'title' => Input::get('title'),
-            //'file' => Input::get('file'),
-            'description' => Input::get('descr')
-            ]);
-        
-        return redirect()->route('viewSeance', ['id' => Input::get('seance')]);
+    public function deleteFile( $id_file, $id_test ) {
+        $test = \DB::table('file_test')->where('file_id', '=', $id_file)->where('test_id', '=', $id_test)->delete();
+        return redirect()->back();
     }
 }
