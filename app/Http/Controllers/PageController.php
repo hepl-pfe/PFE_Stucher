@@ -193,7 +193,8 @@ class PageController extends Controller
 
     public function changeColor(){
         $title = "La couleur du thème";
-        return view( 'pages/listColor', ['title' => $title] );
+        $activePage = 'profil';
+        return view( 'pages/listColor', ['title' => $title, 'activePage' => $activePage] );
     }
 
     public function updateColor( $number ){
