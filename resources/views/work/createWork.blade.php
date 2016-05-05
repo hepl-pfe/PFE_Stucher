@@ -1,9 +1,11 @@
 @extends( 'layout' )
 	@section('title', $title)
     @section( 'content' )
-    <h2 class="mainTitle"><?= $title; ?></h2>
+    <div class="blockTitle">
+        <h2 class="mainTitle">{{ $title }}</h2>
+    </div>
     <div class="spaceContainer">
-    	<form action="" method="post">
+    	<form action="" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="course">Pour quel cours?</label>
                 <select class="form-control" name="course" id="course">
@@ -53,7 +55,7 @@
     		</div>
     		<div class="form-group">
     			<label for="file">Fichier joins (facultatif - PDF, image ou Word)</label>
-    			<input type="file" id="file" name="file">
+                <input type="file" id="file" name="file[]" multiple>
     		</div>
     		<div class="form-group text-center">
                 @if (isset( $seance ))

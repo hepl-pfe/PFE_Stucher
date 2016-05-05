@@ -1,10 +1,10 @@
 @extends( 'layout' )
-    @section('title', $pageTitle)
+    @section('title', $title)
     @section( 'content' )
-    <h2><?php echo $pageTitle; ?></h2>
-    <br>
-    <br>
-    <form action="" method="post">
+        <div class="blockTitle">
+            <h2 class="mainTitle">{{ $title }}</h2>
+        </div>
+    <form action="" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="course">Pour quel cours?</label>
             <select class="form-control" name="course" id="course">
@@ -54,8 +54,27 @@
             </textarea>
         </div>
         <div class="form-group">
-            <label for="file">Fichier joins (facultatif - PDF, image ou Word)</label>
-            <input type="file" id="file" name="file">
+            @if( count( $work->files ) != 0 )
+                <ul class="box__group--files">
+                    @foreach( $work->files as $file )
+                        <li class="box__list--files">
+                            <a class="box__link--files unlink" download="proposed_file_name" href="{{ url() }}/files/{{ $file->filename }}">{{ $file->title }}</a>
+                            <a href="{{ action( 'WorkController@deleteFile', ['id_file' => $file->id, 'test_id' => $work->id] ) }}" class="unlink danger"><span class="hidden">Supprimer ce fichier</span><span class="icon-close"></span></a>
+                        </li>
+                    @endforeach
+                    <li class="box__list--files">
+                        <label for="file"><span class="hidden">Ajouter un fichier</span><span class="icon-plus success"></span></label>
+                        <input class="hidden" type="file" id="file" name="file[]" multiple>
+                    </li>
+                </ul>
+            @else
+                <ul class="box__group--files">
+                    <li class="box__list--files">
+                        <label for="file"><span class="hidden">Ajouter un fichier</span><span class="icon-plus success"></span></label>
+                        <input class="hidden" type="file" id="file" name="file[]" multiple>
+                    </li>
+                </ul>
+            @endif
         </div>
         <div class="form-group text-center">
             @if (isset( $seance ))
