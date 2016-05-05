@@ -22,5 +22,11 @@
         <li class="color-1 even"><a class="unlink hideText" href="{{ action( 'PageController@updateColor', ['$number' => '1'] ) }}">Couleur 1</a></li>
         <li class="color-2 odd"><a class="unlink hideText" href="{{ action( 'PageController@updateColor', ['$number' => '2'] ) }}">Couleur 2</a></li>
         <li class="color-3 even"><a class="unlink hideText" href="{{ action( 'PageController@updateColor', ['$number' => '3'] ) }}">Couleur 3</a></li>
+        <li class="color-4 odd"><a class="unlink hideText" href="{{ action( 'PageController@updateColor', ['$number' => '4'] ) }}">Couleur 4</a></li>
+        <li class="color-5 even"><a class="unlink hideText" href="{{ action( 'PageController@updateColor', ['$number' => '5'] ) }}">Couleur 5</a></li>
+        <li class="color-6 odd"><a class="unlink hideText" href="{{ action( 'PageController@updateColor', ['$number' => '6'] ) }}">Couleur 6</a></li>
+        <li class="color-7 even"><a class="unlink hideText" href="{{ action( 'PageController@updateColor', ['$number' => '7'] ) }}">Couleur 7</a></li>
+        <li class="color-8 odd"><a class="unlink hideText" href="{{ action( 'PageController@updateColor', ['$number' => '8'] ) }}">Couleur 8</a></li>
+        <li class="color-9 even"><a class="unlink hideText" href="{{ action( 'PageController@updateColor', ['$number' => '9'] ) }}">Couleur 9</a></li>
     </ul>
 @endsection
