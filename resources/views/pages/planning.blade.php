@@ -58,16 +58,16 @@ setlocale( LC_ALL, 'fr_FR');
     </div>
 
     <!-- dd_moreButton -->
-    <div class="dd_moreButton">
-        <input type="checkbox" id="dd_moreButton">
-        <label for="dd_moreButton" class="dd_moreButton--button"><span></span><span></span></label>
+    @if( Auth::user()->status == 1 )
+        <div class="dd_moreButton">
+            <input type="checkbox" id="dd_moreButton">
+            <label for="dd_moreButton" class="dd_moreButton--button"><span></span><span></span></label>
 
-        <ul class="dd_moreButton--content">
-            @if( Auth::user()->status == 1 )
+            <ul class="dd_moreButton--content">
                 <li><a href="{!! action( 'CourseController@create' ) !!}">Créer un cours</a></li>
-            @endif
-        </ul>
-    </div>
+            </ul>
+        </div>
+    @endif
 
     <div class="whiteBanner whiteBanner--calendar">
         <a class="calendar__controller calendar__controller--before calendar__controller--before--month unlink" href="?mois=<?php echo $num_mois-1; ?>&amp;annee=<?php echo $num_an; ?>"><span class="calendar__arrow"></span></a>
@@ -156,8 +156,7 @@ setlocale( LC_ALL, 'fr_FR');
 
     <div class="box--group">
         @if( empty( $currentSeances ) )
-            <p>Aucune séance prévue cette journée</p>
-            <a href="">AJOUTER UNE SÉANCE À CETTE JOURNÉE?</a>
+            <p class="calendar__empty" >Aucune séance prévue cette journée</p>
         @else
             <?php $pos = 1; ?>
         @foreach( $currentSeances as $seance )
@@ -201,9 +200,9 @@ setlocale( LC_ALL, 'fr_FR');
                             <a href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}#tests" class="box__seanceCourse--test box__seanceCourse--numbers">
                                 <span class="icon-book-open"></span>
                                 @if( count($seance->tests) !== 0 )
-                                    Interrogations&#8239;: {{ count($seance->tests) }}
+                                    Tests&#8239;: {{ count($seance->tests) }}
                                 @else
-                                    Interrogations&#8239;: 0
+                                    Tests&#8239;: 0
                                 @endif
                             </a>
 
@@ -211,9 +210,9 @@ setlocale( LC_ALL, 'fr_FR');
                             <a href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}#comments" class="box__seanceCourse--comment box__seanceCourse--numbers">
                                 <span class="icon-bubbles"></span>
                                 @if( count($seance->comments) !== 0 )
-                                    Commentaires&#8239;: {{ count($seance->comments) }}
+                                    Com&#8239;: {{ count($seance->comments) }}
                                 @else
-                                    Commentaires&#8239;: 0
+                                    Com&#8239;: 0
                                 @endif
                             </a>
                         </div>

@@ -1,6 +1,8 @@
 @extends( 'layout' )
 @section( 'content' )
 @section( 'title', $title )
-    <h2>{{ $title }}</h2>
+<div class="blockTitle">
+    <h2 class="mainTitle">{{ $title }}</h2>
+</div>
     <a class="btn btn-warning" href="{!! action( 'CourseController@searchCourse' ) !!}">Retour</a>
 @stop

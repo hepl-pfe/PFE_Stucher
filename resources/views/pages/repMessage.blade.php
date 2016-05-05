@@ -1,6 +1,10 @@
 @extends('layout')
-@section('title', 'Nouveau message')
+@section('title', 'Réponse à un message')
 @section('content')
+
+    <div class="blockTitle">
+        <h2 class="mainTitle">Réponse à un message</h2>
+    </div>
 
 	<form method="POST" action="">
         {!! csrf_field() !!}

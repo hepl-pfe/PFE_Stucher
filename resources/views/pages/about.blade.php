@@ -25,8 +25,13 @@
 		<!-- Profil photo -->
 		<div class="box_profilPicture box__profilImage box__profilImage--profilPage">
 			<img class="box__profilImage" src="{{ url() }}/img/profilPicture/{{ Auth::user()->image }}" alt="Image de profil">
-			<a class="image__bottombutton" href="{{ action( 'PageController@changePicture' ) }}">Changer la photo</a>
+			<a class="" href="{{ action( 'PageController@changePicture' ) }}">Changer la photo</a>
 		</div>
+
+		<div class="box--error">
+			@include('errors.profilError')
+		</div>
+
 		<!-- id information -->
 		<div class="box box--demis box--demis--left box--shadow box_profil--picture">
 			<ul class="box__group--list profil__group--list">

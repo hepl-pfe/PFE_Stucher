@@ -2,6 +2,9 @@
 @section('title', 'Nouveau message')
 @section('content')
 
+    <div class="blockTitle">
+        <h2 class="mainTitle">Nouveau message</h2>
+    </div>
 	<form method="POST" action="">
         {!! csrf_field() !!}
 

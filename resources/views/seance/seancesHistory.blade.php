@@ -2,7 +2,9 @@
 @section('title', $title)
 @section('content')
 
-	<h2>{{ $title }}</h2>
+	<div class="blockTitle">
+		<h2 class="mainTitle">{{ $title }}</h2>
+	</div>
 	
 	@if (empty($pastSeances))
 		<p>Aucune séances pour le moment</p>

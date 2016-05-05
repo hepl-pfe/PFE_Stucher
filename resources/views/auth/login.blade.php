@@ -1,6 +1,10 @@
 @extends('logoutLayout')
-@section('title', $title)
+@section('title', 'Connexion - Stucher')
 @section('content')
+
+    <div class="blockTitle">
+        <h2 class="mainTitle">Connexion</h2>
+    </div>
 
     <form method="POST" action="/auth/login">
         {!! csrf_field() !!}

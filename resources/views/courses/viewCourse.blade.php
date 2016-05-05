@@ -17,6 +17,11 @@
 	<div class="blockTitle">
 		<h2 class="mainTitle">Cours de {{ $course->title }}</h2>
 		<h3 class="subTitle">Groupe&nbsp;: {{ $course->group }}</h3>
+		@if( \Auth::user()->status == 1 )
+			<a title="Modifier le cours" href="{!! action( 'CourseController@edit', [ 'id' => $course->id] ) !!}" class="unlink mainColorfont blockTitle--edit">
+				<span class="icon-pencil icon icon--edit"></span> <span class="hidden">Modifier le cours</span>
+			</a>
+		@endif
 	</div>
 
 	<!-- information block -->
@@ -127,9 +132,9 @@
 									<a href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}#tests" class="box__seanceCourse--test box__seanceCourse--numbers">
 										<span class="icon-book-open"></span>
 										@if( count($seance->tests) !== 0 )
-											Interrogations&#8239;: {{ count($seance->tests) }}
+											Tests&#8239;: {{ count($seance->tests) }}
 										@else
-											Interrogations&#8239;: 0
+											Tests&#8239;: 0
 										@endif
 									</a>
 
@@ -137,9 +142,9 @@
 									<a href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}#comments" class="box__seanceCourse--comment box__seanceCourse--numbers">
 										<span class="icon-bubbles"></span>
 										@if( count($seance->comments) !== 0 )
-											Commentaires&#8239;: {{ count($seance->comments) }}
+											Com&#8239;: {{ count($seance->comments) }}
 										@else
-											Commentaires&#8239;: 0
+											Com&#8239;: 0
 										@endif
 									</a>
 								</div>

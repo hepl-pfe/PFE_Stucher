@@ -2,7 +2,9 @@
 @section( 'content' )
 @section( 'title', $title )
 
-<h1>{{$title}}</h1>
+<div class="blockTitle">
+	<h2 class="mainTitle">{{ $title }}</h2>
+</div>
 
 @if ( count($students) !== 0 )
 	<ul class="panel-body">

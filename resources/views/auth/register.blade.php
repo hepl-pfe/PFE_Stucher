@@ -1,6 +1,9 @@
 @extends('logoutLayout')
-@section('title', $title)
+@section('title', 'Inscription')
 @section('content')
+    <div class="blockTitle">
+        <h2 class="mainTitle">Inscription</h2>
+    </div>
 
     <form method="POST" action="/auth/register">
         {!! csrf_field() !!}

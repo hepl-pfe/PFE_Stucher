@@ -1,7 +1,11 @@
 @extends('logoutLayout')
-@section('title', $title)
+@section('title', 'Changer le mot de passe')
 @section('content')
 <!-- resources/views/auth/reset.blade.php -->
+
+<div class="blockTitle">
+    <h2 class="mainTitle">Changer le mot de passe</h2>
+</div>
 
 <form method="POST" action="/password/reset">
     {!! csrf_field() !!}

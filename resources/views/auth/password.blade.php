@@ -1,7 +1,10 @@
 @extends('logoutLayout')
-@section('title', $title)
+@section('title', 'Mot de passe oublié')
 @section('content')
 <!-- resources/views/auth/password.blade.php -->
+<div class="blockTitle">
+    <h2 class="mainTitle">Mot de passe oublié</h2>
+</div>
 
 <form method="POST" action="/password/email">
     {!! csrf_field() !!}

@@ -2,7 +2,10 @@
 @section('title', $title)
 @section('content')
 
-	<h2 class="mainTitle">{{ $title }}</h2>
+	<div class="blockTitle">
+		<h2 class="mainTitle">{{ $title }}</h2>
+	</div>
+
 	<div class="spaceContainer">
 		<form action="" method="post">
 			<div class="form-group">

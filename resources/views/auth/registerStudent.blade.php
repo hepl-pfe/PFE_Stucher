@@ -1,9 +1,11 @@
 @extends('logoutLayout')
 @section('title', $title)
 @section('content')
+    <div class="blockTitle">
+        <h2 class="mainTitle">{{ $title }}</h2>
+    </div>
     <div class="spaceContainer">
         <div class="littleSpace">
-            <h1 class="mainTitle">{{$title}}</h1>
             <form method="POST" action="/auth/register">
                 {!! csrf_field() !!}
 

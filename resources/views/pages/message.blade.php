@@ -1,7 +1,9 @@
 @extends('layout')
 @section('title', $title)
 @section('content')
-	<h2>Mes messages&nbsp;:</h2>
+	<div class="blockTitle">
+		<h2 class="mainTitle">Messages</h2>
+	</div>
 	<a href="{{ action( 'PageController@newMessage' ) }}" class="btn btn-primary">Nouveau message</a>
 	<ul class="list-group">
 		<li class="list-group-item list-group-item-success" style="margin-top: 1em;">Message de : Grégory Lemmens</li>
