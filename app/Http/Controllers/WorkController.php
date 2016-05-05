@@ -10,6 +10,7 @@ use Validator;
 use App\Course;
 use App\Seance;
 use \Input;
+use App\File;
 use App\Work;
 use Carbon\Carbon;
 
@@ -21,7 +22,6 @@ class WorkController extends Controller
         'seance' => 'required',
         'title' => 'required|max:255',
         'descr' => 'required'
-        //'file' => 'required|date_format:H:i|after:start_hours'
         ];
 
     public function create( $id = null, $info = null ) {
@@ -53,15 +53,82 @@ class WorkController extends Controller
         }
     }
 
+    public function store() {
+        $errors = Validator::make(Input::all(), $this->rules);
+        if ($errors->fails()) {
+            return Redirect()->back()->withErrors($errors);
+        }
+
+        $workFiles = [];
+
+        if ( !empty( Input::file('file') ) ) {
+            $files = Input::file('file');
+            if( $files[0] !== null ) {
+                $numberFiles = count( $files );
+                for ($i = 0; $i < $numberFiles; $i++) {
+
+                    $fileName = $files[$i]->getClientOriginalName();
+                    $nameParts = explode('.', $fileName);
+                    $ext = strtolower(end($nameParts));
+
+                    if ( $ext === 'jpeg' OR $ext === 'gif' OR $ext === 'png' OR $ext === 'txt' OR $ext === 'pdf' OR $ext === 'docx' OR $ext === 'doc' ) {
+                        // compléter la liste au fur et à mesure
+
+                        $type = $ext;
+                        $size = $files[$i]->getClientSize()/1000; // poid en Ko
+                        $newname = md5( $fileName . time() ) . '.' . $ext;
+                        $path = public_path('files/');
+
+                        $file = File::create([
+                            'title' => $fileName,
+                            'filename' => $newname,
+                            'type' => $type,
+                            'size' => $size,
+                            'from' => \Auth::user()->id
+                        ]);
+
+                        $files[$i]->move( $path, $newname);
+
+                        $myFileID = File::where( 'filename', '=', $newname )->first()->id;
+                        $workFiles[] = $myFileID;
+
+                    }
+                    else {
+                        return Redirect()->back()->withErrors('Veuillez entrez un autre format de fichier');
+                    }
+
+                }
+            }
+        }
+
+        $work = Work::create([
+            'seance_id' => Input::get('seance'),
+            'title' => Input::get('title'),
+            'description' => Input::get('descr')
+        ]);
+
+
+        if( !empty( $workFiles ) ) {
+            foreach( $workFiles as $workFileID ) {
+                \DB::table('file_work')
+                    ->insert(
+                        array('file_id' => $workFileID, 'work_id' => $work->id)
+                    );
+            }
+        }
+
+        return redirect()->route('viewSeance', ['id' => Input::get('seance')]);
+    }
+
     public function edit( $id ) {
         setlocale( LC_ALL, 'fr_FR');
         $work = Work::findOrFail( $id );
-        $pageTitle = 'Modifier le devoir';
+        $title = 'Modifier le devoir';
         $activePage = 'course';
         $allCourses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
         $course = Seance::find($work->seance_id)->course;
         $allSeances = Seance::where( 'course_id', '=', $course->id )->get();
-        return view('work/updateWork', compact('pageTitle', 'work', 'allSeances', 'allCourses', 'activePage'));
+        return view('work/updateWork', compact('title', 'work', 'allSeances', 'allCourses', 'activePage'));
     }
 
     public function update( $id ) {
@@ -70,9 +137,60 @@ class WorkController extends Controller
             return Redirect()->back()->withErrors($errors);
         }
         $work = Work::findOrFail($id);
+
+
+        if ( !empty( Input::file('file') ) ) {
+            $files = Input::file('file');
+            if( $files[0] !== null ) {
+                $numberFiles = count( $files );
+                for ($i = 0; $i < $numberFiles; $i++) {
+
+                    $fileName = $files[$i]->getClientOriginalName();
+                    $nameParts = explode('.', $fileName);
+                    $ext = strtolower(end($nameParts));
+
+                    if ( $ext === 'jpeg' OR $ext === 'gif' OR $ext === 'png' OR $ext === 'txt' OR $ext === 'pdf' OR $ext === 'docx' OR $ext === 'doc' ) {
+                        // compléter la liste au fur et à mesure
+
+                        $type = $ext;
+                        $size = $files[$i]->getClientSize()/1000; // poid en Ko
+                        $newname = md5( $fileName . time() ) . '.' . $ext;
+                        $path = public_path('files/');
+
+                        $file = File::create([
+                            'title' => $fileName,
+                            'filename' => $newname,
+                            'type' => $type,
+                            'size' => $size,
+                            'from' => \Auth::user()->id
+                        ]);
+
+                        $files[$i]->move( $path, $newname);
+
+                        $myFileID = File::where( 'filename', '=', $newname )->first()->id;
+                        $workFiles[] = $myFileID;
+
+                    }
+                    else {
+                        return Redirect()->back()->withErrors('Veuillez entrez un autre format de fichier');
+                    }
+
+                }
+            }
+        }
+
+        if( !empty( $workFiles ) ) {
+            foreach( $workFiles as $workFileID ) {
+                \DB::table('file_work')
+                    ->insert(
+                        array('file_id' => $workFileID, 'work_id' => $work->id)
+                    );
+            }
+        }
+
+
         $work->title = Input::get('title');
         $work->description = Input::get('descr');
-        //$work->file = Input::get('file');
         $work->updated_at = Carbon::now();
         $work->save();
         return redirect()->route('viewSeance', ['id' => $work->seance->id]);
@@ -84,18 +202,11 @@ class WorkController extends Controller
         return redirect()->back();
     }
 
-    public function store() {
-        $errors = Validator::make(Input::all(), $this->rules);
-        if ($errors->fails()) {
-            return Redirect()->back()->withErrors($errors);
-        }
-        $works = Work::create([
-            'seance_id' => Input::get('seance'),
-            'title' => Input::get('title'),
-            //'file' => Input::get('file'),
-            'description' => Input::get('descr')
-            ]);
-        
-        return redirect()->route('viewSeance', ['id' => Input::get('seance')]);
+    public function deleteFile( $id_file, $id_work ) {
+        \DB::table('file_work')
+            ->where('file_id', $id_file)
+            ->where('work_id', $id_work)
+            ->delete();
+        return redirect()->back();
     }
 }
