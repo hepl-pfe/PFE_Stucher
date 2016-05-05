@@ -1,7 +1,8 @@
 jQuery( function($) {
 	// GÉRER LA PÉRIODE
-	$( '#datepicker_start' ).datepicker(
+	/*$( '#datepicker_start' ).datepicker(
 		{
+			language: 'fr',
 			dateFormat: 'yy-mm-dd',
 			minDate: 0,
 		}
@@ -9,6 +10,7 @@ jQuery( function($) {
 
 	$( '#datepicker_end' ).datepicker(
 		{
+			language: 'fr',
 			dateFormat: 'yy-mm-dd',
 			minDate: 0,
 		}
@@ -17,16 +19,20 @@ jQuery( function($) {
 
 	$('#start_hours').timepicker(
 	 {
-	 	hourMin: 7,
-	 	hourMax: 17,
+	 	language: 'fr',
+	 	step: 15,
+	 	'minTime': '7:00am',
+	 	'maxTime': '5:00pm'
 	 }
 	);
 	$('#end_hours').timepicker(
 	 {
-	 	hourMin: 7,
-	 	hourMax: 17,
+	 	language: 'fr',
+	 	step: 15,
+		'maxTime': '71:3amm',
+		'maxTime': '75:3apm'
 	 }
-	);
+	);*/
 
 	// // AJAX
 
@@ -110,9 +116,6 @@ jQuery( function($) {
 				$('#dd_moreButton')['0'].checked = false;
 			}
 		}
-
-		// Try to hide the more button on click outside it
-		//console.log(e);
 		if ( $('#dd_moreButton')['0'].checked == false ) {
 			//console.log(e);
 			if (e.target.className == "dd_moreButton--button") {
@@ -124,14 +127,12 @@ jQuery( function($) {
 	///////////
 	// reduce the active shutter & show when an anchor isset
 	///////////
-	$('.shutterTitle').addClass( 'reduce' );
+	$('.shutterTitle--works, .shutterTitle--tests').addClass( 'reduce' );
 
 	// < show when an anchor isset
 	if( window.location.hash ) {
 		var hash = window.location.hash.substring(1);
 		if($.inArray( hash, shutters ) ) {
-			console.log(shutters);
-			console.log('#'+hash);
 			$('#'+hash).toggleClass( 'reduce' );
 		}
 		// hash found
@@ -142,7 +143,9 @@ jQuery( function($) {
 	var shutters = [];
 
 	$('.shutterTitle').each(function() {
-		shutters.push( $(this).attr('id') );
+		if( $(this).attr('id') != 'comments' ) {
+			shutters.push( $(this).attr('id') );
+		}
 	});
 
 	// show when an anchor isset >
@@ -167,6 +170,45 @@ jQuery( function($) {
 			}
 		}
 	} );
+
+	///////////
+	// change the preview image
+	///////////
+	// À AMÉLIORER
+	/*$('#image').change( function(e){
+		readPath(this);
+		//$('.box__profilImage').attr( 'src',  );
+	} );
+
+	function readPath(input) {
+		if ( input.files && input.files[0] ) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				$('.box__profilImage').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}*/
+
+
+
+	///////////
+	// HomePage
+	///////////
+	$(function() {
+		$('a[href*="#"]:not([href="#"])').click(function() {
+			if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+				var target = $(this.hash);
+				target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+				if (target.length) {
+					$('html, body').animate({
+						scrollTop: target.offset().top
+					}, 1000);
+					return false;
+				}
+			}
+		});
+	});
 
 
 } );
