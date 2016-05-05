@@ -125,7 +125,7 @@ class SeanceController extends Controller
         $comments = Comment::where('context', '=', 1)->where('for', $id)->get();
         $title = 'Séance du '.$seance->start_hours->formatLocalized('%A %d %B %Y') . ' de ' . $seance->start_hours->formatLocalized('%Hh%M') . ' à ' . $seance->end_hours->formatLocalized('%Hh%M');
         $activePage = 'course';
-        return view('seance/viewSeance', compact( 'title', 'id', 'seance', 'interval', 'works', 'tests', 'comments', 'activePage' ));
+        return view('seance/viewSeance', compact( 'title', 'id', 'seance', 'interval', 'comments', 'activePage' ));
     }
 
     public function getByCourse( $id_course ) {
