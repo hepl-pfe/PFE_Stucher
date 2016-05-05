@@ -28,6 +28,6 @@ class Seance extends Model
 	
 	public function tests()
 	{
-		return $this->hasMany('App\test');
+		return $this->hasMany('App\Test');
 	}
 }

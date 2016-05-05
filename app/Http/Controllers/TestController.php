@@ -53,6 +53,73 @@ class TestController extends Controller
     	}
     }
 
+    public function store() {
+        $errors = Validator::make(Input::all(), $this->rules);
+        if ($errors->fails()) {
+            return Redirect()->back()->withErrors($errors);
+        }
+
+        $testFiles = [];
+
+        if ( !empty( Input::file('file') ) ) {
+            $files = Input::file('file');
+            if( $files[0] !== null ) {
+                $numberFiles = count( $files );
+                for ($i = 0; $i < $numberFiles; $i++) {
+
+                    $fileName = $files[$i]->getClientOriginalName();
+                    $nameParts = explode('.', $fileName);
+                    $ext = strtolower(end($nameParts));
+
+                    if ( $ext === 'jpeg' OR $ext === 'gif' OR $ext === 'png' OR $ext === 'txt' OR $ext === 'pdf' OR $ext === 'docx' OR $ext === 'doc' ) {
+                        // compléter la liste au fur et à mesure
+
+                        $type = $ext;
+                        $size = $files[$i]->getClientSize()/1000; // poid en Ko
+                        $newname = md5( $fileName . time() ) . '.' . $ext;
+                        $path = public_path('files/');
+
+                        $file = File::create([
+                            'title' => $fileName,
+                            'filename' => $newname,
+                            'type' => $type,
+                            'size' => $size,
+                            'from' => \Auth::user()->id
+                        ]);
+
+                        $files[$i]->move( $path, $newname);
+
+                        $myFileID = File::where( 'filename', '=', $newname )->first()->id;
+                        $testFiles[] = $myFileID;
+
+                    }
+                    else {
+                        return Redirect()->back()->withErrors('Veuillez entrez un autre format de fichier');
+                    }
+
+                }
+            }
+        }
+
+        $test = Test::create([
+            'seance_id' => Input::get('seance'),
+            'title' => Input::get('title'),
+            'description' => Input::get('descr')
+        ]);
+
+
+        if( !empty( $testFiles ) ) {
+            foreach( $testFiles as $testFileID ) {
+                \DB::table('file_test')
+                    ->insert(
+                        array('file_id' => $testFileID, 'test_id' => $test->id)
+                    );
+            }
+        }
+
+        return redirect()->route('viewSeance', ['id' => Input::get('seance')]);
+    }
+
     public function edit( $id ) {
         $test = Test::findOrFail( $id );
         $pageTitle = 'Modifier l’interrogation';
