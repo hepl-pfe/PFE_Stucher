@@ -28,7 +28,7 @@ class CourseController extends Controller
         ];
 
     public function index() {
-        $title = 'Accueil';
+        $title = 'Stucher';
         if ( \Auth::check() ) {
             $title = 'Tous mes cours';
             $activePage = 'course';
@@ -47,7 +47,7 @@ class CourseController extends Controller
                 return view('courses/indexStudentCourses', compact('courses', 'waitCourses', 'title', 'activePage'));
             }
         } 
-        return view('welcome', ['title' => $title]);
+        return view('welcome', compact('title'));
     }
 
     public function view( $id ) {
