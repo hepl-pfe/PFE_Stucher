@@ -3,7 +3,7 @@
 
 <header class="home__header">
     <div class="home__connectZone">
-        <a href="#connectZone" class="unlink home__register--link">inscription/connexion</a>
+        <a href="#connectZone" class="unlink home__register--link">inscription&#8239;/&#8239;connexion</a>
     </div>
     <a class="home__mainLogo--link" href="{!! action( 'CourseController@index' ) !!}">
         <h1 class="home__mainLogo--title">logo Stucher</h1>
