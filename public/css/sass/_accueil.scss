@@ -260,7 +260,59 @@
 	}
 }
 
-@media screen and (max-width: 1250px) {
+@media screen and (min-width: 1500px) {
+	.home__imageContainer__image {
+		width: 100%;
+		height: auto;
+	}
+}
+
+@media screen and (min-width: 901px) and (max-width: 1150px) {
+	.home__link--register {
+		width: 30%;
+	}
+	.forgetPassword {
+		display: block;
+		margin-top: 1em;
+		float: none;
+	}
+}
+
+@media screen and (min-width: 901px) and (max-width: 1450px) {
+	.home__box--image {
+		height: 37em;
+		img {
+			height: 100%;
+			width: auto;
+		}
+	}
+	@media screen and (max-width: 1350px) {
+		.home__box--left img {
+				margin-right: -20%;
+		}
+
+		.home__box--right img {
+			margin-left: -20%;
+		}
+	}
+	@media screen and (max-width: 1150px) {
+		.home__box--left img {
+			margin-right: -35%;
+		}
+
+		.home__box--right img {
+			margin-left: -35%;
+		}
+	}
+	@media screen and (max-width: 1024px) {
+		.home__box--left img {
+			margin-right: -50%;
+		}
+
+		.home__box--right img {
+			margin-left: -50%;
+		}
+	}
 
 }
 
@@ -286,7 +338,10 @@
 		display: block;
 		margin-top: 1em;
 		float: none;
-}
+	}
+	.home__connectZone {
+		right: 30%;
+	}
 
 }
 
@@ -308,6 +363,9 @@
 	}
 	.home__form .form-group {
 		width: 100%;
+	}
+	.home__connectZone {
+		right: 20%;
 	}
 }
 
