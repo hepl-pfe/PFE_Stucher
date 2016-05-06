@@ -13,7 +13,7 @@
     <div class="home__imageContainer__content">
         <h2 class="home__imageContainer__title">Un journal de classe entre le professeurs et ses élèves</h2>
         <div class="home__imageColor"></div>
-        <img class="home__imageContainer__image" src="{{ url() }}/img/bg_home_1.jpg" alt="image de fond">
+        <img class="home__imageContainer__image" src="{{ url() }}/img/bg_home_1.jpg" alt="image de fond header" width="1500" height="1000">
     </div>
     <a href="#home__presentation--1" class="home__arrowBottom unlink"><span class="icon-arrow-down"></span></a>
 </div>
@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="home__box--right home__box--image">
-        <img src="{{ url() }}/img/home_main_tel.jpg" alt="illustration du calendrier de l'application">
+        <img src="{{ url() }}/img/home_main_tel.jpg" alt="illustration du calendrier de l'application" width="960">
     </div>
     <div class="clear"></div>
 </div>
@@ -77,7 +77,7 @@
     </div>
 
     <div class="home__box--left home__box--image">
-        <img src="{{ url() }}/img/home_classroom.jpg" alt="illustration d'une classe connectée">
+        <img src="{{ url() }}/img/home_classroom.jpg" alt="illustration d'une classe connectée" width="1000">
     </div>
     <div class="clear"></div>
 </div>
