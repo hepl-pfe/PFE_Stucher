@@ -209,11 +209,18 @@ setlocale( LC_ALL, 'fr_FR');
                             <!-- COMMENTS -->
                             <a href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}#comments" class="box__seanceCourse--comment box__seanceCourse--numbers">
                                 <span class="icon-bubbles"></span>
-                                @if( count($seance->comments) !== 0 )
-                                    Com&#8239;: {{ count($seance->comments) }}
+                                <?php $theSeanceComment = []; ?>
+                                @foreach( $comments as $comment )
+                                    @if( $comment->for == $seance->id )
+                                        <?php $theSeanceComment[] = $comment; ?>
+                                    @endif
+                                @endforeach
+                                @if( !empty($theSeanceComment) )
+                                    Com&#8239;: {{ count($theSeanceComment) }}
                                 @else
                                     Com&#8239;: 0
                                 @endif
+
                             </a>
                         </div>
                         <div class="clear"></div>
