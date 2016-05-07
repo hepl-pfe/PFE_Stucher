@@ -5,7 +5,7 @@
   position: absolute;
   z-index: 10;
   right: 2em;
-  top: 1.5em;
+  top: 1.8em;
   border: none;
   outline: none;
   background-color: $white;
@@ -25,10 +25,11 @@
   span {
     position: absolute;
     width: 60%;
-    height: 1px;
+    height: 2px;
     top: 50%;
-    left: 20%;
-    margin-top: 0.5px;
+    left: 50%;
+    margin-top: -1px;
+    margin-left: -30%;
     -webkit-transition: all .3s ease;
     -moz-transition: all .3s ease;
     -ms-transition: all .3s ease;
@@ -403,7 +404,7 @@
 .blockTitle--edit {
   position: absolute;
   right: 5em;
-  top: 1.7em;
+  top: 2em;
 }
 
 
@@ -463,4 +464,11 @@
   &--popup {
     display: none;
   }
+}
+
+.blockTitle__backButton {
+  position: absolute;
+  left: 1em;
+  top: 1.2em;
+  font-size: 1.5em;
 }
