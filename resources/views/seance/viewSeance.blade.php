@@ -169,7 +169,7 @@ Carbon::setLocale('fr'); ?>
 										</div>
 									</div>
 									<div class="clear"></div>
-									@if( \Auth::user()->status == 1 )
+									@if( \Auth::user()->status == 1 or $comment->from == \Auth::user()->id )
 										<a title="Supprimer" class="icon icon-trash unlink comment__icon--delete" href="{!! action( 'CommentController@delete', ['id' => $comment->id] ) !!}">
 											<span class="hidden">Supprimer</span>
 										</a>
