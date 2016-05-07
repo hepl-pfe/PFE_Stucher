@@ -57,6 +57,7 @@ class CourseController extends Controller
         $now = Carbon::now()->format('Y-m-d H:i:s');
         $allSeances = $course->seances->sortBy('start_hours');
         $seances = [];
+        $comments = Comment::where('context', '=', 1)->get();
         foreach( $allSeances as $theSeance ) {
             if( $theSeance->start_hours > $now ) {
                 $seances[] = $theSeance;
@@ -96,10 +97,10 @@ class CourseController extends Controller
         if ( \Auth::user()->status == 1 ) {
             $title = 'Cours de '.$course->title;
 
-            return view('courses/viewCourse', compact('id', 'course', 'title', 'seances', 'allSeances', 'comments', 'demandedStudents', 'inCourseStudents', 'demandedStudentsId', 'inCourseStudentsId', 'activePage'));
+            return view('courses/viewCourse', compact('id', 'course', 'title', 'seances', 'comments', 'allSeances', 'demandedStudents', 'inCourseStudents', 'demandedStudentsId', 'inCourseStudentsId', 'activePage'));
         }
 
-        return view('courses/viewCourse', compact('course', 'teacher', 'title', 'seances', 'allSeances', 'comments', 'inCourseStudents', 'demandedStudentsId', 'inCourseStudentsId', 'activePage'));
+        return view('courses/viewCourse', compact('course', 'teacher', 'title', 'seances', 'comments', 'allSeances', 'inCourseStudents', 'demandedStudentsId', 'inCourseStudentsId', 'activePage'));
     }
 
     public function create() {
