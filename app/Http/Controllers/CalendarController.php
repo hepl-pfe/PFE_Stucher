@@ -38,8 +38,7 @@ class CalendarController extends Controller
         // Add 0 before a single number >
         $the_active_day = $year.'-'.$month.'-'.$day;
 
-
-        if (\Auth::user()->status === 1) { // IF TEACHER
+        if (\Auth::user()->status == 1) { // IF TEACHER
             $courses = Course::where('teacher_id', '=', \Auth::user()->id)->get();
             $seances = [];
             $allSeances = [];
