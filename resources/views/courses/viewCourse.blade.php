@@ -22,6 +22,7 @@
 				<span class="icon-pencil icon icon--edit"></span> <span class="hidden">Modifier le cours</span>
 			</a>
 		@endif
+		<a title="Revenir à la liste des cours" class="backButton blockTitle__backButton unlink mainColorfont" href="{!! action( 'CourseController@index' ) !!}"><span class="hidden">Revenir à la page précédente</span><span class="icon-arrow-left"></span></a>
 	</div>
 
 	<!-- information block -->
