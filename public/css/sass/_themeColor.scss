@@ -76,7 +76,7 @@
     color: $grayMiddleLight;
     &:hover, &:focus, &:active {
       color: #fff;
-      background-color: $grayLight;
+      background-color: $white;
     }
   }
 
@@ -192,12 +192,10 @@
   .notification__item--more a {
     background-color: darken( $mainColor, 20% );
     border-top: 1px solid darken( $mainColor, 20% );
-    border-right: 1px solid darken( $mainColor, 20% );
     &:hover, &:focus {
       color: darken( $mainColor, 20% );
       background-color: $white;
       border-top: 1px solid $mainColor;
-      border-right: 1px solid $mainColor;
     }
   }
 
@@ -216,6 +214,32 @@
       }
     }
   }
+
+  .blockTitle--edit {
+    &:hover, &:focus, &:active {
+      color: darken( $mainColor, 20% );
+    }
+  }
+
+  .blockTitle__backButton {
+    &:hover, &:focus, &:active {
+      color: darken( $mainColor, 20% );
+    }
+  }
+  //////////////////////////////////////////////////
+  ////////////////// À MODIFIER ////////////////////
+  .errorMessage {
+    border: 1px solid $mainColor;
+    color: $mainColor;
+    & a {
+      color: $mainColor;
+    }
+  }
+
+  //////////////////////////////////////////////////
+
+
+
 
   @media screen and ( max-width: 768px ) { // phones landscape
     .mainNav__ul {
