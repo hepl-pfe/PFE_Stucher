@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Course;
 use App\Seance;
+use App\Comment;
 use App\Work;
 use App\Test;
 use App\User;
@@ -43,6 +44,7 @@ class CalendarController extends Controller
             $seances = [];
             $allSeances = [];
             $currentSeances = [];
+            $comments = Comment::where('context', '=', 1)->get();
             foreach ( $courses as $course ) {
                 $seances[] = $course->seances->sortBy('start_hours');
             }
@@ -78,6 +80,6 @@ class CalendarController extends Controller
             }
         }
 
-        return view('pages/planning', compact( 'title', 'activePage', 'day', 'month', 'year', 'allSeances', 'currentSeances', 'the_active_day' ));
+        return view('pages/planning', compact( 'title', 'activePage', 'day', 'month', 'year', 'allSeances', 'comments', 'currentSeances', 'the_active_day' ));
     }
 }
