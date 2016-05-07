@@ -132,21 +132,13 @@ jQuery( function($) {
 	// < show when an anchor isset
 	if( window.location.hash ) {
 		var hash = window.location.hash.substring(1);
-		if($.inArray( hash, shutters ) ) {
-			$('#'+hash).toggleClass( 'reduce' );
-		}
+		$('#'+hash).toggleClass( 'reduce' );
 		// hash found
 	} else {
 		// No hash found
 	}
 
-	var shutters = [];
-
-	$('.shutterTitle').each(function() {
-		if( $(this).attr('id') != 'comments' ) {
-			shutters.push( $(this).attr('id') );
-		}
-	});
+	$('.shutterTitle--comments').removeClass( 'reduce' );
 
 	// show when an anchor isset >
 
