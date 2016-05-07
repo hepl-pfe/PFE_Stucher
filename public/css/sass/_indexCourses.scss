@@ -60,22 +60,25 @@
 	}
 }
 
-.list__course_box--list--add a {
-	position: relative;
-	span:not(.hidden) {
-		position: absolute;
-		top: 50%;
-		margin-left: 30%;
-		margin-top: -1.5px;
-		width: 40%;
-		height: 3px;
-		background-color: $grayMiddleLight;
-		+ span {
-			-webkit-transform: rotate(90deg);
-			-moz-transform: rotate(90deg);
-			-ms-transform: rotate(90deg);
-			-o-transform: rotate(90deg);
-			transform: rotate(90deg);
+.list__course_box--list--add {
+	a {
+		background-color: transparent;
+		position: relative;
+		span:not(.hidden) {
+			position: absolute;
+			top: 50%;
+			margin-left: 30%;
+			margin-top: -1.5px;
+			width: 40%;
+			height: 3px;
+			background-color: $grayMiddleLight;
+			+ span {
+				-webkit-transform: rotate(90deg);
+				-moz-transform: rotate(90deg);
+				-ms-transform: rotate(90deg);
+				-o-transform: rotate(90deg);
+				transform: rotate(90deg);
+			}
 		}
 	}
 }
