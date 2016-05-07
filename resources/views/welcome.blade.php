@@ -1,5 +1,5 @@
 @include( 'header' )
-<body class="home">
+<body class="home default">
 
 <header class="home__header">
     <div class="home__connectZone">
