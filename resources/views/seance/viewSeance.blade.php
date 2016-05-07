@@ -156,7 +156,11 @@ Carbon::setLocale('fr'); ?>
 										@endif
 									">
 										<img class="box__profilImage box__profilImage--comment box__profilImage--small" src="{{ url() }}/img/profilPicture/{{ $user->image }}" alt="Image de profil">
-										<span>{{ $user->firstname }} {{$user->name}}</span>
+										@if( $user->id == \Auth::user()->id )
+											<span>moi</span>
+										@else
+											<span>{{ $user->firstname }} {{$user->name}}</span>
+										@endif
 									</a>
 									<div class="box--comment--content--group ">
 										<div class="box--comment--content @if( \Auth::user()->status == 1 ) box--comment--content--teacher @endif">
