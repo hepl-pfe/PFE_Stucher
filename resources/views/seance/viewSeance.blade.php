@@ -11,6 +11,7 @@ Carbon::setLocale('fr'); ?>
 		<h4 class="bannerUnderTitle seanceDuration" title="de {{ $seance->start_hours->formatLocalized('%Hh%M') }} à {{ $seance->end_hours->formatLocalized('%Hh%M') }}">
 			<span class="icon-clock"></span> {{ $interval->format('%Hh%M') }}
 		</h4>
+		<a title="Revenir au cours" class="backButton blockTitle__backButton unlink mainColorfont" href="{!! action( 'CourseController@view', [ 'id' => $seance->course->id ] ) !!}"><span class="hidden">Revenir à la page précédente</span><span class="icon-arrow-left"></span></a>
 	</div>
 
 	@if ( \Auth::user()->status == 1 )

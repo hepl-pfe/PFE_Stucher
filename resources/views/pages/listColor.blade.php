@@ -3,6 +3,7 @@
 @section('content')
     <div class="blockTitle">
         <h2 class="mainTitle">Thème couleur</h2>
+        <a class="backButton blockTitle__backButton unlink mainColorfont" href="{!! action( 'PageController@about' ) !!}"><span class="hidden">Revenir à la page précédente</span><span class="icon-arrow-left"></span></a>
     </div>
 
     <!-- dd_moreButton -->
