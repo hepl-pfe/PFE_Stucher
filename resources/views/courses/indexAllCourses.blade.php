@@ -3,10 +3,10 @@
     @section( 'content' )
         <div class="blockTitle">
             <h2 class="mainTitle">Tous les cours existants</h2>
+            <a class="backButton blockTitle__backButton unlink mainColorfont" href="{!! action( 'CourseController@index' ) !!}"><span class="hidden">Revenir à la page précédente</span><span class="icon-arrow-left"></span></a>
         </div>
 
     <div class="spaceContainer">
-        <a class="btn btn-warning" href="{!! action( 'CourseController@index' ) !!}"><—</a><br><br>
         <form action="{!! action( 'CourseController@getByToken') !!}" method="post" class="form-group">
         	<label for="searchToken">Code d'accès</label>
         	<input id="searchToken" name="searchToken" type="text" placeholder="ex: 2345D3">
