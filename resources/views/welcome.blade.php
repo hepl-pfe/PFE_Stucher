@@ -21,10 +21,10 @@
     <div class="home__box--left home__box">
         <div class="home__box--content">
             <h3>Un outil pratique pour organiser ses cours</h3>
-            <p>Avec Stucher, c'est vous qui gérez vos cours&nbsp;!</p>
-            <p>Vous avez deux types de profils&nbsp;: professeur ou élève et à partir de là, vous avez la possibilité d'interagir sur un journal de classe commun entre vous et vos élèves/professeurs.</p>
-            <p>Tous vos cours sont au même endrois que vous enseignez ou étdiez dans un ou plusieurs établissements.</p>
-            <p class="leader">Pourquoi faire compliqué quand il y a Stucher&nbsp;!</p>
+            <p>Avec Stucher, c'est vous qui gérez vos cours&#8239;!</p>
+            <p>Vous avez deux types de profils&#8239;: professeur ou élève et à partir de là, vous avez la possibilité d'interagir sur un journal de classe commun entre vous et vos élèves&#8239;/&#8239;professeurs.</p>
+            <p>Tous vos cours sont au même endroit que vous enseignez ou étudiez dans un ou plusieurs établissements.</p>
+            <p class="leader">Pourquoi faire compliqué quand il y a Stucher&#8239;!</p>
         </div>
     </div>
     <div class="home__box--right home__box--image">
