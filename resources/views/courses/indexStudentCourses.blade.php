@@ -26,7 +26,7 @@
 					<li class=""><a class="btn btn-danger pull-right" href="{!! action( 'CourseController@waitCourse' ) !!}">{{ count($waitCourses) }} cours en attente de validation</a></a></li>
 				@endif
 				@foreach( $courses as $course )
-					@if ( $course->pivot->access === 2 )
+					@if ( $course->pivot->access == 2 )
 						<li class="list__course_box--list course_box">
 							<a href="{!! action( 'CourseController@view', [ 'id' => $course->id ] ) !!}">
 								<span class="hidden">Voir le cours</span>
