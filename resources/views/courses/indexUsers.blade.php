@@ -17,7 +17,7 @@
 </div>
 
 <div class="box--group">
-	<div class="box box--demis box--demis--left box--shadow">
+	<div class="box box--shadow">
 		@if ( count($inCourseStudents) !== 0 )
 		<ul class="list__course_box--group">
 			@foreach( $inCourseStudents as $student )
