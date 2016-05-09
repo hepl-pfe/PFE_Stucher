@@ -8,6 +8,10 @@ use Validator;
 use \Input;
 
 use App\Course;
+use App\Seance;
+use App\Work;
+use App\Test;
+use App\Comment;
 use App\User;
 use DB;
 use \Image;
