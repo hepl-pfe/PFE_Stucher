@@ -112,6 +112,40 @@ class PageController extends Controller
             {
                 File::delete( public_path( 'img/profilPicture/' . \Auth::user()->image ) );
             }
+
+
+        if( \Auth::user()->status == 1 )
+        {
+            $courses = Course::where( 'teacher_id', \Auth::user()->id )->get();
+            foreach( $courses as $course )
+            {
+                $seances = Seance::where( 'course_id', '=', $course->id )->get();;
+                foreach ($seances as $seance)
+                {
+                    $works = Work::where( 'seance_id', '=', $seance->id )->get();
+                    foreach ($works as $work)
+                    {
+                        $work->delete();
+                    }
+
+                    $tests = Test::where( 'seance_id', '=', $seance->id )->get();
+                    foreach ($tests as $test)
+                    {
+                        $test->delete();
+                    }
+
+                    $comments = Comment::where( 'for', '=', $seance->id )->get();
+                    foreach ($comments as $comment)
+                    {
+                        $comment->delete();
+                    }
+
+                    $seance->delete();
+                }
+                $course->delete();
+            }
+        }
+
         $user->delete();
         return redirect()->route('home');
     }
