@@ -7,7 +7,7 @@
     </div>
 
     <div class="box--group">
-        <div class="box box--demis box--demis--left box--shadow">
+        <div class="box box--shadow">
             <form class="box__group--content" action="" method="post">
                 <div class="form-group">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
