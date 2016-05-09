@@ -29,6 +29,12 @@
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="Author" content="Loïc Parent" />
+    <meta name="Rev" content="info@loic-parent.be" />
+    <meta name="keywords" content="Stucher, stucher, école, journal de classe, élève, eleve, professeur, prof, Loïc Parent, Loic Parent, loic parent, loïc parent" />
+    <meta name="Description" content="Stucher est un application avec laquelle vous allez pouvoir gérer vos cours au travers d'un journal de classe commun et partagé" />
+
+    <link rel="canonical" href="http://www.stucher.be" />
 
     <!-- OG TYPES -->
     <meta property="og:title" content="Stucher • School share" />
