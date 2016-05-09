@@ -334,6 +334,11 @@ class CourseController extends Controller
                 $test->delete();   
             }
 
+            $comments = Comment::where( 'for', '=', $seance->id )->get();
+            foreach ($comments as $comment) {
+                $comment->delete();
+            }
+
             $seance->delete();   
         }
         $course->delete();
