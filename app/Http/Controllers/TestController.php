@@ -71,7 +71,7 @@ class TestController extends Controller
                     $nameParts = explode('.', $fileName);
                     $ext = strtolower(end($nameParts));
 
-                    if ( $ext === 'jpeg' OR $ext === 'gif' OR $ext === 'png' OR $ext === 'txt' OR $ext === 'pdf' OR $ext === 'docx' OR $ext === 'doc' ) {
+                    if ( $ext == 'jpeg' OR $ext == 'gif' OR $ext == 'png' OR $ext == 'txt' OR $ext == 'pdf' OR $ext == 'docx' OR $ext == 'doc' ) {
                         // compléter la liste au fur et à mesure
 
                         $type = $ext;
@@ -147,7 +147,7 @@ class TestController extends Controller
                     $nameParts = explode('.', $fileName);
                     $ext = strtolower(end($nameParts));
 
-                    if ( $ext === 'jpeg' OR $ext === 'gif' OR $ext === 'png' OR $ext === 'txt' OR $ext === 'pdf' OR $ext === 'docx' OR $ext === 'doc' ) {
+                    if ( $ext == 'jpeg' OR $ext == 'gif' OR $ext == 'png' OR $ext == 'txt' OR $ext == 'pdf' OR $ext == 'docx' OR $ext == 'doc' ) {
                         // compléter la liste au fur et à mesure
 
                         $type = $ext;
