@@ -39,6 +39,7 @@ Route::get( 'planning/view', [ 'as' => 'planning', 'uses' => 'CalendarController
 
 Route::get( 'course/{id}/users', [ 'as' => 'courseUser', 'uses' => 'CourseController@indexCourseUsers', 'middleware' => ['auth', 'isTheTeacher'] ] );
 Route::get( 'indexUsers', [ 'as' => 'indexUsers', 'uses' => 'CourseController@indexUserUsers', 'middleware' => 'auth' ] );
+Route::get( 'course/{id}/users/wait', [ 'as' => 'indexWaitingUsers', 'uses' => 'CourseController@indexWaitingUsers', 'middleware' => 'auth' ] );
 
 
 // Gestion des séances de cours:
