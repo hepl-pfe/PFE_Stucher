@@ -380,4 +380,23 @@ class CourseController extends Controller
 
         return view('courses/indexUsers', compact('inCourseStudents', 'inCourseStudentsId', 'title', 'course', 'activePage'));
     }
+
+    public function indexWaitingUsers( $id )
+    {
+        $course = Course::findOrFail($id);
+        $title = "Les demande d'accès au cours de ".$course->title;
+        $activePage = 'course';
+        $students = Course::find($id)->users;
+
+        $demandedStudents = [];
+        $demandedStudentsId = [];
+        foreach ($students as $student) {
+            if( $student->pivot->access == 1 ){
+                $demandedStudents[] = $student;
+                $demandedStudentsId[] = $student->id;
+            }
+        }
+
+        return view('courses/indexWaitingUsers', compact('demandedStudents', 'demandedStudentsId', 'title', 'course', 'activePage'));
+    }
 }
