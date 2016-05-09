@@ -1,3 +1,4 @@
+@section('title', $title)
 @include( 'header' )
 <body class="home default">
 
