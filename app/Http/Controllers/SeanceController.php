@@ -66,7 +66,7 @@ class SeanceController extends Controller
                 $seance = Seance::create([
                     'course_id' => Input::get('course'),
                     'start_hours' => $obj_dateStart->format('Y-m-d').$start_hours.':00',
-                    'end_hours' => $obj_dateEnd->format('Y-m-d').$end_hours.':00'
+                    'end_hours' => $obj_dateStart->format('Y-m-d').$end_hours.':00'
                 ]);
             }
         }
