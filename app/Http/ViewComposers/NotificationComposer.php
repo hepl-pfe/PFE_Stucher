@@ -28,7 +28,6 @@ class NotificationComposer
             ->where('not.for', '=', \Auth::user()->id)
             ->where('not.seen', '=', 0)	// Si la notification n'a pas élé vue (clic sur la page notification)
             ->orderBy('not_id', 'desc')
-            ->take(3)
             ->get() );
  	    }
 
