@@ -55,7 +55,7 @@ class CourseController extends Controller
         $course = Course::findOrFail($id);
         $teacher = User::where( 'id', '=', $course->teacher_id )->get();
         $now = Carbon::now()->format('Y-m-d H:i:s');
-        $allSeances = $course->seances->sortBy('start_hours');
+        $allSeances = $course->seances->sortBy('start_hours')->take(5);
         $seances = [];
         $comments = Comment::where('context', '=', 1)->get();
         foreach( $allSeances as $theSeance ) {
