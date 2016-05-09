@@ -26,7 +26,9 @@
     <meta name="msapplication-TileColor" content="#ff4732">
     <meta name="msapplication-TileImage" content="{{ url() }}/img/favicons/mstile-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
     <!-- OG TYPES -->
     <meta property="og:title" content="Stucher • School share" />
