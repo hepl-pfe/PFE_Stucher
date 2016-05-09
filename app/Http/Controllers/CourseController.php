@@ -70,11 +70,11 @@ class CourseController extends Controller
         $inCourseStudentsId = [];
         $demandedStudentsId = [];
         foreach ($students as $student) {
-            if( $student->pivot->access === 1 ){
+            if( $student->pivot->access == 1 ){
                 $demandedStudents[] = $student;
                 $demandedStudentsId[] = $student->id;
             }
-            if( $student->pivot->access === 2 ){
+            if( $student->pivot->access == 2 ){
                 $inCourseStudents[] = $student;
                 $inCourseStudentsId[] = $student->id;
             }
