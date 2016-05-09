@@ -18,7 +18,7 @@
 					<h3><span class="icon icon--text icon--text--aboutPage icon-user mainColorfont"></span> {{ $user->firstname }} {{ $user->name }}</h3>
 				</li>
 				<li class="box__group--list--list box__profilInformation">
-					<a class="unlink" href="mailto:{{$user->email}}">
+					<a class="unlink" title="Contacter {{ $user->firstname }} {{ $user->name }}" href="mailto:{{$user->email}}">
 						<span class="icon icon--text icon--text--aboutPage icon-envelope mainColorfont"></span>
 						{{ $user->email }}
 					</a>
