@@ -132,8 +132,3 @@ Route::get('comments/delete/{id}', [ 'as' => 'deleteComment', 'uses' => 'Comment
 // FILES
 Route::get('test/{id_test}/file/{id_file}/delete', [ 'as' => 'deleteTestFile', 'uses' => 'TestController@deleteFile' ]);
 Route::get('work/{id_test}/file/{id_file}/delete', [ 'as' => 'deleteWorkFile', 'uses' => 'WorkController@deleteFile' ]);
-
-Route::get( '/files', function()
-{
-    return 'Euh non… mais non quoi';
-});
