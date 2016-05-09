@@ -56,6 +56,7 @@ Route::get( 'seance/{id}/update', [ 'as' => 'updateSeance', 'uses' => 'SeanceCon
 Route::post( 'seance/{id}/update', [ 'as' => 'updateSeance', 'uses' => 'SeanceController@update', 'middleware' => ['auth', 'isTeacher', 'isTheTeacher'] ] );
 
 Route::get( 'course/{id}/seances/history', [ 'as' => 'seanceHistory', 'uses' => 'SeanceController@seanceHistory', 'middleware' => 'auth' ] );
+Route::get( 'course/{id}/seances', [ 'as' => 'viewAllSeance', 'uses' => 'SeanceController@all', 'middleware' => ['auth'] ] );
 
 
 // Gestion des cours:
