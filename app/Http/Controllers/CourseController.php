@@ -28,7 +28,7 @@ class CourseController extends Controller
         ];
 
     public function index() {
-        $title = 'Stucher';
+        $title = 'Stucher • Journal de classe interactif';
         if ( \Auth::check() ) {
             $title = 'Tous mes cours';
             $activePage = 'course';
