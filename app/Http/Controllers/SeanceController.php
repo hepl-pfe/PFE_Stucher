@@ -128,6 +128,18 @@ class SeanceController extends Controller
         return view('seance/viewSeance', compact( 'title', 'id', 'seance', 'interval', 'comments', 'activePage' ));
     }
 
+    public function all( $id ) {
+        setlocale( LC_ALL, 'fr_FR');
+        $now = Carbon::now()->format('Y-m-d H:i:s');
+        $course = Course::findOrFail( $id );
+        $comments = Comment::where('context', '=', 1)->get();
+        $seances = Seance::where( 'course_id', '=', $id )->where( 'end_hours', '>', $now )->paginate(10);
+        $title = "Toutes les séances du cours";
+        $activePage = 'course';
+
+        return view('seance/seancesList', compact( 'title', 'seances', 'comments', 'course', 'activePage'));
+    }
+
     public function getByCourse( $id_course ) {
         return Course::find($id_course)->seances;
     }
