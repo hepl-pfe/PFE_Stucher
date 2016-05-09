@@ -371,7 +371,7 @@ class CourseController extends Controller
         $inCourseStudentsId = [];
         foreach ($students as $student) 
         {
-            if( $student->pivot->access === 2 )
+            if( $student->pivot->access == 2 )
             {
                 $inCourseStudents[] = $student;
                 $inCourseStudentsId[] = $student->id;
