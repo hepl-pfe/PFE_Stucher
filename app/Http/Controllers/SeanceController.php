@@ -157,6 +157,12 @@ class SeanceController extends Controller
         foreach ($tests as $test) {
             $test->delete();   
         }
+
+        $comments = Comment::where( 'for', '=', $seance->id )->get();
+        foreach ($comments as $comment) {
+            $comment->delete();
+        }
+
         $seance->delete();
         return redirect()->route('viewCourse', ['id' => $course->id, 'action' => 1]);
     }
