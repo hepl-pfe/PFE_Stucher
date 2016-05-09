@@ -154,7 +154,7 @@ class CourseController extends Controller
                 'course_id' => $id,
                 'user_id' => \Auth::user()->id,
                 'context' => 5,
-                'seen' => 0,
+                'seen' => 0,    // ACTIONS => with buttons
                 'for' => Course::where('id', $id)->get()->first()->teacher_id
             ]);
             
