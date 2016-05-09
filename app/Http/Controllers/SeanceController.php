@@ -187,19 +187,14 @@ class SeanceController extends Controller
 
     public function seanceHistory( $id ) 
     {
-        $seances = Seance::where( 'course_id', '=', $id )->get();
-        $pastSeances = [];
+        setlocale( LC_ALL, 'fr_FR');
+        $now = Carbon::now()->format('Y-m-d H:i:s');
+        $course = Course::findOrFail( $id );
+        $comments = Comment::where('context', '=', 1)->get();
+        $seances = Seance::where( 'course_id', '=', $id )->where( 'end_hours', '<', $now )->paginate(10);
         $title = "Les séances terminées";
         $activePage = 'course';
-        setlocale( LC_ALL, 'fr_FR');
-        foreach ($seances as $seance) {
-            $now = Carbon::now();
-            $endOfSession = Carbon::createFromFormat('Y-m-d H:i:s', $seance->end_hours);
-            if ( $endOfSession > $now ) {
-                $pastSeances[] = $seance;
-            }
-        }
 
-        return view('seance/seancesHistory', compact( 'title', 'pastSeances', 'activePage'));
+        return view('seance/seancesHistory', compact( 'title', 'seances', 'comments', 'course', 'activePage'));
     }
 }
