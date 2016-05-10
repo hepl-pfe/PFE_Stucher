@@ -165,7 +165,7 @@
 					</li>
 				@endif
 				</ul>
-				<a class="box__bottomLink box__bottomLink--dark" href="">Voir toutes les séances du cours <span class="hidden">de {{ $course->title }}</span></a>
+				<a class="box__bottomLink box__bottomLink--dark" href="{{ action( 'SeanceController@all', [ 'id' => $course->id ] ) }}">Voir toutes les séances du cours <span class="hidden">de {{ $course->title }}</span></a>
 			</div>
 
 			@if ( \Auth::user()->status == '1' )
@@ -205,7 +205,7 @@
 						</li>
 					@endif
 					</ul>
-					<a class="box__bottomLink box__bottomLink--dark" href="{!! action( 'CourseController@indexCourseUsers', [ 'id' => $course->id] ) !!}">Voir toutes les demandes d'accès</a>
+					<a class="box__bottomLink box__bottomLink--dark" href="{!! action( 'CourseController@indexWaitingUsers', [ 'id' => $course->id] ) !!}">Voir toutes les demandes d'accès</a>
 				</div>
 
 
