@@ -4,6 +4,7 @@
 
 	<div class="blockTitle">
 		<h2 class="mainTitle">{{ $title }}</h2>
+		<a title="Revenir à la liste des séances en cours" class="backButton blockTitle__backButton unlink mainColorfont" href="{!! action( 'SeanceController@all', [ 'course' => $course->id ] ) !!}"><span class="hidden">Revenir à la page précédente</span><span class="icon-arrow-left"></span></a>
 	</div>
 	
 	@if (empty($pastSeances))
