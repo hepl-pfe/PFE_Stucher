@@ -7,38 +7,77 @@
 		<a title="Revenir à la liste des séances en cours" class="backButton blockTitle__backButton unlink mainColorfont" href="{!! action( 'SeanceController@all', [ 'course' => $course->id ] ) !!}"><span class="hidden">Revenir à la page précédente</span><span class="icon-arrow-left"></span></a>
 	</div>
 	
-	@if (empty($pastSeances))
-		<p>Aucune séances pour le moment</p>
+	@if (empty($seances))
+		<p>Aucune séances n'est passé pour le moment</p>
 	@endif
-	<ul class="list-group">
-		@foreach ( $pastSeances as $seance )
-		<li class="list-group-item">
-			<a href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}" class="btn btn-success">{{ $seance->start_hours->formatLocalized('%A %d %B %Y') }} de {{ $seance->start_hours->formatLocalized('%Hh%M') }} à {{ $seance->end_hours->formatLocalized('%Hh%M') }}</a>
-			@if ( Auth::user()->status == 1 )
-				<a class="btn btn-warning" href="{!! action( 'SeanceController@edit', [ "id" => $seance->id ] ) !!}">Modifier</a>
-				<!-- Modal -->
-				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#{{ $seance->id }}">X</button>
-				<div id="{{ $seance->id }}" class="modal fade" role="dialog">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-								<h4 class="modal-title">Voulez-vous vraiment supprimer cette séance?</h4>
-							</div>
-							<div class="modal-body">
-								<p>Attention, c'est irréversible!</p>
-								<p>En supprimant cette séance, vous supprimerez tous les devoirs et interrogations s'y rapportant.</p>
-							</div>
-							<div class="modal-footer">
-								<a href="{!! action( 'SeanceController@delete', [ "id" => $seance->id, "course_id" => $seance->course_id ] ) !!}" class="btn btn-danger">Oui</a>
-								<button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			@endif
-		</li>
-		@endforeach
-	</ul>
+	<div class="box--group">
+		<!-- A FEW (3 latest) SEANCES -->
+		<div class="box box--demis box--demis--left box--shadow box--seance--course">
+			<ul class="box__group--list seance__group--list">
+				@if ( isset($seances) )
+					@if ( count($seances) == 0 )
+						<li class="box__empty center">
+							Il n’y a aucune séance pour le moment
+						</li>
+						<p class="center"></p>
+					@else
+						@foreach( $seances as $seance )
+							<li class="box__group--list--list box__seanceCourse">
+								<a class="box__seanceDate" href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}">
+									<span class="box__seanceDate--day">{{ $seance->start_hours->formatLocalized('%A') }}</span>
+									<span class="box__seanceDate--dayNumber">{{ $seance->start_hours->formatLocalized('%d') }}</span>
+									<span class="box__seanceDate--month">{{ $seance->start_hours->formatLocalized('%B') }}</span>
+									<span class="box__highlight box__seanceDate--hour">{{ $seance->start_hours->formatLocalized('%Hh%M') }}</span>
+								</a>
+								<div class="box__seanceCourse--info">
+									<!-- HOMEWORKS -->
+									<a href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}#works" class="box__seanceCourse--homework box__seanceCourse--numbers">
+										<span class="icon-briefcase"></span>
+										@if( count($seance->works) !== 0 )
+											Devoirs&#8239;: {{ count($seance->works) }}
+										@else
+											Devoirs&#8239;: 0
+										@endif
+									</a>
+
+									<!-- TESTS -->
+									<a href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}#tests" class="box__seanceCourse--test box__seanceCourse--numbers">
+										<span class="icon-book-open"></span>
+										@if( count($seance->tests) !== 0 )
+											Tests&#8239;: {{ count($seance->tests) }}
+										@else
+											Tests&#8239;: 0
+										@endif
+									</a>
+
+									<!-- COMMENTS -->
+									<a href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}#comments" class="box__seanceCourse--comment box__seanceCourse--numbers">
+										<span class="icon-bubbles"></span>
+										<?php $theSeanceComment = []; ?>
+										@foreach( $comments as $comment )
+											@if( $comment->for == $seance->id )
+												<?php $theSeanceComment[] = $comment; ?>
+											@endif
+										@endforeach
+										@if( !empty($theSeanceComment) )
+											Com&#8239;: {{ count($theSeanceComment) }}
+										@else
+											Com&#8239;: 0
+										@endif
+									</a>
+								</div>
+								<div class="clear"></div>
+							</li>
+						@endforeach
+					@endif
+				@else
+					<li class="box__group--list--list box__group--studentAsk center">
+						Il n’y a aucune séance pour le moment
+					</li>
+				@endif
+			</ul>
+		</div>
+		{!! $seances->render() !!}
+	</div>
 
 @endsection
