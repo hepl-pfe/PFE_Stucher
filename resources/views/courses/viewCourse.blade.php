@@ -49,7 +49,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="{{ action('SeanceController@seanceHistory', [ 'id' => $course->id]) }}">
+			<a title="Voir toutes les séances du cours" href="{{ action('SeanceController@all', [ 'id' => $course->id]) }}">
 				<span>Séances restantes</span>
 				<span>{{ count($seances) }}&#8239;/&#8239;{{ count($allSeances) }}</span>
 			</a>
