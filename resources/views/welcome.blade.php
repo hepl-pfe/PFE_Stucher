@@ -67,7 +67,7 @@
 
                 <div class="form-group">
                     <a href="{{ action( 'PageController@registerStudent' ) }}" class="unlink home__formButton home__link--register home__link--register--student" type="submit">Élève</a>
-                    <a href="{{ action( 'PageController@registerTeacher' ) }}" class="unlink home__formButton home__link--register home__link--register--teacher" type="submit">Prefesseur</a>
+                    <a href="{{ action( 'PageController@registerTeacher' ) }}" class="unlink home__formButton home__link--register home__link--register--teacher" type="submit">Professeur</a>
                     <div class="clear"></div>
                 </div>
 
