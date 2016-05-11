@@ -37,7 +37,7 @@
 		</li>
 		@endif
 		<li>
-			<a href="">
+			<a title="Voir tous les élèves qui suivent le cours" href="{!! action( 'CourseController@indexCourseUsers', [ 'id' => $course->id] ) !!}">
 				<span>Nombre d'élèves</span>
 				<span>
 					@if ( count($inCourseStudents) == 0 )
