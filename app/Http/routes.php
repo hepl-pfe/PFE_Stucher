@@ -37,7 +37,7 @@ Route::get( 'message/new', [ 'as' => 'newMessage', 'uses' => 'PageController@new
 Route::get( 'message/re', [ 'as' => 'repMessage', 'uses' => 'PageController@repMessage', 'middleware' => 'auth' ] );
 Route::get( 'planning/view', [ 'as' => 'planning', 'uses' => 'CalendarController@view', 'middleware' => 'auth' ] );
 
-Route::get( 'course/{id}/users', [ 'as' => 'courseUser', 'uses' => 'CourseController@indexCourseUsers', 'middleware' => ['auth', 'isTheTeacher'] ] );
+Route::get( 'course/{id}/users', [ 'as' => 'courseUser', 'uses' => 'CourseController@indexCourseUsers', 'middleware' => ['auth'] ] );
 Route::get( 'indexUsers', [ 'as' => 'indexUsers', 'uses' => 'CourseController@indexUserUsers', 'middleware' => 'auth' ] );
 Route::get( 'course/{id}/users/wait', [ 'as' => 'indexWaitingUsers', 'uses' => 'CourseController@indexWaitingUsers', 'middleware' => 'auth' ] );
 
