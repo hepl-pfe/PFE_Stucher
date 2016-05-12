@@ -16,6 +16,7 @@
 .notification__item {
 	background-color: #fff;
 	min-height: 15%;
+	overflow: hidden;
 	&:before {
 		content: '';
 		display: inline-block;
