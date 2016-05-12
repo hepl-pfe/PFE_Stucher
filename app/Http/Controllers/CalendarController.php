@@ -38,12 +38,13 @@ class CalendarController extends Controller
         // Add 0 before a single number >
         $the_active_day = $year.'-'.$month.'-'.$day;
 
+        $comments = Comment::where('context', '=', 1)->get();
+
         if (\Auth::user()->status == 1) { // IF TEACHER
             $courses = Course::where('teacher_id', '=', \Auth::user()->id)->get();
             $seances = [];
             $allSeances = [];
             $currentSeances = [];
-            $comments = Comment::where('context', '=', 1)->get();
             foreach ( $courses as $course ) {
                 $seances[] = $course->seances->sortBy('start_hours');
             }
