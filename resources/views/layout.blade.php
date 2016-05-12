@@ -76,7 +76,7 @@
 								@endif
 
 								@if ($not->not_context == 8)
-									<a href="{{ action('PageController@viewUser', [ 'id' => $not->user_id]) }}">{{$not->user_name}}</a> {{$not->not_title}} <a href="{{ action('CourseController@view', [ 'id' => $not->course_id, 'action' => 1 ]) }}">{{$not->course_title}}</a>
+									<a href="{{ action('PageController@viewUser', [ 'id' => $not->user_id]) }}">{{$not->user_firstname}} {{$not->user_name}}</a> a quitté le cours de <a href="{{ action('CourseController@view', [ 'id' => $not->course_id, 'action' => 1 ]) }}">{{$not->course_title}}</a>
 								@endif
 								<div class="clear"></div>
 							</li>
