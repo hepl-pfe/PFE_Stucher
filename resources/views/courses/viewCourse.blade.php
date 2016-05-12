@@ -199,7 +199,7 @@
 							@else
 								Aucun
 							@endif
-							@if ( count($demandedStudents) == 1 )
+							@if ( count($demandedStudents) == 1 OR count($demandedStudents) == 0 )
 								élève demande accès au cours
 							@else
 								élèves demandent accès au cours
