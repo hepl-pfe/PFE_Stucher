@@ -70,6 +70,7 @@ button {
   background-color: $white;
   padding: 0.5em;
   position: relative;
+  @include shadow( 0, 0, 10px, rgba( $black, 0.3) );
 }
 
 .mainTitle {
