@@ -197,7 +197,7 @@
 							@if ( count($demandedStudents) !== 0 )
 								{{ count($demandedStudents) }}
 							@else
-								0
+								Aucun
 							@endif
 							@if ( count($demandedStudents) == 1 )
 								élève demande accès au cours
