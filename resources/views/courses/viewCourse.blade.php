@@ -169,6 +169,27 @@
 			</div>
 
 			@if ( \Auth::user()->status == '1' )
+
+					<!-- STUDENT IN COURSE -->
+			<div class="box box--demis box--demis--right box--shadow box--studentInCourse clear--right">
+				<div class="box__head">
+					<h3 class="box__bigTitle box__bigTitle--center">
+						@if ( count($inCourseStudents) !== 0 )
+							{{ count($inCourseStudents) }}
+						@else
+							Aucun
+						@endif
+						@if ( count($inCourseStudents) == 1 OR count($demandedStudents) == 0 )
+							élève suit le cours
+						@else
+							élèves suivent le cours
+						@endif
+					</h3>
+					<div class="clear"></div>
+				</div>
+				<a class="box__bottomLink box__bottomLink--dark" href="{!! action( 'CourseController@indexCourseUsers', [ 'id' => $course->id] ) !!}">Voir tous les élèves qui suivent le cours</a>
+			</div>
+
 				<!-- STUDENT ASK -->
 				<div class="box box--demis box--demis--right box--shadow box--studentAsk">
 					<div class="box__head">
@@ -208,26 +229,6 @@
 					<a class="box__bottomLink box__bottomLink--dark" href="{!! action( 'CourseController@indexWaitingUsers', [ 'id' => $course->id] ) !!}">Voir toutes les demandes d'accès</a>
 				</div>
 
-
-				<!-- STUDENT IN COURSE -->
-				<div class="box box--demis box--demis--right box--shadow box--studentInCourse clear--right">
-					<div class="box__head">
-						<h3 class="box__bigTitle box__bigTitle--center">
-							@if ( count($inCourseStudents) !== 0 )
-								{{ count($inCourseStudents) }}
-							@else
-								0
-							@endif
-							@if ( count($inCourseStudents) == 1 )
-								élève suit le cours
-							@else
-								élèves suivent le cours
-							@endif
-						</h3>
-						<div class="clear"></div>
-					</div>
-					<a class="box__bottomLink box__bottomLink--dark" href="{!! action( 'CourseController@indexCourseUsers', [ 'id' => $course->id] ) !!}">Voir tous les élèves qui suivent le cours</a>
-				</div>
 			@endif
 
 		</div>
