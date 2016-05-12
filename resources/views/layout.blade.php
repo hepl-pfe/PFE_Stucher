@@ -68,7 +68,15 @@
 								@endif
 
 								@if ($not->not_context == 6)
-									{{$not->not_title}} <a href="{{ action('CourseController@view', [ 'id' => $not->course_id, 'action' => 1 ]) }}">{{$not->course_title}}</a>
+									<div class="notification__content notification__color--green">
+										{{$not->not_title}} <a href="{{ action('CourseController@view', [ 'id' => $not->course_id ]) }}">{{$not->course_title}}</a>
+									</div>
+									<div class="notification__actionGroup">
+										<a title="voir le cours" class="unlink" href="{{ action('CourseController@view', [ 'id' => $not->course_id ]) }}">
+										<span class="hidden">Voir le cours</span>
+										<span class="icon-eye"></span>
+										</a>
+									</div>
 								@endif
 
 								@if ($not->not_context == 7)
