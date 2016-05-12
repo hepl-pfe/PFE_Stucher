@@ -6,10 +6,10 @@ Carbon::setLocale('fr'); ?>
     @section( 'content' )
     @section( 'title', $title )
 	<div class="blockTitle">
-		<h2 class="mainTitle"><span class="hidden">Séance du </span>{{ $seance->start_hours->formatLocalized('%A %d %B %Y') }} - {{ $seance->start_hours->formatLocalized('%Hh%M') }}</h2>
+		<h2 class="mainTitle"><span class="hidden">Séance du </span>{{ $seance->start_hours->formatLocalized('%A %d %B %Y') }}</h2>
 		<h3 class="subTitle">Cours de {{ $seance->course->title }}</h3>
 		<h4 class="bannerUnderTitle seanceDuration" title="de {{ $seance->start_hours->formatLocalized('%Hh%M') }} à {{ $seance->end_hours->formatLocalized('%Hh%M') }}">
-			<span class="icon-clock"></span> {{ $interval->format('%Hh%M') }}
+			<span class="icon-clock"></span>&nbsp;{{ $seance->start_hours->formatLocalized('%Hh%M') }} - {{ $seance->end_hours->formatLocalized('%Hh%M') }}
 		</h4>
 		<a title="Revenir au cours" class="backButton blockTitle__backButton unlink mainColorfont" href="{!! action( 'CourseController@view', [ 'id' => $seance->course->id ] ) !!}"><span class="hidden">Revenir à la page précédente</span><span class="icon-arrow-left"></span></a>
 	</div>
