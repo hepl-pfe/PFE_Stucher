@@ -29,6 +29,7 @@ Carbon::setLocale('fr'); ?>
 			<li><a href="{!! action( 'TestController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Une interrogation</a></li>
 			<li><a href="{!! action( 'SeanceController@edit', [ "id" => $seance->id ] ) !!}">Modifier la séance</a></li>
 			<li><a href="{!! action( 'SeanceController@delete', [ "id" => $seance->id ] ) !!}">Supprimer la séance</a></li>
+			<li><a href="{!! action( 'SeanceController@absent', [ "id" => $seance->id ] ) !!}">Absence</a></li>
 		</ul>
 	</div>
 	@endif
@@ -42,6 +43,7 @@ Carbon::setLocale('fr'); ?>
 			@else
 				({{ count( $seance->works ) }})
 			@endif
+			<a href="{!! action( 'WorkController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Ajouter</a>
 			</h3>
 			<div class="box--group">
 				@if ( count($seance->works) == 0 )
@@ -91,6 +93,7 @@ Carbon::setLocale('fr'); ?>
 				@else
 					({{ count( $seance->tests ) }})
 				@endif
+				<a href="{!! action( 'TestController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Ajouter</a>
 			</h3>
 			<div class="box--group">
 				@if ( count($seance->tests) == 0 )
