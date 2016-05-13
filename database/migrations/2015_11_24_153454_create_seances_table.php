@@ -18,7 +18,9 @@ class CreateSeancesTable extends Migration
             $table->string('classroom_id');
             $table->timestamp('start_hours');
             $table->timestamp('end_hours');
+            $table->unsignedInteger('absent'); // 0 = présent - 1 = absent
             $table->timestamps();
+
             $table->foreign('course_id')->references('id')->on('courses');
             //$table->foreign('classroom_id')->references('classrooms')->on('id');
         });
