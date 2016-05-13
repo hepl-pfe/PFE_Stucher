@@ -81,7 +81,7 @@
 	@if( Auth::user()->status == 2 )
 		@if ( $the_user != "valided" )
 			<h2>Groupe: <a href="">{{ $course->group }}</a></h2>
-			<h2>Professeur: <a href="">{{ $teacher[0]->name }}</a></h2>
+			<h2>Professeur: <a href="{!! action( 'PageController@viewUser', [ 'id' => $teacher[0]->id ] ) !!}">{{ $teacher[0]->name }}</a></h2>
 			<h2>École: <a href="">Collège Saint-Louis Waremme</a></h2>
 			<a class="btn btn-warning" href="{!! action( 'CourseController@searchCourse' ) !!}">Retour</a>
 			<a class="btn btn-success" href="{!! action( 'CourseController@addCourse', [ 'id' => $course->id ] ) !!}">Ajouter à mes cours</a>
