@@ -197,4 +197,13 @@ class SeanceController extends Controller
 
         return view('seance/seancesHistory', compact( 'title', 'seances', 'comments', 'course', 'activePage'));
     }
+
+    public function absent( $id )
+    {
+        $seance = Seance::findOrFail($id);
+        $seance->absent == 1 ? $seance->absent = 0 : $seance->absent = 1;
+        $seance->save();
+
+        return redirect()->back();
+    }
 }
