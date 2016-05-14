@@ -45,7 +45,25 @@ class IsTheTeacher
                         die('TU NE PEUX PAS… TU NE VEUX PAS… ET TU RESTE PLANTÉ LÀ!!!');
                     }
                 }
-            }
+            } else if ( in_array('work', $request->segments()) )
+                {
+                    $the_work = Work::where('id', $request->route()->parameter('id'))->first();
+
+                    dd('ok-work');
+
+                    if( $the_work == null )
+                    {
+                        die( 'Cette devoir n’existe pas' );
+                    } else {
+                        $the_seance = Course::findOrFail($the_work->seance_id);
+                        $the_course = Course::findOrFail($the_seance->course_id);
+                        $the_teacher = $the_course->teacher_id;
+
+                        if ($the_teacher != \Auth::user()->id)
+                        {
+                            die('TU NE PEUX PAS… TU NE VEUX PAS… ET TU RESTE PLANTÉ LÀ!!!');
+                        }
+                    }
         return $next($request);
     }
 }
