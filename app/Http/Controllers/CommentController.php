@@ -105,11 +105,17 @@ class CommentController extends Controller
      */
     public function delete($id)
     {
-        if( $comment->from != \Auth::user()->id ) {
-            return back()->withErrors('Vous ne pouvez pas supprimer ce commentaire');
         $comment = Comment::find($id);
+        if( $comment == null ) {
+            return back()->withErrors('Ce commentaire n’existe pas!');
+        } else {
+            // Verify if it's my comment => middleware
+            if( $comment->from != \Auth::user()->id ) {
+                return back()->withErrors('Vous ne pouvez pas supprimer ce commentaire');
+            } else {
+                $comment->delete();
+                return back();
+            }
         }
-        $comment->delete();
-        return back();
     }
 }
