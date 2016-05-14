@@ -5,6 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use App\Course;
 use App\Seance;
+use App\Work;
+use App\Test;
+use App\Comment;
 
 class IsTheTeacher
 {
