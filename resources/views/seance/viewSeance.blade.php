@@ -184,7 +184,7 @@ Carbon::setLocale('fr'); ?>
 							@endforeach
 							</ul>
 						@endif
-							<form class="comment__box" method="POST" action="/comments/create">
+							<form class="comment__box" method="POST" action="/comment/create">
 								{!! csrf_field() !!}
 
 								<div class="form-group">
