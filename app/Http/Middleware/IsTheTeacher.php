@@ -49,8 +49,6 @@ class IsTheTeacher
                 {
                     $the_work = Work::where('id', $request->route()->parameter('id'))->first();
 
-                    dd('ok-work');
-
                     if( $the_work == null )
                     {
                         die( 'Cette devoir n’existe pas' );
@@ -67,8 +65,6 @@ class IsTheTeacher
                 } else if ( in_array('test', $request->segments()) )
                     {
                         $the_test = Test::where('id', $request->route()->parameter('id'))->first();
-
-                        dd('ok');
 
                         if( $the_test == null )
                         {
