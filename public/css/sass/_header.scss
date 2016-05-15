@@ -8,7 +8,13 @@
 	height: 3em;
 }
 
-.menuToggle, #menuToggle {
+#menuToggle {
+	// .hidden
+	position: absolute;
+	left: -999999px;
+}
+
+.menuToggle {
 	display: none;
 }
 
