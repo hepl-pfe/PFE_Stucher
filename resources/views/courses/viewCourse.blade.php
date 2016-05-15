@@ -49,6 +49,7 @@
 			</a>
 		</li>
 		<li>
+
 			<a title="Voir toutes les séances du cours" href="{{ action('SeanceController@all', [ 'id' => $course->id]) }}">
 				<span>Séances restantes</span>
 				<span>{{ count($seances) }}&#8239;/&#8239;{{ count($allSeances) }}</span>
@@ -110,7 +111,9 @@
 						</li>
 						<p class="center"></p>
 					@else
-						@foreach( $seances as $seance )
+						<?php if(count($seances) < 5) { $nSeances = count($seances); } else { $nSeances = 5; } ?>
+						@for( $i = 0; $i < $nSeances; $i++ )
+							<?php $seance = $seances[$i]; ?>
 							<li class="box__group--list--list box__seanceCourse">
 								<a class="box__seanceDate" href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}">
 									<span class="box__seanceDate--day">{{ $seance->start_hours->formatLocalized('%A') }}</span>
@@ -162,7 +165,7 @@
 								</div>
 								<div class="clear"></div>
 							</li>
-						@endforeach
+						@endfor
 					@endif
 				@else
 					<li class="box__group--list--list box__group--studentAsk center">
