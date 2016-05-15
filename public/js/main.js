@@ -302,4 +302,7 @@ jQuery( function($) {
 		if( qs['popupError'] == 'logout' ) {
 			swal("Oops...", "Vous devez être connecté pour vous rendre là!", "error");
 		}
+		if( qs['popupError'] == 'notCourse' ) {
+			swal("Oops...", "Ce cours n’existe pas!", "error");
+		}
 } );
