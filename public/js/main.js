@@ -314,4 +314,7 @@ jQuery( function($) {
 		if( qs['popupError'] == 'notTest' ) {
 			swal("Oops...", "Cette interrogation n’existe pas!", "error");
 		}
+		if( qs['popupError'] == 'notComment' ) {
+			swal("Oops...", "Ce commentaire n’existe pas!", "error");
+		}
 } );
