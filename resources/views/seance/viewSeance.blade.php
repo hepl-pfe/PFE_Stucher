@@ -43,7 +43,9 @@ Carbon::setLocale('fr'); ?>
 			@else
 				({{ count( $seance->works ) }})
 			@endif
-			<a href="{!! action( 'WorkController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Ajouter</a>
+			@if( \Auth::user()->status == 1 )
+				<a href="{!! action( 'WorkController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Ajouter</a>
+			@endif
 			</h3>
 			<div class="box--group">
 				@if ( count($seance->works) == 0 )
@@ -93,7 +95,9 @@ Carbon::setLocale('fr'); ?>
 				@else
 					({{ count( $seance->tests ) }})
 				@endif
-				<a href="{!! action( 'TestController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Ajouter</a>
+				@if( \Auth::user()->status == 1 )
+					<a href="{!! action( 'TestController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Ajouter</a>
+				@endif
 			</h3>
 			<div class="box--group">
 				@if ( count($seance->tests) == 0 )
