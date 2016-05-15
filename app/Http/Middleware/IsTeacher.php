@@ -14,6 +14,6 @@ class IsTeacher
         {
             return $next($request);
         }
-        die('Mais didon !!!! Tu sais que tu ne peux pas faire ça mon petit… hein !?');
+        return redirect()->route('home', ['popupError' => "teacher"]);
     }
 }

@@ -19,13 +19,13 @@ class IsTheTeacher
 
             if( $the_course == null )
             {
-                die( 'Ce cours n’existe pas' );
+                return redirect()->route('home', ['popupError' => "notCourse"]);
             } else {
                 $the_teacher = $the_course->teacher_id;
 
                 if ($the_teacher != \Auth::user()->id)
                 {
-                    die('TU NE PEUX PAS… TU NE VEUX PAS… ET TU RESTE PLANTÉ LÀ!!!');
+                    return redirect()->route('home', ['popupError' => "userAccess"]);
                 }
             }
 
@@ -35,14 +35,14 @@ class IsTheTeacher
 
                 if( $the_seance == null )
                 {
-                    die( 'Cette séance n’existe pas' );
+                    return redirect()->route('home', ['popupError' => "notSeance"]);
                 } else {
                     $the_course = Course::findOrFail($the_seance->course_id);
                     $the_teacher = $the_course->teacher_id;
 
                     if ($the_teacher != \Auth::user()->id)
                     {
-                        die('TU NE PEUX PAS… TU NE VEUX PAS… ET TU RESTE PLANTÉ LÀ!!!');
+                        return redirect()->route('home', ['popupError' => "userAccess"]);
                     }
                 }
             } else if ( in_array('work', $request->segments()) )
@@ -51,7 +51,7 @@ class IsTheTeacher
 
                     if( $the_work == null )
                     {
-                        die( 'Cette devoir n’existe pas' );
+                        return redirect()->route('home', ['popupError' => "notWork"]);
                     } else {
                         $the_seance = Course::findOrFail($the_work->seance_id);
                         $the_course = Course::findOrFail($the_seance->course_id);
@@ -59,7 +59,7 @@ class IsTheTeacher
 
                         if ($the_teacher != \Auth::user()->id)
                         {
-                            die('TU NE PEUX PAS… TU NE VEUX PAS… ET TU RESTE PLANTÉ LÀ!!!');
+                            return redirect()->route('home', ['popupError' => "userAccess"]);
                         }
                     }
                 } else if ( in_array('test', $request->segments()) )
@@ -68,7 +68,7 @@ class IsTheTeacher
 
                         if( $the_test == null )
                         {
-                            die( 'Cette devoir n’existe pas' );
+                            return redirect()->route('home', ['popupError' => "notTest"]);
                         } else {
                             $the_seance = Course::findOrFail($the_test->seance_id);
                             $the_course = Course::findOrFail($the_seance->course_id);

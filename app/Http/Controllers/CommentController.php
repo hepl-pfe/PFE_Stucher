@@ -107,11 +107,11 @@ class CommentController extends Controller
     {
         $comment = Comment::find($id);
         if( $comment == null ) {
-            return back()->withErrors('Ce commentaire n’existe pas!');
+            return redirect()->route('home', ['popupError' => "notComment"]);
         } else {
             // Verify if it's my comment => middleware
             if( $comment->from != \Auth::user()->id ) {
-                return back()->withErrors('Vous ne pouvez pas supprimer ce commentaire');
+                return redirect()->route('home', ['popupError' => "commentAccess"]);
             } else {
                 $comment->delete();
                 return back();
