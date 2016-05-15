@@ -1,5 +1,7 @@
 #dd_moreButton {
-  display: none;
+  // .hidden
+  position: absolute;
+  left: -999999px;
 }
 .dd_moreButton--button {
   position: absolute;
