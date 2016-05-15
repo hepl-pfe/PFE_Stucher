@@ -6,12 +6,23 @@
 		<h2 class="mainTitle">{{ $title }}</h2>
 		<a title="Revenir à la liste des séances en cours" class="backButton blockTitle__backButton unlink mainColorfont" href="{!! action( 'SeanceController@all', [ 'course' => $course->id ] ) !!}"><span class="hidden">Revenir à la page précédente</span><span class="icon-arrow-left"></span></a>
 	</div>
+
+	<!-- dd_moreButton -->
+	<div class="dd_moreButton">
+		<input type="checkbox" id="dd_moreButton">
+		<label for="dd_moreButton" class="dd_moreButton--button"><span></span><span></span></label>
+
+		<ul class="dd_moreButton--content">
+			@if( Auth::user()->status == 1 )
+				<li><a href="{!! action( 'SeanceController@create', ['id' => $course->id] ) !!}">Ajouter des séances de cours</a></li>
+			@endif
+		</ul>
+	</div>
 	
 	@if (empty($seances))
 		<p>Aucune séances n'est passé pour le moment</p>
 	@endif
 	<div class="box--group">
-		<!-- A FEW (3 latest) SEANCES -->
 		<div class="box box--demis box--demis--left box--shadow box--seance--course">
 			<ul class="box__group--list seance__group--list">
 				@if ( isset($seances) )
