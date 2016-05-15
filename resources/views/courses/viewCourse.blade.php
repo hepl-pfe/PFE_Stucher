@@ -94,7 +94,7 @@
 			<!-- 5 NEXT SEANCES -->
 			<div class="box box--demis box--demis--left box--shadow box--seance--course">
 				<div class="box__head">
-					<h3 class="box__smallTitle box__smallTitle--left">Prochaines séances</h3>
+					<h3 class="box__smallTitle box__smallTitle--left">5 prochaines séances</h3>
 					@if( Auth::user()->status == 1 )
 						<a href="{!! action( 'SeanceController@create', ['id' => $course->id] ) !!}" class="box__button-icon-text box__button-icon-text--right button-icon-text">
 							<span class="icon icon-close icon-plus mainColorfont"></span> Ajouter
