@@ -125,6 +125,40 @@ class SeanceController extends Controller
         $comments = Comment::where('context', '=', 1)->where('for', $id)->get();
         $title = 'Séance du '.$seance->start_hours->formatLocalized('%A %d %B %Y') . ' de ' . $seance->start_hours->formatLocalized('%Hh%M') . ' à ' . $seance->end_hours->formatLocalized('%Hh%M');
         $activePage = 'course';
+
+
+
+        // Check if user has access
+            $students = Course::find($seance->course->id)->users;
+            $inCourseStudents = [];
+            $demandedStudents = [];
+            $inCourseStudentsId = [];
+            $demandedStudentsId = [];
+            foreach ($students as $student) {
+                if( $student->pivot->access == 1 ){
+                    $demandedStudents[] = $student;
+                    $demandedStudentsId[] = $student->id;
+                }
+                if( $student->pivot->access == 2 ){
+                    $inCourseStudents[] = $student;
+                    $inCourseStudentsId[] = $student->id;
+                }
+            }
+
+            $the_user = 'not';
+            if (in_array(\Auth::user()->id, $inCourseStudentsId)) {
+                $the_user = 'valided';
+            }
+            elseif (in_array(\Auth::user()->id, $demandedStudentsId)) {
+                $the_user = 'demanded';
+            }
+            if ( \Auth::user()->status != 1 ) {
+                if ( $the_user == 'demanded' ) {
+                    return redirect()->route('home', ['popupError' => 'userAccess']);
+                }
+            }
+
+
         return view('seance/viewSeance', compact( 'title', 'id', 'seance', 'interval', 'comments', 'activePage' ));
     }
 
