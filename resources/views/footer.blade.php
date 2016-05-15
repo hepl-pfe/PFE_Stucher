@@ -4,6 +4,8 @@
     <!-- Candendar popup -->
     <script type="text/javascript" src="{{ url() }}/calendar-popup/jquery.timepicker.min.js"></script>
     <script type="text/javascript" src="{{ url() }}/calendar-popup/lib/bootstrap-datepicker.js"></script>
+    <!-- Sweet Alert -->
+    <script type="text/javascript" src="{{ url() }}/js/sweetalert.min.js"></script>
     <!-- My scripts -->
     <script src="{{ url() }}/js/main.js"></script>
     </body>

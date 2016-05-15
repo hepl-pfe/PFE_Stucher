@@ -50,4 +50,7 @@
     <!-- Calendar popup -->
     <link rel="stylesheet" type="text/css" href="{{ url() }}/calendar-popup/jquery.timepicker.css" />
     <link rel="stylesheet" type="text/css" href="{{ url() }}/calendar-popup/lib/bootstrap-datepicker.css" />
+
+    <!-- Sweet Alert -->
+    <link rel="stylesheet" type="text/css" href="{{ url() }}/css/sweetalert.css" />
 </head>
