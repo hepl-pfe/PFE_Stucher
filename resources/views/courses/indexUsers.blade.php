@@ -4,6 +4,7 @@
 
 <div class="blockTitle">
 	<h2 class="mainTitle">Les élèves du cours</h2>
+	<a title="Revenir au cours" class="backButton blockTitle__backButton unlink mainColorfont" href="{!! action( 'CourseController@view', [ 'id' => $course->id ] ) !!}"><span class="hidden">Revenir au cours</span><span class="icon-arrow-left"></span></a>
 </div>
 
 <!-- dd_moreButton -->
