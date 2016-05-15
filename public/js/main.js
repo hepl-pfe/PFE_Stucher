@@ -296,4 +296,7 @@ jQuery( function($) {
 		if( qs['popupError'] == 'teacher' ) {
 			swal("Oops...", "Il faut être professeur pour faire ça!", "error");
 		}
+		if( qs['popupError'] == 'userAccess' ) {
+			swal("Oops...", "Vous n’avez pas les droits nécéssaire pour vous rendre là!", "error");
+		}
 } );
