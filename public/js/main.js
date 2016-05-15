@@ -299,4 +299,7 @@ jQuery( function($) {
 		if( qs['popupError'] == 'userAccess' ) {
 			swal("Oops...", "Vous n’avez pas les droits nécéssaire pour vous rendre là!", "error");
 		}
+		if( qs['popupError'] == 'logout' ) {
+			swal("Oops...", "Vous devez être connecté pour vous rendre là!", "error");
+		}
 } );
