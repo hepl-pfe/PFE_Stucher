@@ -305,4 +305,7 @@ jQuery( function($) {
 		if( qs['popupError'] == 'notCourse' ) {
 			swal("Oops...", "Ce cours n’existe pas!", "error");
 		}
+		if( qs['popupError'] == 'notSeance' ) {
+			swal("Oops...", "Cette séance n’existe pas!", "error");
+		}
 } );
