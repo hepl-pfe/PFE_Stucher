@@ -317,4 +317,9 @@ jQuery( function($) {
 		if( qs['popupError'] == 'notComment' ) {
 			swal("Oops...", "Ce commentaire n’existe pas!", "error");
 		}
+		if( qs['popupError'] == 'commentAccess' ) {
+			swal("Oops...", "Vous n’avez pas les droits nécéssaire supprimer ce commentaire!", "error");
+		}
+	}
+
 } );
