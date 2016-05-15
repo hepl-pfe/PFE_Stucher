@@ -292,4 +292,8 @@ jQuery( function($) {
 
 	qs = getquerystringParams(); //on appel la fonction
 	if( qs['popupError'] ) //Verifie que la variable existe
+	{
+		if( qs['popupError'] == 'teacher' ) {
+			swal("Oops...", "Il faut être professeur pour faire ça!", "error");
+		}
 } );
