@@ -29,6 +29,7 @@ class CourseController extends Controller
 
     public function index() {
         $title = 'Stucher • Journal de classe interactif';
+
         if ( \Auth::check() ) {
             $title = 'Tous mes cours';
             $activePage = 'course';
@@ -55,52 +56,64 @@ class CourseController extends Controller
         $course = Course::findOrFail($id);
         $teacher = User::where( 'id', '=', $course->teacher_id )->get();
         $now = Carbon::now()->format('Y-m-d H:i:s');
-        $allSeances = $course->seances->sortBy('start_hours')->take(5);
+        $allSeances = $course->seances->sortBy('start_hours');
+        $fiveSeances = $course->seances->sortBy('start_hours')->take(5);
         $seances = [];
+        $fiveSeance = [];
         $comments = Comment::where('context', '=', 1)->get();
         foreach( $allSeances as $theSeance ) {
             if( $theSeance->start_hours > $now ) {
                 $seances[] = $theSeance;
             }
         }
-        $students = Course::find($id)->users;
-
-        $inCourseStudents = [];
-        $demandedStudents = [];
-        $inCourseStudentsId = [];
-        $demandedStudentsId = [];
-        foreach ($students as $student) {
-            if( $student->pivot->access == 1 ){
-                $demandedStudents[] = $student;
-                $demandedStudentsId[] = $student->id;
-            }
-            if( $student->pivot->access == 2 ){
-                $inCourseStudents[] = $student;
-                $inCourseStudentsId[] = $student->id;
+        foreach( $fiveSeances as $theSeance ) {
+            if( $theSeance->start_hours > $now ) {
+                $fiveSeances[] = $theSeance;
             }
         }
+
+        // Check if user has acces
+            $students = Course::find($id)->users;
+
+            $inCourseStudents = [];
+            $demandedStudents = [];
+            $inCourseStudentsId = [];
+            $demandedStudentsId = [];
+            foreach ($students as $student) {
+                if( $student->pivot->access == 1 ){
+                    $demandedStudents[] = $student;
+                    $demandedStudentsId[] = $student->id;
+                }
+                if( $student->pivot->access == 2 ){
+                    $inCourseStudents[] = $student;
+                    $inCourseStudentsId[] = $student->id;
+                }
+            }
+
+            $the_user = 'not';
+            if (in_array(\Auth::user()->id, $inCourseStudentsId)) {
+                $the_user = 'valided';
+            }
+            elseif (in_array(\Auth::user()->id, $demandedStudentsId)) {
+                $the_user = 'demanded';
+            }
+            if ( \Auth::user()->status != 1 ) {
+                if ( $the_user == 'demanded' ) {
+                    return view('courses/waitCourse', compact('title', 'activePage'));
+                }
+            }
+
+
         $title = 'Cours de '.$course->title;
         $activePage = 'course';
-        $the_user = 'not';
-        if (in_array(\Auth::user()->id, $inCourseStudentsId)) {
-            $the_user = 'valided';
-        }
-        elseif (in_array(\Auth::user()->id, $demandedStudentsId)) {
-            $the_user = 'demanded';
-        }
-        if ( \Auth::user()->status != 1 ) {
-            if ( $the_user == 'demanded' ) {
-                return view('courses/waitCourse', compact('title', 'activePage'));
-            }
-        }
 
         if ( \Auth::user()->status == 1 ) {
             $title = 'Cours de '.$course->title;
 
-            return view('courses/viewCourse', compact('id', 'course', 'title', 'seances', 'comments', 'allSeances', 'demandedStudents', 'inCourseStudents', 'demandedStudentsId', 'inCourseStudentsId', 'activePage'));
+            return view('courses/viewCourse', compact('id', 'course', 'title', 'seances', 'comments', 'fiveSeances', 'allSeances', 'demandedStudents', 'inCourseStudents', 'demandedStudentsId', 'inCourseStudentsId', 'activePage'));
         }
 
-        return view('courses/viewCourse', compact('course', 'teacher', 'title', 'seances', 'comments', 'allSeances', 'inCourseStudents', 'demandedStudentsId', 'inCourseStudentsId', 'activePage'));
+        return view('courses/viewCourse', compact('course', 'teacher', 'title', 'seances', 'comments', 'fiveSeances', 'allSeances', 'inCourseStudents', 'demandedStudentsId', 'inCourseStudentsId', 'activePage'));
     }
 
     public function create() {
