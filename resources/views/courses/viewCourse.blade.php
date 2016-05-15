@@ -91,7 +91,7 @@
 	@if ( $the_user == "valided" || \Auth::user()->status == '1' )
 
 		<div class="box--group">
-			<!-- A FEW (3 latest) SEANCES -->
+			<!-- 5 NEXT SEANCES -->
 			<div class="box box--demis box--demis--left box--shadow box--seance--course">
 				<div class="box__head">
 					<h3 class="box__smallTitle box__smallTitle--left">Prochaines séances</h3>
