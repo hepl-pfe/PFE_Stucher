@@ -18,7 +18,7 @@
 				<div class="form-group">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<label for="image">Changer l’image</label>
-					<input type="file" class="form-control" name="image" id="image">
+					<input type="file" class="form-control action__changePicture" name="image" id="image">
 				</div>
 
 				<div class="form-group text-center">

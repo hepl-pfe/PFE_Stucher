@@ -19,7 +19,7 @@
 			@endif
 			<li><a href="{!! action( 'PageController@editProfil' ) !!}">Modifier mon profil</a></li>
 			<li><a href="{{ action( 'PageController@changePicture' ) }}">Changer la photo de profil</a></li>
-			<li><a href="{!! action( 'PageController@deleteProfil' ) !!}">Supprimer mon compte</a></li>
+			<li><a class="action__deleteProfil" href="{!! action( 'PageController@deleteProfil' ) !!}">Supprimer mon compte</a></li>
 		</ul>
 	</div>
 

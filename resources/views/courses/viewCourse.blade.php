@@ -66,7 +66,7 @@
 		<ul class="dd_moreButton--content">
 			@if( Auth::user()->status == 1 )
 				<li><a href="{!! action( 'CourseController@edit', [ 'id' => $course->id] ) !!}">Modifier le cours</a></li>
-				<li><a href="{!! action( 'CourseController@delete', [ 'id' => $course->id] ) !!}">Supprimer le cours</a></li>
+				<li><a class="action__deleteCourse" href="{!! action( 'CourseController@delete', [ 'id' => $course->id] ) !!}">Supprimer le cours</a></li>
 				<li><a href="{!! action( 'CourseController@create' ) !!}">Créer un cours</a></li>
 				<li><a href="{!! action( 'WorkController@create', ['id' => $course->id, 'info' => 'course'] ) !!}">Ajouter un devoir</a></li>
 				<li><a href="{!! action( 'TestController@create', ['id' => $course->id, 'info' => 'course'] ) !!}">Ajouter une interrogation</a></li>
