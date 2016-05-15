@@ -11,7 +11,7 @@
 				<div class="form-group">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<label for="title">Ajouter le titre du cours</label>
-					<input type="text" class="form-control" name="title" id="title" placeholder="ex: Mathématiques" value="{{ old('title') }}">
+					<input type="text" class="form-control" name="title" id="title" placeholder="ex: Mathématiques" value="{{ old('title') }}" autofocus>
 				</div>
 
 				<div class="form-group">
