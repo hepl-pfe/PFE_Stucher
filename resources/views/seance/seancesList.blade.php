@@ -7,6 +7,18 @@
         <a title="Revenir au cours de {{ $course->title  }}" class="backButton blockTitle__backButton unlink mainColorfont" href="{!! action( 'CourseController@view', [ 'course' => $course->id ] ) !!}"><span class="hidden">Revenir à la page précédente</span><span class="icon-arrow-left"></span></a>
     </div>
 
+    <!-- dd_moreButton -->
+    <div class="dd_moreButton">
+        <input type="checkbox" id="dd_moreButton">
+        <label for="dd_moreButton" class="dd_moreButton--button"><span></span><span></span></label>
+
+        <ul class="dd_moreButton--content">
+            @if( Auth::user()->status == 1 )
+                <li><a href="{!! action( 'SeanceController@create', ['id' => $course->id] ) !!}">Ajouter des séances de cours</a></li>
+            @endif
+        </ul>
+    </div>
+
     @if (empty($seances))
         <p>Aucune séances n'est passé pour le moment</p>
     @endif
