@@ -275,4 +275,21 @@ jQuery( function($) {
 
 	} );
 
+
+
+	// IF ACCESS ERROR
+	function getquerystringParams () {
+		var str = document.location.search;
+		if ( str.charAt( 0 ) == '?' ) str = str.substring( 1 );
+		var tab = str.split( '&' );
+		var get = new Object();
+		for ( var i=0; i < tab.length; i++ ) {
+			var tab2 = tab[ i ].split( '=' );
+			get[ tab2[ 0 ] ] = tab2[ 1 ];
+		}
+		return get;
+	}
+
+	qs = getquerystringParams(); //on appel la fonction
+	if( qs['popupError'] ) //Verifie que la variable existe
 } );
