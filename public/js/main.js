@@ -207,4 +207,39 @@ jQuery( function($) {
 	/////////////////////
 	///// SWEET ALERT ///
 	/////////////////////
+	$( '.action__deleteCourse').click( function( e ){
+		e.preventDefault();
+		var course_url = e.currentTarget.href;
+
+		swal({
+			title: "Voulez vous vraiment supprimer ce cours?",
+			text: "En supprimant ce cours, vous supprimerez tous les éléments liés à celui-ci (séances, interrogations, devoir, fichiers etc.)",
+			showCancelButton: true,
+			closeOnConfirm: false,
+			confirmButtonText: "Oui, je supprime",
+			cancelButtonText: "Non",
+			confirmButtonColor: "#ec6c62"
+		}, function() {
+			$.ajax({
+					type: "get",
+					url: course_url
+			})
+			.done(function(data) {
+				swal({
+					title: "Supprimé!",
+					text: "Le cours a correctement été supprimé!",
+					type: "success"
+				}, function() {
+					window.location.href = '/';
+				});
+			})
+			.error(function(data) {
+				swal("Oops", "Une erreur s'est produite sur le serveur!", "error");
+			});
+		});
+
+	} );
+
+
+
 } );
