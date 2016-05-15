@@ -311,4 +311,7 @@ jQuery( function($) {
 		if( qs['popupError'] == 'notWork' ) {
 			swal("Oops...", "Ce devoir n’existe pas!", "error");
 		}
+		if( qs['popupError'] == 'notTest' ) {
+			swal("Oops...", "Cette interrogation n’existe pas!", "error");
+		}
 } );
