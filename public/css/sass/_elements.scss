@@ -45,13 +45,6 @@
       transform: rotate(-90deg);
     }
   }
-  &:hover {
-    -webkit-transform: scale(1.2);
-    -moz-transform: scale(1.2);
-    -ms-transform: scale(1.2);
-    -o-transform: scale(1.2);
-    transform: scale(1.2);
-  }
 }
 
 .dd_moreButton--content {
@@ -454,9 +447,6 @@
     }
     &.color-8 a {
       background-color: $color-8;
-    }
-    &.color-9 a {
-      background-color: $color-9;
     }
   }
   a {
