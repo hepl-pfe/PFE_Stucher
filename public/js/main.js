@@ -277,6 +277,39 @@ jQuery( function($) {
 
 
 
+	$( '.action__deleteSeance').click( function( e ){
+		e.preventDefault();
+		var profil_url = e.currentTarget.href;
+		var course = e.currentTarget.getAttribute('data-course');
+
+		swal({
+			title: "Voulez vous vraiment supprimer Cette séance?",
+			text: "En supprimant cette séance, vous supprimerez tous les éléments liés à celle-ci (interrogations, devoir, fichiers etc.)",
+			showCancelButton: true,
+			closeOnConfirm: false,
+			confirmButtonText: "Oui, je supprime",
+			cancelButtonText: "Non",
+			confirmButtonColor: "#ec6c62"
+		}, function() {
+			$.ajax({
+					type: "get",
+					url: profil_url
+				})
+				.done(function(data) {
+					swal({
+						title: "Supprimé!",
+						text: "La séance a correctement été supprimée!",
+						type: "success"
+					}, function() {
+						window.location.href = '/course/'+course+'/view';
+					});
+				})
+				.error(function(data) {
+					swal("Oops", "Une erreur s'est produite sur le serveur!", "error");
+				});
+		});
+
+	} );
 	// IF ACCESS ERROR
 	function getquerystringParams () {
 		var str = document.location.search;
