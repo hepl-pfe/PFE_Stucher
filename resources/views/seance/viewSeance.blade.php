@@ -28,7 +28,7 @@ Carbon::setLocale('fr'); ?>
 			<li><a href="{!! action( 'WorkController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Un devoir</a></li>
 			<li><a href="{!! action( 'TestController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Une interrogation</a></li>
 			<li><a href="{!! action( 'SeanceController@edit', [ "id" => $seance->id ] ) !!}">Modifier la séance</a></li>
-			<li><a href="{!! action( 'SeanceController@delete', [ "id" => $seance->id ] ) !!}">Supprimer la séance</a></li>
+			<li><a class="action__deleteSeance" data-course="{{ $seance->course->id }}" href="{!! action( 'SeanceController@delete', [ "id" => $seance->id ] ) !!}">Supprimer la séance</a></li>
 			<li><a href="{!! action( 'SeanceController@absent', [ "id" => $seance->id ] ) !!}">Absence</a></li>
 		</ul>
 	</div>
@@ -62,7 +62,7 @@ Carbon::setLocale('fr'); ?>
 										<a title="Modifier" class="icon icon-note unlink boxTitle__editIcon boxTitle__teacherIcon" href="{{ action( 'WorkController@edit', ['id' => $work->id] ) }}">
 											<span class="hidden">modifier</span>
 										</a>
-										<a title="Supprimer" class="icon icon-trash unlink boxTitle__deleteIcon boxTitle__teacherIcon" href="{!! action( 'WorkController@delete', ['id' => $work->id] ) !!}">
+										<a title="Supprimer" data-seance="{{ $seance->id }}" class="action__deleteWork icon icon-trash unlink boxTitle__deleteIcon boxTitle__teacherIcon" href="{!! action( 'WorkController@delete', ['id' => $work->id] ) !!}">
 											<span class="hidden">Supprimer</span>
 										</a>
 										<div class="clear"></div>
@@ -114,7 +114,7 @@ Carbon::setLocale('fr'); ?>
 										<a title="Modifier" class="icon icon-note unlink boxTitle__editIcon boxTitle__teacherIcon" href="{{ action( 'TestController@edit', ['id' => $test->id] ) }}">
 											<span class="hidden">modifier</span>
 										</a>
-										<a title="Supprimer" class="icon icon-trash unlink boxTitle__deleteIcon boxTitle__teacherIcon" href="{!! action( 'TestController@delete', ['id' => $test->id] ) !!}">
+										<a title="Supprimer" data-seance="{{ $seance->id }}" class="action__deleteTest icon icon-trash unlink boxTitle__deleteIcon boxTitle__teacherIcon" href="{!! action( 'TestController@delete', ['id' => $test->id] ) !!}">
 											<span class="hidden">Supprimer</span>
 										</a>
 										<div class="clear"></div>
