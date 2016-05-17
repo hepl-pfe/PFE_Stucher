@@ -13,7 +13,7 @@ class IsTheTeacher
 {
     public function handle($request, Closure $next)
     {
-        if ( in_array('course', $request->segments()) ) 
+        if ( in_array('course', $request->segments()) )
         {
             $the_course = Course::where('id', $request->route()->parameter('id'))->first();
 
@@ -29,7 +29,7 @@ class IsTheTeacher
                 }
             }
 
-        } else if ( in_array('seance', $request->segments()) ) 
+        } else if ( in_array('seance', $request->segments()) )
             {
                 $the_seance = Seance::where('id', $request->route()->parameter('id'))->first();
 
@@ -53,7 +53,7 @@ class IsTheTeacher
                     {
                         return redirect()->route('home', ['popupError' => "notWork"]);
                     } else {
-                        $the_seance = Course::findOrFail($the_work->seance_id);
+                        $the_seance = Seance::findOrFail($the_work->seance_id);
                         $the_course = Course::findOrFail($the_seance->course_id);
                         $the_teacher = $the_course->teacher_id;
 
@@ -70,7 +70,7 @@ class IsTheTeacher
                         {
                             return redirect()->route('home', ['popupError' => "notTest"]);
                         } else {
-                            $the_seance = Course::findOrFail($the_test->seance_id);
+                            $the_seance = Seance::findOrFail($the_test->seance_id);
                             $the_course = Course::findOrFail($the_seance->course_id);
                             $the_teacher = $the_course->teacher_id;
 
