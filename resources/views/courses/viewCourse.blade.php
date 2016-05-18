@@ -73,7 +73,8 @@
 				<li><a href="{!! action( 'TestController@create', ['id' => $course->id, 'info' => 'course'] ) !!}">Ajouter une interrogation</a></li>
 				<li><a href="{!! action( 'SeanceController@create', ['id' => $id] ) !!}">Ajouter des séances de cours</a></li>
 			@else
-				<li><a href="{!! action( 'CourseController@removeCourse', [ 'id' => $course->id ] ) !!}">Quitter le cours</a></li>
+				<li><a class="action__removeCourse" href="{!! action( 'CourseController@removeCourse', [ 'id' => $course->id ] ) !!}">Quitter le cours</a></li>
+				<li><a href="mailto:{{ $teacher[0]->email }}">Contacter le professeur par mail</a></li>
 			@endif
 		</ul>
 	</div>
