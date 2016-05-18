@@ -4,7 +4,8 @@
 
 <header class="home__header">
     <div class="home__connectZone">
-        <a href="#connectZone" class="unlink home__register--link">inscription&#8239;/&#8239;connexion</a>
+        <a href="{{ action( 'Auth\AuthController@getRegister' ) }}" class="unlink home__register--link">Inscription</a>
+        <a href="{{ action( 'Auth\AuthController@getLogin' ) }}" class="unlink home__register--link">Connexion</a>
     </div>
     <a class="home__mainLogo--link" href="{!! action( 'CourseController@index' ) !!}">
         <h1 class="home__mainLogo--title">logo Stucher</h1>
