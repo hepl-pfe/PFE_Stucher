@@ -1,38 +1,7 @@
 jQuery( function($) {
 	// GÉRER LA PÉRIODE
-	/*$( '#datepicker_start' ).datepicker(
+
 		{
-			language: 'fr',
-			dateFormat: 'yy-mm-dd',
-			minDate: 0,
-		}
-	);
-
-	$( '#datepicker_end' ).datepicker(
-		{
-			language: 'fr',
-			dateFormat: 'yy-mm-dd',
-			minDate: 0,
-		}
-	);
-
-
-	$('#start_hours').timepicker(
-	 {
-	 	language: 'fr',
-	 	step: 15,
-	 	'minTime': '7:00am',
-	 	'maxTime': '5:00pm'
-	 }
-	);
-	$('#end_hours').timepicker(
-	 {
-	 	language: 'fr',
-	 	step: 15,
-		'maxTime': '71:3amm',
-		'maxTime': '75:3apm'
-	 }
-	);*/
 
 	// // AJAX
 
