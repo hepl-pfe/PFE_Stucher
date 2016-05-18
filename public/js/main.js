@@ -1,7 +1,39 @@
 jQuery( function($) {
 	// GÉRER LA PÉRIODE
 
+	$("#dtBox").DateTimePicker( {
+
+		language: "fr",
+
+		dateTimeFormat: "dd-MM-yyyy HH:mm",
+		dateFormat: "dd-MM-yyyy",
+		timeFormat: "HH:mm",
+
+		shortDayNames: ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"],
+		fullDayNames: ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
+		shortMonthNames: ["jan", "fév", "mar", "avr", "mai", "jun", "jul", "aoû", "sep", "oct", "nov", "déc"],
+		fullMonthNames: ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"],
+
+		titleContentDate: "Choisir une date",
+		titleContentTime: "Choisir un horaire",
+		titleContentDateTime: "Choisir une date et un horaire",
+
+		setButtonContent: "Choisir",
+		clearButtonContent: "Effacer",
+		formatHumanDate: function(oDate, sMode, sFormat)
 		{
+			if(sMode === "date")
+				return oDate.dayShort + " " + oDate.dd + " " + oDate.month+ " " + oDate.yyyy;
+			else if(sMode === "time")
+				return oDate.HH + ":" + oDate.mm;
+			else if(sMode === "datetime")
+				return oDate.dayShort + " " + oDate.dd + " " + oDate.month+ " " + oDate.yyyy + ", " + oDate.HH + ":" + oDate.mm;
+		},
+		minuteInterval: 10,
+		buttonsToDisplay: ["HeaderCloseButton", "SetButton"],
+		setValueInTextboxOnEveryClick: true
+
+	} );
 
 	// // AJAX
 
