@@ -28,25 +28,26 @@ class WorkController extends Controller
         setlocale( LC_ALL, 'fr_FR');
         $title = 'Créer un devoir';
         $activePage = 'course';
+        $now = Carbon::now()->format('Y-m-d H:i:s');
         $allCourses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
         if( $allCourses->first() == null ) {
             return redirect()->back()->withErrors('Vous devez en premier lieux créer un cours');
         }
         if($id == null) {
             $firstCourse = $allCourses->first();
-            $allSeances = Seance::where( 'course_id', '=', $firstCourse->id )->get();
+            $allSeances = Seance::where( 'course_id', '=', $firstCourse->id )->where( 'end_hours', '>', $now )->get();
             return view('work/createWork', ['title' => $title, 'allCourses' => $allCourses, 'allSeances' => $allSeances, 'activePage' => $activePage]);
         }
         if($id != null) {
 
              if( $info == 'course' ) {
                 $course = Course::findOrFail( $id );
-                $allSeances = Seance::where( 'course_id', '=', $id )->get();
+                $allSeances = Seance::where( 'course_id', '=', $id )->where( 'end_hours', '>', $now )->get();
                 return view('work/createWork', ['title' => $title, 'allCourses' => $allCourses, 'allSeances' => $allSeances, 'course' => $course, 'activePage' => $activePage]);
              }
              if( $info == 'seance' ) {
                 $seance = Seance::findOrFail( $id );
-                $allSeances = Seance::where( 'course_id', '=', $seance->course_id )->get();
+                $allSeances = Seance::where( 'course_id', '=', $seance->course_id )->where( 'end_hours', '>', $now )->get();
                 $course = Course::where( 'id', '=', $seance->course_id )->get();
                 return view('work/createWork', ['title' => $title, 'seance' => $seance, 'course'=> $course, 'allCourses' => $allCourses, 'allSeances' => $allSeances, 'activePage' => $activePage]);
              }
