@@ -84,20 +84,24 @@ jQuery( function($) {
 		if ( $('#menuToggle')['0'].checked == true ) {
 			$('#menuToggle')['0'].checked = false;
 		}
-		if ( $('#dd_moreButton')['0'].checked == true ) {
-			$('.menuToggle').click(function() {
-				$('#dd_moreButton')['0'].checked = false;
-			} );
-			if( ( (e.target).parentNode ).className != 'dd_moreButton' ) {
-				$('#dd_moreButton')['0'].checked = false;
+
+		if( $('#dd_moreButton')['0'] != undefined ) {
+			if ( $('#dd_moreButton')['0'].checked == true ) {
+				$('.menuToggle').click(function() {
+					$('#dd_moreButton')['0'].checked = false;
+				} );
+				if( ( (e.target).parentNode ).className != 'dd_moreButton' ) {
+					$('#dd_moreButton')['0'].checked = false;
+				}
+			}
+			if ( $('#dd_moreButton')['0'].checked == false ) {
+				//console.log(e);
+				if (e.target.className == "dd_moreButton--button") {
+					//console.log('ok');
+				}
 			}
 		}
-		if ( $('#dd_moreButton')['0'].checked == false ) {
-			//console.log(e);
-			if (e.target.className == "dd_moreButton--button") {
-				//console.log('ok');
-			}
-		}
+
 	});
 
 	///////////
