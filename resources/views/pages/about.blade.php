@@ -65,7 +65,7 @@
 						</a>
 					</li>
 					<li class="box__group--list--list box__profilInformation">
-						<a class="unlink" href="">
+						<a class="unlink" href="{{ action( 'CourseController@indexUserUsers' ) }}">
 							<span class="icon icon--text icon--text--aboutPage icon-users mainColorfont"></span><span class="hidden">Nombre d'élèves&nbsp:</span>
 							@if( $nbUsers == 1 )
 								<span> {{ $nbUsers }} élève</span>
