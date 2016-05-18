@@ -46,14 +46,14 @@
     {{--<link rel="stylesheet" href="{{ url() }}/css/jquery-ui.css">
     <link rel="stylesheet" href="{{ url() }}/css/jquery-ui.theme.css">--}}
     <link href='https://fonts.googleapis.com/css?family=Asap:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="{{ url() }}/css/main.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url() }}/css/main.css">
 
     <!-- Calendar popup -->
-    <link rel="stylesheet" type="text/css" href="{{ url() }}/css/DateTimePicker.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url() }}/css/DateTimePicker.css" />
     <!--[if lt IE 9]>
-    <link rel="stylesheet" type="text/css" href="{{ url() }}/css/DateTimePicker-ltie9.css" />
+    <link rel="stylesheet" type="text/css" media=screen href="{{ url() }}/css/DateTimePicker-ltie9.css" />
     <![endif]-->
 
     <!-- Sweet Alert -->
-    <link rel="stylesheet" type="text/css" href="{{ url() }}/css/sweetalert.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url() }}/css/sweetalert.css" />
 </head>
