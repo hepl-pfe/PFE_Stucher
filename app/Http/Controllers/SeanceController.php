@@ -20,7 +20,7 @@ class SeanceController extends Controller
 {
 
     protected $storeRules = [
-        'start_date' => 'required|date|after:yesterday',
+        'start_date' => 'required|date',
         'end_date' => 'required|date|after:start_date',
         'start_hours' => 'required|date_format:H:i',
         'end_hours' => 'required|date_format:H:i|after:start_hours'
