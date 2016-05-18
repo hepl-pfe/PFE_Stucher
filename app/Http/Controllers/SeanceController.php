@@ -225,7 +225,7 @@ class SeanceController extends Controller
         $now = Carbon::now()->format('Y-m-d H:i:s');
         $course = Course::findOrFail( $id );
         $comments = Comment::where('context', '=', 1)->get();
-        $seances = Seance::where( 'course_id', '=', $id )->where( 'end_hours', '<', $now )->paginate(10);
+        $seances = Seance::where( 'course_id', '=', $id )->where( 'end_hours', '<', $now )->orderBy('start_hours','desc')->paginate(10);
         $title = "Les séances terminées";
         $activePage = 'course';
 
