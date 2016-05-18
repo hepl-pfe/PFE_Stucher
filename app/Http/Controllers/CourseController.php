@@ -368,10 +368,12 @@ class CourseController extends Controller
         foreach ($courses as $course) {
             foreach ($course->users as $user) 
             {
-                if ( !in_array($user->id, $studentsID) ) 
-                {
-                    $students[][] = $user;
-                    $studentsID[] = $user->id;
+                if ( $user->pivot->access == 2 ) {
+                    if ( !in_array($user->id, $studentsID) )
+                    {
+                        $students[][] = $user;
+                        $studentsID[] = $user->id;
+                    }
                 }
             }
         }
