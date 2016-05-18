@@ -8,7 +8,7 @@
         <a href="{{ action( 'Auth\AuthController@getLogin' ) }}" class="unlink home__register--link">Connexion</a>
     </div>
     <a class="home__mainLogo--link" href="{!! action( 'CourseController@index' ) !!}">
-        <h1 class="home__mainLogo--title">logo Stucher</h1>
+        <h1 class="home__mainLogo--title">Stucher</h1>
     </a>
 </header>
 <div class="home__imageContainer">
