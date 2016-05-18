@@ -10,7 +10,7 @@
     	<form action="" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="course">Pour quel cours?</label>
-                <select class="form-control" name="course" id="course">
+                <select disabled class="form-control" name="course" id="course_seance">
                 
                 @foreach ($allCourses as $singleCourse)
                     <option value="{{ $singleCourse->id }}" 
