@@ -62,7 +62,7 @@ class SeanceController extends Controller
         $obj_dateEnd = date_create($_POST['end_date']);
         while ($obj_dateStart->format('U') <= $obj_dateEnd->format('U')) {
             $obj_dateStart->modify('next '.$day);
-            if ($obj_dateStart->format('U') <= $obj_dateEnd->format('U') && $obj_dateStart >= Carbon::today()) {
+            if ($obj_dateStart->format('U') <= $obj_dateEnd->format('U')) {
                 $seance = Seance::create([
                     'course_id' => Input::get('course'),
                     'start_hours' => $obj_dateStart->format('Y-m-d').$start_hours.':00',
