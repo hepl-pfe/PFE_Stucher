@@ -135,42 +135,6 @@
 	}
 }
 
-.home__form {
-	.form-group {
-		.home__box__label {
-			@include transition(all);
-			color: $black;
-			font-size: 1em;
-			background-color: $mainColor;
-			color: $white;
-			border-bottom: 1px solid $mainColor;
-			margin-bottom: -1px;
-			display: inline-block;
-			padding: 0.2em 0.5em;
-			@include border-radius( 5px 5px 0 0 );
-			&:hover, &:focus, &:active {
-				background-color: darken( $mainColor, 20%);
-				border-bottom: 1px solid darken( $mainColor, 20%);
-			}
-			+ input {
-				border: 1px solid $mainColor;
-				margin: 0;
-				@include border-radius( 0 5px 5px 5px );
-			}
-		}
-		.form__remember {
-			display: inline-block;
-			width: auto;
-		}
-		label {
-			display: inline-block;
-		}
-		width: 70%;
-		margin: auto;
-		margin-bottom: 1em;
-	}
-}
-
 .home__btn {
 	@include resetButtun();
 	background-color: $mainColor;
