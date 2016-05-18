@@ -37,51 +37,26 @@ jQuery( function($) {
 
 	// // AJAX
 
-	$("#course").change( function(){
-		var select = document.getElementById("course");
-		var selected = document.getElementById("course").selectedIndex;
+
+	$("#course_seance").removeAttr( 'disabled' );
+
+	$("#course_seance").change( function(){
+		var select = document.getElementById("course_seance");
+		var selected = document.getElementById("course_seance").selectedIndex;
 		var valeur = select[selected].value;
 		var the_js_months = 
 		{ 
-			"01" : "January", 
-			"02" : "February", 
-			"03": "March", 
-			"04": "April", 
-			"05": "May", 
-			"06": "June", 
-			"07": "July", 
-			"08": "August", 
-			"09": "September", 
-			"10": "October", 
-			"11": "November", 
-			"12": "December"
+			"01" : "January", "02" : "February", "03": "March", "04": "April", "05": "May", "06": "June", "07": "July", "08": "August", "09": "September", "10": "October", "11": "November", "12": "December"
 		};
 		var the_fr_months = 
 		{ 
-			"01" : "janvier", 
-			"02" : "février", 
-			"03": "mars", 
-			"04": "avril", 
-			"05": "mai", 
-			"06": "juin", 
-			"07": "juillet", 
-			"08": "aout", 
-			"09": "septembre", 
-			"10": "octobre", 
-			"11": "novembre", 
-			"12": "décembre"
+			"01" : "janvier", "02" : "février", "03": "mars", "04": "avril", "05": "mai", "06": "juin", "07": "juillet", "08": "aout", "09": "septembre", "10": "octobre", "11": "novembre", "12": "décembre"
 		};
 		var the_fr_days = 
 		[
-			"Dimanche",
-			"Lundi",
-			"Mardi",
-			"Mercredi",
-			"Jeudi",
-			"Vendredi",
-			"Samedi"
+			"Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"
 		];
-		$.get( "/course/"+valeur+"/seance", function( data ) {
+		$.get( "/course/"+valeur+"/seances/ajax", function( data ) {
 			$('#seance').children().remove();
 			for( var i = 0; i < data.length; i++ ) {
 				var the_date = data[i].start_hours,
@@ -95,7 +70,7 @@ jQuery( function($) {
 					the_jdDate = new Date( the_js_months[the_month] + " " + the_day + ", " + the_year + " " + the_hours + ":" + the_minutes + ":00" ),
 					the_number_day = the_jdDate.getDay();
                 $('#seance')
-                    .append('<option value="'+data[i].id+'">'+"Séance du " + the_fr_days[the_number_day] + " " + the_day + " " + the_fr_months[the_month] + " " + the_year + " de " + the_hours + "h" + the_minutes + " à " + the_end_hours + "h" + the_end_minutes+'</option>');
+                    .append('<option value="'+data[i].id+'">'+ the_fr_days[the_number_day] + " " + the_day + " " + the_fr_months[the_month] + " " + the_year + " de " + the_hours + "h" + the_minutes + " à " + the_end_hours + "h" + the_end_minutes+'</option>');
                 $('#seance').fadeIn();
 			}
 		});
