@@ -40,40 +40,6 @@
         <div class="home__box--content">
             <h3 id="connectZone" class="connectTitle">Essayez-le maintenant, c'est gratuit&nbsp!</h3>
 
-            <form class="home__form" method="POST" action="/auth/login">
-                {!! csrf_field() !!}
-
-                <div class="home__separator"><span>CONNEXION</span></div>
-
-                <div class="form-group">
-                    <label class="home__box__label" for="email">Email&nbsp:</label>
-                    <input class="form-control" type="email" name="email" id="email" value="{{ old('email') }}">
-                </div>
-
-                <div class="form-group">
-                    <label class="home__box__label" for="password">Mot de passe&nbsp:</label>
-                    <input class="form-control" type="password" name="password" id="password">
-                </div>
-
-                <div class="form-group">
-                    <input class="form__remember" type="checkbox" checked id="remember" name="remember"> <label for="remember">Se souvenir de moi</label>
-                    <a class="unlink forgetPassword" href="{{ action( 'Auth\PasswordController@getEmail' ) }}">J'ai oublié mon mot de passe</a>
-                </div>
-
-                <div class="form-group">
-                    <button class="home__btn home__send home__formButton" type="submit">Connexion</button>
-                </div>
-
-                <div class="home__separator"><span>OU INSCRIPTION</span></div>
-
-                <div class="form-group">
-                    <a href="{{ action( 'PageController@registerStudent' ) }}" class="unlink home__formButton home__link--register home__link--register--student" type="submit">Élève</a>
-                    <a href="{{ action( 'PageController@registerTeacher' ) }}" class="unlink home__formButton home__link--register home__link--register--teacher" type="submit">Professeur</a>
-                    <div class="clear"></div>
-                </div>
-
-                @include( 'errors.profilError' )
-            </form>
 
         </div>
     </div>
