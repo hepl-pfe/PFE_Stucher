@@ -13,7 +13,7 @@
 </header>
 <div class="home__imageContainer">
     <div class="home__imageContainer__content">
-        <h2 class="home__imageContainer__title">Un journal de classe entre le professeurs et ses élèves</h2>
+        <h2 class="home__imageContainer__title">Un journal de classe entre le professeur et ses élèves</h2>
         <div class="home__imageColor"></div>
         <img class="home__imageContainer__image" src="{{ url() }}/img/bg_home_1.jpg" alt="image de fond header" width="1500" height="1000">
     </div>
