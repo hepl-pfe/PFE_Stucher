@@ -36,6 +36,7 @@
 				<input type="submit" class="btn btn-send" value="Valider les modifications">
 				<a class="btn btn-back" href="{!! action( 'SeanceController@view', ['id' => $id] ) !!}">Annuler</a>
 			</div>
+			<div id="dtBox"></div>
 			@include( 'errors.profilError' )
 		</form>
 	</div>
