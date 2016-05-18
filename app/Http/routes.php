@@ -46,7 +46,7 @@ Route::get( 'course/{id}/users/wait', [ 'as' => 'indexWaitingUsers', 'uses' => '
 Route::get( 'course/{id}/seance', [ 'as' => 'createSeance', 'uses' => 'SeanceController@create', 'middleware' => ['auth', 'isTeacher', 'isTheTeacher'] ] );
 Route::post( 'course/{id}/seance', [ 'as' => 'createSeance', 'uses' => 'SeanceController@store', 'middleware' => ['auth', 'isTeacher', 'isTheTeacher'] ] );
 
-Route::get( 'courses/{id}/seances', [ 'as' => 'getSeancesByCourse', 'uses' => 'SeanceController@getByCourse', 'middleware' => 'auth' ] );
+Route::get( 'course/{id}/seances/ajax', [ 'as' => 'getSeancesByCourse', 'uses' => 'SeanceController@getByCourse', 'middleware' => 'auth' ] );
 
 Route::get( 'seance/{id}/view', [ 'as' => 'viewSeance', 'uses' => 'SeanceController@view', 'middleware' => ['auth'] ] );
 Route::get( 'seance/{id}/delete', [ 'as' => 'deleteSeance', 'uses' => 'SeanceController@delete', 'middleware' => ['auth', 'isTeacher', 'isTheTeacher'] ] );
