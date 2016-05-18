@@ -222,6 +222,41 @@ jQuery( function($) {
 
 
 
+	$( '.action__removeCourse').click( function( e ){
+		e.preventDefault();
+		var course_url = e.currentTarget.href;
+
+		swal({
+			title: "Voulez vous vraiment quitter ce cours?",
+			text: "En quittant ce cours, vous n’aurez plus accès à ses séances, interrogations, devoir, fichiers etc.",
+			showCancelButton: true,
+			closeOnConfirm: false,
+			confirmButtonText: "Oui, je quitte",
+			cancelButtonText: "Non",
+			confirmButtonColor: "#ec6c62"
+		}, function() {
+			$.ajax({
+					type: "get",
+					url: course_url
+			})
+			.done(function(data) {
+				swal({
+					title: "Quitté!",
+					text: "Vous n’avez plus accès au cours",
+					type: "success"
+				}, function() {
+					window.location.href = '/';
+				});
+			})
+			.error(function(data) {
+				swal("Oops", "Une erreur s'est produite sur le serveur!", "error");
+			});
+		});
+
+	} );
+
+
+
 	$( '.action__deleteProfil').click( function( e ){
 		e.preventDefault();
 		var profil_url = e.currentTarget.href;
@@ -319,6 +354,7 @@ jQuery( function($) {
 						type: "success"
 					}, function() {
 						window.location.href = '/seance/'+seance+'/view';
+						//e.target.parentNode.parentNode.parentNode.remove();
 					});
 				})
 				.error(function(data) {
