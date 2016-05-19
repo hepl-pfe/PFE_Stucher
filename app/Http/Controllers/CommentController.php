@@ -115,10 +115,18 @@ class CommentController extends Controller
         } else {
             // Verify if it's my comment => middleware
             if( $comment->from != \Auth::user()->id ) {
+                if( \Auth::user()->id == $teacherID ) {
+                    $comment->delete();
+                    if( $ajax == null ){
+                        return back();
+                    }
+                }
                 return redirect()->route('home', ['popupError' => "commentAccess"]);
             } else {
                 $comment->delete();
-                return back();
+                if( $ajax == null ){
+                    return back();
+                }
             }
         }
     }
