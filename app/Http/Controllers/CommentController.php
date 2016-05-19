@@ -105,7 +105,7 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete($id)
+    public function delete($id, $ajax = null)
     {
         $comment = Comment::find($id);
         if( $comment == null ) {
