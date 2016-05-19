@@ -197,11 +197,18 @@ class TestController extends Controller
     public function delete( $id, $ajax = null ) {
         $test = Test::findOrFail( $id );
         $test->delete();
-        return redirect()->back();
+        if( $ajax == null ) {
+            return redirect()->back();
+        }
     }
 
-    public function deleteFile( $id_file, $id_test ) {
-        $test = \DB::table('file_test')->where('file_id', '=', $id_file)->where('test_id', '=', $id_test)->delete();
-        return redirect()->back();
+    public function deleteFile( $id_test, $id_file, $ajax = null ) {
+        $test = \DB::table('file_test')
+            ->where('file_id', '=', $id_file)
+            ->where('test_id', '=', $id_test)
+            ->delete();
+        if( $ajax == null ) {
+            return redirect()->back();
+        }
     }
 }
