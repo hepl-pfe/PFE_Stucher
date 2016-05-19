@@ -149,19 +149,9 @@ jQuery( function($) {
 	} );
 
 	///////////
-	// change the preview image
 	///////////
-	// À AMÉLIORER
-	/*$('#image').change( function(e){
-		readPath(this);
-		//$('.box__profilImage').attr( 'src',  );
 	} );
 
-	function readPath(input) {
-		if ( input.files && input.files[0] ) {
-			var reader = new FileReader();
-			reader.onload = function (e) {
-				$('.box__profilImage').attr('src', e.target.result);
 			}
 			reader.readAsDataURL(input.files[0]);
 		}
