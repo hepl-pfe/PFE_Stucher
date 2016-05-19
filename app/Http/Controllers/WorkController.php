@@ -200,7 +200,9 @@ class WorkController extends Controller
     public function delete( $id, $ajax = null ) {
         $work = Work::findOrFail( $id );
         $work->delete();
-        return redirect()->back();
+        if( $ajax == null ) {
+            return redirect()->back();
+        }
     }
 
     public function deleteFile( $id_work, $id_file, $ajax = null ) {
@@ -208,6 +210,8 @@ class WorkController extends Controller
             ->where('file_id', $id_file)
             ->where('work_id', $id_work)
             ->delete();
-        return redirect()->back();
+        if( $ajax == null ) {
+            return redirect()->back();
+        }
     }
 }
