@@ -158,6 +158,20 @@ jQuery( function($) {
 		$( '.changedFile .fileRightText--2' ).remove();
 	} );
 
+	///////////
+	// DELETE FILE
+	///////////
+	$( '.deleteFile').click( function( e ){
+		e.preventDefault();
+		var delete_url = e.currentTarget.href+'/ajax';
+		var blockParent = $(this).parent();
+		$.ajax({
+			type: "GET",
+			url: delete_url,
+			success: function () {
+				blockParent.fadeOut('slow', function () {
+					$(this).remove();
+				});
 			}
 			reader.readAsDataURL(input.files[0]);
 		}
