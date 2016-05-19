@@ -406,7 +406,7 @@ jQuery( function($) {
 
 	$( '.action__deleteTest').click( function( e ){
 		e.preventDefault();
-		var profil_url = e.currentTarget.href;
+		var profil_url = e.currentTarget.href+'/ajax';
 		var seance = e.currentTarget.getAttribute('data-seance');
 
 		swal({
