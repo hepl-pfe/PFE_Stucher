@@ -92,7 +92,7 @@
 						@endif
 					@endforeach
 				@else
-					<li class="notification__item--null">
+					<li class="item--null">
 						Aucune notification pour le moment
 					</li>
 				@endif

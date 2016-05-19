@@ -80,7 +80,7 @@ Carbon::setLocale('fr');
 				@endforeach
 			{!! $notifications->render() !!}
 		@else
-			<li class="notification__item--null">Aucune notification pour le moment</li>
+			<li class="item--null">Aucune notification pour le moment</li>
 		@endif
 		</ul>
 	@endif
