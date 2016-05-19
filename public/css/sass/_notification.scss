@@ -68,12 +68,13 @@
 
 
 
-.notification__item--null {
+.item--null {
 	text-align: center;
 	width: 80%;
 	margin: auto;
 	margin-top: 35%;
 	margin-bottom: 35%;
+	color: $grayMiddleLight
 }
 
 .notification__item--more a {

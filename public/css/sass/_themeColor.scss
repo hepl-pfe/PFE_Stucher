@@ -238,6 +238,46 @@
       color: darken( $mainColor, 20% );
     }
   }
+
+  .box__list__rightButton {
+    background-color: $mainColor;
+    &:hover, &:focus, &:active {
+      background-color: darken( $mainColor, 20% );
+    }
+  }
+
+  // FORMULAIRES
+  .btn {
+    background-color: $mainColor;
+    &:hover, &:focus, &:active {
+      background-color: darken( $mainColor, 20% );
+      color: white;
+    }
+  }
+
+  .form-group {
+    .color_label {
+      background-color: $mainColor;
+      border-bottom: 1px solid $mainColor;
+      &:hover, &:focus, &:active {
+        background-color: darken( $mainColor, 20%);
+        border-bottom: 1px solid darken( $mainColor, 20%);
+      }
+      + input {
+        border: 1px solid $mainColor;
+      }
+      + select {
+        border: 1px solid $mainColor;
+      }
+      + textarea {
+        border: 1px solid $mainColor;
+      }
+    }
+  }
+
+  .file_label .icon {
+    background-color: $mainColor;
+  }
   //////////////////////////////////////////////////
   ////////////////// À MODIFIER ////////////////////
   .errorMessage {

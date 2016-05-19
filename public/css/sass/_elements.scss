@@ -161,6 +161,7 @@
 }
 
 .box__group--list--list {
+  position: relative;
   list-style: none;
   padding-left: 1em;
   padding-right: 1em;
@@ -330,7 +331,7 @@
   &.reduce {
     margin-bottom: 0.5em;
   }
-  &.reduce span {
+  &.reduce .icon {
     -webkit-transform: rotate(-90deg);
     -moz-transform: rotate(-90deg);
     -ms-transform: rotate(-90deg);
@@ -342,7 +343,7 @@
     padding: 0;
     overflow: hidden;
   }
-  span {
+  .icon {
     position: absolute;
     left: 0.5em;
     top: 0.9em;
@@ -463,4 +464,54 @@
   left: 1em;
   top: 1.2em;
   font-size: 1.5em;
+}
+
+.box__list__rightButton {
+  position: absolute;
+  display: inline-block;
+  padding: 1.3em;
+  top: 0; right: 0; bottom: 0;
+  @include transition( all );
+  color: $white;
+}
+
+
+// FILES
+.box__group--files {
+  padding: 1em;
+}
+.box__list--files {
+  position: relative;
+  padding: 0.5em;
+  border-bottom: 1px solid $white;
+  background-color: $grayLight;
+  @include transition(all);
+  &:hover, &:focus, &:active {
+    background-color: darken( $grayLight, 5% );
+  }
+  a {
+    display: block;
+    white-space: nowrap;
+    overflow: auto;
+  }
+  .deleteFile {
+    position: absolute;
+    top: -0.5em; right: -0.5em;
+  }
+  .icon {
+    position: relative;
+    top: -0.5em;
+    left: 0.3em;
+  }
+  div {
+    display: inline-block;
+    span {
+      display: block;
+      + span {
+        font-style: italic;
+        font-size: 0.8em;
+        margin-top: 0.3em;
+      }
+    }
+  }
 }
