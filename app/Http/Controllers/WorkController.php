@@ -197,13 +197,13 @@ class WorkController extends Controller
         return redirect()->route('viewSeance', ['id' => $work->seance->id]);
     }
 
-    public function delete( $id ) {
+    public function delete( $id, $ajax = null ) {
         $work = Work::findOrFail( $id );
         $work->delete();
         return redirect()->back();
     }
 
-    public function deleteFile( $id_file, $id_work ) {
+    public function deleteFile( $id_work, $id_file, $ajax = null ) {
         \DB::table('file_work')
             ->where('file_id', $id_file)
             ->where('work_id', $id_work)
