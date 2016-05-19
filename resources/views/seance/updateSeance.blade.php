@@ -4,6 +4,7 @@
 
 	<div class="blockTitle">
 		<h2 class="mainTitle">{{ $title }}</h2>
+		<a title="Revenir à la séance" class="backButton blockTitle__backButton unlink mainColorfont" href="{!! action( 'SeanceController@view', [ 'id' => $id ] ) !!}"><span class="hidden">Revenir à la page précédente</span><span class="icon-arrow-left"></span></a>
 	</div>
 
 
