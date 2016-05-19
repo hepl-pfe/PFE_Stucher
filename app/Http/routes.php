@@ -83,14 +83,14 @@ Route::get( 'course/{id}/user/{id_user}/remove', [ 'as' => 'removeStudentFromCou
 // TESTS
 Route::get( 'test/{id?}/{info?}/create', [ 'as' => 'createTest', 'uses' => 'TestController@create', 'middleware' => ['auth', 'isTeacher'] ] );
 Route::post( 'test/{id?}/{info?}/create', [ 'as' => 'createTest', 'uses' => 'TestController@store', 'middleware' => ['auth', 'isTeacher'] ] );
-Route::get( 'test/{id}/delete', [ 'as' => 'deleteTest', 'uses' => 'TestController@delete', 'middleware' => ['auth', 'isTeacher', 'isTheTeacher'] ] );
+Route::get( 'test/{id}/delete/{ajax?}', [ 'as' => 'deleteTest', 'uses' => 'TestController@delete', 'middleware' => ['auth', 'isTeacher', 'isTheTeacher'] ] );
 Route::get( 'test/{id}/update', [ 'as' => 'updateTest', 'uses' => 'TestController@edit', 'middleware' => ['auth', 'isTeacher'] ] );
 Route::post( 'test/{id}/update', [ 'as' => 'updateTest', 'uses' => 'TestController@update', 'middleware' => ['auth', 'isTeacher', 'isTheTeacher'] ] );
 
 // HOMEWORKS
 Route::get( 'work/{id?}/{info?}/create', [ 'as' => 'createWork', 'uses' => 'WorkController@create', 'middleware' => ['auth', 'isTeacher'] ] );
 Route::post( 'work/{id?}/{info?}/create', [ 'as' => 'createWork', 'uses' => 'WorkController@store', 'middleware' => ['auth', 'isTeacher'] ] );
-Route::get( 'work/{id}/delete', [ 'as' => 'deleteWork', 'uses' => 'WorkController@delete', 'middleware' => ['auth', 'isTeacher', 'isTheTeacher'] ] );
+Route::get( 'work/{id}/delete/{ajax?}', [ 'as' => 'deleteWork', 'uses' => 'WorkController@delete', 'middleware' => ['auth', 'isTeacher', 'isTheTeacher'] ] );
 Route::get( 'work/{id}/update', [ 'as' => 'updateWork', 'uses' => 'WorkController@edit', 'middleware' => ['auth', 'isTeacher'] ] );
 Route::post( 'work/{id}/update', [ 'as' => 'updateWork', 'uses' => 'WorkController@update', 'middleware' => ['auth', 'isTeacher', 'isTheTeacher'] ] );
 
@@ -128,8 +128,8 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 // Comments route
 Route::post('comment/create', [ 'as' => 'createComment', 'uses' => 'CommentController@create' ]);
-Route::get('comment/{id}/delete', [ 'as' => 'deleteComment', 'uses' => 'CommentController@delete', 'middleware' => 'auth' ]);
+Route::get('comment/{id}/delete/{ajax?}', [ 'as' => 'deleteComment', 'uses' => 'CommentController@delete', 'middleware' => 'auth' ]);
 
 // FILES
-Route::get('test/{id_test}/file/{id_file}/delete', [ 'as' => 'deleteTestFile', 'uses' => 'TestController@deleteFile' ]);
-Route::get('work/{id_test}/file/{id_file}/delete', [ 'as' => 'deleteWorkFile', 'uses' => 'WorkController@deleteFile' ]);
+Route::get('test/{id_test}/file/{id_file}/delete/{ajax?}', [ 'as' => 'deleteTestFile', 'uses' => 'TestController@deleteFile' ]);
+Route::get('work/{id_work}/file/{id_file}/delete/{ajax?}', [ 'as' => 'deleteWorkFile', 'uses' => 'WorkController@deleteFile' ]);
