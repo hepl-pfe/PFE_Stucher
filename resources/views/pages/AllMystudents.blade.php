@@ -3,7 +3,7 @@
 @section( 'title', $title )
 
 <div class="blockTitle">
-	<h2 class="mainTitle">{{ $title }}</h2>
+	<h2 class="mainTitle">Liste de mes élèves</h2>
 </div>
 
 @if ( count($students) !== 0 )
