@@ -108,7 +108,7 @@ class PageController extends Controller
 
     public function deleteProfil() {
         $user = User::findOrFail(\Auth::user()->id);
-        if ( $user->image !== "default.jpg" ) 
+        if ( $user->image != "default.jpg" )
             {
                 File::delete( public_path( 'img/profilPicture/' . \Auth::user()->image ) );
             }
@@ -170,7 +170,7 @@ class PageController extends Controller
             if ( $typeMime[1] == 'jpeg' OR $typeMime[1] == 'gif' OR $typeMime[1] == 'png' )
             {
                 Input::file('image')->getMimeType();
-                if ( \Auth::user()->image !== "default.jpg" )
+                if ( \Auth::user()->image != "default.jpg" )
                 {
                     File::delete( public_path( 'img/profilPicture/' . \Auth::user()->image ) );
                 }
