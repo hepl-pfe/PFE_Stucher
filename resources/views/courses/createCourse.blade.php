@@ -30,8 +30,7 @@
 					<input type="text" class="form-control" name="place" id="place" placeholder="ex: Liège" value="{{ old('place') }}">
 				</div>
 
-				<div class="form-group text-center">
-					<a class="btn btn-back" href="{!! action( 'CourseController@index' ) !!}">Annuler</a>
+				<div class="form-group--button text-center">
 					<input type="submit" class="btn btn-send" value="Créer le cours">
 					<div class="clear"></div>
 				</div>
