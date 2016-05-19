@@ -173,6 +173,28 @@ jQuery( function($) {
 					$(this).remove();
 				});
 			}
+		});
+	} );
+
+	///////////
+	// DELETE COMMENT
+	///////////
+	$( '.comment__icon--delete').click( function( e ){
+		e.preventDefault();
+		var delete_url = e.currentTarget.href+'/ajax';
+		var blockParent = $(this).parent();
+		$.ajax({
+			type: "GET",
+			url: delete_url,
+			success: function () {
+				blockParent.fadeOut('slow', function () {
+					$(this).remove();
+					$shutterNumber = $( '.shutterTitle--comments--number').text();
+					$( '.shutterTitle--comments--number').text( parseInt( $shutterNumber )-1 );
+				});
+			}
+		});
+	} );
 
 
 
