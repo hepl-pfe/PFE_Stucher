@@ -108,6 +108,8 @@ class CommentController extends Controller
     public function delete($id, $ajax = null)
     {
         $comment = Comment::find($id);
+        // WARNING Change if multiple context
+        $teacherID = Seance::findOrFail($comment->for)->course->teacher_id;
         if( $comment == null ) {
             return redirect()->route('home', ['popupError' => "notComment"]);
         } else {
