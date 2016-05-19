@@ -428,7 +428,11 @@ jQuery( function($) {
 						text: "L’interrogation a correctement été supprimée!",
 						type: "success"
 					}, function() {
-						window.location.href = '/seance/'+seance+'/view';
+						e.target.parentNode.parentNode.parentNode.remove();
+
+						$shutterNumber = $( '.shutterTitle--tests--number').text();
+						$( '.shutterTitle--tests--number').text( parseInt( $shutterNumber )-1 );
+
 					});
 				})
 				.error(function(data) {
