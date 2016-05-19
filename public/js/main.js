@@ -387,8 +387,11 @@ jQuery( function($) {
 						text: "Le devoir a correctement été supprimé!",
 						type: "success"
 					}, function() {
-						window.location.href = '/seance/'+seance+'/view';
-						//e.target.parentNode.parentNode.parentNode.remove();
+						e.target.parentNode.parentNode.parentNode.remove();
+
+						$shutterNumber = $( '.shutterTitle--works--number').text();
+						$( '.shutterTitle--works--number').text( parseInt( $shutterNumber )-1 );
+
 					});
 				})
 				.error(function(data) {
