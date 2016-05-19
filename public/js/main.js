@@ -149,7 +149,13 @@ jQuery( function($) {
 	} );
 
 	///////////
+	// change label on upload file
 	///////////
+	$( '.changedFile input' ).addClass( 'hidden' );
+	$( '.changedFile input' ).change( function( e ){
+		var numberFile = e.currentTarget.files.length;
+		$( '.changedFile .fileRightText--1' ).text(numberFile + ' Fichier(s)').addClass( 'fileRightText--alone' );
+		$( '.changedFile .fileRightText--2' ).remove();
 	} );
 
 			}
