@@ -73,6 +73,11 @@ jQuery( function($) {
                     .append('<option value="'+data[i].id+'">'+ the_fr_days[the_number_day] + " " + the_day + " " + the_fr_months[the_month] + " " + the_year + " de " + the_hours + "h" + the_minutes + " à " + the_end_hours + "h" + the_end_minutes+'</option>');
                 $('#seance').fadeIn();
 			}
+			if( data.length == 0 ) {
+				$('#seance')
+					.append('<option value="">'+'Aucune séance'+'</option>');
+				$('#seance').fadeIn();
+			}
 		});
 	} );
 
