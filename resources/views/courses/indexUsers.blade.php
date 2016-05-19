@@ -19,6 +19,31 @@
 	</div>
 @endif
 
+
+@if ( count($inCourseStudents) !== 0 )
+	<div class="box--group">
+		<div class="box box--shadow box--studentAll">
+			<ul>
+				@foreach( $inCourseStudents as $student )
+					<li class="box__group--list--list box__group--studentAsk">
+						<a class="profilPicName" href="{{ action( 'PageController@viewUser', [ 'id' => $student->id ] ) }}">
+							<img class="box__profilImage box__profilImage--small" src="{{ url() }}/img/profilPicture/{{ $student->image }}" alt="Image de profil">
+							<span>{{ $student->firstname }} {{$student->name}}</span>
+						</a>
+						<a class="unlink box__list__rightButton" href="mailto:{{ $student->email }}">Contacter</a>
+						<div class="clear"></div>
+						@if( \Auth::user()->status == 1 )
+							<a class="seance__item--button delete" href="{!! action( 'CourseController@removeStudentFromCourse', ['id_course' => $course->id, 'id_user' => $student->id] ) !!}">Retirer de ce cours</a>
+						@endif
+					</li>
+				@endforeach
+			</ul>
+		</div>
 	</div>
+@else
+	<p class="item--null">
+		Il n’y a aucun étudiant pour le moment
+	</p>
+@endif
 
 @stop

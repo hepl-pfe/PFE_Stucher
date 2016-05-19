@@ -37,12 +37,12 @@ Carbon::setLocale('fr'); ?>
 	<ul class="shutters--group">
 		<!-- Works -->
 		<li class="shutter shutter__seance shutter__seance--works">
-			<h3 id="works" class="shutterTitle shutterTitle--works"><span title="ouvrir/réduire" class="icon-arrow-down"></span> DEVOIRS
-			@if( count( $seance->works ) == 0 )
-				(0)
-			@else
-				({{ count( $seance->works ) }})
-			@endif
+			<h3 id="works" class="shutterTitle shutterTitle--works"><span title="ouvrir/réduire" class="icon-arrow-down icon"></span> DEVOIRS
+				@if( count( $seance->works ) == 0 )
+					(<span class="shutterTitle--works--number">0</span>)
+				@else
+					(<span class="shutterTitle--works--number">{{ count( $seance->works ) }}</span>)
+				@endif
 			@if( \Auth::user()->status == 1 )
 				<a href="{!! action( 'WorkController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Ajouter</a>
 			@endif
@@ -76,7 +76,13 @@ Carbon::setLocale('fr'); ?>
 								<ul class="box__group--files">
 									@foreach( $work->files as $file )
 										<li class="box__list--files">
-											<a class="box__link--files unlink" download="proposed_file_name" href="{{ url() }}/files/{{ $file->filename }}">{{ $file->title }}</a>
+											<a class="box__link--files unlink" download="proposed_file_name" href="{{ url() }}/files/{{ $file->filename }}">
+												<span class="icon-folder-alt icon icon--text mainColorfont"></span>
+												<div class="file__list--right">
+													<span>{{ $file->title }}</span>
+													<span>{{ round($file->size) < 1000 ? round($file->size).' Ko' : round($file->size/1000, 2).' Mo' }}</span>
+												</div>
+											</a>
 										</li>
 									@endforeach
 								</ul>
@@ -89,12 +95,13 @@ Carbon::setLocale('fr'); ?>
 
 		<!-- Tests -->
 		<li class="shutter shutter__seance shutter__seance--tests">
-			<h3 id="tests" class="shutterTitle shutterTitle--tests"><span title="ouvrir/réduire" class="icon-arrow-down"></span> INTERROGATIONS
-				@if( count($seance->tests) == 0 )
-					(0)
-				@else
-					({{ count( $seance->tests ) }})
-				@endif
+			<h3 id="tests" class="shutterTitle shutterTitle--tests"><span title="ouvrir/réduire" class="icon-arrow-down icon"></span> INTERROGATIONS
+					@if( count($seance->tests) == 0 )
+						(<span class="shutterTitle--tests--number">0</span>)
+					@else
+						(<span class="shutterTitle--tests--number">{{ count( $seance->tests ) }}</span>)
+					@endif
+
 				@if( \Auth::user()->status == 1 )
 					<a href="{!! action( 'TestController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Ajouter</a>
 				@endif
@@ -128,7 +135,13 @@ Carbon::setLocale('fr'); ?>
 								<ul class="box__group--files">
 									@foreach( $test->files as $file )
 										<li class="box__list--files">
-											<a class="box__link--files unlink" download="proposed_file_name" href="{{ url() }}/files/{{ $file->filename }}">{{ $file->title }}</a>
+											<a class="box__link--files unlink" download="proposed_file_name" href="{{ url() }}/files/{{ $file->filename }}">
+												<span class="icon-folder-alt icon icon--text mainColorfont"></span>
+												<div class="file__list--right">
+													<span>{{ $file->title }}</span>
+													<span>{{ round($file->size) < 1000 ? round($file->size).' Ko' : round($file->size/1000, 2).' Mo' }}</span>
+												</div>
+											</a>
 										</li>
 									@endforeach
 								</ul>
@@ -141,12 +154,12 @@ Carbon::setLocale('fr'); ?>
 
 		<!-- Comments -->
 		<li class="shutter shutter__seance shutter__seance--comments">
-			<h3 id="comments" class="shutterTitle shutterTitle--comments"><span title="ouvrir/réduire" class="icon-arrow-down"></span> COMMENTAIRES
-				@if(count($comments) == 0)
-					(0)
-				@else
-					({{ count($comments) }})
-				@endif
+			<h3 id="comments" class="shutterTitle shutterTitle--comments"><span title="ouvrir/réduire" class="icon-arrow-down icon"></span> COMMENTAIRES
+					@if(count($comments) == 0)
+						(<span class="shutterTitle--comments--number">0</span>)
+					@else
+						(<span class="shutterTitle--comments--number">{{ count($comments) }}</span>)
+					@endif
 			</h3>
 				<div class="box--group">
 					@if ( isset($comments) )
