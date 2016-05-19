@@ -194,7 +194,7 @@ class TestController extends Controller
         return redirect()->route('viewSeance', ['id' => $test->seance->id]);
     }
 
-    public function delete( $id ) {
+    public function delete( $id, $ajax = null ) {
         $test = Test::findOrFail( $id );
         $test->delete();
         return redirect()->back();
