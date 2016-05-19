@@ -173,9 +173,6 @@ jQuery( function($) {
 					$(this).remove();
 				});
 			}
-			reader.readAsDataURL(input.files[0]);
-		}
-	}*/
 
 
 
