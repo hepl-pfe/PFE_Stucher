@@ -302,7 +302,7 @@ class CourseController extends Controller
             'for' => $id_user
         ]);
 
-        return redirect()->route('viewCourse', ['id' => $id_course, 'action' => 1]);
+        return redirect()->back();
     }
 
     public function edit( $id ) {
@@ -329,7 +329,7 @@ class CourseController extends Controller
         $course->place = Input::get('place');
         $course->updated_at = Carbon::now();
         $course->save();
-        return redirect()->route('home');
+        return redirect()->route('viewCourse', [ 'id' => $id ]);
     }
 
     public function delete( $id ) {
