@@ -206,6 +206,58 @@ class CourseController extends Controller
 
             return view('courses/indexAllCourses', compact('courses', 'users', 'title', 'activePage'));
         }
+
+
+
+
+        ////////// IF TOKEN
+        if( $type == 'access' ) {
+            $access_course = Course::where( 'access_token', '=', $search_input )->first();
+            // Check if user has already access
+            if( $access_course == null ) {
+                // Aucun COURS
+                $errors = 'Ce code non valide';
+            } else if( empty( $access_course->users) ) {
+                // premier élève à suivre le cours
+            } else {
+                foreach( $access_course->users as $user ) {
+                    if( $user->pivot->course_id == $access_course->id ) {
+                        // L'utilisateur est déjà inscrit à ce cours
+                        return redirect()->route('viewCourse', ['id' => $access_course->id]);
+                    }
+                }
+            }
+
+            if ( !isset( $errors ) ) {
+                $student = User::findOrFail(\Auth::user()->id);
+
+                // Ajouter le cours et l'utilisateur à la table course_user
+                $student->courses()->attach( $access_course );
+                \DB::table('course_user')
+                    ->where('user_id', \Auth::user()->id)->where('course_id', $access_course->id)
+                    ->update(array('access' => 1));
+
+                Notification::create([
+                    'title' => 'demande accès au cours de',
+                    'course_id' => $access_course->id,
+                    'user_id' => \Auth::user()->id,
+                    'context' => 5,
+                    'seen' => 0,    // ACTIONS => with buttons
+                    'for' => Course::where('id', $access_course->id)->get()->first()->teacher_id
+                ]);
+
+                return redirect()->route('home');
+            } else {
+                return redirect()->back()->withErrors($errors);
+            }
+
+        }
+
+
+    }
+
+
+
     public function addCourse( $id ) {
         if ( \Auth::check() && \Auth::user()->status==2 ) {
             $student = User::findOrFail(\Auth::user()->id);
@@ -250,29 +302,6 @@ class CourseController extends Controller
             return view('courses/addNews', compact('title'));
         } 
         return back();
-    }
-
-    public function getByToken() {
-        $token = Input::get('searchToken');
-        $course_id = Course::where( 'access_token', '=', $token )->get();
-        if( empty($course_id->first()) ) {
-            $errors = 'Le code d’accès entré n’est pas valide';
-        } else {
-            $course_id = $course_id->first()->id;
-        }
-        if ( !isset( $errors ) ) {
-            $student = User::findOrFail(\Auth::user()->id);
-
-            // Ajouter le cours et l'utilisateur à la table course_user
-            $student->courses()->attach( $course_id );
-            \DB::table('course_user')
-                ->where('user_id', \Auth::user()->id)->where('course_id', $course_id)
-                ->update(array('access' => 1));
-
-            return redirect()->route('home');
-        } else {
-            return redirect()->back()->withErrors($errors);
-        }
     }
 
     public function removeCourse( $id_course ) {
