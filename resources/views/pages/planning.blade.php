@@ -154,15 +154,15 @@ setlocale( LC_ALL, 'fr_FR');
     </div>
 
 
-    <div class="box--group">
+    <ul class="box--group">
         @if( empty( $currentSeances ) )
-            <p class="calendar__empty" >Aucune séance prévue cette journée</p>
+            <li class="calendar__empty" >Aucune séance prévue cette journée</li>
         @else
             <?php $pos = 1; ?>
         @foreach( $currentSeances as $seance )
-            <div class="box box--demis box--demis--continue box--shadow box--seance--calendar {{ $pos%2 ? 'odd' : 'even' }}">
-                <ul class="box__group--list seance__group--list">
-                    <li class="box__group--list--list box__seanceCourse">
+            <li class="box box--demis box--demis--continue box--shadow box--seance--calendar {{ $pos%2 ? 'odd' : 'even' }}">
+                <div class="box__group--list seance__group--list">
+                    <div class="box__group--list--list box__seanceCourse">
                         <div class="box__head box__blockTitle box__blockTitle--dark box__head--calendar">
                             <h3>Cours de {{ $seance->course->title }}</h3>
                             <h4>Le {{ $seance->start_hours->formatLocalized('%d-%m-%Y') }} de {{ $seance->start_hours->formatLocalized('%Hh%M') }} à {{ $seance->end_hours->formatLocalized('%Hh%M') }}</h4>
@@ -224,13 +224,13 @@ setlocale( LC_ALL, 'fr_FR');
                             </a>
                         </div>
                         <div class="clear"></div>
-                    </li>
-                </ul>
-            </div>
+                    </div>
+                </div>
+            </li>
             <?php $pos++; ?>
         @endforeach
         @endif
-    </div>
+    </ul>
 
 
 @endsection
