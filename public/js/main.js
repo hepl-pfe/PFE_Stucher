@@ -358,7 +358,7 @@ jQuery( function($) {
 		e.preventDefault();
 		var profil_url = e.currentTarget.href;
 		var place = e.currentTarget.getAttribute('data-page');
-		if( place == 'course' ) {
+		if( place == 'seance' ) {
 			var course = e.currentTarget.getAttribute('data-course');
 		} else {
 			var blockParent =  $(this).parent().parent().parent().parent().parent();
@@ -383,7 +383,7 @@ jQuery( function($) {
 						text: "La séance a correctement été supprimée!",
 						type: "success"
 					}, function() {
-						if( place == 'course' ) {
+						if( place == 'seance' ) {
 							window.location.href = '/course/' + course + '/view';
 						} else {
 							blockParent.fadeOut('slow', function () {
