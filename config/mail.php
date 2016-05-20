@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'ns0.ovh.net'),
+    'host' => env('MAIL_HOST', 'smtp.mandrillapp.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'stucher@loic-parent.be', 'name' => 'Stucher'],
+    'from' => ['address' => 'noreply@stucher.be', 'name' => 'Stucher'],
 
     /*
     |--------------------------------------------------------------------------
