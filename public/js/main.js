@@ -357,7 +357,12 @@ jQuery( function($) {
 	$( '.action__deleteSeance').click( function( e ){
 		e.preventDefault();
 		var profil_url = e.currentTarget.href;
-		var course = e.currentTarget.getAttribute('data-course');
+		var place = e.currentTarget.getAttribute('data-page');
+		if( place == 'course' ) {
+			var course = e.currentTarget.getAttribute('data-course');
+		} else {
+			var blockParent =  $(this).parent().parent().parent().parent().parent();
+		}
 
 		swal({
 			title: "Voulez vous vraiment supprimer Cette séance?",
@@ -378,7 +383,13 @@ jQuery( function($) {
 						text: "La séance a correctement été supprimée!",
 						type: "success"
 					}, function() {
-						window.location.href = '/course/'+course+'/view';
+						if( place == 'course' ) {
+							window.location.href = '/course/' + course + '/view';
+						} else {
+							blockParent.fadeOut('slow', function () {
+								$(this).remove();
+							});
+						}
 					});
 				})
 				.error(function(data) {
