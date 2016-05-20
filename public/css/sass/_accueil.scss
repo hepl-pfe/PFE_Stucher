@@ -235,11 +235,6 @@
 	.home__link--register {
 		width: 30%;
 	}
-	.forgetPassword {
-		display: block;
-		margin-top: 1em;
-		float: none;
-	}
 }
 
 @media screen and (min-width: 901px) and (max-width: 1450px) {
@@ -298,11 +293,6 @@
 }
 
 @media screen and (max-width: 600px) {
-	.forgetPassword {
-		display: block;
-		margin-top: 1em;
-		float: none;
-	}
 	.home__connectZone {
 		right: 30%;
 	}

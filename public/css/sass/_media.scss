@@ -93,7 +93,9 @@
 }
 
 @media screen and ( max-width: 900px ) {    // portrait tab
-
+  .btn-send {
+    width: 60%;
+  }
 }
 
 @media screen and ( max-width: 768px ) {    // phones landscape
@@ -293,6 +295,10 @@
     float: none;
   }
 
+  .box__connect--page {
+    width: 100%;
+  }
+
 }
 
 
@@ -350,6 +356,13 @@
       padding: 0.4em 0.6em;
     }
   }
+
+  .forgetPassword {
+    display: block;
+    margin-top: 1em;
+    float: none;
+  }
+
 }
 
 @media screen and ( max-width: 370px ) {    // phones small

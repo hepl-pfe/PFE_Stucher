@@ -285,6 +285,21 @@
   .file_label .icon {
     background-color: $mainColor;
   }
+
+
+  .ChangePasswordLink {
+    &:hover, &:focus, &:active {
+      .icon {
+        background-color: darken( $mainColor, 20% );
+      }
+    }
+    .icon {
+      background-color: $mainColor;
+    }
+  }
+
+
+
   //////////////////////////////////////////////////
   ////////////////// À MODIFIER ////////////////////
   .errorMessage {
