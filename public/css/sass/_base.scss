@@ -108,6 +108,14 @@ button {
 .danger {
   color: red;
 }
+.dangerBg{
+  background-color: red;
+  @include transition( all );
+  &:hover, &:focus, &:active {
+    background-color: darken( red, 20% );
+  }
+}
+
 .whiteText {
   color: $white;
   &--icon {
