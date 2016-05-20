@@ -365,8 +365,7 @@ class CourseController extends Controller
 
         return redirect()->route('viewCourse', ['id' => $id_course, 'action' => 1]);
     }
-    
-    public function removeStudentFromCourse( $id_course, $id_user ) {
+    public function removeStudentFromCourse( $id_course, $id_user, $ajax = null ) {
         \DB::table('course_user')
         ->where('user_id', $id_user)->where('course_id', $id_course)->delete();
 
