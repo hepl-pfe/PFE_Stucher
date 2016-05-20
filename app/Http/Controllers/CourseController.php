@@ -145,8 +145,8 @@ class CourseController extends Controller
 
     public function searchCourse() {
         if ( \Auth::check() && \Auth::user()->status==2 ) {
-            $coursesIds = \Auth::user()->courses->lists('id');
-            $title = 'Tous les cours existants';
+            //$coursesIds = \Auth::user()->courses->lists('id');
+            $title = 'Rechercher un cours • Stucher';
             $activePage = 'course';
             $courses = Course::whereNotIn('id',$coursesIds)->get();
 
