@@ -171,7 +171,7 @@ setlocale( LC_ALL, 'fr_FR');
                                     <a title="Modifier" class="icon icon-note unlink boxTitle__editIcon boxTitle__teacherIcon" href="{!! action( 'SeanceController@edit', [ "id" => $seance->id ] ) !!}">
                                         <span class="hidden">modifier</span>
                                     </a>
-                                    <a title="Supprimer" class="icon icon-trash unlink boxTitle__deleteIcon boxTitle__teacherIcon" href="{!! action( 'SeanceController@delete', [ "id" => $seance->id ] ) !!}">
+                                    <a title="Supprimer" data-page="planning" class="action__deleteSeance icon icon-trash unlink boxTitle__deleteIcon boxTitle__teacherIcon" href="{!! action( 'SeanceController@delete', [ "id" => $seance->id ] ) !!}">
                                         <span class="hidden">Supprimer</span>
                                     </a>
                                 </div>
