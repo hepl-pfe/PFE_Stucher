@@ -8,6 +8,11 @@ Carbon::setLocale('fr'); ?>
 	<div class="blockTitle">
 		<h2 class="mainTitle"><span class="hidden">Séance du </span>{{ $seance->start_hours->formatLocalized('%A %d %B %Y') }}</h2>
 		<h3 class="subTitle">Cours de {{ $seance->course->title }}</h3>
+		@if( \Auth::user()->status == 1 )
+			<a title="Modifier la séance" href="{!! action( 'SeanceController@edit', [ "id" => $seance->id ] ) !!}" class="unlink mainColorfont blockTitle--edit">
+				<span class="icon-pencil icon icon--edit"></span> <span class="hidden">Modifier la séance</span>
+			</a>
+		@endif
 		<h4 class="bannerUnderTitle seanceDuration" title="de {{ $seance->start_hours->formatLocalized('%Hh%M') }} à {{ $seance->end_hours->formatLocalized('%Hh%M') }}">
 			<span class="icon-clock"></span>&nbsp;{{ $seance->start_hours->formatLocalized('%Hh%M') }} - {{ $seance->end_hours->formatLocalized('%Hh%M') }}
 		</h4>
