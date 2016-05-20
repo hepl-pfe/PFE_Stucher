@@ -244,6 +244,13 @@
     &:hover, &:focus, &:active {
       background-color: darken( $mainColor, 20% );
     }
+    &.deleteButtonBg {
+      background-color: red;
+      @include transition( all );
+      &:hover, &:focus, &:active {
+        background-color: darken( red, 20% );
+      }
+    }
   }
 
   // FORMULAIRES
