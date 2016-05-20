@@ -235,6 +235,16 @@ jQuery( function($) {
 	});
 
 
+	///////////
+	// CLOSE ERROR MESSAGE
+	///////////
+	$( '.icon--closeErrorMessage').click( function( e ) {
+		$(this).parent().fadeOut('slow', function () {
+			$(this).remove();
+		});
+	} );
+
+
 
 	/////////////////////
 	///// SWEET ALERT ///
