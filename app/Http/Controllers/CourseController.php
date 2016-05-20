@@ -148,10 +148,13 @@ class CourseController extends Controller
             //$coursesIds = \Auth::user()->courses->lists('id');
             $title = 'Rechercher un cours • Stucher';
             $activePage = 'course';
-            $courses = Course::whereNotIn('id',$coursesIds)->get();
+            //$courses = Course::whereNotIn('id',$coursesIds)->get();
+            $courses = null;
+            $users = null;
+            //$users = User::all();
 
-            return view('courses/indexAllCourses', compact('courses', 'title', 'activePage'));
-        } 
+            return view('courses/indexAllCourses', compact('courses', 'users', 'title', 'activePage'));
+        }
         return back();
     }
 
