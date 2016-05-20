@@ -27,6 +27,11 @@ class CourseController extends Controller
         'place' => 'required|max:255'
         ];
 
+    protected $searchRules = [
+        'search' => 'required',
+        'type' => 'required'
+    ];
+
     public function index() {
         $title = 'Stucher • Journal de classe interactif';
 
