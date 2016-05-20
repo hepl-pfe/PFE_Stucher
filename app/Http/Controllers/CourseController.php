@@ -212,6 +212,7 @@ class CourseController extends Controller
 
         ////////// IF TOKEN
         if( $type == 'access' ) {
+            $errors = null;
             $access_course = Course::where( 'access_token', '=', $search_input )->first();
             // Check if user has already access
             if( $access_course == null ) {
@@ -219,6 +220,11 @@ class CourseController extends Controller
                 $errors = 'Ce code non valide';
             } else if( empty( $access_course->users) ) {
                 // premier élève à suivre le cours
+
+                // Check if the demande exist
+                if( !empty( \DB::table('course_user')->where('user_id', \Auth::user()->id)->where('course_id', $access_course->id)->get() ) ) {
+                    return back()->withErrors( 'Vous avez déjà demandé accès à ce cours' );
+                }
             } else {
                 foreach( $access_course->users as $user ) {
                     if( $user->pivot->course_id == $access_course->id ) {
@@ -228,7 +234,7 @@ class CourseController extends Controller
                 }
             }
 
-            if ( !isset( $errors ) ) {
+            if ( $errors == null ) {
                 $student = User::findOrFail(\Auth::user()->id);
 
                 // Ajouter le cours et l'utilisateur à la table course_user
@@ -241,12 +247,12 @@ class CourseController extends Controller
                     'title' => 'demande accès au cours de',
                     'course_id' => $access_course->id,
                     'user_id' => \Auth::user()->id,
-                    'context' => 5,
+                    'context' => 1,
                     'seen' => 0,    // ACTIONS => with buttons
                     'for' => Course::where('id', $access_course->id)->get()->first()->teacher_id
                 ]);
 
-                return redirect()->route('home');
+                return redirect()->route('viewCourse', ['id' => $access_course->id]);
             } else {
                 return redirect()->back()->withErrors($errors);
             }
@@ -262,6 +268,10 @@ class CourseController extends Controller
         if ( \Auth::check() && \Auth::user()->status==2 ) {
             $student = User::findOrFail(\Auth::user()->id);
 
+            if( !empty( \DB::table('course_user')->where('user_id', \Auth::user()->id)->where('course_id', $id)->get() ) ) {
+                return back()->withErrors( 'Vous avez déjà demandé accès à ce cours' );
+            }
+
             // Ajouter le cours et l'utilisateur à la table course_user
             $student->courses()->attach( $id );
             \DB::table('course_user')
@@ -272,7 +282,7 @@ class CourseController extends Controller
                 'title' => 'demande accès au cours de',
                 'course_id' => $id,
                 'user_id' => \Auth::user()->id,
-                'context' => 5,
+                'context' => 1, // DEMANDE D'ACCES
                 'seen' => 0,    // ACTIONS => with buttons
                 'for' => Course::where('id', $id)->get()->first()->teacher_id
             ]);
@@ -304,7 +314,7 @@ class CourseController extends Controller
         return back();
     }
 
-    public function removeCourse( $id_course ) {
+    public function removeCourse( $id_course ) {    // Quand un élève quite le cours
         \DB::table('course_user')
         ->where('user_id', \Auth::user()->id)->where('course_id', $id_course)->delete();
 
@@ -312,7 +322,7 @@ class CourseController extends Controller
             'title' => 'à quiter le cours de',
             'course_id' => $id_course,
             'user_id' => \Auth::user()->id,
-            'context' => 8,
+            'context' => 4,
             'seen' => 0,
             'for' => Course::where('id', $id_course)->get()->first()->teacher_id
         ]);
@@ -330,7 +340,7 @@ class CourseController extends Controller
             'title' => 'Vous avez à présent accès au cours de',
             'course_id' => $id_course,
             'user_id' => \Auth::user()->id,
-            'context' => 6,
+            'context' => 2,
             'seen' => 0,
             'for' => $id_user
         ]);
@@ -338,7 +348,7 @@ class CourseController extends Controller
         \DB::table('notifications')
         ->where('user_id', $id_user)
         ->where('course_id', $id_course)
-        ->where('context', 5)
+        ->where('context', 1)
         ->update(array('seen' => 3));
 
         return redirect()->back();
@@ -365,23 +375,37 @@ class CourseController extends Controller
     }
 
     public function removeStudentFromCourse( $id_course, $id_user, $ajax = null ) {
+        $course = \DB::table('course_user')
+        ->where('user_id', $id_user)->where('course_id', $id_course)->first();
+
         \DB::table('course_user')
-        ->where('user_id', $id_user)->where('course_id', $id_course)->delete();
+            ->where('user_id', $id_user)->where('course_id', $id_course)->delete();
 
         \DB::table('notifications')
-        ->where('user_id', $id_user)
-        ->where('course_id', $id_course)
-        ->where('context', 5)
-        ->update(array('seen' => 3));
+            ->where('user_id', $id_user)
+            ->where('course_id', $id_course)
+            ->where('context', 1)
+            ->update(array('seen' => 3));
 
-        Notification::create([
-            'title' => 'Vous n’avez plus accès au cours de',
-            'course_id' => $id_course,
-            'user_id' => \Auth::user()->id,
-            'context' => 7,
-            'seen' => 0,
-            'for' => $id_user
-        ]);
+        if( $course->access == 1 ) {
+            Notification::create([
+                'title' => 'Votre demande d’accès à été refusée',
+                'course_id' => $id_course,
+                'user_id' => \Auth::user()->id,
+                'context' => 3,
+                'seen' => 0,
+                'for' => $id_user
+            ]);
+        } else {
+            Notification::create([
+                'title' => 'Vous n’avez plus accès au cours',
+                'course_id' => $id_course,
+                'user_id' => \Auth::user()->id,
+                'context' => 5,
+                'seen' => 0,
+                'for' => $id_user
+            ]);
+        }
 
         if( $ajax == null ) {
             return redirect()->back();
@@ -417,6 +441,23 @@ class CourseController extends Controller
 
     public function delete( $id ) {
         $course = Course::findOrFail($id);
+
+        $students = \DB::table('course_user')
+            ->where('course_id', $course->id)->get();
+
+        if( !empty($students) ) {
+            foreach( $students as $student ) {
+                Notification::create([
+                    'title' => 'Le cours à été supprimé',
+                    'course_id' => $course->id,
+                    'user_id' => \Auth::user()->id,
+                    'context' => 14, // Cours supprimé
+                    'seen' => 0,
+                    'for' => $student->user_id
+                ]);
+            }
+        }
+
         $seances = Seance::where( 'course_id', '=', $course->id )->get();;
         foreach ($seances as $seance) {
 
