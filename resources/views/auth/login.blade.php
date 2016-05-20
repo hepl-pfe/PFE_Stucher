@@ -8,7 +8,7 @@
     </div>
 
     <div class="box--group">
-        <div class="box box--shadow">
+        <div class="box box--shadow box__connect--page">
             <form class="box__group--content" method="POST" action="/login">
                 {!! csrf_field() !!}
 

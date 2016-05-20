@@ -8,7 +8,7 @@
     </div>
 
     <div class="box--group">
-        <div class="box box--shadow">
+        <div class="box box--shadow box__connect--page">
             <form class="box__group--content" method="POST" action="/register">
                 {!! csrf_field() !!}
 
@@ -37,7 +37,7 @@
                     <input class="form-control" type="password" name="password_confirmation" id="password_confirmation">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group radio__typeUser">
                     <p>Vous êtes…</p>
                     <label for="teacher">Un professeur</label>
                     <input class="form-control" type="radio" name="status" id="teacher" value="1">
