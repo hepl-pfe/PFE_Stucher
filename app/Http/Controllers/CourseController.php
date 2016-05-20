@@ -405,7 +405,9 @@ class CourseController extends Controller
             'for' => $id_user
         ]);
 
-        return redirect()->back();
+        if( $ajax == null ) {
+            return redirect()->back();
+        }
     }
 
     public function edit( $id ) {
