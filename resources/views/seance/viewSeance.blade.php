@@ -33,7 +33,7 @@ Carbon::setLocale('fr'); ?>
 			<li><a href="{!! action( 'WorkController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Un devoir</a></li>
 			<li><a href="{!! action( 'TestController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Une interrogation</a></li>
 			<li><a href="{!! action( 'SeanceController@edit', [ "id" => $seance->id ] ) !!}">Modifier la séance</a></li>
-			<li><a class="action__deleteSeance" data-course="{{ $seance->course->id }}" href="{!! action( 'SeanceController@delete', [ "id" => $seance->id ] ) !!}">Supprimer la séance</a></li>
+			<li><a class="action__deleteSeance" data-page="seance" data-course="{{ $seance->course->id }}" href="{!! action( 'SeanceController@delete', [ "id" => $seance->id ] ) !!}">Supprimer la séance</a></li>
 			<li><a href="{!! action( 'SeanceController@absent', [ "id" => $seance->id ] ) !!}">Absence</a></li>
 		</ul>
 	</div>
