@@ -110,6 +110,7 @@ return [
         'username'              => 'Pseudo',
         'email'                 => 'E-mail',
         'first_name'            => 'Prénom',
+        'firstname'            => 'Prénom',
         'last_name'             => 'Nom',
         'password'              => 'Mot de passe',
         'password_confirmation' => 'Confirmation du mot de passe',
