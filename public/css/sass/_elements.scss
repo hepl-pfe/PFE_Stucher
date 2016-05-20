@@ -233,6 +233,23 @@
   }
 }
 
+.list__users--middle {
+  display: inline-block;
+  padding-top: 1em;
+}
+
+.box__list__rightButtons {
+  float: right;
+  
+  .box__list__rightButton {
+    display: inline-block;
+    padding: 1.3em;
+    @include transition( all );
+    color: $white;
+  }
+
+}
+
 .box__profilImage {
   @include border-radius(50%);
 }
@@ -466,15 +483,6 @@
   font-size: 1.5em;
 }
 
-.box__list__rightButton {
-  position: absolute;
-  display: inline-block;
-  padding: 1.3em;
-  top: 0; right: 0; bottom: 0;
-  @include transition( all );
-  color: $white;
-}
-
 
 // FILES
 .box__group--files {
@@ -514,4 +522,74 @@
       }
     }
   }
+}
+
+
+////////// SEARCH FORM
+.searchForm {
+  .form-group--radioSearch {
+    @include noSpaceFont();
+    @include border-radius( 5px );
+    background-color: $grayLight;
+    overflow: hidden;
+    padding: 0.2em;
+  }
+  input:checked + label {
+    background-color: $grayDark;
+    color: $white;
+    &:hover, &:focus, &:active {
+      text-decoration: none;
+    }
+  }
+  label {
+    font-family: $mainFont;
+    width: 50%;
+    text-align: center;
+    display: inline-block;
+    padding: 0.2em;
+    cursor: pointer;
+    @include border-radius( 5px );
+    @include transition( all );
+    &:hover, &:focus, &:active {
+      text-decoration: underline;
+    }
+  }
+}
+
+.box__group--list--results--title {
+  display: inline-block;
+}
+
+.box__group--list--results {
+  padding: 0;
+  .box__group--list--results--title  {
+    display: table-cell;
+    background-color: $grayLight;
+    padding: 0.5em;
+    white-space: nowrap;
+    vertical-align: middle;
+    span {
+      color: $grayDark;
+    }
+  }
+  .box__group--list--content {
+    padding: 0.5em;
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+.shutterTitle--addButton {
+  font-size: 0.7em;
+  border: 1px solid $white;
+  padding: 0.3em;
+  position: absolute;
+  right: 1em;
+  &:hover, &:active, &:focus {
+    background-color: rgba( $white, 0.1 );
+  }
+  span {
+    margin-right: 0.3em;
+  }
+  @include border-radius( 10px );
 }
