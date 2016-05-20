@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="color_label" for="password_confirmation">Valider le nouveau mot de passe</label>
+                    <label class="color_label" for="password_confirmation">Valider le mot de passe</label>
                     <input type="password" class="form-control" name="password_confirmation" id="password_confirmation">
                 </div>
 

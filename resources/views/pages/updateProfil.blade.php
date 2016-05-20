@@ -27,7 +27,10 @@
 				</div>
 
 				<div class="form-group">
-					<a href="{{ action( 'PageController@updatePassword' ) }}"><span class="icon-lock"></span>Modifier mon mot de passe</a>
+					<a class="ChangePasswordLink unlink" href="{{ action( 'PageController@updatePassword' ) }}">
+						<span class="icon-lock icon"></span>
+						<span>Modifier mon mot de passe</span>
+					</a>
 				</div>
 
 				<div class="form-group--button">

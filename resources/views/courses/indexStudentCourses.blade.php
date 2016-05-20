@@ -17,14 +17,21 @@
 			</ul>
 		</div>
 
-		<div class="spaceContainer">
-			@if ( $courses->count() == null )
-				<p class="list__empty">Aucun cours pour le moment</p>
+		@if ( $courses->count() != null )
+			@if ( count($waitCourses) != null )
+				<li class="unlist waitCourse--link">
+					<a class="unlink" href="{!! action( 'CourseController@waitCourse' ) !!}">
+						<span class="icon-info icon icon--text"></span>
+						{{ count($waitCourses) }} cours en attente de validation
+					</a>
+				</li>
 			@endif
-			<ul class="list__course_box--group">
-				@if ( count($waitCourses) != null )
-					<li class=""><a class="btn btn-danger pull-right" href="{!! action( 'CourseController@waitCourse' ) !!}">{{ count($waitCourses) }} cours en attente de validation</a></a></li>
-				@endif
+		@endif
+
+		<ul class="list__course_box--group">
+			@if ( $courses->count() == null )
+				<li class="list__empty">Aucun cours pour le moment</li>
+			@endif
 				@foreach( $courses as $course )
 					@if ( $course->pivot->access == 2 )
 						<li class="list__course_box--list course_box">
@@ -46,5 +53,4 @@
 					</a>
 	    		</li>
 			</ul>
-		</div>
 @stop
