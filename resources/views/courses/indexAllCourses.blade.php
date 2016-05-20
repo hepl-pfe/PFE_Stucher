@@ -70,6 +70,11 @@
                         </div>
                         <span class="box__group--list--content">{{ $course->place }}</span>
                     </div>
+
+                    <div class="box__bottomLink box__bottomLink--doubleLink">
+                        <a href="{{ action( 'CourseController@addCourse', [ 'id' => $course->id ] ) }}">Ajouter à mes cours</a>
+                        <a href="{{ action( 'CourseController@view', [ 'id' => $course->id ] ) }}">Voir le cours</a>
+                    </div>
                 </li>
                 @endforeach
             @endif
