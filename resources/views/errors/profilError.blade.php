@@ -2,7 +2,7 @@
 	<ul>
 		@foreach($errors->all() as $error)
 			<li class="errorMessage">
-				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<a href="#" class="close icon icon--closeErrorMessage">&times;</a>
 				<strong>Oups&nbsp;! </strong>
 				{!! $error !!}
 			</li>
