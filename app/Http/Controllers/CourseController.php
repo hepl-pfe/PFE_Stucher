@@ -66,6 +66,8 @@ class CourseController extends Controller
         $seances = [];
         $fiveSeance = [];
         $comments = Comment::where('context', '=', 1)->get();
+        $title = 'Cours de '.$course->title;
+        $activePage = 'course';
         foreach( $allSeances as $theSeance ) {
             if( $theSeance->start_hours > $now ) {
                 $seances[] = $theSeance;
@@ -107,10 +109,6 @@ class CourseController extends Controller
                     return view('courses/waitCourse', compact('title', 'activePage'));
                 }
             }
-
-
-        $title = 'Cours de '.$course->title;
-        $activePage = 'course';
 
         if ( \Auth::user()->status == 1 ) {
             $title = 'Cours de '.$course->title;
