@@ -158,6 +158,54 @@ class CourseController extends Controller
         return back();
     }
 
+    public function searchCourseResult() {
+        $errors = Validator::make(Input::all(), $this->searchRules);
+        if ($errors->fails()) {
+            return Redirect()->back()->withErrors($errors);
+        }
+        $search_input = Input::get('search');
+        $type = Input::get('type');
+        $title = 'Rechercher un cours • Stucher';
+        $activePage = 'course';
+
+        ////////// IF SEARCH
+        $id_courses = [];
+
+        if( $type == 'search' ) {
+            $users = User::all();
+            $courses = Course::where('title', 'LIKE', '%' . $search_input . '%')
+                ->orWhere('group', 'LIKE', '%' . $search_input . '%')
+                ->orWhere('school', 'LIKE', '%' . $search_input . '%')
+                ->orWhere('place', 'LIKE', '%' . $search_input . '%')
+                ->get();
+
+
+            foreach( $courses as $search_course ) {
+                $id_courses[] = $search_course->id;
+            }
+
+
+
+            $search_teacher = User::where( 'status', '1' )
+                ->where('firstname', 'LIKE', '%' . $search_input . '%')
+                ->orWhere('name', 'LIKE', '%' . $search_input . '%')
+                ->get();
+
+            if( empty( $search_teacher[0] ) ) {
+            } else {
+                foreach( $search_teacher as $teacher ) {
+                    $courses_teacher = Course::where( 'teacher_id', $teacher->id )->get();
+                    foreach( $courses_teacher as $course_teacher ) {
+                        if( !in_array( $course_teacher->id, $id_courses ) ) {
+                            $id_courses[] = $course_teacher->id;
+                            $courses[] = $course_teacher;
+                        }
+                    }
+                }
+            }
+
+            return view('courses/indexAllCourses', compact('courses', 'users', 'title', 'activePage'));
+        }
     public function addCourse( $id ) {
         if ( \Auth::check() && \Auth::user()->status==2 ) {
             $student = User::findOrFail(\Auth::user()->id);
