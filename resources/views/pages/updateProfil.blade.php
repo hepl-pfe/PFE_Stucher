@@ -12,7 +12,7 @@
 			<form class="box__group--content" action="" method="post">
 				<div class="form-group">
 					<label class="color_label" for="firstname">Votre prénom</label>
-					<input type="text" class="form-control" name="firstname" id="firstname" placeholder="ex: Mathématiques" value="{{ $firstname }}">
+					<input type="text" class="form-control" name="firstname" id="firstname" placeholder="ex: Mathématiques" value="{{ $firstname }}" autofocus>
 				</div>
 
 				<div class="form-group">

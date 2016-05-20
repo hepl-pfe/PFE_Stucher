@@ -58,7 +58,7 @@
                 <div class="form-group">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <label class="color_label" for="title">Titre du devoir</label>
-                    <input type="text" class="form-control" name="title" id="title" placeholder="ex: exercice de probabilité">
+                    <input type="text" class="form-control" name="title" id="title" placeholder="ex: exercice de probabilité" autofocus>
                 </div>
 
                 <div class="form-group">

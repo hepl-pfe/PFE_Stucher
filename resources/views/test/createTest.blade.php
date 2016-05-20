@@ -57,7 +57,7 @@
                 <div class="form-group">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <label class="color_label" for="title">Titre de l'interrogation</label>
-                    <input type="text" class="form-control" name="title" id="title" placeholder="ex: test de propabilité" value="{{ old('title') }}">
+                    <input type="text" class="form-control" name="title" id="title" placeholder="ex: test de propabilité" value="{{ old('title') }}" autofocus>
                 </div>
 
                 <div class="form-group">

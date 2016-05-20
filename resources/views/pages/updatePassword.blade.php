@@ -14,7 +14,7 @@
                 <div class="form-group">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <label class="color_label" for="password">Votre nouveau mot de passe</label>
-                    <input type="password" class="form-control" name="password" id="password" >
+                    <input type="password" class="form-control" name="password" id="password" autofocus>
                 </div>
 
                 <div class="form-group">
