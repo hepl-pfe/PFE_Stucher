@@ -39,11 +39,14 @@
 
                 <div class="form-group radio__typeUser">
                     <p>Vous êtes…</p>
-                    <label for="teacher">Un professeur</label>
-                    <input class="form-control" type="radio" name="status" id="teacher" value="1">
+                    <div class="form-group__content">
+                        <input class="hidden form-control" type="radio" name="status" id="teacher" value="1">
+                        <label for="teacher">Un professeur</label>
 
-                    <label for="student">Un étudiant</label>
-                    <input class="form-control" type="radio" name="status" id="student" value="2">
+                        <input class="hidden form-control" type="radio" name="status" id="student" value="2">
+                        <label for="student">Un étudiant</label>
+                        <div class="clear"></div>
+                    </div>
                 </div>
 
                 <div class="form-group--button">
