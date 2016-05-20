@@ -2,7 +2,7 @@
 	@section('title', $title)
     @section( 'content' )
         <div class="blockTitle">
-            <h2 class="mainTitle">Tous les cours existants</h2>
+            <h2 class="mainTitle">Rechercher un cours</h2>
             <a class="backButton blockTitle__backButton unlink mainColorfont" href="{!! action( 'CourseController@index' ) !!}"><span class="hidden">Revenir à la page précédente</span><span class="icon-arrow-left"></span></a>
         </div>
 
