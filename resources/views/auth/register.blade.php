@@ -38,13 +38,13 @@
                 </div>
 
                 <div class="form-group radio__typeUser">
-                    <p>Vous êtes…</p>
+                    <p>Vous êtes un…</p>
                     <div class="form-group__content">
                         <input class="hidden form-control" type="radio" name="status" id="teacher" value="1">
-                        <label for="teacher">Un professeur</label>
+                        <label for="teacher">professeur</label>
 
                         <input class="hidden form-control" type="radio" name="status" id="student" value="2">
-                        <label for="student">Un étudiant</label>
+                        <label for="student">étudiant</label>
                         <div class="clear"></div>
                     </div>
                 </div>
