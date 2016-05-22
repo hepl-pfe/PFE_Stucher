@@ -3,6 +3,10 @@
 @section('content')
 
     <body class="{{ isset(Auth::user()->color) ? Auth::user()->color : '' }}">
-        <h1>ERREUR 404</h1>
-        <p>On dirait que la page que vous cherchez à accédé n'est pas disponible.</p>
+        <div class="blockTitle">
+            <h1 class="mainTitle">Erreur 404</h1>
+            <h1 class="subTitle">Hmmm… on dirait que la page n’existe pas.</h1>
+
+            <a title="Revenir à la page précédente" class="backButton blockTitle__backButton unlink mainColorfont" href="{{ URL::previous() }}"><span class="hidden">Revenir à la page précédente</span><span class="icon-arrow-left"></span></a>
+        </div>
 @stop
