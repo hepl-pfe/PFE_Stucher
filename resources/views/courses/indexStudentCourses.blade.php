@@ -40,6 +40,11 @@
 								<h3>
 									<span class="box_subTitle">Cours de </span>
 									<span class="box_mainTitle">{{ $course->title }} </span>
+									@foreach( $teachers as $teacher )
+										@if( $course->teacher_id == $teacher->id )
+											<span class="box_subTitle">{{ $teacher->firstname }} {{ $teacher->name }}</span>
+										@endif
+									@endforeach
 								</h3>
 							</a>
 						</li>
