@@ -6,13 +6,19 @@
   color: #fff;
   border-radius: 5px;
   border-style: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.form-group--button {
+  margin-top: 2em;
 }
 
 .btn-send {
   width: 50%;
   float: right;
   cursor: pointer;
-  margin-top: 2em;
   @include transition( all );
 }
 
@@ -65,6 +71,9 @@
     outline: none;
     border: 1px solid $grayLight;
     resize: vertical;
+    appearance:none;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
   }
 }
 
@@ -110,6 +119,9 @@
   .form__remember {
     display: inline-block;
     width: auto;
+    &:checked + label {
+      background-color: transparent;
+    }
   }
   label {
     display: inline-block;

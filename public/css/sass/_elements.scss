@@ -672,7 +672,6 @@
 .form-group.radio__typeUser {
 
   p {
-    color: $mainColor;
     font-weight: bold;
     margin-top: 2em;
     margin-bottom: 1em;
@@ -698,7 +697,6 @@
   }
   
   input:checked + label {
-    background-color: $mainColor;
     color: $white;
   }
 
@@ -706,4 +704,31 @@
     background-color: $grayMiddleLight;
   }
   
+}
+
+.box__profilCourse--title {
+  h3 {
+    color: $white;
+  }
+}
+
+.CenterButtonZone {
+  display: block;
+}
+
+.connextSwitchBtn {
+  display: block;
+  float: left;
+  width: 40%;
+  font-size: 1.2rem;
+  padding: 0.5em;
+  color: $grayMiddleLight;
+  a {
+    color: cornflowerblue;
+    text-decoration: none;
+    &:hover, &:focus, &:active {
+      color: dodgerblue;
+      text-decoration: underline;
+    }
+  }
 }

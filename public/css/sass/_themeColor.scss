@@ -24,6 +24,7 @@
   .mainTitle {
     color: $mainColor;
   }
+  
   #dd_moreButton:focus + label {
     border: 1.5px solid darken( $mainColor, 20% );
     span {
@@ -298,12 +299,18 @@
     }
   }
 
+  .box__profilCourse--title {
+    background-color: $mainColor;
+  }
+  
+
 
 
   //////////////////////////////////////////////////
   ////////////////// À MODIFIER ////////////////////
   .errorMessage {
     border: 1px solid $mainColor;
+    background-color: $white;
     color: $mainColor;
     & a {
       color: $mainColor;

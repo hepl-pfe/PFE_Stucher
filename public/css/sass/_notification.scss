@@ -4,7 +4,10 @@
 	bottom: 1.4em;
 	left: 0;
 	right: 0;
-	min-height: 16em;
+	ul {
+		height: 15em;
+		overflow: auto;
+	}
 }
 
 .notification__title {

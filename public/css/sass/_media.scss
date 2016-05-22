@@ -96,6 +96,14 @@
   .btn-send {
     width: 60%;
   }
+
+  .connextSwitchBtn {
+    display: block;
+    float: none;
+    width: 100%;
+    margin-bottom: 1em;
+  }
+
 }
 
 @media screen and ( max-width: 768px ) {    // phones landscape
@@ -341,7 +349,7 @@
     display: none;
   }
   .comment__box .comment__box--button span {
-    font-size: 1.8em;
+    font-size: 1.4em;
   }
   .box__profilImage--profilPage {
     width: 150px;
