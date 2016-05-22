@@ -84,7 +84,6 @@ class PageController extends Controller
         $user->firstname = Input::get('firstname');
         $user->name = Input::get('name');
         $user->email = Input::get('email');
-        $user->password = bcrypt(Input::get('password'));
         $user->save();
         return redirect()->route('about');
     }
