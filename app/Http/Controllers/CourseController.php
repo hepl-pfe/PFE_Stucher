@@ -328,6 +328,12 @@ class CourseController extends Controller
             'for' => Course::where('id', $id_course)->get()->first()->teacher_id
         ]);
 
+        \DB::table('notifications')
+            ->where('user_id', \Auth::user()->id)
+            ->where('course_id', $id_course)
+            ->where('context', 1)
+            ->update(array('seen' => 3));
+
         return redirect()->route('home');
     }
 
@@ -366,6 +372,16 @@ class CourseController extends Controller
 
         foreach( $courses as $course ) {
             if( $course->teacher_id == \Auth::user()->id ) {
+
+                Notification::create([
+                    'title' => 'Vous n’avez plus accès au cours',
+                    'course_id' => $course->id,
+                    'user_id' => \Auth::user()->id,
+                    'context' => 5,
+                    'seen' => 0,
+                    'for' => $user->id
+                ]);
+
                 \DB::table('course_user')->where('user_id', $user->id)->where('course_id', $course->id)->delete();
             }
         }
@@ -449,10 +465,10 @@ class CourseController extends Controller
         if( !empty($students) ) {
             foreach( $students as $student ) {
                 Notification::create([
-                    'title' => 'Le cours à été supprimé',
+                    'title' => $course->title,
                     'course_id' => $course->id,
                     'user_id' => \Auth::user()->id,
-                    'context' => 14, // Cours supprimé
+                    'context' => 17, // Cours supprimé
                     'seen' => 0,
                     'for' => $student->user_id
                 ]);
