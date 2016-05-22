@@ -11,20 +11,6 @@
 |
 */
 
-Route::get( '/mail', function(){
-    $data = [
-        'title' => 'bienvenue mon petit',
-        'content' => 'Mon message hihi'
-    ];
-
-    Mail::send( 'emails.test', $data, function( $message ) {
-        $message->to( 'loic1994@hotmail.com', 'Loïc' )->from('noreply@stucher.be')->subject('coucou');
-    } );
-
-    return "Your email has been sent successfully";
-
-} );
-
 Route::get( '/', [ 'as' => 'home', 'uses' => 'CourseController@index' ] );
 
 Route::get( 'user/about', [ 'as' => 'about', 'uses' => 'PageController@about', 'middleware' => 'auth' ] );
