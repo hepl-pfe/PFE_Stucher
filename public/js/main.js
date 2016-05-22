@@ -245,6 +245,25 @@ jQuery( function($) {
 	} );
 
 
+	///////////
+	// ARCHIVE NOTIFICATION
+	///////////
+	$( '.notification__button--archive').click( function( e ){
+		e.preventDefault();
+		var delete_url = e.currentTarget.href+'/ajax';
+		var blockParent = $(this).parent().parent();
+		$.ajax({
+			type: "GET",
+			url: delete_url,
+			success: function () {
+				blockParent.fadeOut('slow', function () {
+					$(this).remove();
+				});
+			}
+		});
+	} );
+
+
 
 	/////////////////////
 	///// SWEET ALERT ///
