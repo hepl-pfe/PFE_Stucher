@@ -53,7 +53,7 @@ Carbon::setLocale('fr'); ?>
 					(<span class="shutterTitle--works--number">{{ count( $seance->works ) }}</span>)
 				@endif
 			@if( \Auth::user()->status == 1 )
-				<a class="unlink whiteText shutterTitle--addButton" href="{!! action( 'WorkController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}"><span class="icon-plus"></span>Ajouter</a>
+				<a class="unlink whiteText shutterTitle--addButton" href="{!! action( 'WorkController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}"></span>Ajouter</a>
 			@endif
 			</h3>
 			<div class="box--group">
@@ -112,7 +112,7 @@ Carbon::setLocale('fr'); ?>
 					@endif
 
 				@if( \Auth::user()->status == 1 )
-					<a class="unlink whiteText shutterTitle--addButton" href="{!! action( 'TestController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}"><span class="icon-plus"></span>Ajouter</a>
+					<a class="unlink whiteText shutterTitle--addButton" href="{!! action( 'TestController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}"></span>Ajouter</a>
 				@endif
 			</h3>
 			<div class="box--group">
