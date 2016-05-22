@@ -29,7 +29,7 @@
 				<div class="form-group">
 					<a class="ChangePasswordLink unlink" href="{{ action( 'PageController@updatePassword' ) }}">
 						<span class="icon-lock icon"></span>
-						<span>Modifier mon mot de passe</span>
+						<span>Changer le mot de passe</span>
 					</a>
 				</div>
 

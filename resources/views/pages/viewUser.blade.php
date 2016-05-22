@@ -10,6 +10,7 @@
 		<div class="box_profilPicture box__profilImage box__profilImage--profilPage">
 			<img class="box__profilImage" src="{{ url() }}/img/profilPicture/{{ $user->image }}" alt="Image de profil">
 		</div>
+
 		<!-- id information -->
 		<div class="box box--shadow box_profil--picture">
 			<ul class="box__group--list profil__group--list">
