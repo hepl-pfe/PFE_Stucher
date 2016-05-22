@@ -109,6 +109,27 @@ class WorkController extends Controller
             'description' => Input::get('descr')
         ]);
 
+        $seance = Seance::findOrFail(Input::get('seance'));
+        $course = $seance->course;
+
+        $students = \DB::table('course_user')
+            ->where('course_id', $course->id)->get();
+
+        if( !empty($students) ) {
+            foreach( $students as $student ) {
+                setlocale( LC_ALL, 'fr_FR');
+                Notification::create([
+                    'title' => $seance->start_hours->formatLocalized('%d %B %Y'),
+                    'course_id' => $course->id,
+                    'seance_id' => $seance->id,
+                    'user_id' => \Auth::user()->id,
+                    'context' => 11, // Nouveau devoir
+                    'seen' => 0,
+                    'for' => $student->user_id
+                ]);
+            }
+        }
+
 
         if( !empty( $workFiles ) ) {
             foreach( $workFiles as $workFileID ) {
@@ -195,12 +216,59 @@ class WorkController extends Controller
         $work->description = Input::get('descr');
         $work->updated_at = Carbon::now();
         $work->save();
+
+
+        $seance = Seance::findOrFail(Input::get('seance'));
+        $course = $seance->course;
+
+        $students = \DB::table('course_user')
+            ->where('course_id', $course->id)->get();
+
+        if( !empty($students) ) {
+            foreach( $students as $student ) {
+                setlocale( LC_ALL, 'fr_FR');
+                Notification::create([
+                    'title' => $seance->start_hours->formatLocalized('%d %B %Y'),
+                    'course_id' => $course->id,
+                    'seance_id' => $seance->id,
+                    'user_id' => \Auth::user()->id,
+                    'context' => 13, // Devoir modifié
+                    'seen' => 0,
+                    'for' => $student->user_id
+                ]);
+            }
+        }
+
+
         return redirect()->route('viewSeance', ['id' => $work->seance->id]);
     }
 
     public function delete( $id, $ajax = null ) {
         $work = Work::findOrFail( $id );
         $work->delete();
+
+
+        $seance = $work->seance;
+        $course = $seance->course;
+        $students = \DB::table('course_user')
+            ->where('course_id', $course->id)->get();
+
+        if( !empty($students) ) {
+            foreach( $students as $student ) {
+                setlocale( LC_ALL, 'fr_FR');
+                Notification::create([
+                    'title' => $seance->start_hours->formatLocalized('%d %B %Y'),
+                    'course_id' => $course->id,
+                    'seance_id' => $seance->id,
+                    'user_id' => \Auth::user()->id,
+                    'context' => 15, // Devoir supprimé
+                    'seen' => 0,
+                    'for' => $student->user_id
+                ]);
+            }
+        }
+
+
         if( $ajax == null ) {
             return redirect()->back();
         }

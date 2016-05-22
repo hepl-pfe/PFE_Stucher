@@ -110,6 +110,28 @@ class TestController extends Controller
         ]);
 
 
+        $seance = Seance::findOrFail(Input::get('seance'));
+        $course = $seance->course;
+
+        $students = \DB::table('course_user')
+            ->where('course_id', $course->id)->get();
+
+        if( !empty($students) ) {
+            foreach( $students as $student ) {
+                setlocale( LC_ALL, 'fr_FR');
+                Notification::create([
+                    'title' => $seance->start_hours->formatLocalized('%d %B %Y'),
+                    'course_id' => $course->id,
+                    'seance_id' => $seance->id,
+                    'user_id' => \Auth::user()->id,
+                    'context' => 12, // Nouveau test
+                    'seen' => 0,
+                    'for' => $student->user_id
+                ]);
+            }
+        }
+
+
         if( !empty( $testFiles ) ) {
             foreach( $testFiles as $testFileID ) {
                 \DB::table('file_test')
@@ -192,15 +214,63 @@ class TestController extends Controller
         $test->description = Input::get('descr');
         $test->updated_at = Carbon::now();
         $test->save();
+
+
+        $seance = Seance::findOrFail(Input::get('seance'));
+        $course = $seance->course;
+
+        $students = \DB::table('course_user')
+            ->where('course_id', $course->id)->get();
+
+        if( !empty($students) ) {
+            foreach( $students as $student ) {
+                setlocale( LC_ALL, 'fr_FR');
+                Notification::create([
+                    'title' => $seance->start_hours->formatLocalized('%d %B %Y'),
+                    'course_id' => $course->id,
+                    'seance_id' => $seance->id,
+                    'user_id' => \Auth::user()->id,
+                    'context' => 14, // Test modifié
+                    'seen' => 0,
+                    'for' => $student->user_id
+                ]);
+            }
+        }
+
+
         return redirect()->route('viewSeance', ['id' => $test->seance->id]);
     }
 
     public function delete( $id, $ajax = null ) {
         $test = Test::findOrFail( $id );
         $test->delete();
+
+
+        $seance = $test->seance;
+        $course = $seance->course;
+        $students = \DB::table('course_user')
+            ->where('course_id', $course->id)->get();
+
+        if( !empty($students) ) {
+            foreach( $students as $student ) {
+                setlocale( LC_ALL, 'fr_FR');
+                Notification::create([
+                    'title' => $seance->start_hours->formatLocalized('%d %B %Y'),
+                    'course_id' => $course->id,
+                    'seance_id' => $seance->id,
+                    'user_id' => \Auth::user()->id,
+                    'context' => 16, // Test supprimé
+                    'seen' => 0,
+                    'for' => $student->user_id
+                ]);
+            }
+        }
+
+
         if( $ajax == null ) {
             return redirect()->back();
         }
+
     }
 
     public function deleteFile( $id_test, $id_file, $ajax = null ) {

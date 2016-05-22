@@ -69,6 +69,19 @@ class SeanceController extends Controller
                     'course_id' => Input::get('course'),
                     'start_hours' => $obj_dateStart->format('Y-m-d').$start_hours.':00',
                     'end_hours' => $obj_dateStart->format('Y-m-d').$end_hours.':00'
+
+        $students = \DB::table('course_user')
+            ->where('course_id', $course->id)->get();
+
+        if( !empty($students) ) {
+            foreach( $students as $student ) {
+                Notification::create([
+                    'title' => $course->title,  // NEW SEANCES TO A COURSE
+                    'course_id' => $course->id,
+                    'user_id' => \Auth::user()->id,
+                    'context' => 6,
+                    'seen' => 0,
+                    'for' => $student->user_id
                 ]);
             }
         }
@@ -111,6 +124,27 @@ class SeanceController extends Controller
         $seance->course_id = Input::get('course');
         $seance->start_hours = $day.$start_hours.':00';
         $seance->end_hours = $day.$end_hours.':00';
+        $course = $seance->course;
+
+        $students = \DB::table('course_user')
+            ->where('course_id', $course->id)->get();
+
+        if( !empty($students) ) {
+            foreach( $students as $student ) {
+                setlocale( LC_ALL, 'fr_FR');
+                Notification::create([
+                    // Séance supprimée
+                    'title' => $seance->start_hours->formatLocalized('%d %B %Y'),
+                    'course_id' => $course->id,
+                    'seance_id' => $seance->id,
+                    'user_id' => \Auth::user()->id,
+                    'context' => 10,
+                    'seen' => 0,
+                    'for' => $student->user_id
+                ]);
+            }
+        }
+
 
         $seance->save();
         return redirect()->route('viewCourse', ['id' => Input::get('course'), 'action' => 1]);
@@ -184,6 +218,25 @@ class SeanceController extends Controller
         $seance = Seance::findOrFail($id);
         $course = Course::findOrFail($seance->course_id);
 
+        $students = \DB::table('course_user')
+            ->where('course_id', $course->id)->get();
+
+        if( !empty($students) ) {
+            foreach( $students as $student ) {
+                setlocale( LC_ALL, 'fr_FR');
+                Notification::create([
+                    // Séance supprimée
+                    'title' => $seance->start_hours->formatLocalized('%d %B %Y'),
+                    'course_id' => $course->id,
+                    'seance_id' => $seance->id,
+                    'user_id' => \Auth::user()->id,
+                    'context' => 9,
+                    'seen' => 0,
+                    'for' => $student->user_id
+                ]);
+            }
+        }
+
         $works = Work::where( 'seance_id', '=', $id )->get();
         foreach ($works as $work) {
             $work->delete();   
@@ -239,6 +292,40 @@ class SeanceController extends Controller
         $seance = Seance::findOrFail($id);
         $seance->absent == 1 ? $seance->absent = 0 : $seance->absent = 1;
         $seance->save();
+
+        $course = $seance->course;
+
+        $students = \DB::table('course_user')
+            ->where('course_id', $course->id)->get();
+
+        if( !empty($students) ) {
+            foreach( $students as $student ) {
+                setlocale( LC_ALL, 'fr_FR');
+                if( $seance->absent == 1 ) {
+                    Notification::create([
+                        // Séance annulé (absence)
+                        'title' => $seance->start_hours->formatLocalized('%d %B %Y'),
+                        'course_id' => $course->id,
+                        'seance_id' => $seance->id,
+                        'user_id' => \Auth::user()->id,
+                        'context' => 7,
+                        'seen' => 0,
+                        'for' => $student->user_id
+                    ]);
+                } else {
+                    Notification::create([
+                        // Séance annulé (absence)
+                        'title' => $seance->start_hours->formatLocalized('%d %B %Y'),
+                        'course_id' => $course->id,
+                        'seance_id' => $seance->id,
+                        'user_id' => \Auth::user()->id,
+                        'context' => 8,
+                        'seen' => 0,
+                        'for' => $student->user_id
+                    ]);
+                }
+            }
+        }
 
         return redirect()->back();
     }
