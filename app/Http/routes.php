@@ -46,6 +46,7 @@ Route::post( 'updatePassword', [ 'as' => 'updatePassword', 'uses' => 'PageContro
 Route::get( 'profil/delete', [ 'as' => 'deleteProfil', 'uses' => 'PageController@deleteProfil', 'middleware' => 'auth' ] );
 
 Route::get( 'notification/all', [ 'as' => 'notification', 'uses' => 'NotificationController@index', 'middleware' => 'auth' ] );
+Route::get( 'notification/{id}/archive/{ajax?}', [ 'as' => 'notification', 'uses' => 'NotificationController@archive', 'middleware' => 'auth' ] );
 Route::get( 'message/all', [ 'as' => 'message', 'uses' => 'PageController@message', 'middleware' => 'auth' ] );
 Route::get( 'message/new', [ 'as' => 'newMessage', 'uses' => 'PageController@newMessage', 'middleware' => 'auth' ] );
 Route::get( 'message/re', [ 'as' => 'repMessage', 'uses' => 'PageController@repMessage', 'middleware' => 'auth' ] );

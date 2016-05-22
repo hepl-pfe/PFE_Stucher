@@ -35,7 +35,10 @@ class NotificationController extends Controller
         return view('notifications/indexNotifications', compact('notifications', 'title', 'activePage'));
     }
 
-    public function delete( $id ) {
-        
+    public function archive( $id, $ajax = null ) {
+        Notification::findOrFail( $id )->update(array('seen' => 3));
+        if( $ajax == null ) {
+            return redirect()->back();
+        }
     }
 }
