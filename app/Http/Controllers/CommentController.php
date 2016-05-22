@@ -53,6 +53,47 @@ class CommentController extends Controller
             'for' => $for,
             'context' => $context
         ]);
+
+
+        $seance = Seance::findOrFail( $for );
+        $course = $seance->course;
+
+        $teacher = User::findOrFail( $course->teacher_id );
+
+        $students = \DB::table('course_user')
+            ->where('course_id', $course->id)->get();
+
+        if( \Auth::user()->status == 2 ) {
+            Notification::create([
+                // Nouveau commentaire
+                'title' => $seance->start_hours->formatLocalized('%d %B %Y'),
+                'course_id' => $course->id,
+                'seance_id' => $seance->id,
+                'user_id' => \Auth::user()->id,
+                'context' => 18,
+                'seen' => 0,
+                'for' => $teacher->id
+            ]);
+        }
+
+        if( !empty($students) ) {
+            foreach( $students as $student ) {
+                if( $student->user_id != \Auth::user()->id ){
+                    Notification::create([
+                        // Nouveau commentaire
+                        'title' => $seance->start_hours->formatLocalized('%d %B %Y'),
+                        'course_id' => $course->id,
+                        'seance_id' => $seance->id,
+                        'user_id' => \Auth::user()->id,
+                        'context' => 18,
+                        'seen' => 0,
+                        'for' => $student->user_id
+                    ]);
+                }
+            }
+        }
+
+
         return back();
     }
 
