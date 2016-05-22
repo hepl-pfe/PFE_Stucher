@@ -34,5 +34,29 @@
 			</ul>
 		</div>
 
+		@if( $user->status == 1 )
+			<!-- id course -->
+			<div class="box box--shadow">
+				<ul class="box__group--list profil__group--list">
+					<li class="box__group--list--list box__profilCourse box__profilCourse--title">
+						<h3>Ensemble de ses cours</h3>
+					</li>
+
+					@foreach( $courses as $course )
+						<li class="box__group--list--list box__profilCourse">
+							<h4>
+								<a class="unlink blockLink" href="{{ action( 'CourseController@view', [ 'id' => $course->id ] ) }}">
+									<span class="icon icon--text icon--text--aboutPage icon-briefcase mainColorfont"></span> Cours de {{ $course->title }}
+									<br>
+									<span class="icon icon--text icon--text--aboutPage icon-users mainColorfont"></span> Groupe {{ $course->group }}
+								</a>
+							</h4>
+						</li>
+					@endforeach
+
+				</ul>
+			</div>
+		@endif
+
 	</div>
 @endsection
