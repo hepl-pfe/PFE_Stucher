@@ -3,7 +3,7 @@
 @section('content')
 
 	<div class="blockTitle">
-		<h2 class="mainTitle">{{ $title }}</h2>
+		<h2 class="mainTitle">Créer de nouvelles séances</h2>
 		<a title="Revenir au cours" class="backButton blockTitle__backButton unlink mainColorfont" href="{!! action( 'CourseController@view', [ 'id' => $id ] ) !!}"><span class="hidden">Revenir à la page précédente</span><span class="icon-arrow-left"></span></a>
 	</div>
 

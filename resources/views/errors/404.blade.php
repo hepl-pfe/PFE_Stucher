@@ -1,5 +1,5 @@
 @extends('logoutLayout')
-@section('title', 'Stucher • Page non trouvé')
+@section('title', 'Page non trouvée • Stucher')
 @section('content')
 
     <body class="{{ isset(Auth::user()->color) ? Auth::user()->color : '' }}">

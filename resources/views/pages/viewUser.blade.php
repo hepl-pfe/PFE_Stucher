@@ -2,7 +2,7 @@
 @section('title', $title)
 @section('content')
 	<div class="blockTitle">
-		<h2 class="mainTitle">{{ $title }}</h2>
+		<h2 class="mainTitle">Profil de {{ $user->firstname }} {{ $user->name }}</h2>
 	</div>
 
 	<div class="box--group">

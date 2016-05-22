@@ -1,5 +1,5 @@
 @extends('logoutLayout')
-@section('title', $title)
+@section('title',  'Inscription élève • Stucher')
 @section('content')
     <div class="blockTitle">
         <h2 class="mainTitle">{{ $title }}</h2>

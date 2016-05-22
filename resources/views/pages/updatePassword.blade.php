@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="blockTitle">
-        <h2 class="mainTitle">{{ $title }}</h2>
+        <h2 class="mainTitle">Modifier mon mot de passe</h2>
 
         <a title="Revenir à la page de modification de profil" class="backButton blockTitle__backButton unlink mainColorfont" href="{!! action( 'PageController@editProfil' ) !!}"><span class="hidden">Revenir à la page précédente</span><span class="icon-arrow-left"></span></a>
     </div>

@@ -2,7 +2,7 @@
 	@section('title', $title)
     @section( 'content' )
         <div class="blockTitle">
-            <h2 class="mainTitle">{{ $title }}</h2>
+            <h2 class="mainTitle">Créer une interrogation</h2>
 
             @if (isset( $seance ))
                 <a title="Revenir à la séance" class="backButton blockTitle__backButton unlink mainColorfont" href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}"><span class="hidden">Revenir à la page précédente</span><span class="icon-arrow-left"></span></a>

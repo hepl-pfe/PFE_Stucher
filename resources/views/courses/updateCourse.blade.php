@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', $title)
+@section('title', $pageTitle)
 @section('content')
 	<div class="blockTitle">
 		<h2 class="mainTitle">Modifier le cours</h2>

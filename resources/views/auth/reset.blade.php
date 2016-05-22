@@ -1,5 +1,5 @@
 @extends('logoutLayout')
-@section('title', 'Changer le mot de passe')
+@section('title', 'Changer le mot de passe • Stucher')
 @section('content')
 <!-- resources/views/auth/reset.blade.php -->
 

@@ -1,4 +1,4 @@
-@section('title', 'Inscription • Stucher')
+@section('title', 'Connexion • Stucher')
 @include( 'header' )
 <body class="home default">
 

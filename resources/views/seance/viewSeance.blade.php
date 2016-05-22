@@ -5,6 +5,7 @@ Carbon::setLocale('fr'); ?>
 @extends( 'layout' )
     @section( 'content' )
     @section( 'title', $title )
+
 	<div class="blockTitle">
 		<h2 class="mainTitle"><span class="hidden">Séance du </span>{{ $seance->start_hours->formatLocalized('%A %d %B %Y') }}</h2>
 		<h3 class="subTitle">Cours de {{ $seance->course->title }}</h3>
