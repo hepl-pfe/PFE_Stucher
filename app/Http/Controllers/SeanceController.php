@@ -68,7 +68,13 @@ class SeanceController extends Controller
                 $seance = Seance::create([
                     'course_id' => Input::get('course'),
                     'start_hours' => $obj_dateStart->format('Y-m-d').$start_hours.':00',
-                    'end_hours' => $obj_dateStart->format('Y-m-d').$end_hours.':00'
+                    'end_hours' => $obj_dateStart->format('Y-m-d').$end_hours.':00',
+                    'local' => Input::get('local')
+                ]);
+            }
+        }
+
+        $course = Course::findOrFail( Input::get('course') );
 
         $students = \DB::table('course_user')
             ->where('course_id', $course->id)->get();
@@ -105,11 +111,15 @@ class SeanceController extends Controller
         $activePage = 'course';
         $courses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
         $course_id = $seance->course_id;
-        $start_day = substr($seance->start_hours, 0, 10);
-        $end_day = substr($seance->end_hours, 0, 10);
-        $start_hours = substr($seance->start_hours, 11, 5);
-        $end_hours = substr($seance->end_hours, 11, 5);
-        return view('seance/updateSeance', compact('title', 'seance', 'days', 'id', 'courses', 'course_id', 'start_day', 'end_day', 'start_hours', 'end_hours', 'activePage'));
+
+        $local = $seance->local;
+
+        $start_day = $seance->start_hours->formatLocalized('%d-%m-%Y');
+        $end_day = $seance->end_hours->formatLocalized('%d-%m-%Y');
+        $start_hours = $seance->start_hours->formatLocalized('%H:%M');
+        $end_hours = $seance->end_hours->formatLocalized('%H:%M');
+
+        return view('seance/updateSeance', compact('title', 'seance', 'days', 'id', 'courses', 'course_id', 'start_day', 'end_day', 'start_hours', 'end_hours', 'local', 'activePage'));
     }
 
     public function update( $id ) {
@@ -118,12 +128,15 @@ class SeanceController extends Controller
             return redirect()->back()->withErrors($error);
         }
         $seance = Seance::findOrFail($id);
-        $day = Input::get('date');
+        $day = Carbon::createFromFormat('d-m-Y', Input::get('date'));
         $start_hours = Input::get('start_hours');
         $end_hours = Input::get('end_hours');
+
         $seance->course_id = Input::get('course');
-        $seance->start_hours = $day.$start_hours.':00';
-        $seance->end_hours = $day.$end_hours.':00';
+        $seance->start_hours = $day->formatLocalized('%Y-%m-%d').' '.$start_hours.':00';
+        $seance->end_hours = $day->formatLocalized('%Y-%m-%d').' '.$end_hours.':00';
+        $seance->local = Input::get('local');
+
         $course = $seance->course;
 
         $students = \DB::table('course_user')
@@ -147,7 +160,7 @@ class SeanceController extends Controller
 
 
         $seance->save();
-        return redirect()->route('viewCourse', ['id' => Input::get('course'), 'action' => 1]);
+        return redirect()->route('viewSeance', ['id' => $id]);
     }
 
     public function view( $id ) {
@@ -159,7 +172,7 @@ class SeanceController extends Controller
         $interval = $datetime1->diff($datetime2);
 
         $comments = Comment::where('context', '=', 1)->where('for', $id)->get();
-        $title = 'Séance du '.$seance->start_hours->formatLocalized('%A %d %B %Y') . ' de ' . $seance->start_hours->formatLocalized('%Hh%M') . ' à ' . $seance->end_hours->formatLocalized('%Hh%M');
+        $title = 'Séance du '.$seance->start_hours->formatLocalized('%A %d %B %Y') . ' de ' . $seance->start_hours->formatLocalized('%Hh%M') . ' à ' . $seance->end_hours->formatLocalized('%Hh%M').' • Stucher';
         $activePage = 'course';
 
 
