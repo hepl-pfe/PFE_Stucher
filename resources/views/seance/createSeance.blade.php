@@ -45,6 +45,11 @@
 					<input type="time" class="end_hours" name="end_hours" id="end_hours" placeholder="10:00" data-field="time" data-format="hh:mm" data-startend="end" data-startendelem=".start_hours">
 				</div>
 
+				<div class="form-group">
+					<label class="color_label" for="local">Le local</label>
+					<input type="text" name="local" id="local" placeholder="Labo chimie">
+				</div>
+
 				<div class="form-group--button text-center">
 					<input type="submit" class="btn btn-send" value="Générer les séances">
 					<div class="clear"></div>

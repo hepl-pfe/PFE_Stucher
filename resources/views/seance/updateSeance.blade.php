@@ -36,6 +36,11 @@
 					<input type="time" class="end_hours" name="end_hours" id="end_hours" value="{{ $end_hours }}" data-field="time" data-format="hh:mm" data-startend="end" data-startendelem=".start_hours">
 				</div>
 
+				<div class="form-group">
+					<label class="color_label" for="local">Le local</label>
+					<input type="text" name="local" id="local" @if( $local == null )placeholder="Aucun pour le moment" @else value="{{ $local }}" @endif>
+				</div>
+
 				<div class="form-group--button text-center">
 					<input type="submit" class="btn btn-send" value="Valider les modifications">
 					<div class="clear"></div>
