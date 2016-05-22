@@ -29,6 +29,7 @@
                 </div>
 
                 <div class="form-group--button">
+                    <p class="connextSwitchBtn">Pas encore de compte&nbsp;? <a href="{{ action( 'Auth\AuthController@getRegister' ) }}">Inscrivez-vous</a></p>
                     <button class="btn btn-send" type="submit">Se connecter</button>
                     <div class="clear"></div>
                 </div>
