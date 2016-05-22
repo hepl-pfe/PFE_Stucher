@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 use \Input;
 use Validator;
+use App\Notification;
 use App\Course;
 use App\Seance;
 use App\Work;
@@ -55,6 +56,7 @@ class SeanceController extends Controller
         if ($error->fails()) {
             return redirect()->back()->withErrors($error);
         }
+
         $day = Input::get('date').' '.Input::get('daypicker');
         $start_hours = Input::get('date').' '.Input::get('start_hours');
         $end_hours = Input::get('date').' '.Input::get('end_hours');

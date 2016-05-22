@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Validator;
 use App\Course;
 use App\Seance;
+use App\Notification;
 use \Input;
 use App\File;
 use App\Work;

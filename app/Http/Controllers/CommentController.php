@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\User;
 use App\Course;
+use App\Notification;
 use App\Seance;
 use App\Comment;
 use \Input;
