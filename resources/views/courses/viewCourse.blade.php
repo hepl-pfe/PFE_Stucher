@@ -189,7 +189,7 @@
 						@else
 							Aucun
 						@endif
-						@if ( count($inCourseStudents) == 1 OR count($demandedStudents) == 0 )
+						@if ( count($inCourseStudents) <= 1 )
 							élève suit le cours
 						@else
 							élèves suivent le cours
