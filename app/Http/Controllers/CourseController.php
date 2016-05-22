@@ -50,7 +50,10 @@ class CourseController extends Controller
                         $waitCourses[] = $course;
                     }
                 }
-                return view('courses/indexStudentCourses', compact('courses', 'waitCourses', 'title', 'activePage'));
+
+                $teachers = User::all();
+
+                return view('courses/indexStudentCourses', compact('courses', 'waitCourses', 'title', 'activePage', 'teachers'));
             }
         } 
         return view('welcome', compact('title'));
