@@ -36,7 +36,7 @@ class CourseController extends Controller
         $title = 'Stucher • Journal de classe interactif';
 
         if ( \Auth::check() ) {
-            $title = 'Tous mes cours';
+            $title = 'Tous mes cours • Stucher';
             $activePage = 'course';
             if ( \Auth::user()->status == 1 ) {
                 $courses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
@@ -66,7 +66,7 @@ class CourseController extends Controller
         $seances = [];
         $fiveSeance = [];
         $comments = Comment::where('context', '=', 1)->get();
-        $title = 'Cours de '.$course->title;
+        $title = 'Cours de '.$course->title.' • Stucher';
         $activePage = 'course';
         foreach( $allSeances as $theSeance ) {
             if( $theSeance->start_hours > $now ) {
@@ -111,7 +111,7 @@ class CourseController extends Controller
             }
 
         if ( \Auth::user()->status == 1 ) {
-            $title = 'Cours de '.$course->title;
+            $title = 'Cours de '.$course->title.' • Stucher';
 
             return view('courses/viewCourse', compact('id', 'course', 'title', 'seances', 'comments', 'fiveSeances', 'allSeances', 'demandedStudents', 'inCourseStudents', 'demandedStudentsId', 'inCourseStudentsId', 'activePage'));
         }
@@ -120,7 +120,7 @@ class CourseController extends Controller
     }
 
     public function create() {
-        $title = 'Créer un cours';
+        $title = 'Créer un cours • Stucher';
         $activePage = 'course';
         return view('courses/createCourse', ['title' => $title, 'activePage' => $activePage]);
     }
@@ -262,8 +262,6 @@ class CourseController extends Controller
 
     }
 
-
-
     public function addCourse( $id ) {
         if ( \Auth::check() && \Auth::user()->status==2 ) {
             $student = User::findOrFail(\Auth::user()->id);
@@ -293,7 +291,7 @@ class CourseController extends Controller
     }
 
     public function waitCourse() {
-        $title = 'Cours en attente de validation';
+        $title = 'Cours en attente de validation • Stucher';
         $activePage = 'course';
         $courses = User::find(\Auth::user()->id)->courses;
         $waitCourses = [];
@@ -308,7 +306,7 @@ class CourseController extends Controller
     public function addNews() {
         // à supprimer et remplacer par un bouton pour indiquer son absense.
         if ( \Auth::check() && \Auth::user()->status==1 ) {
-            $title = 'Ajouter une notification';
+            $title = 'Ajouter une notification • Stucher';
             return view('courses/addNews', compact('title'));
         } 
         return back();
@@ -414,7 +412,7 @@ class CourseController extends Controller
 
     public function edit( $id ) {
         $course = Course::findOrFail($id);
-        $pageTitle = 'Modifier le cours';
+        $pageTitle = 'Modifier le cours • Stucher';
         $activePage = "course";
         $id = $course->id;
         $title = $course->title;
@@ -484,7 +482,7 @@ class CourseController extends Controller
 
     public function indexUserUsers() 
     {
-        $title = "Liste de mes élèves";
+        $title = "Liste de mes élèves • Stucher";
         $activePage = 'course';
         $studentsID = [];
         $students = [];
@@ -508,7 +506,7 @@ class CourseController extends Controller
     public function indexCourseUsers( $id ) 
     {
         $course = Course::findOrFail($id);
-        $title = "Les élèves du cours de ".$course->title;
+        $title = "Les élèves du cours de ".$course->title.' • Stucher';
         $activePage = 'course';
         $students = Course::findOrFail($id)->users;
         $inCourseStudents = [];
@@ -528,7 +526,7 @@ class CourseController extends Controller
     public function indexWaitingUsers( $id )
     {
         $course = Course::findOrFail($id);
-        $title = "Les demande d'accès au cours de ".$course->title;
+        $title = "Les demande d'accès au cours de ".$course->title.' • Stucher';
         $activePage = 'course';
         $students = Course::find($id)->users;
 

@@ -34,7 +34,7 @@ class PageController extends Controller
     ];
 
     public function about(){
-		$title = "à propos";
+		$title = "Mon profil • Stucher";
         $activePage = 'profil';
         $nbCourses = Course::where('teacher_id', '=', \Auth::user()->id)->count();
         $coursesStudent = DB::select('select * from stucher_course_user where user_id = '.\Auth::user()->id);
@@ -64,7 +64,7 @@ class PageController extends Controller
     }
 
     public function editProfil() {
-        $title = 'Modifier mon profil';
+        $title = 'Modifier mon profil • Stucher';
         $activePage = 'profil';
         $id = \Auth::user()->id;
         $user = User::findOrFail($id);
@@ -89,7 +89,7 @@ class PageController extends Controller
     }
 
     public function editPassword() {
-        $title = 'Modifier mon mot de passe';
+        $title = 'Changer mon mot de passe • Stucher';
         $activePage = 'profil';
         $id = \Auth::user()->id;
         return view('pages/updatePassword', compact('id', 'title', 'activePage'));
@@ -152,7 +152,7 @@ class PageController extends Controller
 
     public function changePicture()
     {
-        $title = "Change la photo de profil";
+        $title = "Changer la photo de profil • Stucher";
         $activePage = 'profil';
         return view( 'pages/changePicture', ['title' => $title, 'activePage' => $activePage] );
     }
@@ -197,7 +197,7 @@ class PageController extends Controller
 // TODO Déplacer quand je fais les message
     public function message(){
         if ( \Auth::check() ) {
-            $title = "Message";
+            $title = "Message • Stucher";
             $activePage = 'message';
             return view('pages/message', ['title' => $title, 'activePage' => $activePage]);
         }
@@ -220,17 +220,17 @@ class PageController extends Controller
 // Déplacer quand je fais les message >
 
     public function registerTeacher(){
-        $title = "Créer un compte professeur";
+        $title = "Créer un compte professeur • Stucher";
         return view( 'auth/registerTeacher', ['title' => $title] );
     }
 
     public function registerStudent(){
-        $title = "Créer un compte étudiant";
+        $title = "Créer un compte étudiant • Stucher";
         return view( 'auth/registerStudent', ['title' => $title] );
     }
 
     public function changeColor(){
-        $title = "La couleur du thème";
+        $title = "La couleur du thème • Stucher";
         $activePage = 'profil';
         return view( 'pages/listColor', ['title' => $title, 'activePage' => $activePage] );
     }

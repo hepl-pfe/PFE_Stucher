@@ -26,7 +26,7 @@ class TestController extends Controller
 
     public function create( $id = null, $info = null ) {
         setlocale( LC_ALL, 'fr_FR');
-    	$title = 'Créer une interrogation';
+    	$title = 'Créer une interrogation • Stucher';
         $activePage = 'course';
         $now = Carbon::now()->format('Y-m-d H:i:s');
     	$allCourses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
@@ -123,7 +123,7 @@ class TestController extends Controller
 
     public function edit( $id ) {
         $test = Test::findOrFail( $id );
-        $title = 'Modifier l’interrogation';
+        $title = 'Modifier l’interrogation • Stucher';
         $activePage = 'course';
         $allCourses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
         $course = Seance::find($test->seance_id)->course;

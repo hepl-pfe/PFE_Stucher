@@ -26,7 +26,7 @@ class WorkController extends Controller
 
     public function create( $id = null, $info = null ) {
         setlocale( LC_ALL, 'fr_FR');
-        $title = 'Créer un devoir';
+        $title = 'Créer un devoir • Stucher';
         $activePage = 'course';
         $now = Carbon::now()->format('Y-m-d H:i:s');
         $allCourses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
@@ -124,7 +124,7 @@ class WorkController extends Controller
     public function edit( $id ) {
         setlocale( LC_ALL, 'fr_FR');
         $work = Work::findOrFail( $id );
-        $title = 'Modifier le devoir';
+        $title = 'Modifier le devoir • Stucher';
         $activePage = 'course';
         $allCourses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
         $course = Seance::find($work->seance_id)->course;

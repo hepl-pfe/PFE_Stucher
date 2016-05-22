@@ -19,7 +19,7 @@ class CalendarController extends Controller
 {
     public function view() 
     {
-        $title = "Planning";
+        $title = "Mon planning • Stucher";
         $activePage = 'planning';
         Carbon::setLocale('fr');
 

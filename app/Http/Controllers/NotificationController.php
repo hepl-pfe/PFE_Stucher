@@ -17,7 +17,7 @@ use App\User;
 class NotificationController extends Controller
 {
     public function index() {
-        $title = 'Notifications';
+        $title = 'Notifications • Stucher';
         $activePage = 'notification';
         DB::table('notifications')->where('for', \Auth::user()->id)->where('seen', 0)->where('context', '!=',  1)->update(array('seen' => 1));
         $notifications = DB::table('notifications as not')

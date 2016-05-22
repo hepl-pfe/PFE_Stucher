@@ -33,7 +33,7 @@ class SeanceController extends Controller
         ];
 
     public function create( $id ) {
-        $title = 'Générer des séances';
+        $title = 'Générer des séances • Stucher';
         $activePage = 'course';
         $courses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
         $days = [
@@ -86,7 +86,7 @@ class SeanceController extends Controller
             "saturday" => "samedi",
             "sunday" => "dimanche"
         ];
-        $title = 'Modifier la séance';
+        $title = 'Modifier la séance • Stucher';
         $activePage = 'course';
         $courses = Course::where( 'teacher_id', '=', \Auth::user()->id )->get();
         $course_id = $seance->course_id;
@@ -168,7 +168,7 @@ class SeanceController extends Controller
         $course = Course::findOrFail( $id );
         $comments = Comment::where('context', '=', 1)->get();
         $seances = Seance::where( 'course_id', '=', $id )->where( 'end_hours', '>', $now )->paginate(10);
-        $title = "Toutes les séances du cours";
+        $title = "Toutes les séances du cours de ".$course->title.' • Stucher';
         $activePage = 'course';
 
         return view('seance/seancesList', compact( 'title', 'seances', 'comments', 'course', 'activePage'));
@@ -226,7 +226,7 @@ class SeanceController extends Controller
         $course = Course::findOrFail( $id );
         $comments = Comment::where('context', '=', 1)->get();
         $seances = Seance::where( 'course_id', '=', $id )->where( 'end_hours', '<', $now )->orderBy('start_hours','desc')->paginate(10);
-        $title = "Les séances terminées";
+        $title = "Les séances terminées du cours de ".$course->title." • Stucher";
         $activePage = 'course';
 
         return view('seance/seancesHistory', compact( 'title', 'seances', 'comments', 'course', 'activePage'));
