@@ -59,8 +59,9 @@ class PageController extends Controller
     public function viewUser( $id )
     {
         $user = User::findOrFail( $id );
-        $title = "Le profil de ".$user->firstname;
-        return view('pages/viewUser', compact('title', 'user'));
+        $title = "Le profil de ".$user->firstname.' '.$user->name.' • Stucher';
+        $courses = Course::where( 'teacher_id', $id )->get();
+        return view('pages/viewUser', compact('title', 'user', 'courses'));
     }
 
     public function editProfil() {
