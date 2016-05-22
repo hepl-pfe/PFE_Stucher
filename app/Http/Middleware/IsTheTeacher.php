@@ -76,7 +76,7 @@ class IsTheTeacher
 
                             if ($the_teacher != \Auth::user()->id)
                             {
-                                die('TU NE PEUX PAS… TU NE VEUX PAS… ET TU RESTE PLANTÉ LÀ!!!');
+                                return redirect()->route('home', ['popupError' => "userAccess"]);
                             }
                         }
                     }
