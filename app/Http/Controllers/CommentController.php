@@ -44,7 +44,7 @@ class CommentController extends Controller
 
         $body = Input::get('comment');
         $from = \Auth::user()->id; // the actif user
-        $for = Input::get('for');
+        $for = Input::get('for'); // ID SEANCE car seance = seul context actuel.
         $context = Input::get('context');   // 1 = seance // 2 = test // 3 = work
 
         $comment = Comment::create([
