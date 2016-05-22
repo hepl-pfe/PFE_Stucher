@@ -74,7 +74,8 @@
 				<li><a href="{!! action( 'SeanceController@create', ['id' => $id] ) !!}">Ajouter des séances de cours</a></li>
 			@else
 				<li><a class="action__removeCourse" href="{!! action( 'CourseController@removeCourse', [ 'id' => $course->id ] ) !!}">Quitter le cours</a></li>
-				<li><a href="mailto:{{ $teacher[0]->email }}">Contacter le professeur par mail</a></li>
+				<li><a href="mailto:{{ $teacher[0]->email }}">Contacter le professeur</a></li>
+				<li><a href="{!! action( 'PageController@viewUser', [ 'id' => $teacher[0]->id ] ) !!}">Voir la page du professeur</a></li>
 			@endif
 		</ul>
 	</div>
