@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class Seance extends Model
 {
-    protected $fillable = ['course_id', 'classroom_id', 'start_hours', 'end_hours', 'absent'];
+    protected $fillable = ['course_id', 'classroom_id', 'start_hours', 'end_hours', 'absent', 'local'];
     protected $dates = ['published_at','created_at','start_hours','end_hours'];
 
     public function course() 
