@@ -14,6 +14,10 @@
         <form class="box__group--content" method="POST" action="/password/email">
             {!! csrf_field() !!}
 
+            <div class="form-group form-information form-information--password">
+                <p><span class="icon-info icon mainColorfont"></span> En complétant ce formulaire, vous allez recevoir un email afin de pouvoir changer votre mot de passe.</p>
+            </div>
+
             <div class="form-group">
                 <label class="color_label" for="email">Email</label>
                 <input class="form-control" type="email" name="email" id="email" value="{{ old('email') }}" autofocus>
