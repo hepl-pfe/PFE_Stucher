@@ -112,7 +112,8 @@ jQuery( function($) {
 	///////////
 	// reduce the active shutter & show when an anchor isset
 	///////////
-	$('.shutterTitle--works, .shutterTitle--tests').addClass( 'reduce' );
+	$('.shutterTitle--works, .shutterTitle--tests')
+		.addClass( 'reduce' );
 
 	// < show when an anchor isset
 	if( window.location.hash ) {
@@ -139,7 +140,7 @@ jQuery( function($) {
 	///////////
 	$('.comment__box--textarea').keypress( function(e){
 		if (e.shiftKey) {
-			// Aucune action si shit est enfoncé
+			// Aucune action si shift est enfoncé
 		} else {
 			if(e.keyCode == 13 ) {
 				e.preventDefault();
@@ -273,7 +274,7 @@ jQuery( function($) {
 		var course_url = e.currentTarget.href;
 
 		swal({
-			title: "Voulez vous vraiment supprimer ce cours?",
+			title: "Supprimer ce cours?",
 			text: "En supprimant ce cours, vous supprimerez tous les éléments liés à celui-ci (séances, interrogations, devoir, fichiers etc.)",
 			showCancelButton: true,
 			closeOnConfirm: false,
@@ -308,7 +309,7 @@ jQuery( function($) {
 		var course_url = e.currentTarget.href;
 
 		swal({
-			title: "Voulez vous vraiment quitter ce cours?",
+			title: "Quitter ce cours?",
 			text: "En quittant ce cours, vous n’aurez plus accès à ses séances, interrogations, devoir, fichiers etc.",
 			showCancelButton: true,
 			closeOnConfirm: false,
@@ -343,7 +344,7 @@ jQuery( function($) {
 		var profil_url = e.currentTarget.href;
 
 		swal({
-			title: "Voulez vous vraiment supprimer votre compte?",
+			title: "Supprimer votre compte?",
 			text: "En supprimant votre compte, vous supprimerez tous les éléments liés à celui-ci (cours, séances, interrogations, devoir, fichiers etc.)",
 			showCancelButton: true,
 			closeOnConfirm: false,
@@ -384,7 +385,7 @@ jQuery( function($) {
 		}
 
 		swal({
-			title: "Voulez vous vraiment supprimer Cette séance?",
+			title: "Supprimer Cette séance?",
 			text: "En supprimant cette séance, vous supprimerez tous les éléments liés à celle-ci (interrogations, devoir, fichiers etc.)",
 			showCancelButton: true,
 			closeOnConfirm: false,
@@ -427,7 +428,7 @@ jQuery( function($) {
 		var seance = e.currentTarget.getAttribute('data-seance');
 
 		swal({
-			title: "Voulez vous vraiment supprimer ce devoir?",
+			title: "Supprimer ce devoir?",
 			text: "En supprimant ce devoir, vous supprimerez tous les fichiers liés à celui-ci",
 			showCancelButton: true,
 			closeOnConfirm: false,
@@ -468,7 +469,7 @@ jQuery( function($) {
 		var seance = e.currentTarget.getAttribute('data-seance');
 
 		swal({
-			title: "Voulez vous vraiment supprimer cette interrogation?",
+			title: "Supprimer cette interrogation?",
 			text: "En supprimant cette interrogation, vous supprimerez tous les fichiers liés à celle-ci",
 			showCancelButton: true,
 			closeOnConfirm: false,
