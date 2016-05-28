@@ -109,7 +109,7 @@ class CourseController extends Controller
             }
             if ( \Auth::user()->status != 1 ) {
                 if ( $the_user == 'demanded' ) {
-                    return view('courses/waitCourse', compact('title', 'activePage'));
+                    return view('courses/waitCourse', compact('title', 'course', 'activePage'));
                 }
             }
 
@@ -204,7 +204,7 @@ class CourseController extends Controller
                 }
             }
 
-            return view('courses/indexAllCourses', compact('courses', 'users', 'title', 'activePage'));
+            return view('courses/indexAllCourses', compact('courses', 'users', 'search_input', 'title', 'activePage'));
         }
 
 
