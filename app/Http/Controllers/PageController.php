@@ -240,4 +240,15 @@ class PageController extends Controller
         $user->save();
         return redirect()->back();
     }
+
+    public function planDuSite(){
+        $title = "Plan du site • Stucher";
+        return view( 'pages/planDuSite', ['title' => $title] );
+    }
+
+    public function useRights(){
+        $title = "Conditions d’utilisation • Stucher";
+        return view( 'pages/ConditionsUtilisation', ['title' => $title] );
+    }
+
 }
