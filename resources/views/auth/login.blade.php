@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="color_label" for="password">Password</label>
+                    <label class="color_label" for="password">Mot de passe</label>
                     <input class="form-control" type="password" name="password" id="password">
                 </div>
 
