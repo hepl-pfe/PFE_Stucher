@@ -182,12 +182,9 @@ class CourseController extends Controller
                 ->orWhere('place', 'LIKE', '%' . $search_input . '%')
                 ->get();
 
-
             foreach( $courses as $search_course ) {
                 $id_courses[] = $search_course->id;
             }
-
-
 
             $search_teacher = User::where( 'status', '1' )
                 ->where('firstname', 'LIKE', '%' . $search_input . '%')

@@ -247,7 +247,6 @@ class WorkController extends Controller
         $work = Work::findOrFail( $id );
         $work->delete();
 
-
         $seance = $work->seance;
         $course = $seance->course;
         $students = \DB::table('course_user')

@@ -21,9 +21,6 @@ Carbon::setLocale('fr'); ?>
 			<span class="icon-pointer"></span>&nbsp;Local&nbsp;: {{ $seance->local == null ? 'Aucun local précisé' : $seance->local }}
 		</h4>
 		<a title="Revenir au cours" class="backButton blockTitle__backButton unlink mainColorfont" href="{!! action( 'CourseController@view', [ 'id' => $seance->course->id ] ) !!}"><span class="hidden">Revenir à la page précédente</span><span class="icon-arrow-left"></span></a>
-		@if( $seance->absent == 1 )
-			<h3>La séance est annulé pour cause d'absence</h3>
-		@endif
 	</div>
 
 	@if ( \Auth::user()->status == 1 )

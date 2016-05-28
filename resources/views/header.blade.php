@@ -43,8 +43,6 @@
     <meta property="og:image" content="http://stucher.be/img/home_classroom.jpg" />
 
     <!-- My custom css and fonts -->
-    {{--<link rel="stylesheet" href="{{ url() }}/css/jquery-ui.css">
-    <link rel="stylesheet" href="{{ url() }}/css/jquery-ui.theme.css">--}}
     <link href='https://fonts.googleapis.com/css?family=Asap:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url() }}/css/main.css">
 

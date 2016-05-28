@@ -124,11 +124,6 @@
 									<span class="box__highlight box__seanceDate--hour">{{ $seance->start_hours->formatLocalized('%Hh%M') }}</span>
 								</a>
 								<div class="box__seanceCourse--info">
-									<!-- ABSENT -->
-									@if( $seance->absent == 1 )
-										<span>La séance de cours est suspendue pour cause d'absence</span>
-									@endif
-
 									<!-- HOMEWORKS -->
 									<a href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}#works" class="box__seanceCourse--homework box__seanceCourse--numbers">
 										<span class="icon-briefcase"></span>

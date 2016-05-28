@@ -165,7 +165,6 @@ class PageController extends Controller
         } else
         {
             $image = Input::file('image');
-            //dd(getimagesize ( $image));
             $typeMime = explode( '/' , $image->getMimeType() );
             if ( $typeMime[1] == 'jpeg' OR $typeMime[1] == 'gif' OR $typeMime[1] == 'png' )
             {

@@ -39,8 +39,6 @@
     <div class="home__box--right home__box">
         <div class="home__box--content">
             <h3 id="connectZone" class="connectTitle">Essayez-le maintenant, c'est gratuit&nbsp!</h3>
-
-
         </div>
     </div>
 

@@ -192,20 +192,6 @@
 	}
 }
 
-.home_footer {
-	background-color: $mainColor;
-	color: $white;
-	text-align: center;
-	padding: 0.3em;
-	a {
-		color: $white;
-		font-weight: bold;
-		&:hover, &:focus, &:active {
-			text-decoration: underline;
-		}
-	}
-}
-
 .home__connectZone {
 	position: absolute;
 	right: 1em;

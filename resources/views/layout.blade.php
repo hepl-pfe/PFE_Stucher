@@ -24,7 +24,6 @@
 									({{ count($notifications) }})
 								@endif
 							</span></a></li>
-					<!-- <li><a class="<?php //if ( isset($activePage) && $activePage == 'message' ) { echo 'active';} ?>"href="{!! action( 'PageController@message' ) !!}">Messages</a></li> -->
 					<li><a class="<?php if ( isset($activePage) && $activePage == 'planning' ) { echo 'active';} ?>" href="{!! action( 'CalendarController@view' ) !!}"><span class="icon-calendar unlink whiteText whiteText--icon"></span>Mon planning</a></li>
 					<li><a href="{!! action( 'Auth\AuthController@getLogout' ) !!}"><span class="icon-power unlink whiteText whiteText--icon"></span>Se déconnecter</a></li>
 			</ul>
