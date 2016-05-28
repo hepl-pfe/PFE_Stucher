@@ -50,6 +50,7 @@
                 </div>
 
                 <div class="form-group--button">
+                    <p class="connextSwitchBtn">J'ai déjà un compte&nbsp;? <a href="{{ action( 'Auth\AuthController@getLogin' ) }}">Connectez-vous</a></p>
                     <button class="btn btn-send" type="submit">S'inscrire</button>
                     <div class="clear"></div>
                 </div>
