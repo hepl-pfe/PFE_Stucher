@@ -74,8 +74,16 @@ button {
   float: right;
 }
 
+.btn-spacebefore {
+  margin-top: 1em;
+}
+
 .btn-spaceAfter {
   margin-bottom: 1.5em;
+}
+
+.noPaddingBottom {
+  padding-bottom: 0;
 }
 
 .blockTitle {
