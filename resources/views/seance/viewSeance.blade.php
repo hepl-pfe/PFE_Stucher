@@ -17,6 +17,9 @@ Carbon::setLocale('fr'); ?>
 		<h4 class="bannerUnderTitle seanceDuration" title="de {{ $seance->start_hours->formatLocalized('%Hh%M') }} à {{ $seance->end_hours->formatLocalized('%Hh%M') }}">
 			<span class="icon-clock"></span>&nbsp;{{ $seance->start_hours->formatLocalized('%Hh%M') }} - {{ $seance->end_hours->formatLocalized('%Hh%M') }}
 		</h4>
+		@if( $seance->absent == 1 )
+			<h3 class="seanceAbsence--title">!! La séance est annulé pour cause d'absence du professeur !!</h3>
+		@endif
 		<h4 class="bannerUnderTitle seanceLocal" title="de {{ $seance->start_hours->formatLocalized('%Hh%M') }} à {{ $seance->end_hours->formatLocalized('%Hh%M') }}">
 			<span class="icon-pointer"></span>&nbsp;Local&nbsp;: {{ $seance->local == null ? 'Aucun local précisé' : $seance->local }}
 		</h4>
@@ -30,17 +33,24 @@ Carbon::setLocale('fr'); ?>
 		<label for="dd_moreButton" class="dd_moreButton--button"><span></span><span></span></label>
 
 		<ul class="dd_moreButton--content">
-			<li><a href="{!! action( 'CourseController@create' ) !!}">Un cours</a></li>
-			<li><a href="{!! action( 'WorkController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Un devoir</a></li>
-			<li><a href="{!! action( 'TestController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Une interrogation</a></li>
+			<li><a href="{!! action( 'WorkController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Créer un devoir</a></li>
+			<li><a href="{!! action( 'TestController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Créer une interrogation</a></li>
+			<li><a href="{!! action( 'SeanceController@absent', [ "id" => $seance->id ] ) !!}">
+					@if(  $seance->absent == 0 )
+						Je serais absent
+					@else
+						Je serais présent
+					@endif
+				</a>
+			</li>
 			<li><a href="{!! action( 'SeanceController@edit', [ "id" => $seance->id ] ) !!}">Modifier la séance</a></li>
 			<li><a class="action__deleteSeance" data-page="seance" data-course="{{ $seance->course->id }}" href="{!! action( 'SeanceController@delete', [ "id" => $seance->id ] ) !!}">Supprimer la séance</a></li>
-			<li><a href="{!! action( 'SeanceController@absent', [ "id" => $seance->id ] ) !!}">Absence</a></li>
+			<li><a href="{!! action( 'CourseController@create' ) !!}">Créer un autre cours</a></li>
 		</ul>
 	</div>
 	@endif
 
-	<ul class="shutters--group">
+	<ul class="shutters--group @if( $seance->absent == 1 ) shutters--group--absence @endif">
 		<!-- Works -->
 		<li class="shutter shutter__seance shutter__seance--works">
 			<h3 id="works" class="shutterTitle shutterTitle--works"><span title="ouvrir/réduire" class="icon-arrow-down icon"></span> DEVOIRS

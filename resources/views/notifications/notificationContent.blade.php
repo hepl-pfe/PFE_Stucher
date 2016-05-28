@@ -3,7 +3,7 @@ use Carbon\Carbon;
 Carbon::setLocale('fr');
 ?>
 
-@if ($not->not_context == 1)	<!-- DEMANDE ACCÈS -->
+@if ($not->not_context == 1)	<!-- DEMANDE D'ACCÈS -->
     <li class="notification__item notification__color notification__color--green">
         <div class="notification__content">
             {{$not->user_firstname}} {{$not->user_name}} demande accès au cours de <a href="{{ action('CourseController@view', [ 'id' => $not->course_id, 'action' => 1 ]) }}">{{$not->course_title}}</a>

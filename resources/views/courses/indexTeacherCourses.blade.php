@@ -11,7 +11,7 @@
 			<label for="dd_moreButton" class="dd_moreButton--button"><span></span><span></span></label>
 
 			<ul class="dd_moreButton--content">
-				<li><a href="{!! action( 'CourseController@create' ) !!}">Ajouter un cours</a></li>
+				<li><a href="{!! action( 'CourseController@create' ) !!}">Créer un cours</a></li>
 			</ul>
 		</div>
 

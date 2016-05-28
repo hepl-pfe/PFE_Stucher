@@ -30,10 +30,10 @@
 	<ul class="infoBlock infoBlock--dark @if( Auth::user()->status == 1 ) infoBlock--teacher @endif">
 		@if( Auth::user()->status == 1 )
 		<li>
-			<a href="">
+			<div>
 				<span>Code d'accès</span>
 				<span title="Ce code permet à vos étudiants de vous retrouver rapidement">{{ $course->access_token }}</span>
-			</a>
+			</div>
 		</li>
 		@endif
 		<li>
@@ -66,12 +66,12 @@
 
 		<ul class="dd_moreButton--content">
 			@if( Auth::user()->status == 1 )
-				<li><a href="{!! action( 'CourseController@edit', [ 'id' => $course->id] ) !!}">Modifier le cours</a></li>
-				<li><a class="action__deleteCourse" href="{!! action( 'CourseController@delete', [ 'id' => $course->id] ) !!}">Supprimer le cours</a></li>
-				<li><a href="{!! action( 'CourseController@create' ) !!}">Créer un cours</a></li>
+				<li><a href="{!! action( 'SeanceController@create', ['id' => $id] ) !!}">Ajouter des séances de cours</a></li>
 				<li><a href="{!! action( 'WorkController@create', ['id' => $course->id, 'info' => 'course'] ) !!}">Ajouter un devoir</a></li>
 				<li><a href="{!! action( 'TestController@create', ['id' => $course->id, 'info' => 'course'] ) !!}">Ajouter une interrogation</a></li>
-				<li><a href="{!! action( 'SeanceController@create', ['id' => $id] ) !!}">Ajouter des séances de cours</a></li>
+				<li><a href="{!! action( 'CourseController@edit', [ 'id' => $course->id] ) !!}">Modifier le cours</a></li>
+				<li><a class="action__deleteCourse" href="{!! action( 'CourseController@delete', [ 'id' => $course->id] ) !!}">Supprimer le cours</a></li>
+				<li><a href="{!! action( 'CourseController@create' ) !!}">Créer un autre cours</a></li>
 			@else
 				<li><a class="action__removeCourse" href="{!! action( 'CourseController@removeCourse', [ 'id' => $course->id ] ) !!}">Quitter le cours</a></li>
 				<li><a href="mailto:{{ $teacher[0]->email }}">Contacter le professeur</a></li>
@@ -83,11 +83,32 @@
 
 	@if( Auth::user()->status == 2 )
 		@if ( $the_user != "valided" )
-			<h2>Groupe: <a href="">{{ $course->group }}</a></h2>
-			<h2>Professeur: <a href="{!! action( 'PageController@viewUser', [ 'id' => $teacher[0]->id ] ) !!}">{{ $teacher[0]->name }}</a></h2>
-			<h2>École: <a href="">Collège Saint-Louis Waremme</a></h2>
-			<a class="btn btn-warning" href="{!! action( 'CourseController@searchCourse' ) !!}">Retour</a>
-			<a class="btn btn-success" href="{!! action( 'CourseController@addCourse', [ 'id' => $course->id ] ) !!}">Ajouter à mes cours</a>
+			<div class="box--group">
+				<div class="box box--shadow box__group--list noPaddingBottom">
+
+					<a href="{!! action( 'PageController@viewUser', [ 'id' => $teacher[0]->id ] ) !!}" class="unlink blockLink box__group--list--list box__group--list--results">
+						<div class="box__group--list--results--title">
+							<span class="icon icon-user mainColorfont"></span>
+							<span class="mainColorfont">Prof </span>
+						</div>
+						<span class="box__group--list--content">{{ $teacher[0]->name }}</span>
+					</a>
+
+					<div href="{!! action( 'PageController@viewUser', [ 'id' => $teacher[0]->id ] ) !!}" class="blockLink box__group--list--list box__group--list--results">
+						<div class="box__group--list--results--title">
+							<span class="icon icon-user mainColorfont"></span>
+							<span class="mainColorfont">École </span>
+						</div>
+						<span class="box__group--list--content">{{ $course->school }}</span>
+					</div>
+
+					<div class="box__bottomLink box__bottomLink--singleLink">
+						<a href="{{ action( 'CourseController@addCourse', [ 'id' => $course->id ] ) }}">Ajouter</a>
+					</div>
+
+				<div>
+			</div>
+
 		@endif
 	@endif
 
@@ -116,7 +137,7 @@
 						<?php if(count($seances) < 5) { $nSeances = count($seances); } else { $nSeances = 5; } ?>
 						@for( $i = 0; $i < $nSeances; $i++ )
 							<?php $seance = $seances[$i]; ?>
-							<li class="box__group--list--list box__seanceCourse">
+							<li class="box__group--list--list box__seanceCourse @if( $seance->absent == 1 ) course__absenceSeance @endif">
 								<a class="box__seanceDate" href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}">
 									<span class="box__seanceDate--day">{{ $seance->start_hours->formatLocalized('%A') }}</span>
 									<span class="box__seanceDate--dayNumber">{{ $seance->start_hours->formatLocalized('%d') }}</span>

@@ -17,10 +17,35 @@
         </ul>
     </div>
 
-    <ul>
-        @foreach( $waitCourses as $waitCourse )
-            <li class=""><a href="{!! action( 'CourseController@view', [ 'id' => $waitCourse->id ] ) !!}">{{ $waitCourse ->title }} <span class="pull-right">en attente de validation</span> <a class="btn btn-danger pull-right" href="{!! action( 'CourseController@removeCourse', [ 'id' => $waitCourse->id ] ) !!}">Annuler la demande</a></a></li>
-        @endforeach
-    </ul>
+
+    <div class="box--group">
+        @if( !empty($waitCourses) )
+            <div class="box box--shadow box--studentAll">
+                <ul>
+                    @foreach( $waitCourses as $waitCourse )
+                        <li class="box__group--list--list box__group--waitCourses">
+                            <div class="box__list__leftContent">
+                                <p class="box__group--waitCourses--courseTitle">Cours de {{ $waitCourse->title }}</p>
+                                <p>groupe {{ $waitCourse->group }}</p>
+                            </div>
+
+                            <div class="box__list__rightButtons">
+                                <a title="Annuler la demande d’accès" class="unlink box__list__rightButton deleteButtonBg" href="{!! action( 'CourseController@removeCourse', [ 'id' => $waitCourse->id ] ) !!}">
+                                    <span class="icon-trash"></span>
+                                    <span class="smallHidden">Annuler</span>
+                                </a>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="clear"></div>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        @else
+            <li class="item--null unlist">
+                Aucun cours en attente pour le moment
+            </li>
+        @endif
+    </div>
 
 @stop

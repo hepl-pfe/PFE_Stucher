@@ -18,20 +18,28 @@
 </div>
 
 <div class="box--group">
-    <div class="box box--shadow">
-        @if ( count($demandedStudents) !== 0 )
-            <ul class="list__course_box--group">
+    @if ( count($demandedStudents) !== 0 )
+        <ul>
+            <div class="box box--shadow">
                 @foreach( $demandedStudents as $student )
-                    <li class="groupList__type1">
-                        <a href="{{ action( 'PageController@viewUser', [ 'id' => $student->id ] ) }}">{{ $student->firstname }} {{ $student->name }}</a>
-                        <a class="seance__item--button delete" href="{!! action( 'CourseController@removeStudentFromCourse', ['id_course' => $course->id, 'id_user' => $student->id] ) !!}">Retirer de ce cours</a>
+                    <li class="box__group--list--list box__group--studentAsk">
+                        <a class="profilPicName" href="{{ action( 'PageController@viewUser', [ 'id' => $student->id ] ) }}">
+                            <img class="box__profilImage box__profilImage--small" src="{{ url() }}/img/profilPicture/{{ $student->image }}" alt="Image de profil">
+                            <span>{{ $student->firstname }} {{$student->name}}</span>
+                        </a>
+
+                        <a class="icon icon-close unlink danger rightBox" href="{!! action( 'CourseController@removeStudentFromCourse', ['id_course' => $course->id, 'id_user' => $student->id] ) !!}"><span class="hidden">Refuser l’accès</span></a>
+
+                        <a class="icon icon-check unlink success rightBox" href="{!! action( 'CourseController@acceptStudent', ['id_course' => $course->id, 'id_user' => $student->id] ) !!}"><span class="hidden">Ajouter</span></a>
+
+                        <div class="clear"></div>
                     </li>
                 @endforeach
-            </ul>
-        @else
-            <p class="center">Il n’y a aucun étudiant pour le moment</p>
-        @endif
-    </div>
+            </div>
+        </ul>
+    @else
+        <p class="item--null">Aucune demande pour le moment</p>
+    @endif
 </div>
 
 @stop

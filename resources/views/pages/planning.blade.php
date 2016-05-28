@@ -160,7 +160,7 @@ setlocale( LC_ALL, 'fr_FR');
         @else
             <?php $pos = 1; ?>
         @foreach( $currentSeances as $seance )
-            <li class="box box--demis box--demis--continue box--shadow box--seance--calendar {{ $pos%2 ? 'odd' : 'even' }}">
+            <li class="box box--demis box--demis--continue box--shadow box--seance--calendar {{ $pos%2 ? 'odd' : 'even' }} @if( $seance->absent == 1 ) course__absenceSeance @endif @if( \Auth::user()->status == 1 ) teacher @endif">
                 <div class="box__group--list seance__group--list">
                     <div class="box__group--list--list box__seanceCourse">
                         <div class="box__head box__blockTitle box__blockTitle--dark box__head--calendar">

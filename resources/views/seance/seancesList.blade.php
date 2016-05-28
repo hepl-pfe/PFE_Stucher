@@ -19,20 +19,16 @@
         </ul>
     </div>
 
-    @if (empty($seances))
-        <p>Aucune séances n'est passé pour le moment</p>
-    @endif
+
     <div class="box--group">
-        <!-- A FEW (3 latest) SEANCES -->
-        <div class="box box--demis box--demis--left box--shadow box--seance--course">
-            <ul class="box__group--list seance__group--list">
-                @if ( isset($seances) )
-                    @if ( count($seances) == 0 )
-                        <li class="box__empty center">
-                            Il n’y a aucune séance pour le moment
-                        </li>
-                        <p class="center"></p>
-                    @else
+        @if ( isset($seances) )
+            @if ( count($seances) == 0 )
+                <li class="box__empty center">
+                    Il n’y a aucune séance pour le moment
+                </li>
+            @else
+                <div class="box box--demis box--demis--left box--shadow box--seance--course">
+                    <ul class="box__group--list seance__group--list">
                         @foreach( $seances as $seance )
                             <li class="box__group--list--list box__seanceCourse">
                                 <a class="box__seanceDate" href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}">
@@ -81,19 +77,14 @@
                                 <div class="clear"></div>
                             </li>
                         @endforeach
-                    @endif
-                @else
-                    <li class="box__group--list--list box__group--studentAsk center">
-                        Il n’y a aucune séance pour le moment
-                    </li>
-                @endif
-            </ul>
-            {!! $seances->render() !!}
-        </div>
-                <!-- A FEW (3 latest) SEANCES -->
-        <div class="box box--demis box--demis--right box--shadow box--seance--course">
-            <a class="box__bottomLink box__bottomLink--dark" href="{{ action( 'SeanceController@seanceHistory', [ 'id' => $course->id ] ) }}">Voir les séances terminées du cours <span class="hidden">de {{ $course->title }}</span></a>
-        </div>
+                    </ul>
+                </div>
+                <div class="box box--demis box--demis--right box--shadow box--seance--course">
+                    <a class="box__bottomLink box__bottomLink--dark" href="{{ action( 'SeanceController@seanceHistory', [ 'id' => $course->id ] ) }}">Voir les séances terminées du cours <span class="hidden">de {{ $course->title }}</span></a>
+                </div>
+            @endif
+        @endif
+        {!! $seances->render() !!}
     </div>
 
 @endsection

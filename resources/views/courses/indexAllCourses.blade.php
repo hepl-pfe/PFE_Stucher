@@ -16,7 +16,7 @@
                     </div>
                     <div class="form-group form-group--nospace">
                         <label class="hidden" for="search">Rechercher un cours</label>
-                        <input type="text" name="search" id="search" placeholder="Rechercher un cours" autofocus>
+                        <input type="text" name="search" id="search" placeholder="Rechercher un cours" autofocus @if( isset( $search_input ) ) value="{{ $search_input }}" @endif>
                         <input type="submit" value="Envoyer" class="hidden">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     </div>
@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="box__bottomLink box__bottomLink--doubleLink">
-                        <a href="{{ action( 'CourseController@addCourse', [ 'id' => $course->id ] ) }}">Ajouter à mes cours</a>
+                        <a href="{{ action( 'CourseController@addCourse', [ 'id' => $course->id ] ) }}">Ajouter</a>
                         <a href="{{ action( 'CourseController@view', [ 'id' => $course->id ] ) }}">Voir le cours</a>
                     </div>
                 </li>
