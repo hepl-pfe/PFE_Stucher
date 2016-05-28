@@ -12,6 +12,8 @@
 */
 
 Route::get( '/', [ 'as' => 'home', 'uses' => 'CourseController@index' ] );
+Route::get( '/plan-du-site', [ 'as' => 'plan-du-site', 'uses' => 'PageController@planDuSite' ] );
+Route::get( '/conditions-utilisation', [ 'as' => 'conditions-utilisation', 'uses' => 'PageController@useRights' ] );
 
 Route::get( 'user/about', [ 'as' => 'about', 'uses' => 'PageController@about', 'middleware' => 'auth' ] );
 Route::get( 'user/{id}', [ 'as' => 'viewUser', 'uses' => 'PageController@viewUser', 'middleware' => 'auth' ] );
