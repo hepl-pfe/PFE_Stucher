@@ -6,7 +6,7 @@
 		&:last-child a {
 			border-right: none;
 		}
-		a {
+		a, div {
 			display: block;
 			color: $white;
 			text-decoration: none;
