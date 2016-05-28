@@ -8,3 +8,6 @@ Ainsi, un professeur pourra créer et gérer ses cours en indiquant par exemple 
 
 # Comment c'est fait?
 Pour réaliser ce projet, j'ai choisi d'utiliser le framework [Laravel](http://laravel.com), ainsi que la librairie [Jquery](http://jqueryui.com) et les langages ± habituels comme html et css (avec sass).
+
+# Envie de tester?
+Rendez-vous [sur Stucher](http://stucher.be)
