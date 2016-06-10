@@ -312,18 +312,23 @@ class CourseController extends Controller
         return back();
     }
 
-    public function removeCourse( $id_course ) {    // Quand un élève quite le cours
-        \DB::table('course_user')
-        ->where('user_id', \Auth::user()->id)->where('course_id', $id_course)->delete();
+    public function removeCourse( $id_course, $ajax = null ) {    // Quand un élève quite le cours
+        $course = \DB::table('course_user')
+            ->where('user_id', \Auth::user()->id)
+            ->where('course_id', $id_course);
 
-        Notification::create([
-            'title' => 'à quiter le cours de',
-            'course_id' => $id_course,
-            'user_id' => \Auth::user()->id,
-            'context' => 4,
-            'seen' => 0,
-            'for' => Course::where('id', $id_course)->get()->first()->teacher_id
-        ]);
+        if( $course->first()->access == 2 ) {
+            Notification::create([
+                'title' => 'à quiter le cours de',
+                'course_id' => $id_course,
+                'user_id' => \Auth::user()->id,
+                'context' => 4,
+                'seen' => 0,
+                'for' => Course::where('id', $id_course)->get()->first()->teacher_id
+            ]);
+        }
+
+        $course->delete();
 
         \DB::table('notifications')
             ->where('user_id', \Auth::user()->id)
@@ -331,7 +336,10 @@ class CourseController extends Controller
             ->where('context', 1)
             ->update(array('seen' => 3));
 
-        return redirect()->route('home');
+        if( $ajax == null ) {
+            return redirect()->route('home');
+        }
+
     }
 
     public function acceptStudent( $id_course, $id_user ) {
