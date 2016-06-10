@@ -95,9 +95,4 @@
 		</div>
 	</div>
 
-	<ul class="selectColor--popup">
-		<li class="color-1"><a class="unlink hideText" href="{{ action( 'PageController@updateColor', ['$number' => '1'] ) }}">Couleur 1</a></li>
-		<li class="color-2"><a class="unlink hideText" href="{{ action( 'PageController@updateColor', ['$number' => '2'] ) }}">Couleur 2</a></li>
-		<li class="color-3"><a class="unlink hideText" href="{{ action( 'PageController@updateColor', ['$number' => '3'] ) }}">Couleur 3</a></li>
-	</ul>
 @endsection
