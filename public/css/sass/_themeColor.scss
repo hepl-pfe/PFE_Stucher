@@ -212,17 +212,15 @@
     }
   }
 
-  .notification__group__page {
-    .pagination {
-      li {
-        &.active a, &.active span {
-          color: $white;
-          background-color: $mainColor;
-        }
-        &:first-child a, &:first-child span, &:last-child a, &:last-child span {
-          &:hover, &:focus, &:active {
-            color: $mainColor;
-          }
+  .pagination {
+    li {
+      &.active a, &.active span {
+        color: $white;
+        background-color: $mainColor;
+      }
+      &:first-child a, &:first-child span, &:last-child a, &:last-child span {
+        &:hover, &:focus, &:active {
+          color: $mainColor;
         }
       }
     }
@@ -304,10 +302,6 @@
   }
   
 
-
-
-  //////////////////////////////////////////////////
-  ////////////////// À MODIFIER ////////////////////
   .errorMessage {
     border: 1px solid $mainColor;
     background-color: $white;
@@ -317,7 +311,30 @@
     }
   }
 
-  //////////////////////////////////////////////////
+  ////////////////////////
+  // Change popup color //
+  ////////////////////////
+  .dtpicker-buttonCont .dtpicker-button {
+    background-color: $mainColor;
+    &:hover, &:focus, &:active {
+      background-color: darken( $mainColor, 20%);
+    }
+  }
+  .dtpicker-header .dtpicker-close {
+    color: $mainColor;
+    &:hover, &:focus, &:active {
+      color: darken( $mainColor, 20%);
+    }
+  }
+  .dtpicker-header .dtpicker-value {
+    color: $mainColor;
+  }
+  .dtpicker-header .dtpicker-title, .dtpicker-components .dtpicker-comp > * {
+    color: $grayDark;
+  }
+  .dtpicker-components .dtpicker-comp > *:hover, .dtpicker-components .dtpicker-comp > *:focus {
+    color: $mainColor;
+  }
 
 
 
