@@ -5,7 +5,7 @@
 <!-- resources/views/auth/password.blade.php -->
 <div class="blockTitle">
     <h2 class="mainTitle">Mot de passe oublié</h2>
-    <a title="Revenir à la page précédente" class="backButton blockTitle__backButton unlink mainColorfont" href="{!! URL::previous() !!}"><span class="hidden">Revenir à la page précédente</span><span class="icon-arrow-left"></span></a>
+    <a title="Revenir à la page précédente" class="backButton blockTitle__backButton unlink mainColorfont" href="{!! action( 'Auth\AuthController@getLogin' ) !!}"><span class="hidden">Revenir à la page précédente</span><span class="icon-arrow-left"></span></a>
 </div>
 
 
