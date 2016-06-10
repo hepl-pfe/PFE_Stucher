@@ -217,7 +217,7 @@ class CourseController extends Controller
             // Check if user has already access
             if( $access_course == null ) {
                 // Aucun COURS
-                $errors = 'Ce code non valide';
+                $errors = 'Ce code est non valide';
             } else if( empty( $access_course->users) ) {
                 // premier élève à suivre le cours
 
