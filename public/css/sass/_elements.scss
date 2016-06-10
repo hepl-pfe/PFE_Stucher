@@ -776,3 +776,53 @@
     opacity: 0.3;
   }
 }
+
+
+.pagination {
+  text-align: center;
+  margin-top: 1em;
+  li {
+    display: inline-block;
+    border-left: 1px solid $black;
+    &:first-child, &:first-child+li, &:last-child {
+      border-left: none;
+    }
+    &.active {
+      color: $white;
+    }
+    &:first-child a, &:first-child span, &:last-child a, &:last-child span {
+      @include border-radius( 1em );
+      background-color: transparent;
+      color: $black;
+      &:before {
+        display: block;
+        font-family: 'Simple-Line-Icons';
+        content: "\e079";
+        text-indent: 0%;
+        overflow: visible;
+        white-space: nowrap;
+        font-size: 1.5em;
+        line-height: 1.2em;
+      }
+      position: relative;
+      top: 0.7em;
+      text-indent: 1001%;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 1.5em;
+      height: 1.5em;
+    }
+    &:first-child a, &:first-child span {
+      &:before {
+        content: "\e07a";
+      }
+    }
+    a, span {
+      background-color: $white;
+      display: block;
+      padding: 0.5em;
+      text-decoration: none;
+      color: $black;
+    }
+  }
+}
