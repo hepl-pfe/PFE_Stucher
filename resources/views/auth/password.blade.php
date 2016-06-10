@@ -1,6 +1,6 @@
 @section('title', 'Mot de passe oublié • Stucher')
 @include( 'header' )
-<body class="home default">
+<body class="default">
 
 <!-- resources/views/auth/password.blade.php -->
 <div class="blockTitle">
