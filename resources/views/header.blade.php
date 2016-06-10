@@ -39,6 +39,7 @@
     <!-- OG TYPES -->
     <meta property="og:title" content="Stucher • School share" />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://stucher.be" />
     <meta property="og:description" content="Stucher est un application avec laquelle vous allez pouvoir gérer vos cours au travers d'un journal de classe commun et partagé" />
     <meta property="og:image" content="http://stucher.be/img/home_classroom.jpg" />
 
