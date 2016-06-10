@@ -252,7 +252,7 @@ class CourseController extends Controller
                     'for' => Course::where('id', $access_course->id)->get()->first()->teacher_id
                 ]);
 
-                return redirect()->route('viewCourse', ['id' => $access_course->id]);
+                return redirect()->route('home');
             } else {
                 return redirect()->back()->withErrors($errors);
             }
