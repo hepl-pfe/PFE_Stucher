@@ -5,6 +5,7 @@
 		<label for="menuToggle" class="menuToggle"><span></span><span></span><span></span></label>
 
 		<a class="mainLogo--link" href="{!! action( 'CourseController@index' ) !!}"><h1 class="mainLogo--title">logo Stucher</h1></a>
+		<img class="mainLogo--print hidden" src="{{ url() }}/img/logo_print.jpg" alt="logo Stucher" width="270" height="68">
 
 		<nav class="mainNav">
 			<h2 class="hidden">Menu principale</h2>
