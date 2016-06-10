@@ -30,7 +30,7 @@
 
 		<ul class="list__course_box--group">
 			@if ( $courses->count() == null )
-				<li class="list__empty">Aucun cours pour le moment</li>
+				<!-- <li class="list__empty">Aucun cours pour le moment</li>  -->
 			@endif
 				@foreach( $courses as $course )
 					@if ( $course->pivot->access == 2 )
@@ -50,7 +50,7 @@
 						</li>
 					@endif
 				@endforeach
-				<li class="list__course_box--list--add list__course_box--list course_box">
+				<li class="list__course_box--list--add list__course_box--list course_box noprint">
 	    			<a href="{!! action( 'CourseController@searchCourse' ) !!}">
 						<span class="hidden">Ajouter un cours</span>
 						<span></span>

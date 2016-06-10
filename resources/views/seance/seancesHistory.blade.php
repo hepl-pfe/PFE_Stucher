@@ -30,7 +30,7 @@
 			<div class="box box--demis box--demis--left box--shadow box--seance--course">
 				<ul class="box__group--list seance__group--list">
 					@foreach( $seances as $seance )
-						<li class="box__group--list--list box__seanceCourse">
+						<li class="box__group--list--list box__seanceCourse @if( $seance->absent == 1 ) course__absenceSeance @endif">
 							<a class="box__seanceDate" href="{!! action( 'SeanceController@view', ['id' => $seance->id] ) !!}">
 								<span class="box__seanceDate--day">{{ $seance->start_hours->formatLocalized('%A') }}</span>
 								<span class="box__seanceDate--dayNumber">{{ $seance->start_hours->formatLocalized('%d') }}</span>
@@ -77,11 +77,13 @@
 							<div class="clear"></div>
 						</li>
 					@endforeach
+					<li class="box__group--list--list box__seanceCourse">
+						{!! $seances->render() !!}
+					</li>
 				</ul>
 			</div>
 		@endif
 	@endif
-	{!! $seances->render() !!}
 	</div>
 
 @endsection

@@ -3,6 +3,7 @@
 @section('content')
 	<div class="blockTitle">
 		<h2 class="mainTitle">Profil de {{ $user->firstname }} {{ $user->name }}</h2>
+		<a class="backButton blockTitle__backButton unlink mainColorfont" href="{!! URL::previous() !!}"><span class="hidden">Revenir à la page précédente</span><span class="icon-arrow-left"></span></a>
 	</div>
 
 	<div class="box--group">

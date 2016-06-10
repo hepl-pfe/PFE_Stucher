@@ -26,7 +26,7 @@
                     <p>
                         <a href="{{ url('password/reset/'.$token) }}">Changer mon mot de passe</a>
                     </p>
-                    <p>Si vous n'avez pas demandez de changer de mot de passe, ne prennez pas en compte cet email.</p>
+                    <p>Si vous n'avez pas demandé de changer de mot de passe, ne prennez pas en compte cet email.</p>
                     <br>
                     <p>Bonne journée,</p>
                     <br>

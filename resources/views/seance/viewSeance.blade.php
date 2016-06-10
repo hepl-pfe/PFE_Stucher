@@ -18,7 +18,7 @@ Carbon::setLocale('fr'); ?>
 			<span class="icon-clock"></span>&nbsp;{{ $seance->start_hours->formatLocalized('%Hh%M') }} - {{ $seance->end_hours->formatLocalized('%Hh%M') }}
 		</h4>
 		@if( $seance->absent == 1 )
-			<h3 class="seanceAbsence--title">!! La séance est annulé pour cause d'absence du professeur !!</h3>
+			<h3 class="seanceAbsence--title">!! La séance est annulée pour cause d'absence du professeur !!</h3>
 		@endif
 		<h4 class="bannerUnderTitle seanceLocal" title="de {{ $seance->start_hours->formatLocalized('%Hh%M') }} à {{ $seance->end_hours->formatLocalized('%Hh%M') }}">
 			<span class="icon-pointer"></span>&nbsp;Local&nbsp;: {{ $seance->local == null ? 'Aucun local précisé' : $seance->local }}
@@ -60,7 +60,7 @@ Carbon::setLocale('fr'); ?>
 					(<span class="shutterTitle--works--number">{{ count( $seance->works ) }}</span>)
 				@endif
 			@if( \Auth::user()->status == 1 )
-				<a class="unlink whiteText shutterTitle--addButton" href="{!! action( 'WorkController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}"></span>Ajouter</a>
+				<a class="unlink whiteText shutterTitle--addButton noprint" href="{!! action( 'WorkController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}"></span>Ajouter</a>
 			@endif
 			</h3>
 			<div class="box--group">
@@ -119,7 +119,7 @@ Carbon::setLocale('fr'); ?>
 					@endif
 
 				@if( \Auth::user()->status == 1 )
-					<a class="unlink whiteText shutterTitle--addButton" href="{!! action( 'TestController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}"></span>Ajouter</a>
+					<a class="unlink whiteText shutterTitle--addButton noprint" href="{!! action( 'TestController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}"></span>Ajouter</a>
 				@endif
 			</h3>
 			<div class="box--group">
@@ -183,8 +183,8 @@ Carbon::setLocale('fr'); ?>
 							<p class="center center--empty">Aucun commentaire</p>
 						@else
 						<div class="box box--shadow box--comment">
+							<ul class="box__group--comment">
 							@foreach ($comments as $comment)
-								<ul class="box__group--comment">
 								<?php $user=User::findOrFail($comment->from); ?>
 								<li class="box__group--comment--item">
 									<a class="comment_profilPicName profilPicName" href="

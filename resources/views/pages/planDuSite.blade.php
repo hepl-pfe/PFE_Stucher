@@ -4,9 +4,10 @@
 
 <header class="simpleHeader">
 
-    <a class="simpleHeader__logo" href="{!! action( 'CourseController@index' ) !!}">
+    <a class="simpleHeader__logo noprint" href="{!! action( 'CourseController@index' ) !!}">
         <h1>Stucher</h1>
     </a>
+    <img class="mainLogo--print hidden" src="{{ url() }}/img/logo_print.jpg" alt="logo Stucher" width="270" height="68">
 
     <a title="Revenir à la page précédente" class="unlink backButton--logout" href="{!! action( 'CourseController@index' ) !!}"><span class="hidden">Revenir à la page précédente</span><span class="icon-arrow-left"></span></a>
 

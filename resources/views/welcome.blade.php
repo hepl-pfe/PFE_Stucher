@@ -3,13 +3,14 @@
 <body class="home default">
 
 <header class="home__header">
-    <div class="home__connectZone">
+    <div class="home__connectZone noprint">
         <a href="{{ action( 'Auth\AuthController@getRegister' ) }}" class="unlink home__register--link">Inscription</a>
         <a href="{{ action( 'Auth\AuthController@getLogin' ) }}" class="unlink home__register--link">Connexion</a>
     </div>
-    <a class="home__mainLogo--link" href="{!! action( 'CourseController@index' ) !!}">
+    <a class="home__mainLogo--link noprint" href="{!! action( 'CourseController@index' ) !!}">
         <h1 class="home__mainLogo--title">Stucher</h1>
     </a>
+    <img class="mainLogo--print hidden" src="{{ url() }}/img/logo_print.jpg" alt="logo Stucher" width="270" height="68">
 </header>
 <div class="home__imageContainer">
     <div class="home__imageContainer__content">
@@ -31,7 +32,7 @@
         </div>
     </div>
     <div class="home__box--right home__box--image">
-        <img src="{{ url() }}/img/home_main_tel.jpg" alt="illustration du calendrier de l'application" width="960">
+        <img src="{{ url() }}/img/home_main_tel.jpg" alt="illustration du calendrier de l'application" width="960" height="800">
     </div>
     <div class="clear"></div>
 </div>
@@ -39,7 +40,7 @@
 <div id="home__presentation--2" class="home__presentation home__presentation--2">
     <div class="home__presentation--content home__presentation--2--content home__presentation--2--content--1">
         <div class="presentation__icon">
-            <img src="{{ url() }}/img/presentation-item-01.svg" alt="" width="150" height="150">
+            <img src="{{ url() }}/img/presentation-item-01.svg" alt="Icône de calendrier" width="150" height="150">
         </div>
         <div class="presentation__content">
             <h4>C'est vous qui planifiez&#8239;!</h4>
@@ -51,7 +52,7 @@
 
     <div class="home__presentation--content home__presentation--2--content home__presentation--2--content--2">
         <div class="presentation__icon">
-            <img src="{{ url() }}/img/presentation-item-02.svg" alt="" width="150" hheight="150">
+            <img src="{{ url() }}/img/presentation-item-02.svg" alt="Icône site responsive" width="150" height="150">
         </div>
         <div class="presentation__content">
             <h4>Partout avec vous</h4>
@@ -63,7 +64,7 @@
 
     <div class="home__presentation--content home__presentation--2--content home__presentation--2--content--3">
         <div class="presentation__icon">
-            <img src="{{ url() }}/img/presentation-item-03.svg" alt="" width="150" height="150">
+            <img src="{{ url() }}/img/presentation-item-03.svg" alt="Icône de notification" width="150" height="150">
         </div>
         <div class="presentation__content">
             <h4>Toujours au courant</h4>
@@ -75,7 +76,7 @@
 
     <div class="home__presentation--content home__presentation--2--content home__presentation--2--content--4">
         <div class="presentation__icon">
-            <img src="{{ url() }}/img/presentation-item-04.svg" alt="" width="150" height="150">
+            <img src="{{ url() }}/img/presentation-item-04.svg" alt="Icône d’organisation des utilisateurs" width="150" height="150">
         </div>
         <div class="presentation__content">
             <h4>Gérez l'accès à vos cours</h4>
@@ -99,7 +100,7 @@
     </div>
 
     <div class="home__box--left home__box--image">
-        <img src="{{ url() }}/img/home_classroom.jpg" alt="illustration d'une classe connectée" width="1000">
+        <img src="{{ url() }}/img/home_classroom.jpg" alt="illustration d'une classe connectée" width="1000" height="800">
     </div>
     <div class="clear"></div>
 </div>

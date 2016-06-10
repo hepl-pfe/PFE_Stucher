@@ -164,7 +164,7 @@ setlocale( LC_ALL, 'fr_FR');
                 <div class="box__group--list seance__group--list">
                     <div class="box__group--list--list box__seanceCourse">
                         <div class="box__head box__blockTitle box__blockTitle--dark box__head--calendar">
-                            <h3>Cours de {{ $seance->course->title }}</h3>
+                            <h3>Cours de {{ $seance->course->title }} (&#8239;{{ $seance->course->group }}&#8239;)</h3>
                             <h4>Le {{ $seance->start_hours->formatLocalized('%d-%m-%Y') }} de {{ $seance->start_hours->formatLocalized('%Hh%M') }} à {{ $seance->end_hours->formatLocalized('%Hh%M') }}</h4>
                             @if( Auth::user()->status == 1 )
                                 <div class="boxTitle__teahcerIcon--group">

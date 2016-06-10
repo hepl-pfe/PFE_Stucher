@@ -120,7 +120,7 @@
 				<div class="box__head">
 					<h3 class="box__smallTitle box__smallTitle--left">5 prochaines séances</h3>
 					@if( Auth::user()->status == 1 )
-						<a href="{!! action( 'SeanceController@create', ['id' => $course->id] ) !!}" class="box__button-icon-text box__button-icon-text--right button-icon-text">
+						<a href="{!! action( 'SeanceController@create', ['id' => $course->id] ) !!}" class="box__button-icon-text box__button-icon-text--right button-icon-text noprint">
 							<span class="icon icon-close icon-plus mainColorfont"></span> Ajouter
 						</a>
 					@endif
@@ -191,7 +191,7 @@
 					</li>
 				@endif
 				</ul>
-				<a class="box__bottomLink box__bottomLink--dark" href="{{ action( 'SeanceController@all', [ 'id' => $course->id ] ) }}">Voir toutes les séances du cours <span class="hidden">de {{ $course->title }}</span></a>
+				<a class="box__bottomLink box__bottomLink--dark noprint" href="{{ action( 'SeanceController@all', [ 'id' => $course->id ] ) }}">Voir toutes les séances du cours <span class="hidden">de {{ $course->title }}</span></a>
 			</div>
 
 			@if ( \Auth::user()->status == '1' )
@@ -213,7 +213,7 @@
 					</h3>
 					<div class="clear"></div>
 				</div>
-				<a class="box__bottomLink box__bottomLink--dark" href="{!! action( 'CourseController@indexCourseUsers', [ 'id' => $course->id] ) !!}">Voir tous les élèves qui suivent le cours</a>
+				<a class="box__bottomLink box__bottomLink--dark noprint" href="{!! action( 'CourseController@indexCourseUsers', [ 'id' => $course->id] ) !!}">Voir tous les élèves qui suivent le cours</a>
 			</div>
 
 				<!-- STUDENT ASK -->
@@ -252,7 +252,7 @@
 						</li>
 					@endif
 					</ul>
-					<a class="box__bottomLink box__bottomLink--dark" href="{!! action( 'CourseController@indexWaitingUsers', [ 'id' => $course->id] ) !!}">Voir toutes les demandes d'accès</a>
+					<a class="box__bottomLink box__bottomLink--dark noprint" href="{!! action( 'CourseController@indexWaitingUsers', [ 'id' => $course->id] ) !!}">Voir toutes les demandes d'accès</a>
 				</div>
 
 			@endif
