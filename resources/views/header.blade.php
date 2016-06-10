@@ -46,13 +46,14 @@
     <!-- My custom css and fonts -->
     <link href='https://fonts.googleapis.com/css?family=Asap:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url() }}/css/main.css">
+    <link rel="stylesheet" type="text/css" media="print" href="{{ url() }}/css/print.css">
 
     <!-- Calendar popup -->
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ url() }}/css/DateTimePicker.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url() }}/css/DateTimePicker.min.css" />
     <!--[if lt IE 9]>
-    <link rel="stylesheet" type="text/css" media=screen href="{{ url() }}/css/DateTimePicker-ltie9.css" />
+    <link rel="stylesheet" type="text/css" media=screen href="{{ url() }}/css/DateTimePicker-ltie9.min.css" />
     <![endif]-->
 
     <!-- Sweet Alert -->
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ url() }}/css/sweetalert.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url() }}/css/sweetalert.min.css" />
 </head>
