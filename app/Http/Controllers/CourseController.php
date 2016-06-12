@@ -63,6 +63,9 @@ class CourseController extends Controller
         setlocale( LC_ALL, 'fr_FR.UTF-8');
         $course = Course::findOrFail($id);
         $teacher = User::where( 'id', '=', $course->teacher_id )->get();
+        if( \Auth::user()->status == 1 AND \Auth::user()->id != $course->teacher_id ) {
+            return redirect()->route('home', ['popupError' => "userAccess"]);
+        }
         $now = Carbon::now()->format('Y-m-d H:i:s');
         $allSeances = $course->seances->sortBy('start_hours');
         $fiveSeances = $course->seances->sortBy('start_hours')->take(5);

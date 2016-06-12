@@ -167,6 +167,11 @@ class SeanceController extends Controller
         setlocale( LC_ALL, 'fr_FR.UTF-8');
         $seance = Seance::findOrFail($id);
 
+        $course = Course::findOrFail($seance->course_id);
+        if( \Auth::user()->status == 1 AND \Auth::user()->id != $course->teacher_id ) {
+            return redirect()->route('home', ['popupError' => "userAccess"]);
+        }
+
         $datetime1 = new Carbon( $seance->start_hours );
         $datetime2 = new Carbon($seance->end_hours);
         $interval = $datetime1->diff($datetime2);
@@ -215,6 +220,9 @@ class SeanceController extends Controller
         setlocale( LC_ALL, 'fr_FR.UTF-8');
         $now = Carbon::now()->format('Y-m-d H:i:s');
         $course = Course::findOrFail( $id );
+        if( \Auth::user()->status == 1 AND \Auth::user()->id != $course->teacher_id ) {
+            return redirect()->route('home', ['popupError' => "userAccess"]);
+        }
         $comments = Comment::where('context', '=', 1)->get();
         $seances = Seance::where( 'course_id', '=', $id )->where( 'end_hours', '>', $now )->paginate(10);
         $title = "Toutes les séances du cours de ".$course->title.' • Stucher';
@@ -292,6 +300,9 @@ class SeanceController extends Controller
         setlocale( LC_ALL, 'fr_FR.UTF-8');
         $now = Carbon::now()->format('Y-m-d H:i:s');
         $course = Course::findOrFail( $id );
+        if( \Auth::user()->status == 1 AND \Auth::user()->id != $course->teacher_id ) {
+            return redirect()->route('home', ['popupError' => "userAccess"]);
+        }
         $comments = Comment::where('context', '=', 1)->get();
         $seances = Seance::where( 'course_id', '=', $id )->where( 'end_hours', '<', $now )->orderBy('start_hours','desc')->paginate(10);
         $title = "Les séances terminées du cours de ".$course->title." • Stucher";
