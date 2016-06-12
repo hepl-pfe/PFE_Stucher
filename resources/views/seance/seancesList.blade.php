@@ -82,9 +82,11 @@
                                 <div class="clear"></div>
                             </li>
                         @endforeach
-                        <li class="box__group--list--list box__seanceCourse">
-                            {!! $seances->render() !!}
-                        </li>
+                        @if( $seances->render() )
+                            <li class="box__group--list--list box__seanceCourse">
+                                {!! $seances->render() !!}
+                            </li>
+                        @endif
                     </ul>
                 </div>
                 <div class="box box--demis box--demis--right box--shadow box--seance--course">
