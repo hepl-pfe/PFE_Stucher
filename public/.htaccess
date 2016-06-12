@@ -53,7 +53,6 @@ Header append Vary User-Agent env=!dont-vary
 
 
 ######### CACHE
-
 # 1 MONTH - img and externals files
 <FilesMatch "\\.(jpg|jpeg|png|gif|swf|svg|pdf|txt|xml)$">
     Header set Cache-Control "max-age=2419200, public"
@@ -64,3 +63,12 @@ Header append Vary User-Agent env=!dont-vary
     Header Set Pragma "no-cache"
     Header set Cache-Control "max-age=0, private, no-store, no-cache, must-revalidate"
 </FilesMatch>
+
+
+######### SECURITY
+# Prevent "clickjacking" hacking
+<IfModule mod_headers.c>
+    Header always set X-FRAME-OPTIONS "DENY"
+</IfModule>
+
+
