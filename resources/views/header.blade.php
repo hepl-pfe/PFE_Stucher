@@ -34,6 +34,8 @@
     <meta name="keywords" content="Stucher, stucher, école, journal de classe, élève, eleve, professeur, prof, Loïc Parent, Loic Parent, loic parent, loïc parent" />
     <meta name="Description" content="Stucher est un application avec laquelle vous allez pouvoir gérer vos cours au travers d'un journal de classe commun et partagé" />
 
+    <meta name="msvalidate.01" content="D0E096F381DF9BEAFAF771F29EBA1D79" />
+
     <link rel="canonical" href="http://www.stucher.be" />
 
     <!-- OG TYPES -->
