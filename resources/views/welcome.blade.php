@@ -120,7 +120,7 @@
     </div>
 
     <div class="home_footer--3 home_footer--content">
-        <h3>Suivez-nous sur…</h3>
+        <h3>Suivez-nous sur…<span class="hidden"> les réseaux sociaux</span></h3>
         <a href="https://www.facebook.com/stucherapp/" class="followLink followLinkFb unlink"><span class="icon icon-social-facebook"></span>Facebook</a>
         {{--<a href="https://www.facebook.com/stucherapp/" class="followLink followLinkTw unlink"><span class="icon icon-social-twitter"></span>Twitter</a>--}}
         <a href="http://loic-parent.be" class="logoByLoic unlink">
