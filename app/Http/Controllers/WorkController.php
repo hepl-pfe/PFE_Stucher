@@ -26,7 +26,7 @@ class WorkController extends Controller
         ];
 
     public function create( $id = null, $info = null ) {
-        setlocale( LC_ALL, 'fr_FR');
+        setlocale( LC_ALL, 'fr_FR.UTF-8');
         $title = 'Créer un devoir • Stucher';
         $activePage = 'course';
         $now = Carbon::now()->format('Y-m-d H:i:s');
@@ -117,7 +117,7 @@ class WorkController extends Controller
 
         if( !empty($students) ) {
             foreach( $students as $student ) {
-                setlocale( LC_ALL, 'fr_FR');
+                setlocale( LC_ALL, 'fr_FR.UTF-8');
                 Notification::create([
                     'title' => $seance->start_hours->formatLocalized('%d %B %Y'),
                     'course_id' => $course->id,
@@ -144,7 +144,7 @@ class WorkController extends Controller
     }
 
     public function edit( $id ) {
-        setlocale( LC_ALL, 'fr_FR');
+        setlocale( LC_ALL, 'fr_FR.UTF-8');
         $work = Work::findOrFail( $id );
         $title = 'Modifier le devoir • Stucher';
         $activePage = 'course';
@@ -226,7 +226,7 @@ class WorkController extends Controller
 
         if( !empty($students) ) {
             foreach( $students as $student ) {
-                setlocale( LC_ALL, 'fr_FR');
+                setlocale( LC_ALL, 'fr_FR.UTF-8');
                 Notification::create([
                     'title' => $seance->start_hours->formatLocalized('%d %B %Y'),
                     'course_id' => $course->id,
@@ -254,7 +254,7 @@ class WorkController extends Controller
 
         if( !empty($students) ) {
             foreach( $students as $student ) {
-                setlocale( LC_ALL, 'fr_FR');
+                setlocale( LC_ALL, 'fr_FR.UTF-8');
                 Notification::create([
                     'title' => $seance->start_hours->formatLocalized('%d %B %Y'),
                     'course_id' => $course->id,

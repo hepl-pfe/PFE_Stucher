@@ -144,7 +144,7 @@ class SeanceController extends Controller
 
         if( !empty($students) ) {
             foreach( $students as $student ) {
-                setlocale( LC_ALL, 'fr_FR');
+                setlocale( LC_ALL, 'fr_FR.UTF-8');
                 Notification::create([
                     // Séance supprimée
                     'title' => $seance->start_hours->formatLocalized('%d %B %Y'),
@@ -164,7 +164,7 @@ class SeanceController extends Controller
     }
 
     public function view( $id ) {
-        setlocale( LC_ALL, 'fr_FR');
+        setlocale( LC_ALL, 'fr_FR.UTF-8');
         $seance = Seance::findOrFail($id);
 
         $datetime1 = new Carbon( $seance->start_hours );
@@ -212,7 +212,7 @@ class SeanceController extends Controller
     }
 
     public function all( $id ) {
-        setlocale( LC_ALL, 'fr_FR');
+        setlocale( LC_ALL, 'fr_FR.UTF-8');
         $now = Carbon::now()->format('Y-m-d H:i:s');
         $course = Course::findOrFail( $id );
         $comments = Comment::where('context', '=', 1)->get();
@@ -236,7 +236,7 @@ class SeanceController extends Controller
 
         if( !empty($students) ) {
             foreach( $students as $student ) {
-                setlocale( LC_ALL, 'fr_FR');
+                setlocale( LC_ALL, 'fr_FR.UTF-8');
                 Notification::create([
                     // Séance supprimée
                     'title' => $seance->start_hours->formatLocalized('%d %B %Y'),
@@ -289,7 +289,7 @@ class SeanceController extends Controller
 
     public function seanceHistory( $id ) 
     {
-        setlocale( LC_ALL, 'fr_FR');
+        setlocale( LC_ALL, 'fr_FR.UTF-8');
         $now = Carbon::now()->format('Y-m-d H:i:s');
         $course = Course::findOrFail( $id );
         $comments = Comment::where('context', '=', 1)->get();
@@ -313,7 +313,7 @@ class SeanceController extends Controller
 
         if( !empty($students) ) {
             foreach( $students as $student ) {
-                setlocale( LC_ALL, 'fr_FR');
+                setlocale( LC_ALL, 'fr_FR.UTF-8');
                 if( $seance->absent == 1 ) {
                     Notification::create([
                         // Séance annulé (absence)

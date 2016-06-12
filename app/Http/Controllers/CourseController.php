@@ -60,7 +60,7 @@ class CourseController extends Controller
     }
 
     public function view( $id ) {
-        setlocale( LC_ALL, 'fr_FR');
+        setlocale( LC_ALL, 'fr_FR.UTF-8');
         $course = Course::findOrFail($id);
         $teacher = User::where( 'id', '=', $course->teacher_id )->get();
         $now = Carbon::now()->format('Y-m-d H:i:s');

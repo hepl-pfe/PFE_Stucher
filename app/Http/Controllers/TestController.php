@@ -26,7 +26,7 @@ class TestController extends Controller
         ];
 
     public function create( $id = null, $info = null ) {
-        setlocale( LC_ALL, 'fr_FR');
+        setlocale( LC_ALL, 'fr_FR.UTF-8');
     	$title = 'Créer une interrogation • Stucher';
         $activePage = 'course';
         $now = Carbon::now()->format('Y-m-d H:i:s');
@@ -118,7 +118,7 @@ class TestController extends Controller
 
         if( !empty($students) ) {
             foreach( $students as $student ) {
-                setlocale( LC_ALL, 'fr_FR');
+                setlocale( LC_ALL, 'fr_FR.UTF-8');
                 Notification::create([
                     'title' => $seance->start_hours->formatLocalized('%d %B %Y'),
                     'course_id' => $course->id,
@@ -224,7 +224,7 @@ class TestController extends Controller
 
         if( !empty($students) ) {
             foreach( $students as $student ) {
-                setlocale( LC_ALL, 'fr_FR');
+                setlocale( LC_ALL, 'fr_FR.UTF-8');
                 Notification::create([
                     'title' => $seance->start_hours->formatLocalized('%d %B %Y'),
                     'course_id' => $course->id,
@@ -253,7 +253,7 @@ class TestController extends Controller
 
         if( !empty($students) ) {
             foreach( $students as $student ) {
-                setlocale( LC_ALL, 'fr_FR');
+                setlocale( LC_ALL, 'fr_FR.UTF-8');
                 Notification::create([
                     'title' => $seance->start_hours->formatLocalized('%d %B %Y'),
                     'course_id' => $course->id,

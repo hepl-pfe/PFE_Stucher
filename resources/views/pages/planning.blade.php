@@ -3,7 +3,7 @@ use Carbon\Carbon;
 use App\Course;
 use App\User;
 use App\Comment;
-setlocale( LC_ALL, 'fr_FR');
+setlocale( LC_ALL, 'fr_FR.UTF-8');
 ?>
 
 @extends('layout')
