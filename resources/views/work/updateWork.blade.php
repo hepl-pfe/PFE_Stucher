@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="color_label" for="seance">Pour quel séance de cours?</label>
+                    <label class="color_label" for="seance">Pour quelle séance de cours?</label>
                     <select class="form-control" name="seance" id="seance">
                         @foreach ($allSeances as $singleSeance)
                             <option value="{{ $singleSeance->id }}"
