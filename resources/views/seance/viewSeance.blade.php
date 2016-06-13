@@ -37,9 +37,9 @@ Carbon::setLocale('fr'); ?>
 			<li><a href="{!! action( 'TestController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Créer une interrogation</a></li>
 			<li><a href="{!! action( 'SeanceController@absent', [ "id" => $seance->id ] ) !!}">
 					@if(  $seance->absent == 0 )
-						Je serais absent
+						Je serai absent(e)
 					@else
-						Je serais présent
+						Je serai présent
 					@endif
 				</a>
 			</li>
