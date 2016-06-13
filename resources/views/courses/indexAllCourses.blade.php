@@ -16,8 +16,9 @@
                     </div>
                     <div class="form-group form-group--nospace">
                         <label class="hidden" for="search">Rechercher un cours</label>
-                        <input type="text" name="search" id="search" placeholder="Rechercher un cours" autofocus @if( isset( $search_input ) ) value="{{ $search_input }}" @endif>
-                        <input type="submit" value="Envoyer" class="hidden">
+                        <input type="text" name="search" id="search" class="searchCourse__enter" placeholder="Rechercher un cours" autofocus @if( isset( $search_input ) ) value="{{ $search_input }}" @endif>
+                        <input type="submit" value="Go" class="searchCourse__button">
+                        <div class="clear"></div>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     </div>
                 </form>
