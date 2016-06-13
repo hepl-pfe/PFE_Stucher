@@ -826,3 +826,51 @@
     }
   }
 }
+
+.form-group .searchCourse__enter {
+  width: 80%;
+  float: left;
+}
+
+.form-group .searchCourse__button {
+  width: 20%;
+  float: right;
+  background-color: $grayDark;
+  color: $white;
+  @include transition( all );
+  cursor: pointer;
+}
+
+///////// PW reset success
+.box__passwordResetSuccess {
+  .icon {
+    text-align: center;
+    font-size: 3em;
+    color: $mainColor;
+    margin-bottom: 0.5em;
+  }
+  .box__passwordResetSuccess_message {
+    text-align: center;
+  }
+}
+
+///////// 404 visual
+.blockTitle--404 {
+  position: relative;
+  z-index: 100;
+}
+.visual404 {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  p {
+    font-size: 8em;
+    position: absolute;
+    top: 45%; left: 0; right: 0;
+    text-align: center;
+    animation: pulse 2s infinite;
+  }
+}

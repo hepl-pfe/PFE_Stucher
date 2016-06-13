@@ -311,6 +311,17 @@
     }
   }
 
+  .form-group .searchCourse__button {
+    &:hover, &:focus, &:active {
+      background-color: $mainColor;
+    }
+  }
+
+  ////////// 404 visual
+  .visual404 p {
+    color: $mainColor;
+  }
+
   ////////////////////////
   // Change popup color //
   ////////////////////////
