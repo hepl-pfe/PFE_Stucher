@@ -145,6 +145,7 @@ class TestController extends Controller
     }
 
     public function edit( $id ) {
+        setlocale( LC_ALL, 'fr_FR.UTF-8');
         $test = Test::findOrFail( $id );
         $title = 'Modifier l’interrogation • Stucher';
         $activePage = 'course';
