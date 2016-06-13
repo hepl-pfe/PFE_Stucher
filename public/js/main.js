@@ -275,7 +275,7 @@ jQuery( function($) {
 
 		swal({
 			title: "Supprimer ce cours?",
-			text: "En supprimant ce cours, vous supprimerez tous les éléments liés à celui-ci (séances, interrogations, devoir, fichiers etc.)",
+			text: "En supprimant ce cours, vous supprimerez tous les éléments liés à celui-ci (séances, interrogations, devoirs, fichiers etc.)",
 			showCancelButton: true,
 			closeOnConfirm: false,
 			confirmButtonText: "Oui, je supprime",
@@ -310,7 +310,7 @@ jQuery( function($) {
 
 		swal({
 			title: "Quitter ce cours?",
-			text: "En quittant ce cours, vous n’aurez plus accès à ses séances, interrogations, devoir, fichiers etc.",
+			text: "En quittant ce cours, vous n’aurez plus accès à ses séances, interrogations, devoirs, fichiers etc.",
 			showCancelButton: true,
 			closeOnConfirm: false,
 			confirmButtonText: "Oui, je quitte",
@@ -345,7 +345,7 @@ jQuery( function($) {
 
 		swal({
 			title: "Supprimer votre compte?",
-			text: "En supprimant votre compte, vous supprimerez tous les éléments liés à celui-ci (cours, séances, interrogations, devoir, fichiers etc.)",
+			text: "En supprimant votre compte, vous supprimerez tous les éléments liés à celui-ci (cours, séances, interrogations, devoirs, fichiers etc.)",
 			showCancelButton: true,
 			closeOnConfirm: false,
 			confirmButtonText: "Oui, je supprime",
@@ -385,8 +385,8 @@ jQuery( function($) {
 		}
 
 		swal({
-			title: "Supprimer Cette séance?",
-			text: "En supprimant cette séance, vous supprimerez tous les éléments liés à celle-ci (interrogations, devoir, fichiers etc.)",
+			title: "Supprimer cette séance?",
+			text: "En supprimant cette séance, vous supprimerez tous les éléments liés à celle-ci (interrogations, devoirs, fichiers etc.)",
 			showCancelButton: true,
 			closeOnConfirm: false,
 			confirmButtonText: "Oui, je supprime",
@@ -524,7 +524,7 @@ jQuery( function($) {
 			swal("Oops...", "Il faut être professeur pour faire ça!", "error");
 		}
 		if( qs['popupError'] == 'userAccess' ) {
-			swal("Oops...", "Vous n’avez pas les droits nécéssaire pour vous rendre là!", "error");
+			swal("Oops...", "Vous n’avez pas les droits nécessaires pour vous rendre là!", "error");
 		}
 		if( qs['popupError'] == 'logout' ) {
 			swal("Oops...", "Vous devez être connecté pour vous rendre là!", "error");
@@ -545,7 +545,7 @@ jQuery( function($) {
 			swal("Oops...", "Ce commentaire n’existe pas!", "error");
 		}
 		if( qs['popupError'] == 'commentAccess' ) {
-			swal("Oops...", "Vous n’avez pas les droits nécéssaire supprimer ce commentaire!", "error");
+			swal("Oops...", "Vous ne pouvez pas supprimer ce commentaire!", "error");
 		}
 	}
 
