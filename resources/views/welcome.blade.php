@@ -93,7 +93,7 @@
 <div class="home__presentation home__presentation--connect">
     <div class="home__box--right home__box">
         <div class="home__box--content">
-            <h3 id="connectZone" class="connectTitle">Essayez-le maintenant, c'est gratuit&nbsp!</h3>
+            <h3 id="connectZone" class="connectTitle">Essayez-le maintenant, c'est gratuit&nbsp;!</h3>
             <a href="{{ action( 'Auth\AuthController@getLogin' ) }}">Se connecter</a>
             <a href="{{ action( 'Auth\AuthController@getRegister' ) }}">S'inscrire</a>
         </div>
