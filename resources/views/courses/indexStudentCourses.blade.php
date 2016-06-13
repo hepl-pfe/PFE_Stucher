@@ -52,7 +52,7 @@
 				@endforeach
 				<li class="list__course_box--list--add list__course_box--list course_box noprint">
 	    			<a href="{!! action( 'CourseController@searchCourse' ) !!}">
-						<span class="hidden">Ajouter un cours</span>
+						<p class="list__course_box--list--add--text">Ajouter un cours</p>
 						<span></span>
 						<span></span>
 					</a>

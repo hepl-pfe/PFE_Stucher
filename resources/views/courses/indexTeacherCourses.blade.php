@@ -33,7 +33,7 @@
 			@endforeach
 	    		<li class="list__course_box--list--add list__course_box--list course_box noprint">
 	    			<a href="{!! action( 'CourseController@create' ) !!}">
-						<span class="hidden">Créer un nouveau cours</span>
+						<p class="list__course_box--list--add--text">Créer un nouveau cours</p>
 						<span></span>
 						<span></span>
 					</a>
