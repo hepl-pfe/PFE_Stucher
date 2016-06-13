@@ -105,12 +105,12 @@ return [
     |
     */
 
-    'attributes'           => [
+    'attributes'                => [
         'name'                  => 'Nom',
         'username'              => 'Pseudo',
         'email'                 => 'E-mail',
         'first_name'            => 'Prénom',
-        'firstname'            => 'Prénom',
+        'firstname'             => 'Prénom',
         'last_name'             => 'Nom',
         'password'              => 'Mot de passe',
         'password_confirmation' => 'Confirmation du mot de passe',
@@ -129,6 +129,9 @@ return [
         'minute'                => 'Minute',
         'second'                => 'Seconde',
         'title'                 => 'Titre',
+        'group'                 => 'Groupe',
+        'school'                => 'École',
+        'place'                 => 'Ville',
         'content'               => 'Contenu',
         'description'           => 'Description',
         'excerpt'               => 'Extrait',
@@ -136,6 +139,14 @@ return [
         'time'                  => 'Heure',
         'available'             => 'Disponible',
         'size'                  => 'Taille',
+        'start_date'            => 'Début de période',
+        'end_date'              => 'Fin de période',
+        'start_hours'           => 'Heure de début',
+        'end_hours'             => 'Heure de fin',
+        'daypicker'             => 'Jour',
+        'course'                => 'Cours',
+        'seance'                => 'Séance',
+        'descr'                 => 'Description',
     ],
 
 ];
