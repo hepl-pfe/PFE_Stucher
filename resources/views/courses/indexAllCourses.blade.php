@@ -29,54 +29,56 @@
             <ul>
                 @if( $courses )
                     @foreach ($courses as $course)
-                    <li class="box box--shadow box__group--list box__list--results">
-                        <a class="unlink blockLink box__group--list--list box__group--list--results" href="{!! action( 'CourseController@view', [ 'id' => $course->id ] ) !!}">
-                            <div class="box__group--list--results--title">
-                                <span class="icon icon-book-open mainColorfont"></span>
-                                <span class="mainColorfont">Cours </span>
-                            </div>
-                            <span class="box__group--list--content">{{ $course->title }}</span>
-                        </a>
-                        <div class="box__group--list--list box__group--list--results">
-                            <div class="box__group--list--results--title">
-                                <span class="icon icon-users mainColorfont"></span>
-                                <span class="mainColorfont">Groupe </span>
-                            </div>
-                            <span class="box__group--list--content">{{ $course->group }}</span>
-                        </div>
-
-                        @foreach( $users as $user )
-                            @if( $course->teacher_id == $user->id )
-                                <a class="unlink blockLink box__group--list--list box__group--list--results" href="{!! action( 'PageController@viewUser', [ 'id' => $user->id ] ) !!}">
+                        @if( !in_array( $course->id, $myCoursesID ) )
+                            <li class="box box--shadow box__group--list box__list--results">
+                                <a class="unlink blockLink box__group--list--list box__group--list--results" href="{!! action( 'CourseController@view', [ 'id' => $course->id ] ) !!}">
                                     <div class="box__group--list--results--title">
-                                        <span class="icon icon-user mainColorfont"></span>
-                                        <span class="mainColorfont">Prof </span>
+                                        <span class="icon icon-book-open mainColorfont"></span>
+                                        <span class="mainColorfont">Cours </span>
                                     </div>
-                                    <span class="box__group--list--content">{{ $user->firstname }} {{ $user->name }}</span>
+                                    <span class="box__group--list--content">{{ $course->title }}</span>
                                 </a>
-                            @endif
-                        @endforeach
+                                <div class="box__group--list--list box__group--list--results">
+                                    <div class="box__group--list--results--title">
+                                        <span class="icon icon-users mainColorfont"></span>
+                                        <span class="mainColorfont">Groupe </span>
+                                    </div>
+                                    <span class="box__group--list--content">{{ $course->group }}</span>
+                                </div>
 
-                    <div class="box__group--list--list box__group--list--results">
-                        <div class="box__group--list--results--title">
-                            <span class="icon icon-home mainColorfont"></span>
-                            <span class="mainColorfont">École </span>
-                        </div>
-                        <span class="box__group--list--content">{{ $course->school }}</span>
-                    </div>
-                    <div class="box__group--list--list box__group--list--results">
-                        <div class="box__group--list--results--title">
-                            <span class="icon icon-pointer mainColorfont"></span>
-                            <span class="mainColorfont">Ville </span>
-                        </div>
-                        <span class="box__group--list--content">{{ $course->place }}</span>
-                    </div>
+                                @foreach( $users as $user )
+                                    @if( $course->teacher_id == $user->id )
+                                        <a class="unlink blockLink box__group--list--list box__group--list--results" href="{!! action( 'PageController@viewUser', [ 'id' => $user->id ] ) !!}">
+                                            <div class="box__group--list--results--title">
+                                                <span class="icon icon-user mainColorfont"></span>
+                                                <span class="mainColorfont">Prof </span>
+                                            </div>
+                                            <span class="box__group--list--content">{{ $user->firstname }} {{ $user->name }}</span>
+                                        </a>
+                                    @endif
+                                @endforeach
 
-                    <div class="box__bottomLink box__bottomLink--doubleLink">
-                        <a href="{{ action( 'CourseController@addCourse', [ 'id' => $course->id ] ) }}">Ajouter</a>
-                        <a href="{{ action( 'CourseController@view', [ 'id' => $course->id ] ) }}">Voir le cours</a>
-                    </div>
-                </li>
+                            <div class="box__group--list--list box__group--list--results">
+                                <div class="box__group--list--results--title">
+                                    <span class="icon icon-home mainColorfont"></span>
+                                    <span class="mainColorfont">École </span>
+                                </div>
+                                <span class="box__group--list--content">{{ $course->school }}</span>
+                            </div>
+                            <div class="box__group--list--list box__group--list--results">
+                                <div class="box__group--list--results--title">
+                                    <span class="icon icon-pointer mainColorfont"></span>
+                                    <span class="mainColorfont">Ville </span>
+                                </div>
+                                <span class="box__group--list--content">{{ $course->place }}</span>
+                            </div>
+
+                            <div class="box__bottomLink box__bottomLink--doubleLink">
+                                <a href="{{ action( 'CourseController@addCourse', [ 'id' => $course->id ] ) }}">Ajouter</a>
+                                <a href="{{ action( 'CourseController@view', [ 'id' => $course->id ] ) }}">Voir le cours</a>
+                            </div>
+                        </li>
+                    @endif
                 @endforeach
             @endif
                 @if( empty( $courses[0] ) )

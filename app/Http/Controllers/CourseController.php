@@ -178,6 +178,13 @@ class CourseController extends Controller
         $id_courses = [];
 
         if( $type == 'search' ) {
+            $myCourses = \DB::table('course_user')->where('user_id', \Auth::user()->id)->get();
+            $myCoursesID = [];
+
+            foreach ($myCourses as $myCourse) {
+                $myCoursesID[] = $myCourse->course_id;
+            }
+
             $users = User::all();
             $courses = Course::where('title', 'LIKE', '%' . $search_input . '%')
                 ->orWhere('group', 'LIKE', '%' . $search_input . '%')
@@ -207,7 +214,7 @@ class CourseController extends Controller
                 }
             }
 
-            return view('courses/indexAllCourses', compact('courses', 'users', 'search_input', 'title', 'activePage'));
+            return view('courses/indexAllCourses', compact('courses', 'myCoursesID', 'users', 'search_input', 'title', 'activePage'));
         }
 
 
