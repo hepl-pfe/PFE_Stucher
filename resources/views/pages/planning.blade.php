@@ -156,7 +156,7 @@ setlocale( LC_ALL, 'fr_FR.UTF-8');
 
     <ul class="box--group">
         @if( empty( $currentSeances ) )
-            <li class="calendar__empty" >Aucune séance prévue cette journée</li>
+            <li class="calendar__empty" >Aucune séance prévue à cette date</li>
         @else
             <?php $pos = 1; ?>
         @foreach( $currentSeances as $seance )
