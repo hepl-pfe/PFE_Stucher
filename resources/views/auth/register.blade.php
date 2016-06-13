@@ -10,6 +10,7 @@
     <div class="box--group">
         <div class="box box--shadow box__connect--page">
             <form class="box__group--content" method="POST" action="/register">
+                @include('errors.profilError')
                 {!! csrf_field() !!}
 
                 <div class="form-group">
@@ -55,7 +56,6 @@
                     <div class="clear"></div>
                 </div>
 
-                @include( 'errors.profilError' )
             </form>
         </div>
     </div>

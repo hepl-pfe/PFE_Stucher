@@ -10,7 +10,9 @@
 <div class="box--group">
     <div class="box box--shadow box__connect--page">
         <form class="box__group--content" method="POST" action="/password/reset">
+            @include('errors.profilError')
             {!! csrf_field() !!}
+
             <input type="hidden" name="token" value="{{ $token }}">
 
             <div class="form-group">
@@ -32,8 +34,6 @@
                 <button class="btn btn-send" type="submit">Modifier le mot de passe</button>
                 <div class="clear"></div>
             </div>
-
-            @include( 'errors.profilError' )
 
         </form>
 

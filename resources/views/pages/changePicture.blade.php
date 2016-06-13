@@ -17,6 +17,8 @@
 		<!-- id information -->
 		<div class="box box--shadow box_profil--picture">
 			<form class="box__group--content" action="" method="post" enctype="multipart/form-data">
+				@include('errors.profilError')
+
 				<div class="form-group">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<label class="color_label" for="image">Changer l’image</label>
@@ -28,7 +30,6 @@
 					<div class="clear"></div>
 				</div>
 
-				@include('errors.profilError')
 			</form>
 		</div>
 	</div>

@@ -10,6 +10,8 @@
 	<div class="box--group">
 		<div class="box box--shadow">
 			<form class="box__group--content" action="" method="post">
+				@include('errors.profilError')
+
 				<div class="form-group">
 					<label class="color_label" for="firstname">Votre prénom</label>
 					<input type="text" class="form-control" name="firstname" id="firstname" placeholder="ex: Mathématiques" value="{{ $firstname }}" autofocus>
@@ -38,7 +40,6 @@
 					<div class="clear"></div>
 				</div>
 
-				@include('errors.profilError')
 			</form>
 		</div>
 	</div>

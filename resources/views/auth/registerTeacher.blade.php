@@ -9,6 +9,7 @@
         <div class="littleSpace">
 
             <form method="POST" action="/auth/register">
+                @include('errors.profilError')
                 {!! csrf_field() !!}
 
                 <div class="form-group regirsterForm__group">
@@ -43,7 +44,7 @@
                     <button class="btn btn-send" type="submit">S'enregistrer</button>
                     <div class="clear"></div>
                 </div>
-                @include( 'errors.profilError' )
+
             </form>
         </div>
     </div>

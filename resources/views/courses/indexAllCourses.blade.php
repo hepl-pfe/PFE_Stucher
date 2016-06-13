@@ -9,6 +9,8 @@
         <div class="box--group">
             <div class="box box--shadow">
                 <form class="box__group--content searchForm" action="" method="post">
+                    @include('errors.profilError')
+
                     {{--<p>Retrouver un cours grâce à son intitulé, le nom du professeur, du groupe, de l'école ou encore de la ville ou bien, en utilisant le code d'accès du cours fourni par le professeur</p>--}}
                     <div class="form-group form-group--radioSearch">
                         <input type="radio" class="searchForm__radio hidden" name="type" value="search" id="type-1" checked> <label for="type-1">Recherche</label>
@@ -23,8 +25,6 @@
                     </div>
                 </form>
             </div>
-
-            @include('errors.profilError')
 
             <ul>
                 @if( $courses )

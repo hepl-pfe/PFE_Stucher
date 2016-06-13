@@ -18,6 +18,7 @@
             </div>
         @else
             <form class="box__group--content" method="POST" action="/password/email">
+                @include('errors.profilError')
                 {!! csrf_field() !!}
 
                 <div class="form-group form-information form-information--password">
@@ -33,8 +34,6 @@
                     <button class="btn btn-send" type="submit">Envoyez un lien par email</button>
                     <div class="clear"></div>
                 </div>
-
-                @include( 'errors.profilError' )
 
             </form>
         @endif

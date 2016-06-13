@@ -11,6 +11,8 @@
     <div class="box--group">
         <div class="box box--shadow">
             <form class="box__group--content" action="" method="post" enctype="multipart/form-data">
+                @include( 'errors.profilError' )
+
                 <div class="form-group">
                     <label class="color_label" for="course">Pour quel cours?</label>
                     <select class="form-control" name="course" id="course">
@@ -90,7 +92,7 @@
                     <input type="submit" class="btn btn-send" value="Valider le devoir">
                     <div class="clear"></div>
                 </div>
-                @include( 'errors.profilError' )
+
             </form>
         </div>
     </div>

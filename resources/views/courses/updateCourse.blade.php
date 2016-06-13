@@ -10,6 +10,8 @@
 	<div class="box--group">
 		<div class="box box--shadow">
 			<form class="box__group--content" action="" method="post">
+				@include('errors.profilError')
+
 				<div class="form-group">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<label class="color_label" for="title">Ajouter le titre du cours</label>
@@ -35,7 +37,7 @@
 					<input type="submit" class="btn btn-send" value="Valider les modifications">
 					<div class="clear"></div>
 				</div>
-				@include( 'errors.profilError' )
+
 			</form>
 		</div>
 	</div>
