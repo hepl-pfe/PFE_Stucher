@@ -356,7 +356,30 @@
     }
   }
   .list__course_box--list--add {
-    display: none;
+    background-color: transparent;
+    @include shadow( 0, 0, 0, 0 );
+    a {
+      position: relative;
+      height: 3em;
+      span {
+        margin-left: 5%;
+        width: 2em;
+      }
+      .list__course_box--list--add--text {
+        opacity: 1;
+        bottom: 1em; left: 2em; right: 0;
+        font-size: 1.2em;
+        text-align: left;
+        margin-left: 2em;
+      }
+      &:hover, &:focus, &:active {
+        .list__course_box--list--add--text {
+          -webkit-animation: none;
+          -o-animation: none;
+          animation: none;
+        }
+      }
+    }
   }
   .comment__box .comment__box--button span {
     font-size: 1.4em;
