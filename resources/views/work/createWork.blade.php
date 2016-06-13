@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="color_label" for="seance">Pour quel séance de cours?</label>
+                    <label class="color_label" for="seance">Pour quelle séance de cours?</label>
                     <select class="form-control" name="seance" id="seance">
                         @foreach ($allSeances as $singleSeance)
                             <option value="{{ $singleSeance->id }}"
@@ -69,7 +69,7 @@
                 <div class="form-group--file changedFile">
                     <label class="color_label file_label" for="file">
                         <span class="icon-paper-clip icon--text icon"></span>
-                        <span class="fileRightText fileRightText--1">Fichier joins</span>
+                        <span class="fileRightText fileRightText--1">Fichier joints</span>
                         <span class="smallText fileRightText fileRightText--2">(facultatif - PDF, image ou Word)</span>
                     </label>
                     <input type="file" id="file" name="file[]" multiple>
