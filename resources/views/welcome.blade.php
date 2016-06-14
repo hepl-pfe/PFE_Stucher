@@ -18,7 +18,7 @@
         <div class="home__imageColor"></div>
         <img class="home__imageContainer__image" src="{{ url() }}/img/bg_home_1.jpg" alt="image de fond header" width="1500" height="1000">
     </div>
-    <a href="#home__presentation--1" class="home__arrowBottom unlink"><span class="icon-arrow-down"></span></a>
+    <a href="#home__presentation--1" class="home__arrowBottom unlink"><span class="icon-arrow-down"></span><span class="hidden">dessendre</span></a>
 </div>
 
 <div id="home__presentation--1" class="home__presentation home__presentation--1">
