@@ -211,6 +211,8 @@ class TestController extends Controller
                     );
             }
         }
+
+        $test->seance_id = Input::get('seance');
         $test->title = Input::get('title');
         $test->description = Input::get('descr');
         $test->updated_at = Carbon::now();

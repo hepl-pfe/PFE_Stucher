@@ -211,7 +211,7 @@ class WorkController extends Controller
             }
         }
 
-
+        $work->seance_id = Input::get('seance');
         $work->title = Input::get('title');
         $work->description = Input::get('descr');
         $work->updated_at = Carbon::now();
