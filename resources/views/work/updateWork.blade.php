@@ -15,7 +15,7 @@
 
                 <div class="form-group">
                     <label class="color_label" for="course">Pour quel cours?</label>
-                    <select class="form-control" name="course" id="course">
+                    <select class="form-control" name="course" id="course_seance">
 
                     @foreach ($allCourses as $singleCourse)
                         <option value="{{ $singleCourse->id }}"
