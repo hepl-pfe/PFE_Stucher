@@ -33,8 +33,8 @@ Carbon::setLocale('fr'); ?>
 		<label for="dd_moreButton" class="dd_moreButton--button"><span></span><span></span></label>
 
 		<ul class="dd_moreButton--content">
-			<li><a href="{!! action( 'WorkController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Créer un devoir</a></li>
-			<li><a href="{!! action( 'TestController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Créer une interrogation</a></li>
+			<li><a href="{!! action( 'WorkController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Créer un devoir…</a></li>
+			<li><a href="{!! action( 'TestController@create', ['id' => $seance->id, 'info' => 'seance'] ) !!}">Créer une interrogation…</a></li>
 			<li><a href="{!! action( 'SeanceController@absent', [ "id" => $seance->id ] ) !!}">
 					@if(  $seance->absent == 0 )
 						Je serai absent(e)
@@ -43,9 +43,9 @@ Carbon::setLocale('fr'); ?>
 					@endif
 				</a>
 			</li>
-			<li><a href="{!! action( 'SeanceController@edit', [ "id" => $seance->id ] ) !!}">Modifier la séance</a></li>
+			<li><a href="{!! action( 'SeanceController@edit', [ "id" => $seance->id ] ) !!}">Modifier la séance…</a></li>
 			<li><a class="action__deleteSeance" data-page="seance" data-course="{{ $seance->course->id }}" href="{!! action( 'SeanceController@delete', [ "id" => $seance->id ] ) !!}">Supprimer la séance</a></li>
-			<li><a href="{!! action( 'CourseController@create' ) !!}">Créer un autre cours</a></li>
+			<li><a href="{!! action( 'CourseController@create' ) !!}">Créer un autre cours…</a></li>
 		</ul>
 	</div>
 	@endif

@@ -6,6 +6,16 @@
 		<a class="backButton blockTitle__backButton unlink mainColorfont" href="{!! URL::previous() !!}"><span class="hidden">Revenir à la page précédente</span><span class="icon-arrow-left"></span></a>
 	</div>
 
+	<!-- dd_moreButton -->
+	<div class="dd_moreButton">
+		<input type="checkbox" id="dd_moreButton">
+		<label for="dd_moreButton" class="dd_moreButton--button"><span></span><span></span></label>
+
+		<ul class="dd_moreButton--content">
+			<li><a href="mailto:{{$user->email}}">Contacter par mail</a></li>
+		</ul>
+	</div>
+
 	<div class="box--group">
 		<!-- Profil photo -->
 		<div class="box_profilPicture box__profilImage box__profilImage--profilPage">

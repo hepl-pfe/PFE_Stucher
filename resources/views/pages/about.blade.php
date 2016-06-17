@@ -14,11 +14,11 @@
 		<label for="dd_moreButton" class="dd_moreButton--button"><span></span><span></span></label>
 
 		<ul class="dd_moreButton--content">
-			<li><a href="{{ action( 'PageController@changePicture' ) }}">Changer la photo de profil</a></li>
-			<li><a href="{!! action( 'PageController@editProfil' ) !!}">Modifier mon profil</a></li>
+			<li><a href="{{ action( 'PageController@changePicture' ) }}">Changer la photo de profil…</a></li>
+			<li><a href="{!! action( 'PageController@editProfil' ) !!}">Modifier mon profil…</a></li>
 			<li><a class="action__deleteProfil" href="{!! action( 'PageController@deleteProfil' ) !!}">Supprimer mon compte</a></li>
 			@if( Auth::user()->status == 1 )
-				<li><a href="{!! action( 'CourseController@create' ) !!}">Créer un cours</a></li>
+				<li><a href="{!! action( 'CourseController@create' ) !!}">Créer un cours…</a></li>
 			@endif
 		</ul>
 	</div>

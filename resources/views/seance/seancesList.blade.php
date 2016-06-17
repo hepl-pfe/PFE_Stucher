@@ -15,11 +15,11 @@
         <ul class="dd_moreButton--content">
             @if( Auth::user()->status == 1 )
                 <li>
-                    <a href="{!! action( 'SeanceController@create', ['id' => $course->id] ) !!}">Ajouter des séances de cours</a>
+                    <a href="{!! action( 'SeanceController@create', ['id' => $course->id] ) !!}">Ajouter des séances de cours…</a>
                 </li>
             @endif
             <li>
-                <a href="{{ action( 'SeanceController@seanceHistory', [ 'id' => $course->id ] ) }}">Voir les séances terminées du cours <span class="hidden">de {{ $course->title }}</span></a>
+                <a href="{{ action( 'SeanceController@seanceHistory', [ 'id' => $course->id ] ) }}">Voir les séances terminées du cours<span class="hidden"> de {{ $course->title }}</span>…</a>
             </li>
         </ul>
     </div>

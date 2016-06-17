@@ -66,16 +66,16 @@
 
 		<ul class="dd_moreButton--content">
 			@if( Auth::user()->status == 1 )
-				<li><a href="{!! action( 'SeanceController@create', ['id' => $id] ) !!}">Ajouter des séances de cours</a></li>
-				<li><a href="{!! action( 'WorkController@create', ['id' => $course->id, 'info' => 'course'] ) !!}">Ajouter un devoir</a></li>
-				<li><a href="{!! action( 'TestController@create', ['id' => $course->id, 'info' => 'course'] ) !!}">Ajouter une interrogation</a></li>
-				<li><a href="{!! action( 'CourseController@edit', [ 'id' => $course->id] ) !!}">Modifier le cours</a></li>
+				<li><a href="{!! action( 'SeanceController@create', ['id' => $id] ) !!}">Ajouter des séances de cours…</a></li>
+				<li><a href="{!! action( 'WorkController@create', ['id' => $course->id, 'info' => 'course'] ) !!}">Ajouter un devoir…</a></li>
+				<li><a href="{!! action( 'TestController@create', ['id' => $course->id, 'info' => 'course'] ) !!}">Ajouter une interrogation…</a></li>
+				<li><a href="{!! action( 'CourseController@edit', [ 'id' => $course->id] ) !!}">Modifier le cours…</a></li>
 				<li><a class="action__deleteCourse" href="{!! action( 'CourseController@delete', [ 'id' => $course->id] ) !!}">Supprimer le cours</a></li>
-				<li><a href="{!! action( 'CourseController@create' ) !!}">Créer un autre cours</a></li>
+				<li><a href="{!! action( 'CourseController@create' ) !!}">Créer un autre cours…</a></li>
 			@else
 				<li><a class="action__removeCourse" href="{!! action( 'CourseController@removeCourse', [ 'id' => $course->id ] ) !!}">Quitter le cours</a></li>
 				<li><a href="mailto:{{ $teacher[0]->email }}">Contacter le professeur</a></li>
-				<li><a href="{!! action( 'PageController@viewUser', [ 'id' => $teacher[0]->id ] ) !!}">Voir la page du professeur</a></li>
+				<li><a href="{!! action( 'PageController@viewUser', [ 'id' => $teacher[0]->id ] ) !!}">Voir la page du professeur…</a></li>
 			@endif
 		</ul>
 	</div>
@@ -194,9 +194,7 @@
 				<a class="box__bottomLink box__bottomLink--dark noprint" href="{{ action( 'SeanceController@all', [ 'id' => $course->id ] ) }}">Voir toutes les séances du cours <span class="hidden">de {{ $course->title }}</span></a>
 			</div>
 
-			@if ( \Auth::user()->status == '1' )
-
-					<!-- STUDENT IN COURSE -->
+			<!-- STUDENT IN COURSE -->
 			<div class="box box--demis box--demis--right box--shadow box--studentInCourse clear--right">
 				<div class="box__head">
 					<h3 class="box__bigTitle box__bigTitle--center">
@@ -215,6 +213,8 @@
 				</div>
 				<a class="box__bottomLink box__bottomLink--dark noprint" href="{!! action( 'CourseController@indexCourseUsers', [ 'id' => $course->id] ) !!}">Voir tous les élèves qui suivent le cours</a>
 			</div>
+
+			@if ( \Auth::user()->status == '1' )
 
 				<!-- STUDENT ASK -->
 				<div class="box box--demis box--demis--right box--shadow box--studentAsk">

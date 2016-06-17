@@ -14,7 +14,7 @@
 
 		<ul class="dd_moreButton--content">
 			@if( Auth::user()->status == 1 )
-				<li><a href="{!! action( 'SeanceController@create', ['id' => $course->id] ) !!}">Ajouter des séances de cours</a></li>
+				<li><a href="{!! action( 'SeanceController@create', ['id' => $course->id] ) !!}">Ajouter des séances de cours…</a></li>
 			@endif
 		</ul>
 	</div>
