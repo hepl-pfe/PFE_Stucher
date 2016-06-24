@@ -828,11 +828,17 @@
 }
 
 .form-group .searchCourse__enter {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   width: 80%;
   float: left;
 }
 
 .form-group .searchCourse__button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   width: 20%;
   float: right;
   background-color: $grayDark;
