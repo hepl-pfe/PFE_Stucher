@@ -1,6 +1,7 @@
 <?php
 use Carbon\Carbon;
 Carbon::setLocale('fr');
+setlocale( LC_ALL, 'fr_FR.UTF-8');
 ?>
 
 @if ($not->not_context == 1)	<!-- DEMANDE D'ACCÈS -->

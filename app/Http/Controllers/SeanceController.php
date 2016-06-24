@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 use \Input;
 use Validator;
+
 use App\Notification;
 use App\Course;
 use App\Seance;
@@ -211,7 +212,6 @@ class SeanceController extends Controller
                     return redirect()->route('home', ['popupError' => 'userAccess']);
                 }
             }
-
 
         return view('seance/viewSeance', compact( 'title', 'id', 'seance', 'interval', 'comments', 'activePage' ));
     }

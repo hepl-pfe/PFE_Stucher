@@ -37,6 +37,7 @@ class CommentController extends Controller
     ];
     public function create()
     {
+        setlocale( LC_ALL, 'fr_FR.UTF-8');
         $error = Validator::make(Input::all(), $this->createRules);
         if ($error->fails()) {
             return redirect()->back()->withErrors($error);
