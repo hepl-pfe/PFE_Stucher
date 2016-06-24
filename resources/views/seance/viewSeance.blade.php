@@ -185,7 +185,7 @@ Carbon::setLocale('fr'); ?>
 						<div class="box box--shadow box--comment">
 							<ul class="box__group--comment">
 							@foreach ($comments as $comment)
-								<?php $user=User::findOrFail($comment->from); ?>
+								<?php $user = User::findOrFail($comment->from); ?>
 								<li class="box__group--comment--item">
 									<a class="comment_profilPicName profilPicName" href="
 										@if( $user->id == \Auth::user()->id )

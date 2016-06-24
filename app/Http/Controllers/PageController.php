@@ -134,7 +134,7 @@ class PageController extends Controller
                         $test->delete();
                     }
 
-                    $comments = Comment::where( 'for', '=', $seance->id )->get();
+                    $comments = Comment::where( 'from', '=', \Auth::user()->id )->get();
                     foreach ($comments as $comment)
                     {
                         $comment->delete();
